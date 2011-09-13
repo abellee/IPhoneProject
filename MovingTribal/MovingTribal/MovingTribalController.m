@@ -3,7 +3,7 @@
 //  MovingTribal
 //
 //  Created by Lee Abel on 9/12/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Abel Lee. All rights reserved.
 //
 
 #import "MovingTribalController.h"

@@ -12,6 +12,9 @@
 #import "LoginInterface.h"
 #import "OthersLoginInterface.h"
 #import "MapInterface.h"
+#import "ChatInterface.h"
+#import "FriendsInterface.h"
+#import "SystemSettingInterface.h"
 
 @interface MovingTribalController : UIViewController<InterfaceDelegate>{
     RegistInterface* registInterface;

@@ -3,10 +3,11 @@
 //  MovingTribal
 //
 //  Created by Lee Abel on 9/14/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Abel Lee. All rights reserved.
 //
 
 #import "MapInterface.h"
+#import "TestingAnnotation.h"
 
 @implementation MapInterface
 
@@ -26,13 +27,33 @@
     CGRect mapRect = CGRectMake(0, 0, 320, 460);
     map = [[MKMapView alloc] initWithFrame:mapRect];
     map.mapType = MKMapTypeStandard;
+    map.delegate = self;
     [self.view addSubview:map];
     
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.distanceFilter = 1000.0;
-    [locationManager startUpdatingLocation];
+    TestingAnnotation* anno = [[TestingAnnotation alloc] init];
+//    [map addAnnotation:anno];
+    
+    
+    [map addAnnotation:anno];
+    
+//    locationManager = [[CLLocationManager alloc] init];
+//    locationManager.delegate = self;
+//    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    locationManager.distanceFilter = 1000.0;
+//    [locationManager startUpdatingLocation];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    NSLog(@"view for annotation");
+    static NSString* MewIndentifier = @"MewImage";
+    MKAnnotationView* annoView = [mapView dequeueReusableAnnotationViewWithIdentifier:MewIndentifier];
+    if(annoView == nil){
+        annoView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:MewIndentifier];
+    }
+    annoView.image = [UIImage imageNamed:@"32.png"];
+    annoView.canShowCallout = YES;
+    return annoView;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation

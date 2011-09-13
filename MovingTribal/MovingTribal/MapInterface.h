@@ -3,14 +3,14 @@
 //  MovingTribal
 //
 //  Created by Lee Abel on 9/14/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Abel Lee. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "InterfaceDelegate.h"
 
-@interface MapInterface : UIViewController<CLLocationManagerDelegate>{
+@interface MapInterface : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate>{
     id<InterfaceDelegate> delegate;
     
     MKMapView* map;
