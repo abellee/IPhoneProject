@@ -21,7 +21,7 @@
     id <InterfaceDelegate> delegate;
 }
 
-@property (nonatomic, retain) id<InterfaceDelegate> delegate;
+@property (nonatomic, assign) id<InterfaceDelegate> delegate;
 
 @property (nonatomic, retain) UIButton* loginButton;
 @property (nonatomic, retain) UIButton* registButton;

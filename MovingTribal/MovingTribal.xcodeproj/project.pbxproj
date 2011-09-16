@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0C8C2A7D141DBB34006ED2EB /* TouchableUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C2A7C141DBB34006ED2EB /* TouchableUILabel.m */; };
 		0C8C2A8A141E3569006ED2EB /* RegistInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C2A89141E3569006ED2EB /* RegistInterface.m */; };
+		0C9E2FA51420B93E00A77D98 /* ChatListInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9E2FA41420B93E00A77D98 /* ChatListInterface.m */; };
+		0C9E2FA814210BB700A77D98 /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9E2FA614210BB600A77D98 /* cat.png */; };
+		0C9E2FA914210BB700A77D98 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0C9E2FA714210BB600A77D98 /* index.html */; };
+		0C9E2FAC142120E900A77D98 /* MapInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9E2FAB142120E800A77D98 /* MapInterface.m */; };
 		0CB90A2B141C9D3A00DF0C14 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB90A2A141C9D3A00DF0C14 /* UIKit.framework */; };
 		0CB90A2D141C9D3A00DF0C14 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB90A2C141C9D3A00DF0C14 /* Foundation.framework */; };
 		0CB90A2F141C9D3A00DF0C14 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB90A2E141C9D3A00DF0C14 /* CoreGraphics.framework */; };
@@ -16,7 +20,6 @@
 		0CB90A37141C9D3A00DF0C14 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB90A36141C9D3A00DF0C14 /* main.m */; };
 		0CB90A3B141C9D3A00DF0C14 /* MovingTribalAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB90A3A141C9D3A00DF0C14 /* MovingTribalAppDelegate.m */; };
 		0CBC360F141FB0570043F467 /* 32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CBC360E141FB0570043F467 /* 32.png */; };
-		0CBC3612141FB6B00043F467 /* MapInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBC3611141FB6B00043F467 /* MapInterface.m */; };
 		0CBC3616141FDC5B0043F467 /* TestingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBC3615141FDC5B0043F467 /* TestingAnnotation.m */; };
 		0CBC361D141FE6AE0043F467 /* ChatInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBC361C141FE6AE0043F467 /* ChatInterface.m */; };
 		0CBC3620141FE6BE0043F467 /* FriendsInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBC361F141FE6BE0043F467 /* FriendsInterface.m */; };
@@ -34,6 +37,12 @@
 		0C8C2A7F141DBF4F006ED2EB /* TouchableUILabelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableUILabelDelegate.h; sourceTree = "<group>"; };
 		0C8C2A88141E3569006ED2EB /* RegistInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistInterface.h; sourceTree = "<group>"; };
 		0C8C2A89141E3569006ED2EB /* RegistInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistInterface.m; sourceTree = "<group>"; };
+		0C9E2FA31420B93E00A77D98 /* ChatListInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListInterface.h; sourceTree = "<group>"; };
+		0C9E2FA41420B93E00A77D98 /* ChatListInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListInterface.m; sourceTree = "<group>"; };
+		0C9E2FA614210BB600A77D98 /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cat.png; path = ../../../../../Desktop/cat.png; sourceTree = "<group>"; };
+		0C9E2FA714210BB600A77D98 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = ../../../../../Desktop/index.html; sourceTree = "<group>"; };
+		0C9E2FAA142120E800A77D98 /* MapInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapInterface.h; sourceTree = "<group>"; };
+		0C9E2FAB142120E800A77D98 /* MapInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapInterface.m; sourceTree = "<group>"; };
 		0CB90A26141C9D3A00DF0C14 /* MovingTribal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovingTribal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB90A2A141C9D3A00DF0C14 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0CB90A2C141C9D3A00DF0C14 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -45,8 +54,6 @@
 		0CB90A39141C9D3A00DF0C14 /* MovingTribalAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovingTribalAppDelegate.h; sourceTree = "<group>"; };
 		0CB90A3A141C9D3A00DF0C14 /* MovingTribalAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovingTribalAppDelegate.m; sourceTree = "<group>"; };
 		0CBC360E141FB0570043F467 /* 32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 32.png; path = ../../../../../Desktop/Everything/MewResource/newIcons/32.png; sourceTree = "<group>"; };
-		0CBC3610141FB6B00043F467 /* MapInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapInterface.h; sourceTree = "<group>"; };
-		0CBC3611141FB6B00043F467 /* MapInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapInterface.m; sourceTree = "<group>"; };
 		0CBC3614141FDC5B0043F467 /* TestingAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingAnnotation.h; sourceTree = "<group>"; };
 		0CBC3615141FDC5B0043F467 /* TestingAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingAnnotation.m; sourceTree = "<group>"; };
 		0CBC361B141FE6AE0043F467 /* ChatInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInterface.h; sourceTree = "<group>"; };
@@ -124,6 +131,8 @@
 		0CB90A30141C9D3A00DF0C14 /* MovingTribal */ = {
 			isa = PBXGroup;
 			children = (
+				0C9E2FA614210BB600A77D98 /* cat.png */,
+				0C9E2FA714210BB600A77D98 /* index.html */,
 				0CB90A39141C9D3A00DF0C14 /* MovingTribalAppDelegate.h */,
 				0CB90A3A141C9D3A00DF0C14 /* MovingTribalAppDelegate.m */,
 				0CE49A0C141D24DF007DD4BC /* MovingTribalController.h */,
@@ -173,16 +182,18 @@
 				0CF86E4A141E4BB4002792F3 /* LoginInterface.m */,
 				0CF86E60141E7CF8002792F3 /* OthersLoginInterface.h */,
 				0CF86E61141E7CF8002792F3 /* OthersLoginInterface.m */,
-				0CBC3610141FB6B00043F467 /* MapInterface.h */,
-				0CBC3611141FB6B00043F467 /* MapInterface.m */,
-				0CF86E50141E555B002792F3 /* Delegates */,
-				0CBC3617141FE6650043F467 /* TemporaryClass */,
+				0C9E2FAA142120E800A77D98 /* MapInterface.h */,
+				0C9E2FAB142120E800A77D98 /* MapInterface.m */,
 				0CBC361B141FE6AE0043F467 /* ChatInterface.h */,
 				0CBC361C141FE6AE0043F467 /* ChatInterface.m */,
 				0CBC361E141FE6BD0043F467 /* FriendsInterface.h */,
 				0CBC361F141FE6BE0043F467 /* FriendsInterface.m */,
 				0CBC3621141FE6CD0043F467 /* SystemSettingInterface.h */,
 				0CBC3622141FE6CD0043F467 /* SystemSettingInterface.m */,
+				0C9E2FA31420B93E00A77D98 /* ChatListInterface.h */,
+				0C9E2FA41420B93E00A77D98 /* ChatListInterface.m */,
+				0CF86E50141E555B002792F3 /* Delegates */,
+				0CBC3617141FE6650043F467 /* TemporaryClass */,
 			);
 			name = SubInterfaces;
 			sourceTree = "<group>";
@@ -244,6 +255,8 @@
 			files = (
 				0CB90A35141C9D3A00DF0C14 /* InfoPlist.strings in Resources */,
 				0CBC360F141FB0570043F467 /* 32.png in Resources */,
+				0C9E2FA814210BB700A77D98 /* cat.png in Resources */,
+				0C9E2FA914210BB700A77D98 /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,11 +274,12 @@
 				0C8C2A8A141E3569006ED2EB /* RegistInterface.m in Sources */,
 				0CF86E4B141E4BB4002792F3 /* LoginInterface.m in Sources */,
 				0CF86E62141E7CF8002792F3 /* OthersLoginInterface.m in Sources */,
-				0CBC3612141FB6B00043F467 /* MapInterface.m in Sources */,
 				0CBC3616141FDC5B0043F467 /* TestingAnnotation.m in Sources */,
 				0CBC361D141FE6AE0043F467 /* ChatInterface.m in Sources */,
 				0CBC3620141FE6BE0043F467 /* FriendsInterface.m in Sources */,
 				0CBC3623141FE6CD0043F467 /* SystemSettingInterface.m in Sources */,
+				0C9E2FA51420B93E00A77D98 /* ChatListInterface.m in Sources */,
+				0C9E2FAC142120E900A77D98 /* MapInterface.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +302,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -313,7 +327,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

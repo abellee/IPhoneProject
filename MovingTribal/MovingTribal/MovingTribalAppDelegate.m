@@ -26,6 +26,7 @@
     self.movingTribal = [MovingTribalController alloc];
     [self.movingTribal setView:view];
     [self.window addSubview:self.movingTribal.view];
+    [view release];
     
     [self.window makeKeyAndVisible];
     return YES;

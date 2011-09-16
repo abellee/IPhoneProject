@@ -12,6 +12,13 @@
 
 @synthesize delegate;
 
+- (void)dealloc
+{
+    NSLog(@"touchable ui label dealloc");
+    delegate = nil;
+    [super dealloc];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     if(self = [super initWithFrame:frame]){

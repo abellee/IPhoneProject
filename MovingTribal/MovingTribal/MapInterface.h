@@ -2,7 +2,7 @@
 //  MapInterface.h
 //  MovingTribal
 //
-//  Created by Lee Abel on 9/14/11.
+//  Created by Lee Abel on 9/15/11.
 //  Copyright 2011 Abel Lee. All rights reserved.
 //
 
@@ -10,16 +10,14 @@
 #import <MapKit/MapKit.h>
 #import "InterfaceDelegate.h"
 
-@interface MapInterface : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate>{
+@interface MapInterface : UIViewController<MKMapViewDelegate>{
     id<InterfaceDelegate> delegate;
     
     MKMapView* map;
-    CLLocationManager* locationManager;
 }
 
-@property (nonatomic, retain) id<InterfaceDelegate> delegate;
+@property (nonatomic, assign) id<InterfaceDelegate> delegate;
 @property (nonatomic, retain) MKMapView* map;
-@property (nonatomic, retain) CLLocationManager* locationManager;
 
 - (void)initInterface;
 

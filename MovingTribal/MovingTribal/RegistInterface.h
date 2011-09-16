@@ -20,7 +20,7 @@
     UITextField* password;
 }
 
-@property (nonatomic, retain) id<InterfaceDelegate> delegate;
+@property (nonatomic, assign) id<InterfaceDelegate> delegate;
 
 @property (nonatomic, retain) UILabel* titleLabel;
 @property (nonatomic, retain) UIButton* backwardBtn;

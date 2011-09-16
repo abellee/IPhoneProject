@@ -10,6 +10,13 @@
 
 @implementation FriendsInterface
 
+@synthesize delegate;
+
+- (void)setView:(UIView *)view
+{
+    [super setView:view];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

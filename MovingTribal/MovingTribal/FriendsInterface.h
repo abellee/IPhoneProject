@@ -6,8 +6,12 @@
 //  Copyright 2011 Abel Lee. All rights reserved.
 //
 
+#import "InterfaceDelegate.h"
 
+@interface FriendsInterface : UIViewController{
+    id<InterfaceDelegate> delegate;
+}
 
-@interface FriendsInterface : UIViewController
+@property (nonatomic, retain) id<InterfaceDelegate> delegate;
 
 @end

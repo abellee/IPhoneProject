@@ -16,6 +16,15 @@
 
 @synthesize delegate;
 
+- (void)dealloc
+{
+    NSLog(@"others login interface dealloc");
+    [otherPlatformList release];
+    [platformList release];
+    delegate = nil;
+    [super dealloc];
+}
+
 - (void)setView:(UIView *)view
 {
     [super setView:view];
@@ -34,6 +43,7 @@
     tableView.backgroundColor = [UIColor clearColor];
     otherPlatformList = [UITableViewController alloc];
     [otherPlatformList setView:tableView];
+    [tableView release];
     [self.view addSubview:otherPlatformList.view];
     
     CGRect buttonRect = CGRectMake(0, 0, 60, 30);
@@ -58,6 +68,7 @@
     if(cell == nil){
         cell = [[UITableViewCell alloc]
                 initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+        [cell autorelease];
     }
     NSUInteger row = indexPath.row;
     cell.textLabel.text = [platformList objectAtIndex:row];

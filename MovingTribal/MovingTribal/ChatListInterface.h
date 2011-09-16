@@ -1,5 +1,5 @@
 //
-//  SystemSettingInterface.h
+//  ChatListInterface.h
 //  MovingTribal
 //
 //  Created by Lee Abel on 9/14/11.
@@ -8,7 +8,7 @@
 
 #import "InterfaceDelegate.h"
 
-@interface SystemSettingInterface : UIViewController{
+@interface ChatListInterface : UIViewController{
     id<InterfaceDelegate> delegate;
 }
 

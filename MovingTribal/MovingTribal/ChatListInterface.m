@@ -1,14 +1,14 @@
 //
-//  SystemSettingInterface.m
+//  ChatListInterface.m
 //  MovingTribal
 //
 //  Created by Lee Abel on 9/14/11.
 //  Copyright 2011 Abel Lee. All rights reserved.
 //
 
-#import "SystemSettingInterface.h"
+#import "ChatListInterface.h"
 
-@implementation SystemSettingInterface
+@implementation ChatListInterface
 
 @synthesize delegate;
 

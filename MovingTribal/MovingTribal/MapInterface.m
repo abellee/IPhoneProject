@@ -2,18 +2,26 @@
 //  MapInterface.m
 //  MovingTribal
 //
-//  Created by Lee Abel on 9/14/11.
+//  Created by Lee Abel on 9/15/11.
 //  Copyright 2011 Abel Lee. All rights reserved.
 //
 
 #import "MapInterface.h"
+
 #import "TestingAnnotation.h"
 
 @implementation MapInterface
 
 @synthesize delegate;
 @synthesize map;
-@synthesize locationManager;
+
+- (void)dealloc
+{
+    NSLog(@"map interface dealloc");
+    delegate = nil;
+    [map release];
+    [super dealloc];
+}
 
 - (void)setView:(UIView *)view
 {
@@ -24,43 +32,34 @@
 
 - (void)initInterface
 {
-    CGRect mapRect = CGRectMake(0, 0, 320, 460);
-    map = [[MKMapView alloc] initWithFrame:mapRect];
-    map.mapType = MKMapTypeStandard;
+    CGRect rect = CGRectMake(0, 0, 320, 420);
+    map = [[MKMapView alloc] initWithFrame:rect];
     map.delegate = self;
-    [self.view addSubview:map];
     
-    TestingAnnotation* anno = [[TestingAnnotation alloc] init];
-//    [map addAnnotation:anno];
-    
-    
+    TestingAnnotation* anno = [TestingAnnotation alloc];
     [map addAnnotation:anno];
     
-//    locationManager = [[CLLocationManager alloc] init];
-//    locationManager.delegate = self;
-//    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    locationManager.distanceFilter = 1000.0;
-//    [locationManager startUpdatingLocation];
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
+    MKCoordinateRegion region = MKCoordinateRegionMake(anno.coordinate, span);
+    [map setRegion:region];
+    
+    [self.view addSubview:map];
+    
+    [anno release];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    NSLog(@"view for annotation");
-    static NSString* MewIndentifier = @"MewImage";
-    MKAnnotationView* annoView = [mapView dequeueReusableAnnotationViewWithIdentifier:MewIndentifier];
-    if(annoView == nil){
-        annoView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:MewIndentifier];
+    static NSString* MewIndentifier = @"MewIndentifier";
+    MKAnnotationView* anno = [mapView dequeueReusableAnnotationViewWithIdentifier:MewIndentifier];
+    if(anno == nil){
+        anno = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:MewIndentifier];
+        [anno autorelease];
     }
-    annoView.image = [UIImage imageNamed:@"32.png"];
-    annoView.canShowCallout = YES;
-    return annoView;
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    CLLocationCoordinate2D coordination = newLocation.coordinate;
-    map.showsUserLocation = YES;
-    [map setCenterCoordinate:coordination animated:YES];
+    anno.image = [UIImage imageNamed:@"32.png"];
+    anno.canShowCallout = YES;
+    
+    return anno;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

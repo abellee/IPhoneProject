@@ -15,6 +15,6 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, retain) MovingTribalController *movingTribal;
+@property (nonatomic, assign) MovingTribalController *movingTribal;
 
 @end

@@ -19,6 +19,16 @@
 
 @synthesize delegate;
 
+- (void)dealloc
+{
+    NSLog(@"login interface dealloc");
+    [username release];
+    [password release];
+    [forgetPassword release];
+    delegate = nil;
+    [super dealloc];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,7 +41,6 @@
 - (void)setView:(UIView *)view
 {
     [super setView:view];
-    
     [self initInterface];
 }
 

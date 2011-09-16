@@ -19,9 +19,9 @@
 
 @property (nonatomic, retain) UITableViewController* otherPlatformList;
 @property (nonatomic, retain) UIButton* backwardBtn;
-@property (nonatomic, retain) NSArray* platformList;
+@property (nonatomic, assign) NSArray* platformList;
 
-@property (nonatomic, retain) id<InterfaceDelegate> delegate;
+@property (nonatomic, assign) id<InterfaceDelegate> delegate;
 
 - (void)initInterface;
 

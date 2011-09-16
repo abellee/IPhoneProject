@@ -15,21 +15,37 @@
 #import "ChatInterface.h"
 #import "FriendsInterface.h"
 #import "SystemSettingInterface.h"
+#import "ChatListInterface.h"
 
-@interface MovingTribalController : UIViewController<InterfaceDelegate>{
+@interface MovingTribalController : UIViewController<InterfaceDelegate, UITabBarDelegate>{
     RegistInterface* registInterface;
     LoginInterface* loginInterface;
     OthersLoginInterface* othersInterface;
     MapInterface* mapInterface;
+    ChatInterface* chatInterface;
+    ChatListInterface* chatListInterface;
+    FriendsInterface* friendInterface;
+    SystemSettingInterface* systemSettingInterface;
+    
+    UITabBar* tabBar;
     
     UIView* currentView;
+    
+    NSUInteger currentState;
 }
-@property (nonatomic, retain) RegistInterface* registInterface;
-@property (nonatomic, retain) LoginInterface* loginInterface;
-@property (nonatomic, retain) OthersLoginInterface* othersInterface;
-@property (nonatomic, retain) MapInterface* mapInterface;
+@property (nonatomic, assign) RegistInterface* registInterface;
+@property (nonatomic, assign) LoginInterface* loginInterface;
+@property (nonatomic, assign) OthersLoginInterface* othersInterface;
+@property (nonatomic, assign) MapInterface* mapInterface;
+@property (nonatomic, assign) ChatInterface* chatInterface;
+@property (nonatomic, assign) ChatListInterface* chatListInterface;
+@property (nonatomic, assign) FriendsInterface* friendInterface;
+@property (nonatomic, assign) SystemSettingInterface* systemSettingInterface;
+
+@property (nonatomic, retain) UITabBar* tabBar;
 
 @property (nonatomic, retain) UIView* currentView;
+@property (nonatomic, assign) NSUInteger currentState;
 
 - (void)showLoginInterface;
 - (void)easeOut:(UIView *)view;

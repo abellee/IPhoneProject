@@ -19,6 +19,17 @@
 @synthesize backwardBtn;
 @synthesize registBtn;
 
+- (void)dealloc
+{
+    NSLog(@"regist interface dealloc");
+    [titleLabel release];
+    [nickname release];
+    [account release];
+    [password release];
+    delegate = nil;
+    [super dealloc];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,8 +42,6 @@
 - (void)setView:(UIView *)view
 {
     [super setView:view];
-    view.backgroundColor = [UIColor whiteColor];
-    
     [self initInterface];
 }
 

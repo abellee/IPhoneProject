@@ -13,8 +13,8 @@
 - (CLLocationCoordinate2D)coordinate
 {
     CLLocationCoordinate2D pos;
-    pos.latitude = 37.810000;
-    pos.longitude = -122.477989;
+    pos.latitude = 30.21635515266855;
+    pos.longitude = 120.2947998046875;
     return pos;
 }
 
