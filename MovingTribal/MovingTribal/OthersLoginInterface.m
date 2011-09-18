@@ -18,9 +18,9 @@
 
 - (void)dealloc
 {
-    NSLog(@"others login interface dealloc");
-    [otherPlatformList release];
-    [platformList release];
+    NSLog(@"******| Others Login Interface |****** receive dealloc message!");
+    if(otherPlatformList != nil) [otherPlatformList release];
+    if(platformList != nil) [platformList release];
     delegate = nil;
     [super dealloc];
 }
@@ -28,7 +28,6 @@
 - (void)setView:(UIView *)view
 {
     [super setView:view];
-    
     [self initInterface];
 }
 
@@ -36,7 +35,7 @@
 {
     platformList = [[NSArray alloc] initWithObjects:@"新浪微博", @"腾讯微博", nil];
     
-    CGRect rect = CGRectMake(20, 20, 280, 420);
+    CGRect rect = CGRectMake(20, 20, self.view.frame.size.width - 40, self.view.frame.size.height - 40);
     UITableView* tableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStyleGrouped];
     tableView.dataSource = self;
     tableView.delegate = self;
@@ -56,8 +55,8 @@
 
 - (void)buttonPressed:(id)sender
 {
-    if(delegate != nil && [delegate conformsToProtocol:@protocol(InterfaceDelegate)]){
-        [delegate exitOtherLoginInterface:self.view.tag];
+    if(delegate != nil && [delegate conformsToProtocol:@protocol(LoginContainerDelegate)]){
+        [delegate exitOtherPlatformInterface];
     }
 }
 
@@ -66,13 +65,12 @@
     static NSString* cellIndentifier = @"PlatformCellIndentifier";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
     if(cell == nil){
-        cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-        [cell autorelease];
+        cell = [[[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier] autorelease];
     }
     NSUInteger row = indexPath.row;
     cell.textLabel.text = [platformList objectAtIndex:row];
-    cell.imageView.image = [UIImage imageNamed:@"32.png"];
+    cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"32" ofType:@"png"]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }

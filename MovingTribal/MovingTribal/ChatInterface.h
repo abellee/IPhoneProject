@@ -17,7 +17,9 @@
 //    UIView* topBackground;
 //    UIView* bottomBackground;
     UILabel* nameLabel;
-//    UIButton* returnBtn;
+    UIButton* returnBtn;
+    
+    UserData* userData;
 }
 
 @property (nonatomic, retain) id<InterfaceDelegate> delegate;
@@ -27,6 +29,10 @@
 //@property (nonatomic, retain) UIView* topBackground;
 //@property (nonatomic, retain) UIView* bottomBackground;
 @property (nonatomic, retain) UILabel* nameLabel;
-//@property (nonatomic, retain) UIButton* returnBtn;
+@property (nonatomic, retain) UIButton* returnBtn;
+
+@property (nonatomic, assign, getter = userData, setter = userData:) UserData* userData;
+
+- (void)initInterface;
 
 @end

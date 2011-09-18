@@ -7,21 +7,21 @@
 //
 
 #import "UIKit/UIKit.h"
-#import "InterfaceDelegate.h"
+#import "LoginContainerDelegate.h"
 
 @interface OthersLoginInterface : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     UITableViewController* otherPlatformList;
     UIButton* backwardBtn;
     NSArray* platformList;
     
-    id<InterfaceDelegate> delegate;
+    id<LoginContainerDelegate> delegate;
 }
 
 @property (nonatomic, retain) UITableViewController* otherPlatformList;
 @property (nonatomic, retain) UIButton* backwardBtn;
 @property (nonatomic, assign) NSArray* platformList;
 
-@property (nonatomic, assign) id<InterfaceDelegate> delegate;
+@property (nonatomic, assign) id<LoginContainerDelegate> delegate;
 
 - (void)initInterface;
 

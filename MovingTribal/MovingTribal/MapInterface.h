@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "InterfaceDelegate.h"
+#import "MainContainerDelegate.h"
 
 @interface MapInterface : UIViewController<MKMapViewDelegate>{
-    id<InterfaceDelegate> delegate;
+    id<MainContainerDelegate> delegate;
     
     MKMapView* map;
 }
 
-@property (nonatomic, assign) id<InterfaceDelegate> delegate;
+@property (nonatomic, assign) id<MainContainerDelegate> delegate;
 @property (nonatomic, retain) MKMapView* map;
 
 - (void)initInterface;

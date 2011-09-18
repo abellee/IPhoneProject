@@ -1,18 +1,17 @@
 //
-//  InterfaceDelegate.h
+//  MainContainerDelegate.h
 //  MovingTribal
 //
-//  Created by Lee Abel on 9/13/11.
+//  Created by Lee Abel on 9/17/11.
 //  Copyright 2011 Abel Lee. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "UserData.h"
 
-@protocol InterfaceDelegate <NSObject>
+@protocol MainContainerDelegate <NSObject>
 
-- (void)showMainContainer;
+@required
 - (void)showChatInterface:(UserData *)userData;
-- (void)exitChatInterface;
 
 @end

@@ -21,11 +21,11 @@
 
 - (void)dealloc
 {
-    NSLog(@"regist interface dealloc");
-    [titleLabel release];
-    [nickname release];
-    [account release];
-    [password release];
+    NSLog(@"******| Regist Interface |****** receive dealloc message!");
+    if(titleLabel != nil) [titleLabel release];
+    if(nickname != nil) [nickname release];
+    if(account != nil) [account release];
+    if(password != nil) [password release];
     delegate = nil;
     [super dealloc];
 }
@@ -39,23 +39,28 @@
     return self;
 }
 
-- (void)setView:(UIView *)view
+- (id)init
 {
-    [super setView:view];
-    [self initInterface];
+    self = [super init];
+    if(self){
+        [self initInterface];
+    }
+    return self;
 }
 
 - (void)initInterface
 {
+    CGFloat w = self.view.frame.size.width - 40;
     // 标题
     CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 30);
     titleLabel = [[UILabel alloc] initWithFrame:rect];
     titleLabel.text = @"注册";
+    titleLabel.backgroundColor = [UIColor grayColor];
     titleLabel.textAlignment = UITextAlignmentCenter;
     [self.view addSubview:titleLabel];
     
     // 昵称
-    CGRect nicknameRect = CGRectMake(20, rect.origin.y + rect.size.height + 5, 280, 30);
+    CGRect nicknameRect = CGRectMake(20, rect.origin.y + rect.size.height + 5, w, 30);
     nickname = [[UITextField alloc] initWithFrame:nicknameRect];
     nickname.placeholder = @"昵称（4-20个字符）";
     nickname.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -69,7 +74,7 @@
     
     
     // 帐号
-    CGRect accountRect = CGRectMake(20, nicknameRect.origin.y + nicknameRect.size.height + 5, 280, 30);
+    CGRect accountRect = CGRectMake(20, nicknameRect.origin.y + nicknameRect.size.height + 5, w, 30);
     account = [[UITextField alloc] initWithFrame:accountRect];
     account.placeholder = @"邮箱地址";
     account.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -82,7 +87,7 @@
     [self.view addSubview:account];
     
     // 密码
-    CGRect passwordRect = CGRectMake(20, accountRect.origin.y + accountRect.size.height + 5, 280, 30);
+    CGRect passwordRect = CGRectMake(20, accountRect.origin.y + accountRect.size.height + 5, w, 30);
     password = [[UITextField alloc] initWithFrame:passwordRect];
     password.placeholder = @"密码(6-20个字符)";
     password.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -96,7 +101,7 @@
     [self.view addSubview:password];
     
     // 注册按钮
-    CGRect registBtnRect = CGRectMake(20, passwordRect.origin.y + passwordRect.size.height + 5, 280, 30);
+    CGRect registBtnRect = CGRectMake(20, passwordRect.origin.y + passwordRect.size.height + 5, w, 30);
     registBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [registBtn setFrame:registBtnRect];
     [registBtn setTitle:@"注 册" forState:UIControlStateNormal];
@@ -105,7 +110,7 @@
     [self.view addSubview:registBtn];
     
     // 返回按钮
-    CGRect backwardRect = CGRectMake(20, registBtnRect.size.height + registBtnRect.origin.y + 5, 280, 30);
+    CGRect backwardRect = CGRectMake(20, registBtnRect.size.height + registBtnRect.origin.y + 5, w, 30);
     backwardBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backwardBtn setFrame:backwardRect];
     [backwardBtn setTitle:@"返 回" forState:UIControlStateNormal];
@@ -123,9 +128,9 @@
             break;
         case 1:
             // return backward
-            if(delegate != nil && [delegate conformsToProtocol:@protocol(InterfaceDelegate)]){
+            if(delegate != nil && [delegate conformsToProtocol:@protocol(LoginContainerDelegate)]){
                 [self resignAll];
-                [delegate exitRegistion:self.view.tag];
+                [delegate exitRegistInterface];
             }
             break;
         default:

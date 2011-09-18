@@ -17,22 +17,24 @@
 
 - (void)dealloc
 {
-    NSLog(@"map interface dealloc");
+    NSLog(@"******| Map Interface |****** receive dealloc message!");
     delegate = nil;
     [map release];
     [super dealloc];
 }
 
-- (void)setView:(UIView *)view
+- (id)init
 {
-    [super setView:view];
-    
-    [self initInterface];
+    self = [super init];
+    if(self){
+        [self initInterface];
+    }
+    return self;
 }
 
 - (void)initInterface
 {
-    CGRect rect = CGRectMake(0, 0, 320, 420);
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40);
     map = [[MKMapView alloc] initWithFrame:rect];
     map.delegate = self;
     
@@ -56,7 +58,7 @@
         anno = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:MewIndentifier];
         [anno autorelease];
     }
-    anno.image = [UIImage imageNamed:@"32.png"];
+    anno.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"32" ofType:@"png"]];
     anno.canShowCallout = YES;
     
     return anno;

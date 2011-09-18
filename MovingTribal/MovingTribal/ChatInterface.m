@@ -16,59 +16,95 @@
 //@synthesize bottomBackground;
 //@synthesize chatInput;
 //@synthesize scrollView;
-//@synthesize returnBtn;
+@synthesize returnBtn;
 @synthesize nameLabel;
+@synthesize userData;
 
 - (void)dealloc
 {
-    NSLog(@"chat interface dealloc");
+    NSLog(@"******| Chat Interface |****** receive dealloc message!");
 //    [topBackground release];
 //    [bottomBackground release];
 //    [chatInput release];
 //    [scrollView release];
-    [nameLabel release];
+    [returnBtn removeTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [returnBtn release];
+    if(nameLabel != nil) [nameLabel release];
+    [userData release];
     delegate = nil;
     [super dealloc];
 }
 
-- (void)setView:(UIView *)view
+- (id)init
 {
-    [super setView:view];
-    [self performSelector:@selector(initInterface)];
+    self = [super init];
+    if(self){
+        
+    }
+    return self;
+}
+
+- (UserData *)userData
+{
+    return userData;
+}
+
+- (void)userData:(UserData *)ud
+{
+    if(userData != ud){
+        UserData* tempUD = userData;
+        userData = [ud retain];
+        [tempUD release];
+    }
 }
 
 - (void)initInterface
 {
-    CGRect rect = CGRectMake(0, 0, 320, 30);
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 30);
     UIView* topBackground = [[UIView alloc] initWithFrame:rect];
     topBackground.backgroundColor = [UIColor grayColor];
     [self.view addSubview:topBackground];
     
-    CGRect scrollViewRect = CGRectMake(0, rect.size.height, 320, 350);
+    CGRect scrollViewRect = CGRectMake(0, rect.size.height, self.view.frame.size.width, self.view.frame.size.height - 70);
     UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:scrollViewRect];
     [self.view addSubview:scrollView];
     
-    CGRect bottomRect = CGRectMake(0, scrollViewRect.origin.y + scrollViewRect.size.height, 320, 40);
+    CGRect bottomRect = CGRectMake(0, scrollViewRect.origin.y + scrollViewRect.size.height, self.view.frame.size.width, 40);
     UIView* bottomBackground = [[UIView alloc] initWithFrame:bottomRect];
     bottomBackground.backgroundColor = [UIColor grayColor];
     [self.view addSubview:bottomBackground];
     
-    CGRect nameLabelRect = CGRectMake(55, 5, 215, 20);
+    CGRect nameLabelRect = CGRectMake(55, 5, 210, 20);
     nameLabel = [[UILabel alloc] initWithFrame:nameLabelRect];
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.textAlignment = UITextAlignmentCenter;
-    nameLabel.text = @"用户名";
+    nameLabel.text = userData.username;
     [self.view addSubview:nameLabel];
     
     CGRect returnBtnRect = CGRectMake(5, 5, 45, 20);
-    UIButton* returnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [returnButton setFrame:returnBtnRect];
-    [returnButton setTitle:@"返回" forState:UIControlStateNormal];
-    [self.view addSubview:returnButton];
+    returnBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [returnBtn setFrame:returnBtnRect];
+    returnBtn.tag = 0;
+    [returnBtn setTitle:@"返回" forState:UIControlStateNormal];
+    [returnBtn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:returnBtn];
     
     [topBackground release];
     [scrollView release];
     [bottomBackground release];
+}
+
+- (void)buttonPressed:(id)sender
+{
+    UIView* view = (UIView *)sender;
+    switch (view.tag) {
+        case 0:
+            if(delegate != nil && [delegate conformsToProtocol:@protocol(InterfaceDelegate)]) [delegate exitChatInterface];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

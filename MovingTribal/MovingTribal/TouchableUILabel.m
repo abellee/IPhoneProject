@@ -14,7 +14,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"touchable ui label dealloc");
+    NSLog(@"******| TouchableUILabel |****** receive dealloc message!");
     delegate = nil;
     [super dealloc];
 }

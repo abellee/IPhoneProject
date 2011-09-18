@@ -7,10 +7,74 @@
 //
 
 #import "SystemSettingInterface.h"
+#import "EditableUITableCellData.h"
 
 @implementation SystemSettingInterface
 
+@synthesize tableView;
+
 @synthesize delegate;
+
+- (id)init
+{
+    self = [super init];
+    if(self){
+        [self performSelector:@selector(initInterface)];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    NSLog(@"******| SystemSettingInterface |****** receive dealloc message!");
+    [tableView release];
+    delegate = nil;
+    [super dealloc];
+}
+
+- (void)initInterface
+{
+    EditableUITableCellData* cell0 = [[[EditableUITableCellData alloc] init] autorelease];
+    [cell0 label: @"昵称"];
+    [cell0 placeholder: @"请输入昵称"];
+    [cell0 value: @""];
+    [cell0 keyboardType: UIKeyboardTypeDefault];
+    [cell0 keyboardAppearance: UIKeyboardAppearanceDefault];
+    [cell0 returnKeyType: UIReturnKeyDone];
+    [cell0 isSecureTextEntry: NO];
+    [cell0 x:90];
+    [cell0 y:11];
+    [cell0 width: 150];
+    [cell0 height: 28];
+    
+    EditableUITableCellData* cell1 = [[[EditableUITableCellData alloc] init] autorelease];
+    [cell1 label: @"昵称2"];
+    [cell1 placeholder: @"请输入昵称2"];
+    [cell1 value: @"李金贝"];
+    [cell1 keyboardType: UIKeyboardTypeDefault];
+    [cell1 keyboardAppearance: UIKeyboardAppearanceDefault];
+    [cell1 returnKeyType: UIReturnKeyDone];
+    [cell1 isSecureTextEntry: NO];
+    [cell1 x:90];
+    [cell1 y:11];
+    [cell1 width: 150];
+    [cell1 height: 28];
+    
+    NSArray* tempArr = [[NSArray alloc] initWithObjects:cell0, cell1, nil];
+    NSArray* arrData = [[NSArray alloc] initWithObjects:tempArr, nil];
+    EditableUITableViewData* tableViewData = [[EditableUITableViewData alloc] init];
+    [tableViewData data: arrData];
+    
+    tableView = [[EditableUITableView alloc] init];
+    [tableView.view setFrame:self.view.frame];
+    [tableView data: tableViewData];
+    [tableView identifier: @"FirstSection"];
+    [self.view addSubview:tableView.view];
+    
+    [tableViewData release];
+    [tempArr release];
+    [arrData release];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

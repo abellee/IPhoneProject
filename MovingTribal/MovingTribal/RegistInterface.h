@@ -7,10 +7,10 @@
 //
 
 #import "UIKit/UIKit.h"
-#import "InterfaceDelegate.h"
+#import "LoginContainerDelegate.h"
 
 @interface RegistInterface : UIViewController<UITextFieldDelegate>{
-    id <InterfaceDelegate> delegate;
+    id <LoginContainerDelegate> delegate;
     
     UILabel* titleLabel;
     UIButton* backwardBtn;
@@ -20,7 +20,7 @@
     UITextField* password;
 }
 
-@property (nonatomic, assign) id<InterfaceDelegate> delegate;
+@property (nonatomic, assign) id<LoginContainerDelegate> delegate;
 
 @property (nonatomic, retain) UILabel* titleLabel;
 @property (nonatomic, retain) UIButton* backwardBtn;

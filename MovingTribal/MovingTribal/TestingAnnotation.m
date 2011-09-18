@@ -10,6 +10,11 @@
 
 @implementation TestingAnnotation
 
+- (void)dealloc
+{
+    NSLog(@"******| TestingAnnotation |****** receive dealloc message!");
+}
+
 - (CLLocationCoordinate2D)coordinate
 {
     CLLocationCoordinate2D pos;
@@ -20,12 +25,16 @@
 
 - (NSString *)title
 {
-    return @"London Bridge brake down!";
+    NSString* str = @"London Bridge brake down!";
+    [str autorelease];
+    return str;
 }
 
 - (NSString *)subtitle
 {
-    return @"subtitle? no no no!";
+    NSString* str = @"subtitle? no no no!";
+    [str autorelease];
+    return str;
 }
 
 #pragma mark - View lifecycle

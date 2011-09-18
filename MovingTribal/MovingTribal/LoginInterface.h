@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "TouchableUILabel.h"
-#import "InterfaceDelegate.h"
+
+#import "LoginContainerDelegate.h"
 
 @interface LoginInterface : UIViewController<UITextFieldDelegate, TouchableUILabelDelegate>{
     UIButton* loginButton;
@@ -18,10 +20,10 @@
     UITextField* password;
     TouchableUILabel* forgetPassword;
     
-    id <InterfaceDelegate> delegate;
+    id <LoginContainerDelegate> delegate;
 }
 
-@property (nonatomic, assign) id<InterfaceDelegate> delegate;
+@property (nonatomic, assign) id<LoginContainerDelegate> delegate;
 
 @property (nonatomic, retain) UIButton* loginButton;
 @property (nonatomic, retain) UIButton* registButton;

@@ -21,7 +21,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"login interface dealloc");
+    NSLog(@"******| Login Interface |****** receive dealloc message!");
     [username release];
     [password release];
     [forgetPassword release];
@@ -38,16 +38,19 @@
     return self;
 }
 
-- (void)setView:(UIView *)view
+- (id)init
 {
-    [super setView:view];
-    [self initInterface];
+    self = [super init];
+    if(self){
+        [self initInterface];
+    }
+    return self;
 }
 
 - (void)initInterface
 {
     // 用户名输入框
-    CGRect usernameRect = CGRectMake(20, 50, 280, 30);
+    CGRect usernameRect = CGRectMake(20, 50,  self.view.frame.size.width - 40, 30);
     username = [[UITextField alloc] initWithFrame:usernameRect];
     username.borderStyle = UITextBorderStyleRoundedRect;
     username.placeholder = @"邮箱";
@@ -58,7 +61,6 @@
     username.keyboardType = UIKeyboardTypeEmailAddress;
     username.delegate = self;
     username.tag = 0;
-    [username becomeFirstResponder];
     [self.view addSubview:username];
     
     // 密码输入框
@@ -128,16 +130,16 @@
             break;
         case 1:
             // others platform login
-            if(delegate != nil && [delegate conformsToProtocol:@protocol(InterfaceDelegate)]){
+            if(delegate != nil && [delegate conformsToProtocol:@protocol(LoginContainerDelegate)]){
                 [self resignTextField];
-                [delegate showOtherLoginInterface:self.view.tag];
+                [delegate showOtherPlatformInterface];
             }
             break;
         case 2:
             // do regist
-            if(delegate != nil && [delegate conformsToProtocol:@protocol(InterfaceDelegate)]){
+            if(delegate != nil && [delegate conformsToProtocol:@protocol(LoginContainerDelegate)]){
                 [self resignTextField];
-                [delegate showRegistInterface:self.view.tag];
+                [delegate showRegistInterface];
             }
             break;
         default:
@@ -150,7 +152,7 @@
 - (void)doLogin
 {
     [self resignTextField];
-    [delegate showMapInterface:self.view.tag];
+    [delegate loginSuccess];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

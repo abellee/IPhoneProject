@@ -20,13 +20,10 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    CGRect rect = CGRectMake(0, 20, 320, 460);
-    UIView* view = [[UIView alloc] initWithFrame:rect];
-    view.backgroundColor = [UIColor whiteColor];
-    self.movingTribal = [MovingTribalController alloc];
-    [self.movingTribal setView:view];
+    CGRect rect = CGRectMake(0, 20, self.window.frame.size.width, self.window.frame.size.height - 20);
+    self.movingTribal = [[MovingTribalController alloc] init];
+    [self.movingTribal.view setFrame:rect];
     [self.window addSubview:self.movingTribal.view];
-    [view release];
     
     [self.window makeKeyAndVisible];
     return YES;

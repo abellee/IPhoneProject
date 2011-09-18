@@ -6,12 +6,16 @@
 //  Copyright 2011 Abel Lee. All rights reserved.
 //
 
-#import "InterfaceDelegate.h"
+#import "MainContainerDelegate.h"
+#import "EditableUITableView.h"
 
 @interface SystemSettingInterface : UIViewController{
-    id<InterfaceDelegate> delegate;
+    id<MainContainerDelegate> delegate;
+    
+    EditableUITableView* tableView;
 }
 
-@property (nonatomic, retain) id<InterfaceDelegate> delegate;
+@property (nonatomic, retain) id<MainContainerDelegate> delegate;
+@property (nonatomic, retain) EditableUITableView* tableView;
 
 @end

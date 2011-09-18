@@ -8,47 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "RegistInterface.h"
-#import "LoginInterface.h"
-#import "OthersLoginInterface.h"
-#import "MapInterface.h"
+
+#import "InterfaceDelegate.h"
+
+#import "IntroduceContainer.h"
+#import "LoginContainer.h"
+#import "MainContainer.h"
 #import "ChatInterface.h"
-#import "FriendsInterface.h"
-#import "SystemSettingInterface.h"
-#import "ChatListInterface.h"
 
-@interface MovingTribalController : UIViewController<InterfaceDelegate, UITabBarDelegate>{
-    RegistInterface* registInterface;
-    LoginInterface* loginInterface;
-    OthersLoginInterface* othersInterface;
-    MapInterface* mapInterface;
+@interface MovingTribalController : UIViewController<InterfaceDelegate>{
+    IntroduceContainer* introContainer;
+    LoginContainer* loginContainer;
+    MainContainer* mainContainer;
     ChatInterface* chatInterface;
-    ChatListInterface* chatListInterface;
-    FriendsInterface* friendInterface;
-    SystemSettingInterface* systemSettingInterface;
     
-    UITabBar* tabBar;
-    
-    UIView* currentView;
-    
-    NSUInteger currentState;
+    NSInteger currentState;
 }
-@property (nonatomic, assign) RegistInterface* registInterface;
-@property (nonatomic, assign) LoginInterface* loginInterface;
-@property (nonatomic, assign) OthersLoginInterface* othersInterface;
-@property (nonatomic, assign) MapInterface* mapInterface;
+
+@property (nonatomic, assign) IntroduceContainer* introContainer;
+@property (nonatomic, assign) LoginContainer* loginContainer;
+@property (nonatomic, assign) MainContainer* mainContainer;
 @property (nonatomic, assign) ChatInterface* chatInterface;
-@property (nonatomic, assign) ChatListInterface* chatListInterface;
-@property (nonatomic, assign) FriendsInterface* friendInterface;
-@property (nonatomic, assign) SystemSettingInterface* systemSettingInterface;
-
-@property (nonatomic, retain) UITabBar* tabBar;
-
-@property (nonatomic, retain) UIView* currentView;
-@property (nonatomic, assign) NSUInteger currentState;
-
-- (void)showLoginInterface;
-- (void)easeOut:(UIView *)view;
-- (void)easeIn:(UIView *)view;
+@property (nonatomic, assign) NSInteger currentState;
 
 @end

@@ -13,6 +13,6 @@
     id <TouchableUILabelDelegate> delegate;
 }
 
-@property (nonatomic, retain) id <TouchableUILabelDelegate> delegate;
+@property (nonatomic, assign) id <TouchableUILabelDelegate> delegate;
 
 @end
