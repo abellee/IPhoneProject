@@ -24,7 +24,6 @@
     self.movingTribal = [[MovingTribalController alloc] init];
     [self.movingTribal.view setFrame:rect];
     [self.window addSubview:self.movingTribal.view];
-    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -66,6 +65,21 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"receive device token!!!!");
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"receive remote notice!");
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"%@", error.description);
 }
 
 @end

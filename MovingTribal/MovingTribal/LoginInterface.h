@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "TouchableUILabel.h"
+#import "SoundRecorder.h"
 
 #import "LoginContainerDelegate.h"
 
@@ -21,6 +22,8 @@
     TouchableUILabel* forgetPassword;
     
     id <LoginContainerDelegate> delegate;
+    
+    SoundRecorder* soundRecorder;
 }
 
 @property (nonatomic, assign) id<LoginContainerDelegate> delegate;
@@ -31,6 +34,7 @@
 @property (nonatomic, retain) UITextField* username;
 @property (nonatomic, retain) UITextField* password;
 @property (nonatomic, retain) TouchableUILabel* forgetPassword;
+@property (nonatomic, assign) SoundRecorder* soundRecorder;
 
 - (void)initInterface;
 - (void)resignTextField;

@@ -9,7 +9,11 @@
 #import <MapKit/MapKit.h>
 
 @interface TestingAnnotation : NSObject<MKAnnotation>{
-    
+    CLLocationCoordinate2D coordinate;
 }
+
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+
+- (id)initWidthCoordinate:(CLLocationCoordinate2D)coor;
 
 @end

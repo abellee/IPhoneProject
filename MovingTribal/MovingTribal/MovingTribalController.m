@@ -22,6 +22,7 @@ typedef enum{
 @synthesize loginContainer;
 @synthesize mainContainer;
 @synthesize chatInterface;
+@synthesize dataGetter;
 @synthesize currentState;
 
 - (void)dealloc
@@ -61,6 +62,8 @@ typedef enum{
     [mainContainer.view setFrame:mainContainerRect];
     [self.view insertSubview:mainContainer.view atIndex:0];
     
+    [self performSelector:@selector(initDataGetter)];
+    
     if(loginContainer != nil){
         CGRect rect = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
         [loginContainer.view setFrame:rect];
@@ -75,10 +78,17 @@ typedef enum{
     }
 }
 
+- (void)initDataGetter
+{
+    if(dataGetter == nil){
+        dataGetter = [[DataGetter alloc] init];
+        [dataGetter initTimer];
+    }
+}
+
 #pragma 显示与指定好友之间的聊天界面
 - (void)showChatInterface:(UserData *)userData
 {
-    
     if(chatInterface == nil){
         chatInterface = [[ChatInterface alloc] init];
         chatInterface.view.backgroundColor = [UIColor whiteColor];
@@ -114,7 +124,7 @@ typedef enum{
     [mainContainer.view setFrame:outRect];
     TransitionVariable* transitionVar = [[TransitionVariable alloc] init];
     [transitionVar subType: kCATransitionFromLeft];
-    [transitionVar duration: 0.2];
+    [transitionVar duration: 0.4];
     [transitionVar view:mainContainer.view];
     [self performSelector:@selector(easeIn:) withObject:transitionVar];
     [transitionVar release];
@@ -125,7 +135,7 @@ typedef enum{
     [self.view addSubview:chatInterface.view];
     TransitionVariable* transitionVar0 = [[TransitionVariable alloc] init];
     [transitionVar0 subType: kCATransitionFromLeft];
-    [transitionVar0 duration: 0.3];
+    [transitionVar0 duration: 0.4];
     [transitionVar0 view:chatInterface.view];
     [self performSelector:@selector(easeOut:) withObject:transitionVar0];
     [transitionVar0 release];
@@ -166,7 +176,7 @@ typedef enum{
 {
     CATransition* animation = [CATransition animation];
     animation.duration = var.duration;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     animation.type = kCATransitionPush;
     animation.subtype = var.subType;
     animation.delegate = self;

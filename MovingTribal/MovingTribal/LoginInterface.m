@@ -16,6 +16,7 @@
 @synthesize username;
 @synthesize password;
 @synthesize forgetPassword;
+@synthesize soundRecorder;
 
 @synthesize delegate;
 
@@ -85,6 +86,8 @@
     [loginButton setFrame:loginButtonRect];
     [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    [loginButton addTarget:self action:@selector(recordSound:) forControlEvents:UIControlEventTouchDown];
+//    [loginButton addTarget:self action:@selector(playSound:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     
     // 微博平台帐号登录按钮
@@ -113,6 +116,19 @@
     forgetPassword.tag = 3;
     forgetPassword.delegate = self;
     [self.view addSubview:forgetPassword];
+    
+//    soundRecorder = [[SoundRecorder alloc] init];
+}
+
+- (void)recordSound:(id)sender
+{
+    [soundRecorder prepareRecord];
+    [soundRecorder startRecord];
+}
+
+- (void)playSound:(id)sender
+{
+    [soundRecorder stopRecord];
 }
 
 - (void)touchLabel:(TouchableUILabel *)touchableLabel touchableLabelTag:(NSInteger)tag

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0C331FE714251742006810FB /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C331FE614251742006810FB /* SearchBar.m */; };
+		0C57196F1427BFE300011F6E /* developer_identity.cer in Resources */ = {isa = PBXBuildFile; fileRef = 0C57196E1427BFE300011F6E /* developer_identity.cer */; };
+		0C5719711427C5FE00011F6E /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5719701427C5FE00011F6E /* 72.png */; };
+		0C5719751427CE2A00011F6E /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5719741427CE2A00011F6E /* 114.png */; };
+		0C5719771427CE5200011F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5719761427CE5200011F6E /* Default@2x.png */; };
+		0C5719791427CEFA00011F6E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5719781427CEFA00011F6E /* CoreLocation.framework */; };
+		0C57197C1427D7AB00011F6E /* SoundRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C57197B1427D7AB00011F6E /* SoundRecorder.m */; };
+		0C57197E1427D7E100011F6E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C57197D1427D7E100011F6E /* AVFoundation.framework */; };
 		0C6824011423F4DB00192C83 /* IntroduceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6824001423F4DB00192C83 /* IntroduceContainer.m */; };
 		0C6824041423F51600192C83 /* LoginContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6824031423F51600192C83 /* LoginContainer.m */; };
 		0C6824071423F52700192C83 /* MainContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6824061423F52700192C83 /* MainContainer.m */; };
@@ -28,9 +35,11 @@
 		0CBC3623141FE6CD0043F467 /* SystemSettingInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBC3622141FE6CD0043F467 /* SystemSettingInterface.m */; };
 		0CCF913414264B6800816374 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF913314264B6800816374 /* UserData.m */; };
 		0CCF91381426543C00816374 /* TransitionVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF91371426543C00816374 /* TransitionVariable.m */; };
+		0CCF913C14267F7000816374 /* DataGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF913B14267F7000816374 /* DataGetter.m */; };
 		0CE49A0A141CF5C4007DD4BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE49A09141CF5C4007DD4BC /* MapKit.framework */; };
 		0CE49A0E141D24DF007DD4BC /* MovingTribalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE49A0D141D24DF007DD4BC /* MovingTribalController.m */; };
 		0CE7AD0114255CA5007F5C1E /* EditableUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7AD0014255CA5007F5C1E /* EditableUITableView.m */; };
+		0CEEBD641427BBF600CDD38A /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CEEBD631427BBF600CDD38A /* Entitlements.plist */; };
 		0CF4563E14251DBD00BF6710 /* SeachableListInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4563C14251DBD00BF6710 /* SeachableListInterface.m */; };
 		0CF45645142545F700BF6710 /* EditableUITableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF45644142545F700BF6710 /* EditableUITableViewData.m */; };
 		0CF456481425483200BF6710 /* EditableUITableCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF456471425483200BF6710 /* EditableUITableCellData.m */; };
@@ -42,6 +51,14 @@
 /* Begin PBXFileReference section */
 		0C331FE514251742006810FB /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
 		0C331FE614251742006810FB /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
+		0C57196E1427BFE300011F6E /* developer_identity.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = developer_identity.cer; sourceTree = "<group>"; };
+		0C5719701427C5FE00011F6E /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
+		0C5719741427CE2A00011F6E /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
+		0C5719761427CE5200011F6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		0C5719781427CEFA00011F6E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0C57197A1427D7AB00011F6E /* SoundRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundRecorder.h; sourceTree = "<group>"; };
+		0C57197B1427D7AB00011F6E /* SoundRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundRecorder.m; sourceTree = "<group>"; };
+		0C57197D1427D7E100011F6E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0C6823FF1423F4DB00192C83 /* IntroduceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceContainer.h; sourceTree = "<group>"; };
 		0C6824001423F4DB00192C83 /* IntroduceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceContainer.m; sourceTree = "<group>"; };
 		0C6824021423F51600192C83 /* LoginContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginContainer.h; sourceTree = "<group>"; };
@@ -81,11 +98,15 @@
 		0CCF913314264B6800816374 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		0CCF91361426543C00816374 /* TransitionVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionVariable.h; sourceTree = "<group>"; };
 		0CCF91371426543C00816374 /* TransitionVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionVariable.m; sourceTree = "<group>"; };
+		0CCF913A14267F7000816374 /* DataGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataGetter.h; sourceTree = "<group>"; };
+		0CCF913B14267F7000816374 /* DataGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataGetter.m; sourceTree = "<group>"; };
 		0CE49A09141CF5C4007DD4BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0CE49A0C141D24DF007DD4BC /* MovingTribalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovingTribalController.h; sourceTree = "<group>"; };
 		0CE49A0D141D24DF007DD4BC /* MovingTribalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovingTribalController.m; sourceTree = "<group>"; };
 		0CE7ACFF14255CA5007F5C1E /* EditableUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableUITableView.h; sourceTree = "<group>"; };
 		0CE7AD0014255CA5007F5C1E /* EditableUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableUITableView.m; sourceTree = "<group>"; };
+		0CEEBD621427BA6400CDD38A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/abellee/Documents/SVN(Git)/IPhoneProject/MovingTribal/MovingTribal/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
+		0CEEBD631427BBF600CDD38A /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		0CF4563C14251DBD00BF6710 /* SeachableListInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeachableListInterface.m; sourceTree = "<group>"; };
 		0CF4563D14251DBD00BF6710 /* SearchableListInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchableListInterface.h; sourceTree = "<group>"; };
 		0CF45643142545F700BF6710 /* EditableUITableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableUITableViewData.h; sourceTree = "<group>"; };
@@ -105,6 +126,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C57197E1427D7E100011F6E /* AVFoundation.framework in Frameworks */,
+				0C5719791427CEFA00011F6E /* CoreLocation.framework in Frameworks */,
 				0CF86E57141E60C4002792F3 /* QuartzCore.framework in Frameworks */,
 				0CE49A0A141CF5C4007DD4BC /* MapKit.framework in Frameworks */,
 				0CB90A2B141C9D3A00DF0C14 /* UIKit.framework in Frameworks */,
@@ -167,6 +190,10 @@
 		0CB90A1B141C9D3A00DF0C14 = {
 			isa = PBXGroup;
 			children = (
+				0C5719761427CE5200011F6E /* Default@2x.png */,
+				0C5719741427CE2A00011F6E /* 114.png */,
+				0CEEBD631427BBF600CDD38A /* Entitlements.plist */,
+				0C57196E1427BFE300011F6E /* developer_identity.cer */,
 				0CB90A30141C9D3A00DF0C14 /* MovingTribal */,
 				0CB90A29141C9D3A00DF0C14 /* Frameworks */,
 				0CB90A27141C9D3A00DF0C14 /* Products */,
@@ -184,6 +211,8 @@
 		0CB90A29141C9D3A00DF0C14 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C57197D1427D7E100011F6E /* AVFoundation.framework */,
+				0C5719781427CEFA00011F6E /* CoreLocation.framework */,
 				0CF86E56141E60C4002792F3 /* QuartzCore.framework */,
 				0CE49A09141CF5C4007DD4BC /* MapKit.framework */,
 				0CB90A2A141C9D3A00DF0C14 /* UIKit.framework */,
@@ -196,6 +225,7 @@
 		0CB90A30141C9D3A00DF0C14 /* MovingTribal */ = {
 			isa = PBXGroup;
 			children = (
+				0C5719701427C5FE00011F6E /* 72.png */,
 				0C9E2FA614210BB600A77D98 /* cat.png */,
 				0C9E2FA714210BB600A77D98 /* index.html */,
 				0CB90A39141C9D3A00DF0C14 /* MovingTribalAppDelegate.h */,
@@ -203,6 +233,7 @@
 				0CE49A0C141D24DF007DD4BC /* MovingTribalController.h */,
 				0CE49A0D141D24DF007DD4BC /* MovingTribalController.m */,
 				0CF86E63141E7D46002792F3 /* InterfaceDelegate.h */,
+				0CCF913914267CD300816374 /* Tools */,
 				0C6823FD1423F41000192C83 /* ParentInterface */,
 				0C6823FE1423F43700192C83 /* WidgetInterface */,
 				0C8C2A8B141E364F006ED2EB /* Components */,
@@ -239,6 +270,17 @@
 				0CBC3615141FDC5B0043F467 /* TestingAnnotation.m */,
 			);
 			name = TemporaryClass;
+			sourceTree = "<group>";
+		};
+		0CCF913914267CD300816374 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				0CCF913A14267F7000816374 /* DataGetter.h */,
+				0CCF913B14267F7000816374 /* DataGetter.m */,
+				0C57197A1427D7AB00011F6E /* SoundRecorder.h */,
+				0C57197B1427D7AB00011F6E /* SoundRecorder.m */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 		0CF45642142545BF00BF6710 /* Models */ = {
@@ -309,6 +351,9 @@
 /* Begin PBXProject section */
 		0CB90A1D141C9D3A00DF0C14 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 0CB90A20141C9D3A00DF0C14 /* Build configuration list for PBXProject "MovingTribal" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -335,6 +380,11 @@
 				0CBC360F141FB0570043F467 /* 32.png in Resources */,
 				0C9E2FA814210BB700A77D98 /* cat.png in Resources */,
 				0C9E2FA914210BB700A77D98 /* index.html in Resources */,
+				0CEEBD641427BBF600CDD38A /* Entitlements.plist in Resources */,
+				0C57196F1427BFE300011F6E /* developer_identity.cer in Resources */,
+				0C5719711427C5FE00011F6E /* 72.png in Resources */,
+				0C5719751427CE2A00011F6E /* 114.png in Resources */,
+				0C5719771427CE5200011F6E /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +416,8 @@
 				0CE7AD0114255CA5007F5C1E /* EditableUITableView.m in Sources */,
 				0CCF913414264B6800816374 /* UserData.m in Sources */,
 				0CCF91381426543C00816374 /* TransitionVariable.m in Sources */,
+				0CCF913C14267F7000816374 /* DataGetter.m in Sources */,
+				0C57197C1427D7AB00011F6E /* SoundRecorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +428,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0CB90A34141C9D3A00DF0C14 /* en */,
+				0CEEBD621427BA6400CDD38A /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -389,7 +442,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -404,7 +459,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -414,7 +473,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -422,8 +483,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -431,11 +496,16 @@
 		0CB90A3F141C9D3A00DF0C14 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovingTribal/MovingTribal-Prefix.pch";
 				INFOPLIST_FILE = "MovingTribal/MovingTribal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -444,15 +514,64 @@
 		0CB90A40141C9D3A00DF0C14 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovingTribal/MovingTribal-Prefix.pch";
 				INFOPLIST_FILE = "MovingTribal/MovingTribal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
+		};
+		0CEEBD601427B44300CDD38A /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		0CEEBD611427B44300CDD38A /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MovingTribal/MovingTribal-Prefix.pch";
+				INFOPLIST_FILE = "MovingTribal/MovingTribal-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
 		};
 /* End XCBuildConfiguration section */
 
@@ -462,6 +581,7 @@
 			buildConfigurations = (
 				0CB90A3C141C9D3A00DF0C14 /* Debug */,
 				0CB90A3D141C9D3A00DF0C14 /* Release */,
+				0CEEBD601427B44300CDD38A /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -471,6 +591,7 @@
 			buildConfigurations = (
 				0CB90A3F141C9D3A00DF0C14 /* Debug */,
 				0CB90A40141C9D3A00DF0C14 /* Release */,
+				0CEEBD611427B44300CDD38A /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

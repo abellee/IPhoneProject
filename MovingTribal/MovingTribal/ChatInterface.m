@@ -28,8 +28,7 @@
 //    [chatInput release];
 //    [scrollView release];
     [returnBtn removeTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [returnBtn release];
-    if(nameLabel != nil) [nameLabel release];
+    [nameLabel release];
     [userData release];
     delegate = nil;
     [super dealloc];

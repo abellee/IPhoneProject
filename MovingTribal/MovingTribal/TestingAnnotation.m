@@ -10,17 +10,30 @@
 
 @implementation TestingAnnotation
 
+@synthesize coordinate;
+
 - (void)dealloc
 {
     NSLog(@"******| TestingAnnotation |****** receive dealloc message!");
 }
 
+- (id)initWidthCoordinate:(CLLocationCoordinate2D)coor
+{
+    self = [super init];
+    if(self){
+        coordinate = coor;
+    }
+    return self;
+}
+
 - (CLLocationCoordinate2D)coordinate
 {
-    CLLocationCoordinate2D pos;
-    pos.latitude = 30.21635515266855;
-    pos.longitude = 120.2947998046875;
-    return pos;
+    return coordinate;
+}
+
+- (void)coordinate:(CLLocationCoordinate2D)coor
+{
+    coordinate = coor;
 }
 
 - (NSString *)title

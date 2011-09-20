@@ -12,7 +12,6 @@
 #import "InterfaceDelegate.h"
 
 #import "MapInterface.h"
-#import "FriendsInterface.h"
 #import "SystemSettingInterface.h"
 #import "SearchableListInterface.h"
 

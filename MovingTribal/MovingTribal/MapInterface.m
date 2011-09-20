@@ -8,12 +8,13 @@
 
 #import "MapInterface.h"
 
-#import "TestingAnnotation.h"
-
 @implementation MapInterface
 
 @synthesize delegate;
 @synthesize map;
+@synthesize locationManager;
+@synthesize found;
+@synthesize anno;
 
 - (void)dealloc
 {
@@ -37,31 +38,51 @@
     CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40);
     map = [[MKMapView alloc] initWithFrame:rect];
     map.delegate = self;
+    map.showsUserLocation = YES;
     
-    TestingAnnotation* anno = [TestingAnnotation alloc];
+    [self.view addSubview:map];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.distanceFilter = 100;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager startUpdatingLocation];
+    NSLog(@"location manager start updating location!");
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    NSLog(@"did update user location!");
+    if(found){
+        anno.coordinate = userLocation.coordinate;
+    }else{
+        anno = [[TestingAnnotation alloc] initWidthCoordinate:map.userLocation.coordinate];
+    }
+    found = YES;
     [map addAnnotation:anno];
     
     MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
     MKCoordinateRegion region = MKCoordinateRegionMake(anno.coordinate, span);
     [map setRegion:region];
-    
-    [self.view addSubview:map];
-    
-    [anno release];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"did update to location!%f%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     static NSString* MewIndentifier = @"MewIndentifier";
-    MKAnnotationView* anno = [mapView dequeueReusableAnnotationViewWithIdentifier:MewIndentifier];
-    if(anno == nil){
-        anno = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:MewIndentifier];
-        [anno autorelease];
+    MKAnnotationView* ano = [mapView dequeueReusableAnnotationViewWithIdentifier:MewIndentifier];
+    if(ano == nil){
+        ano = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:MewIndentifier];
+        [ano autorelease];
     }
-    anno.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"32" ofType:@"png"]];
-    anno.canShowCallout = YES;
+    ano.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"32" ofType:@"png"]];
+    ano.canShowCallout = YES;
     
-    return anno;
+    return ano;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
