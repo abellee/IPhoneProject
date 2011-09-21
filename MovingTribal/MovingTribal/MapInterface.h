@@ -14,18 +14,22 @@
 
 @interface MapInterface : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>{
     id<MainContainerDelegate> delegate;
+    TestingAnnotation* anno;
     
     MKMapView* map;
     CLLocationManager* locationManager;
+    UIAlertView* alertView;
     BOOL found;
-    TestingAnnotation* anno;
+    BOOL isService;
 }
 
 @property (nonatomic, assign) id<MainContainerDelegate> delegate;
+@property (nonatomic, assign) TestingAnnotation* anno;
 @property (nonatomic, retain) MKMapView* map;
 @property (nonatomic, assign) CLLocationManager* locationManager;
+@property (nonatomic, assign) UIAlertView* alertView;
 @property (nonatomic, assign) BOOL found;
-@property (nonatomic, assign) TestingAnnotation* anno;
+@property (nonatomic, assign) BOOL isService;
 
 - (void)initInterface;
 

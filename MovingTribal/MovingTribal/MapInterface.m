@@ -14,6 +14,8 @@
 @synthesize map;
 @synthesize locationManager;
 @synthesize found;
+@synthesize isService;
+@synthesize alertView;
 @synthesize anno;
 
 - (void)dealloc
@@ -21,6 +23,8 @@
     NSLog(@"******| Map Interface |****** receive dealloc message!");
     delegate = nil;
     [map release];
+    [anno release];
+    [alertView release];
     [super dealloc];
 }
 
@@ -28,47 +32,84 @@
 {
     self = [super init];
     if(self){
-        [self initInterface];
+        CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40);
+        map = [[MKMapView alloc] initWithFrame:rect];
+        map.delegate = self;
+        UIApplication* app = [UIApplication sharedApplication];
+        app.applicationIconBadgeNumber = 10;
+        app = nil;
+        [self.view addSubview:map];
+        isService = YES;
     }
     return self;
 }
 
 - (void)initInterface
 {
-    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40);
-    map = [[MKMapView alloc] initWithFrame:rect];
-    map.delegate = self;
-    map.showsUserLocation = YES;
-    
-    [self.view addSubview:map];
-    
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.distanceFilter = 100;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
-    NSLog(@"location manager start updating location!");
+    if(!map.showsUserLocation || map.showsUserLocation == NO){
+//        NSLog(@"%@", map.showsUserLocation);
+//        map.showsUserLocation = YES;
+    }
+}
+
+- (void)mapViewWillStartLocatingUser:(MKMapView *)mapView
+{
+    if(!map.showsUserLocation || map.showsUserLocation == NO) return;
+    NSLog(@"start locating user location");
+    alertView = [[UIAlertView alloc] initWithTitle:@"正在定位您当前的位置..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    [alertView show];
+    UIActivityIndicatorView* indicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(alertView.bounds.size.width / 2 - 15, alertView.bounds.size.height - 50, 30, 30)];
+    [indicator startAnimating];
+    [alertView addSubview:indicator];
+}
+
+- (void)mapViewDidStopLocatingUser:(MKMapView *)mapView
+{
+    NSLog(@"stop locating user location");
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     NSLog(@"did update user location!");
-    if(found){
-        anno.coordinate = userLocation.coordinate;
-    }else{
-        anno = [[TestingAnnotation alloc] initWidthCoordinate:map.userLocation.coordinate];
-    }
-    found = YES;
-    [map addAnnotation:anno];
     
-    MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
-    MKCoordinateRegion region = MKCoordinateRegionMake(anno.coordinate, span);
-    [map setRegion:region];
+    if(alertView){
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [alertView release];
+        alertView = nil;
+    }
+//    found = YES;
+//    anno = [[TestingAnnotation alloc] initWidthCoordinate:map.userLocation.coordinate];
+//    [map addAnnotation:anno];
+    [map setCenterCoordinate:userLocation.coordinate];
+    [map setUserTrackingMode:MKUserTrackingModeFollow];
+}
+
+- (void)mapView:(MKMapView *)mapView didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated
+{
+    NSLog(@"user tracking mode is:%d", mode);
+}
+
+- (void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
+{
+    if(alertView){
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [alertView release];
+        alertView = nil;
+    }
+    alertView = [[UIAlertView alloc] initWithTitle:@"定位失败通知" message:@"无法取得您当前位置，请确认是否已打开定位服务!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+    [alertView release];
+    map.showsUserLocation = NO;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"did update to location!%f%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    if(found && anno){
+        anno.coordinate = newLocation.coordinate;
+        [map setCenterCoordinate:newLocation.coordinate animated:YES];
+    }
+//    NSLog(@"can user is apear: %@", map.userLocationVisible);
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation

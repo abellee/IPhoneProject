@@ -89,7 +89,9 @@
         cell = [[[UITableViewCell alloc] initWithStyle:cellStyle reuseIdentifier:identifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(cellData.x, cellData.y, cellData.width, cellData.height)];
+		UIFont* font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+		CGSize size = [cellData.placeholder sizeWithFont:font];
+        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, cellData.width, size.height + 4)];
         textField.placeholder = cellData.placeholder;
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -100,11 +102,16 @@
         textField.keyboardType = cellData.keyboardType;
         textField.keyboardAppearance = cellData.keyboardAppearance;
         textField.returnKeyType = cellData.returnKeyType;
-        [cell addSubview:textField];
+        cell.accessoryView = textField;
         [textField release];
     }
     cell.textLabel.text = cellData.label;
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return @"A";
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

@@ -42,10 +42,8 @@
     [cell0 keyboardAppearance: UIKeyboardAppearanceDefault];
     [cell0 returnKeyType: UIReturnKeyDone];
     [cell0 isSecureTextEntry: NO];
-    [cell0 x:90];
-    [cell0 y:11];
     [cell0 width: 150];
-    [cell0 height: 28];
+    [cell0 height: 1000];
     
     EditableUITableCellData* cell1 = [[[EditableUITableCellData alloc] init] autorelease];
     [cell1 label: @"昵称2"];
@@ -55,10 +53,8 @@
     [cell1 keyboardAppearance: UIKeyboardAppearanceDefault];
     [cell1 returnKeyType: UIReturnKeyDone];
     [cell1 isSecureTextEntry: NO];
-    [cell1 x:90];
-    [cell1 y:11];
     [cell1 width: 150];
-    [cell1 height: 28];
+    [cell1 height: 1000];
     
     NSArray* tempArr = [[NSArray alloc] initWithObjects:cell0, cell1, nil];
     NSArray* arrData = [[NSArray alloc] initWithObjects:tempArr, nil];

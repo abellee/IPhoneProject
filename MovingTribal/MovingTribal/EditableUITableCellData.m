@@ -17,8 +17,6 @@
 @synthesize keyboardAppearance;
 @synthesize returnKeyType;
 @synthesize secureTextEntry;
-@synthesize x;
-@synthesize y;
 @synthesize width;
 @synthesize height;
 
@@ -121,26 +119,6 @@
 - (void)isSecureTextEntry:(BOOL)secure
 {
     if(secureTextEntry != secure) secureTextEntry = secure;
-}
-
-- (NSUInteger)x
-{
-    return x;
-}
-
-- (void)x:(NSUInteger)num
-{
-    if(x != num) x = num;
-}
-
-- (NSUInteger)y
-{
-    return y;
-}
-
-- (void)y:(NSUInteger)num
-{
-    if(y != num) y = num;
 }
 
 - (NSUInteger)width

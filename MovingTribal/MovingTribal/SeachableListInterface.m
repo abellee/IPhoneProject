@@ -13,7 +13,8 @@
 
 @synthesize tableViewController;
 @synthesize searchBar;
-@synthesize list;
+@synthesize keys;
+@synthesize names;
 @synthesize delegate;
 
 - (void)dealloc
@@ -21,7 +22,8 @@
     NSLog(@"******| SearchableListInterface |****** receive dealloc message!");
     [tableViewController release];
     [searchBar release];
-    [list release];
+    [keys release];
+	[names release];
     delegate = nil;
     [super dealloc];
 }
@@ -37,7 +39,22 @@
 
 - (void)initInterface
 {
-    list = [[NSArray alloc] initWithObjects:@"好友1", @"好友2", @"好友1", @"好友2", @"好友1", @"好友2", @"好友1", @"好友2", @"好友1", @"好友2", @"好友1", @"好友2", @"好友1", @"好友2", @"好友1", @"好友2", @"好友1", @"好友2", @"好友1", @"好友2", nil];
+	NSArray* indexArr = [[NSArray alloc] initWithObjects:@"A", @"B", @"C", @"D", nil];
+	NSArray* nameArr0 = [[NSArray alloc] initWithObjects:@"李金贝A", @"李金贝B", @"李金贝C", @"李金贝D", nil];
+	NSArray* nameArr1 = [[NSArray alloc] initWithObjects:@"李金贝A1", @"李金贝B1", @"李金贝C1", @"李金贝D1", nil];
+	NSArray* nameArr2 = [[NSArray alloc] initWithObjects:@"李金贝A2", @"李金贝B2", @"李金贝C2", @"李金贝D2", nil];
+	NSArray* nameArr3 = [[NSArray alloc] initWithObjects:@"李金贝A3", @"李金贝B3", @"李金贝C3", @"李金贝D3", nil];
+	NSArray* nameArr = [[NSArray alloc] initWithObjects:nameArr0, nameArr1, nameArr2, nameArr3, nil];
+    NSDictionary* list = [[NSDictionary alloc] initWithObjects:nameArr forKeys:indexArr];
+	names = [list retain];
+	keys = [[[names allKeys] sortedArrayUsingSelector:@selector(compare:)] retain];
+	[indexArr release];
+	[nameArr0 release];
+	[nameArr1 release];
+	[nameArr2 release];
+	[nameArr3 release];
+	[nameArr release];
+	[list release];
     tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
     [tableViewController.view setFrame:CGRectMake(0,  50,  self.view.frame.size.width,  self.view.frame.size.height - 90)];
     tableViewController.tableView.delegate = self;
@@ -82,16 +99,59 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:str];
     if(cell == nil){
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:str] autorelease];
+		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+		[cell setEditing:NO animated:YES];
     }
-    cell.textLabel.text = [list objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[names objectForKey:[keys objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
     cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"32" ofType:@"png"]];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [list count];
+	return  [[names objectForKey:[keys objectAtIndex:section]] count];
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return [keys count];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+	return keys;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	NSString* key = [keys objectAtIndex:section];
+	return key;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return YES;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return @"删除";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	NSLog(@"commit edit!");
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return UITableViewCellEditingStyleDelete;
+}
+
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return [list count];
+//}
 
 /*----------------------------------------------------------------------------*/
 

@@ -50,9 +50,8 @@
 - (void)weiboId:(NSString *)str
 {
     if(str != weiboId){
-        NSString* tempStr = weiboId;
-        weiboId = [str copy];
-        [tempStr release];
+        [weiboId release];
+        weiboId = [str retain];
     }
 }
 
@@ -64,9 +63,8 @@
 - (void)username:(NSString *)str
 {
     if(str != username){
-        NSString* tempStr = username;
-        username = [str copy];
-        [tempStr release];
+        [username release];
+        username = [str retain];
     }
 }
 

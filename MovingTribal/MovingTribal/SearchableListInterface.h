@@ -13,12 +13,14 @@
     
     UITableViewController* tabViewController;
     UISearchBar* searchBar;
-    NSArray* list;
+    NSArray* keys;
+	NSDictionary* names;
 }
 
 @property (nonatomic, assign) id<MainContainerDelegate> delegate;
 @property (nonatomic, retain) UITableViewController* tableViewController;
 @property (nonatomic, retain) UISearchBar* searchBar;
-@property (nonatomic, assign) NSArray* list;
+@property (nonatomic, assign) NSArray* keys;
+@property (nonatomic, assign) NSDictionary* names;
 
 @end

@@ -17,8 +17,6 @@
     UIReturnKeyType returnKeyType;
     BOOL secureTextEntry;
     
-    NSUInteger x;
-    NSUInteger y;
     NSUInteger width;
     NSUInteger height;
 }
@@ -31,8 +29,6 @@
 @property (nonatomic, assign, getter = returnKeyType, setter = returnKeyType:) UIReturnKeyType returnKeyType;
 @property (nonatomic, assign, getter = isSecureTextEntry, setter = isSecureTextEntry:) BOOL secureTextEntry;
 
-@property (nonatomic, assign, getter = x, setter = x:) NSUInteger x;
-@property (nonatomic, assign, getter = y, setter = y:) NSUInteger y;
 @property (nonatomic, assign, getter = width, setter = width:) NSUInteger width;
 @property (nonatomic, assign, getter = height, setter = height:) NSUInteger height;
 

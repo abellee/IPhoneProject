@@ -26,6 +26,7 @@
     CGFloat longitude;           // 经度
     CGFloat latitude;            // 纬度
     
+    int did;                     // 设备id
     int uid;                     // 用户id
     int phoneNumber;             // 电话号码 本地取
     int sex;

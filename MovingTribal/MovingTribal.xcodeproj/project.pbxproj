@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C110B80142981F0008DF69A /* developer_identity.cer in Resources */ = {isa = PBXBuildFile; fileRef = 0C110B7F142981F0008DF69A /* developer_identity.cer */; };
 		0C331FE714251742006810FB /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C331FE614251742006810FB /* SearchBar.m */; };
-		0C57196F1427BFE300011F6E /* developer_identity.cer in Resources */ = {isa = PBXBuildFile; fileRef = 0C57196E1427BFE300011F6E /* developer_identity.cer */; };
 		0C5719711427C5FE00011F6E /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5719701427C5FE00011F6E /* 72.png */; };
 		0C5719751427CE2A00011F6E /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5719741427CE2A00011F6E /* 114.png */; };
 		0C5719771427CE5200011F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5719761427CE5200011F6E /* Default@2x.png */; };
@@ -49,9 +49,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C110B7F142981F0008DF69A /* developer_identity.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = developer_identity.cer; sourceTree = "<group>"; };
 		0C331FE514251742006810FB /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
 		0C331FE614251742006810FB /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
-		0C57196E1427BFE300011F6E /* developer_identity.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = developer_identity.cer; sourceTree = "<group>"; };
 		0C5719701427C5FE00011F6E /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
 		0C5719741427CE2A00011F6E /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
 		0C5719761427CE5200011F6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -192,8 +192,8 @@
 			children = (
 				0C5719761427CE5200011F6E /* Default@2x.png */,
 				0C5719741427CE2A00011F6E /* 114.png */,
+				0C110B7F142981F0008DF69A /* developer_identity.cer */,
 				0CEEBD631427BBF600CDD38A /* Entitlements.plist */,
-				0C57196E1427BFE300011F6E /* developer_identity.cer */,
 				0CB90A30141C9D3A00DF0C14 /* MovingTribal */,
 				0CB90A29141C9D3A00DF0C14 /* Frameworks */,
 				0CB90A27141C9D3A00DF0C14 /* Products */,
@@ -381,10 +381,10 @@
 				0C9E2FA814210BB700A77D98 /* cat.png in Resources */,
 				0C9E2FA914210BB700A77D98 /* index.html in Resources */,
 				0CEEBD641427BBF600CDD38A /* Entitlements.plist in Resources */,
-				0C57196F1427BFE300011F6E /* developer_identity.cer in Resources */,
 				0C5719711427C5FE00011F6E /* 72.png in Resources */,
 				0C5719751427CE2A00011F6E /* 114.png in Resources */,
 				0C5719771427CE5200011F6E /* Default@2x.png in Resources */,
+				0C110B80142981F0008DF69A /* developer_identity.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,8 +460,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				PROVISIONING_PROFILE = "39DADE22-E576-4D90-88A4-90C483929EDA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39DADE22-E576-4D90-88A4-90C483929EDA";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -485,8 +485,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				PROVISIONING_PROFILE = "39DADE22-E576-4D90-88A4-90C483929EDA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39DADE22-E576-4D90-88A4-90C483929EDA";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -504,8 +504,8 @@
 				INFOPLIST_FILE = "MovingTribal/MovingTribal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				PROVISIONING_PROFILE = "39DADE22-E576-4D90-88A4-90C483929EDA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39DADE22-E576-4D90-88A4-90C483929EDA";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -522,8 +522,8 @@
 				INFOPLIST_FILE = "MovingTribal/MovingTribal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				PROVISIONING_PROFILE = "39DADE22-E576-4D90-88A4-90C483929EDA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39DADE22-E576-4D90-88A4-90C483929EDA";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -547,8 +547,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				PROVISIONING_PROFILE = "39DADE22-E576-4D90-88A4-90C483929EDA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39DADE22-E576-4D90-88A4-90C483929EDA";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -566,8 +566,8 @@
 				INFOPLIST_FILE = "MovingTribal/MovingTribal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "663F51AD-CC9C-415B-A167-60AB7EEAF75B";
+				PROVISIONING_PROFILE = "39DADE22-E576-4D90-88A4-90C483929EDA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39DADE22-E576-4D90-88A4-90C483929EDA";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

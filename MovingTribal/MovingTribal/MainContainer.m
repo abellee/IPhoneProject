@@ -46,6 +46,7 @@
         mapInterface.delegate = self;
         mapInterface.view.backgroundColor = [UIColor whiteColor];
     }
+    [mapInterface initInterface];
     [mapInterface.view setFrame:rect];
     [self.view insertSubview:mapInterface.view atIndex:0];
 }
@@ -147,7 +148,7 @@
             break;
         case 1:             // 聊天界面
             if([view isEqual:chatListInterface.view]){
-                NSLog(@"is chat interface");
+                NSLog(@"is chatList interface");
                 return;
             }
             [self performSelector:@selector(showChatListInterface)];
@@ -176,8 +177,8 @@
 {
     if(view == mapInterface.view){
         [mapInterface.view removeFromSuperview];
-        [mapInterface release];
-        mapInterface = nil;
+//        [mapInterface release];
+//        mapInterface = nil;
     }else if(view == chatListInterface.view){
         [chatListInterface.view removeFromSuperview];
         [chatListInterface release];
