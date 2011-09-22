@@ -8,17 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "EditableUITableViewData.h"
+#import "EditableUITableViewDefinition.h"
 
 @interface EditableUITableView : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>{
     EditableUITableViewData* data;
-    NSString* identifier;
-    UITableViewCellStyle cellStyle;
+	
     UITableView* tableView;
+	
+	NSString* identifier;
+	NSString* sectionHeader;
 }
 
 @property (nonatomic, assign, getter = data, setter = data:) EditableUITableViewData* data;
-@property (nonatomic, assign, getter = identifier, setter = identifier:) NSString* identifier;
-@property (nonatomic, assign, getter = cellStyle, setter = cellStyle:) UITableViewCellStyle cellStyle;
 @property (nonatomic, retain) UITableView* tableView;
+@property (nonatomic, assign, getter = identifier, setter = identifier:) NSString* identifier;
+@property (nonatomic, assign, getter = sectionHeader, setter = sectionHeader:) NSString* sectionHeader;
 
 @end

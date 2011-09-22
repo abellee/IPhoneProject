@@ -61,6 +61,19 @@
     UIActivityIndicatorView* indicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(alertView.bounds.size.width / 2 - 15, alertView.bounds.size.height - 50, 30, 30)];
     [indicator startAnimating];
     [alertView addSubview:indicator];
+	[indicator autorelease];
+	
+//	locationManager = [[CLLocationManager alloc] init];
+//	locationManager.delegate = self;
+//	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//	[locationManager startUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+	NSLog(@"%f", newLocation.coordinate.latitude);
+	TestingAnnotation* ano = [[TestingAnnotation alloc] initWidthCoordinate:newLocation.coordinate];
+	[map addAnnotation:ano];
 }
 
 - (void)mapViewDidStopLocatingUser:(MKMapView *)mapView
@@ -102,15 +115,15 @@
     map.showsUserLocation = NO;
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    NSLog(@"did update to location!%f%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    if(found && anno){
-        anno.coordinate = newLocation.coordinate;
-        [map setCenterCoordinate:newLocation.coordinate animated:YES];
-    }
-//    NSLog(@"can user is apear: %@", map.userLocationVisible);
-}
+//- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+//{
+//    NSLog(@"did update to location!%f%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+//    if(found && anno){
+//        anno.coordinate = newLocation.coordinate;
+//        [map setCenterCoordinate:newLocation.coordinate animated:YES];
+//    }
+////    NSLog(@"can user is apear: %@", map.userLocationVisible);
+//}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {

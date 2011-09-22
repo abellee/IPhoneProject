@@ -25,7 +25,7 @@
     [self.movingTribal.view setFrame:rect];
     [self.window addSubview:self.movingTribal.view];
     [self.window makeKeyAndVisible];
-    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+//    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
     return YES;
 }
 

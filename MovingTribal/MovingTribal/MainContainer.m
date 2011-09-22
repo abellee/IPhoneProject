@@ -30,11 +30,14 @@
     [super dealloc];
 }
 
-- (void)setView:(UIView *)view
+- (id)init
 {
-    [super setView:view];
-    [self performSelector:@selector(showMapInterface)];
-    [self performSelector:@selector(showTabBar)];
+	self = [super init];
+	if(self){
+		[self performSelector:@selector(showMapInterface)];
+		[self performSelector:@selector(showTabBar)];
+	}
+	return self;
 }
 
 #pragma 显示地图界面
@@ -115,7 +118,7 @@
 #pragma 显示TabBar
 - (void)showTabBar
 {
-    CGRect barRect = CGRectMake(0, self.view.frame.size.height - 40, self.view.frame.size.width, 40);
+    CGRect barRect = CGRectMake(0, self.view.frame.size.height - 84, self.view.frame.size.width, 40);
     tabBar = [[UITabBar alloc] initWithFrame:barRect];
     tabBar.delegate = self;
     UITabBarItem* indexItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:nil tag:0];
@@ -170,7 +173,24 @@
         default:
             break;
     }
+	[self performSelector:@selector(changeSuperviewTitle:) withObject:(id)item.tag];
     [self performSelector:@selector(removeAndDealloc:) withObject:view];
+}
+
+- (void)editCell
+{
+	UIView* view = [self.view.subviews objectAtIndex:0];
+    if(view == nil) return;
+	if([view isEqual:friendInterface.view]){
+		[friendInterface editCell];
+		return;
+	}
+	if([view isEqual:chatListInterface.view]) [chatListInterface editCell];
+}
+
+- (void)changeSuperviewTitle:(NSInteger)tag
+{
+	if(delegate && [delegate conformsToProtocol:@protocol(InterfaceDelegate)]) [delegate changeTitle:tag];
 }
 
 - (void)removeAndDealloc:(UIView *)view
@@ -188,6 +208,7 @@
         [friendInterface release];
         friendInterface = nil;
     }else if(view == systemSettingInterface.view){
+		[systemSettingInterface save];
         [systemSettingInterface.view removeFromSuperview];
         [systemSettingInterface release];
         systemSettingInterface = nil;

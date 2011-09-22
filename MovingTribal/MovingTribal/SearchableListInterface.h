@@ -23,4 +23,6 @@
 @property (nonatomic, assign) NSArray* keys;
 @property (nonatomic, assign) NSDictionary* names;
 
+- (void)editCell;
+
 @end

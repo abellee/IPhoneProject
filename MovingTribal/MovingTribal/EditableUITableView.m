@@ -8,13 +8,14 @@
 
 #import "EditableUITableView.h"
 #import "EditableUITableCellData.h"
+#import "ToggleableUITableViewCell.h"
 
 @implementation EditableUITableView
 
 @synthesize data;
-@synthesize identifier;
-@synthesize cellStyle;
 @synthesize tableView;
+@synthesize identifier;
+@synthesize sectionHeader;
 
 - (id)init
 {
@@ -31,6 +32,7 @@
     NSLog(@"******| EditableUITableView |****** receive dealloc message!");
     [data release];
     [identifier release];
+	[sectionHeader release];
     [super dealloc];
 }
 
@@ -42,9 +44,8 @@
 - (void)data:(EditableUITableViewData *)value
 {
     if(data != value){
-        EditableUITableViewData* tempData = data;
+        [data release];
         data = [value retain];
-        [tempData release];
     }
 }
 
@@ -63,14 +64,17 @@
     }
 }
 
-- (UITableViewCellStyle)cellStyle
+- (void)sectionHeader:(NSString *)str
 {
-    return cellStyle;
+	if(str != sectionHeader){
+		[sectionHeader release];
+		sectionHeader = [str retain];
+	}
 }
 
-- (void)cellStyle:(UITableViewCellStyle)value
+- (NSString * )sectionHeader
 {
-    if(cellStyle != value) cellStyle = value;
+	return sectionHeader;
 }
 
 - (void)initInterface
@@ -83,27 +87,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tb cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [tb dequeueReusableCellWithIdentifier:identifier];
+    ToggleableUITableViewCell* cell = [tb dequeueReusableCellWithIdentifier:identifier];
     EditableUITableCellData* cellData = [data getDataBySectionAndRow:indexPath.section row:indexPath.row];
     if(cell == nil){
-        cell = [[[UITableViewCell alloc] initWithStyle:cellStyle reuseIdentifier:identifier] autorelease];
+        cell = [[[ToggleableUITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		UIFont* font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-		CGSize size = [cellData.placeholder sizeWithFont:font];
-        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, cellData.width, size.height + 4)];
-        textField.placeholder = cellData.placeholder;
-        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
-        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        textField.secureTextEntry = cellData.isSecureTextEntry;
-        textField.text = cellData.value;
-        textField.delegate = self;
-        textField.keyboardType = cellData.keyboardType;
-        textField.keyboardAppearance = cellData.keyboardAppearance;
-        textField.returnKeyType = cellData.returnKeyType;
-        cell.accessoryView = textField;
-        [textField release];
+		if(cellData.cellType == kTextField){
+			UITextField* textField = [[self performSelector:@selector(getTextField:) withObject:cellData] retain];
+			cell.accessoryView = textField;
+			[textField release];
+		}else if(cellData.cellType == kSwitch){
+			UISwitch* switcher = [[self performSelector:@selector(getSwitch:) withObject:cellData] retain];
+			cell.accessoryView = switcher;
+			[switcher release];
+		}else if(cellData.cellType == kNormal){
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+		}else if(cellData.cellType == kCheck && cellData.value == @"YES"){
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+		}
     }
     cell.textLabel.text = cellData.label;
     return cell;
@@ -111,7 +115,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return @"A";
+	return sectionHeader == nil ? @"" : sectionHeader;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -123,6 +127,68 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 2;
+}
+
+- (UITextField *)getTextField:(EditableUITableCellData *)cellData
+{
+	UIFont* font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+	CGSize size = [cellData.placeholder sizeWithFont:font];
+	UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, cellData.width, size.height + 4)];
+	textField.placeholder = cellData.placeholder;
+	textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+	textField.autocorrectionType = UITextAutocorrectionTypeNo;
+	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+	textField.secureTextEntry = cellData.isSecureTextEntry;
+	textField.text = cellData.value;
+	textField.delegate = self;
+	textField.keyboardType = cellData.keyboardType;
+	textField.keyboardAppearance = cellData.keyboardAppearance;
+	textField.returnKeyType = cellData.returnKeyType;
+	return [textField autorelease];
+}
+
+- (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	EditableUITableCellData* cellData = [data getDataBySectionAndRow:indexPath.section row:indexPath.row];
+	UITableViewCell* cell = [tv cellForRowAtIndexPath:indexPath];
+	if(cellData.cellType == kNormal){
+		if(cellData.secondView){
+			// 显示二级视图
+		}
+	}else if(cellData.cellType == kCheck){
+		if(cell.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			cellData.value = @"NO";
+		}else if(cell.accessoryType == UITableViewCellAccessoryNone){
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cellData.value = @"YES";
+		}
+	}
+}
+
+- (UISwitch *)getSwitch:(EditableUITableCellData *)cellData
+{
+	UISwitch* switcher = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, cellData.width, cellData.height)];
+	[switcher setOn:cellData.value == @"YES" ? YES : NO];
+	[switcher addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+	return [switcher autorelease];
+}
+
+- (void)switchChanged:(id)sender
+{
+	UISwitch* switcher = (UISwitch *)sender;
+	ToggleableUITableViewCell* cell = (ToggleableUITableViewCell *)[switcher superview];
+	NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+	EditableUITableCellData* cellData = [data getDataBySectionAndRow:indexPath.section row:indexPath.row];
+	cellData.value = switcher.on ? @"YES" : @"NO";
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+	ToggleableUITableViewCell* cell = (ToggleableUITableViewCell *)[textField superview];
+	NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+	EditableUITableCellData* cellData = [data getDataBySectionAndRow:indexPath.section row:indexPath.row];
+	cellData.value = textField.text;
 }
 
 /*----------------------------------------------------------------------------*/

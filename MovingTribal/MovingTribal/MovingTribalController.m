@@ -24,6 +24,7 @@ typedef enum{
 @synthesize chatInterface;
 @synthesize dataGetter;
 @synthesize currentState;
+@synthesize navigationController;
 
 - (void)dealloc
 {
@@ -56,11 +57,19 @@ typedef enum{
 #pragma 登录成功 显示主界面
 - (void)showMainContainer
 {
-    CGRect mainContainerRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    CGRect mainContainerRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44);
     mainContainer = [[MainContainer alloc] init];
     mainContainer.delegate = self;
     [mainContainer.view setFrame:mainContainerRect];
-    [self.view insertSubview:mainContainer.view atIndex:0];
+	
+	navigationController = [[UINavigationController alloc] initWithRootViewController:mainContainer];
+	[navigationController.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+	navigationController.navigationBar.barStyle = UIBarStyleBlack;
+	navigationController.navigationBar.topItem.title = @"地	图";
+	UIBarButtonItem* rightButton = [[UIBarButtonItem alloc] initWithTitle:@"过滤显示" style:UIBarButtonItemStyleBordered target:self action:nil];
+	navigationController.navigationBar.topItem.rightBarButtonItem = rightButton;
+	[rightButton release];
+	[self.view insertSubview:navigationController.view atIndex:0];
     
     [self performSelector:@selector(initDataGetter)];
     
@@ -95,26 +104,76 @@ typedef enum{
         chatInterface.delegate = self;
         [chatInterface userData:userData];
         [chatInterface initInterface];
+		[navigationController pushViewController:chatInterface animated:YES];
+		[chatInterface release];
+		chatInterface = nil;
     }
-    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    [chatInterface.view setFrame:rect];
-    [self.view addSubview:chatInterface.view];
-    TransitionVariable* transitionVar0 = [[TransitionVariable alloc] init];
-    [transitionVar0 subType: kCATransitionFromRight];
-    [transitionVar0 duration: 0.3];
-    [transitionVar0 view:chatInterface.view];
-    [self performSelector:@selector(easeIn:) withObject:transitionVar0];
-    [transitionVar0 release];
-    
-    CGRect outRect = CGRectMake(-self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
-    [mainContainer.view setFrame:outRect];
-    currentState = MAIN_STATE;
-    TransitionVariable* transitionVar = [[TransitionVariable alloc] init];
-    [transitionVar subType: kCATransitionFromRight];
-    [transitionVar duration: 0.5];
-    [transitionVar view:mainContainer.view];
-    [self performSelector:@selector(easeOut:) withObject:transitionVar];
-    [transitionVar release];
+//    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+//    [chatInterface.view setFrame:rect];
+//    [self.view addSubview:chatInterface.view];
+//    TransitionVariable* transitionVar0 = [[TransitionVariable alloc] init];
+//    [transitionVar0 subType: kCATransitionFromRight];
+//    [transitionVar0 duration: 0.3];
+//    [transitionVar0 view:chatInterface.view];
+//    [self performSelector:@selector(easeIn:) withObject:transitionVar0];
+//    [transitionVar0 release];
+//    
+//    CGRect outRect = CGRectMake(-self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
+//    [mainContainer.view setFrame:outRect];
+//    currentState = MAIN_STATE;
+//    TransitionVariable* transitionVar = [[TransitionVariable alloc] init];
+//    [transitionVar subType: kCATransitionFromRight];
+//    [transitionVar duration: 0.5];
+//    [transitionVar view:mainContainer.view];
+//    [self performSelector:@selector(easeOut:) withObject:transitionVar];
+//    [transitionVar release];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+	NSLog(@"will show");
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+	NSLog(@"finish!");
+}
+
+- (void)changeTitle:(NSInteger)tag
+{
+	UIBarButtonItem* rightButton;
+	switch (tag) {
+		case 0:
+			navigationController.navigationBar.topItem.title = @"地	图";
+			rightButton = [[UIBarButtonItem alloc] initWithTitle:@"过滤显示" style:UIBarButtonItemStyleBordered target:self action:nil];
+			navigationController.navigationBar.topItem.rightBarButtonItem = rightButton;
+			navigationController.navigationBar.topItem.leftBarButtonItem = nil;
+			[rightButton release];
+			break;
+		case 1:
+			navigationController.navigationBar.topItem.title = @"会	话";
+			rightButton = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:mainContainer action:@selector(editCell)];
+			navigationController.navigationBar.topItem.leftBarButtonItem = rightButton;
+			navigationController.navigationBar.topItem.rightBarButtonItem = nil;
+			[rightButton release];
+			break;
+		case 2:
+			navigationController.navigationBar.topItem.title = @"好	友";
+			rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:nil];
+			UIBarButtonItem* leftButton = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:mainContainer action:@selector(editCell)];
+			navigationController.navigationBar.topItem.rightBarButtonItem = rightButton;
+			navigationController.navigationBar.topItem.leftBarButtonItem = leftButton;
+			[rightButton release];
+			[leftButton release];
+			break;
+		case 3:
+			navigationController.navigationBar.topItem.title = @"系统设置";
+			navigationController.navigationBar.topItem.leftBarButtonItem = nil;
+			navigationController.navigationBar.topItem.rightBarButtonItem = nil;
+			break;
+		default:
+			break;
+	}
 }
 
 #pragma 退出与指定好友之间的聊天界面

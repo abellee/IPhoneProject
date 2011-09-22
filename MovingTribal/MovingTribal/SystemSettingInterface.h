@@ -18,4 +18,6 @@
 @property (nonatomic, retain) id<MainContainerDelegate> delegate;
 @property (nonatomic, retain) EditableUITableView* tableView;
 
+- (void)save;
+
 @end

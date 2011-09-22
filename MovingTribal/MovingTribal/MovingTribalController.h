@@ -17,7 +17,7 @@
 #import "ChatInterface.h"
 #import "DataGetter.h"
 
-@interface MovingTribalController : UIViewController<InterfaceDelegate>{
+@interface MovingTribalController : UIViewController<InterfaceDelegate, UINavigationControllerDelegate>{
     IntroduceContainer* introContainer;
     LoginContainer* loginContainer;
     MainContainer* mainContainer;
@@ -25,6 +25,7 @@
     DataGetter* dataGetter;
     
     NSInteger currentState;
+	UINavigationController* navigationController;
 }
 
 @property (nonatomic, assign) IntroduceContainer* introContainer;
@@ -33,5 +34,6 @@
 @property (nonatomic, assign) ChatInterface* chatInterface;
 @property (nonatomic, assign) DataGetter* dataGetter;
 @property (nonatomic, assign) NSInteger currentState;
+@property (nonatomic, retain) UINavigationController* navigationController;
 
 @end

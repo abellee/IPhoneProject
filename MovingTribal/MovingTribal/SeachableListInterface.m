@@ -69,6 +69,11 @@
     [self.view addSubview:searchBar];
 }
 
+- (void)editCell
+{
+	[tableViewController.tableView setEditing:!tableViewController.tableView.editing animated:YES];
+}
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)sb
 {
     [sb resignFirstResponder];

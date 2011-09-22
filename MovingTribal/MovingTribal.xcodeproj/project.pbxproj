@@ -20,6 +20,7 @@
 		0C6824071423F52700192C83 /* MainContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6824061423F52700192C83 /* MainContainer.m */; };
 		0C8C2A7D141DBB34006ED2EB /* TouchableUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C2A7C141DBB34006ED2EB /* TouchableUILabel.m */; };
 		0C8C2A8A141E3569006ED2EB /* RegistInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C2A89141E3569006ED2EB /* RegistInterface.m */; };
+		0C9C2EA4142B0E6D008F8C9E /* ToggleableUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9C2EA3142B0E6D008F8C9E /* ToggleableUITableViewCell.m */; };
 		0C9E2FA814210BB700A77D98 /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9E2FA614210BB600A77D98 /* cat.png */; };
 		0C9E2FA914210BB700A77D98 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0C9E2FA714210BB600A77D98 /* index.html */; };
 		0C9E2FAC142120E900A77D98 /* MapInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9E2FAB142120E800A77D98 /* MapInterface.m */; };
@@ -73,6 +74,9 @@
 		0C8C2A7F141DBF4F006ED2EB /* TouchableUILabelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableUILabelDelegate.h; sourceTree = "<group>"; };
 		0C8C2A88141E3569006ED2EB /* RegistInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistInterface.h; sourceTree = "<group>"; };
 		0C8C2A89141E3569006ED2EB /* RegistInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistInterface.m; sourceTree = "<group>"; };
+		0C9C2E99142AEABD008F8C9E /* EditableUITableViewDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableUITableViewDefinition.h; sourceTree = "<group>"; };
+		0C9C2EA2142B0E6D008F8C9E /* ToggleableUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleableUITableViewCell.h; sourceTree = "<group>"; };
+		0C9C2EA3142B0E6D008F8C9E /* ToggleableUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleableUITableViewCell.m; sourceTree = "<group>"; };
 		0C9E2FA614210BB600A77D98 /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cat.png; path = ../../../../../Desktop/cat.png; sourceTree = "<group>"; };
 		0C9E2FA714210BB600A77D98 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = ../../../../../Desktop/index.html; sourceTree = "<group>"; };
 		0C9E2FAA142120E800A77D98 /* MapInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapInterface.h; sourceTree = "<group>"; };
@@ -290,6 +294,9 @@
 				0CF45644142545F700BF6710 /* EditableUITableViewData.m */,
 				0CF456461425483200BF6710 /* EditableUITableCellData.h */,
 				0CF456471425483200BF6710 /* EditableUITableCellData.m */,
+				0C9C2EA2142B0E6D008F8C9E /* ToggleableUITableViewCell.h */,
+				0C9C2EA3142B0E6D008F8C9E /* ToggleableUITableViewCell.m */,
+				0C9C2E99142AEABD008F8C9E /* EditableUITableViewDefinition.h */,
 				0CCF913214264B6800816374 /* UserData.h */,
 				0CCF913314264B6800816374 /* UserData.m */,
 				0CCF91361426543C00816374 /* TransitionVariable.h */,
@@ -418,6 +425,7 @@
 				0CCF91381426543C00816374 /* TransitionVariable.m in Sources */,
 				0CCF913C14267F7000816374 /* DataGetter.m in Sources */,
 				0C57197C1427D7AB00011F6E /* SoundRecorder.m in Sources */,
+				0C9C2EA4142B0E6D008F8C9E /* ToggleableUITableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

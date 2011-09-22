@@ -16,8 +16,6 @@
 //    UITextField* chatInput;
 //    UIView* topBackground;
 //    UIView* bottomBackground;
-    UILabel* nameLabel;
-    UIButton* returnBtn;
     
     UserData* userData;
 }
@@ -28,8 +26,6 @@
 //@property (nonatomic, retain) UITextField* chatInput;
 //@property (nonatomic, retain) UIView* topBackground;
 //@property (nonatomic, retain) UIView* bottomBackground;
-@property (nonatomic, retain) UILabel* nameLabel;
-@property (nonatomic, retain) UIButton* returnBtn;
 
 @property (nonatomic, assign, getter = userData, setter = userData:) UserData* userData;
 

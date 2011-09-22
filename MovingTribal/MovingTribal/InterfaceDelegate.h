@@ -14,5 +14,6 @@
 - (void)showMainContainer;
 - (void)showChatInterface:(UserData *)userData;
 - (void)exitChatInterface;
+- (void)changeTitle:(NSInteger)tag;
 
 @end

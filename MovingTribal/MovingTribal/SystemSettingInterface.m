@@ -32,27 +32,40 @@
     [super dealloc];
 }
 
+- (void)save
+{
+	NSLog(@"save system setting");
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setValue:@"李金贝贝" forKey:@"username"];
+	[defaults setValue:@"YES" forKey:@"nickname"];
+}
+
 - (void)initInterface
 {
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     EditableUITableCellData* cell0 = [[[EditableUITableCellData alloc] init] autorelease];
     [cell0 label: @"昵称"];
     [cell0 placeholder: @"请输入昵称"];
-    [cell0 value: @""];
+    [cell0 value: [defaults objectForKey:@"username"]];
     [cell0 keyboardType: UIKeyboardTypeDefault];
     [cell0 keyboardAppearance: UIKeyboardAppearanceDefault];
     [cell0 returnKeyType: UIReturnKeyDone];
     [cell0 isSecureTextEntry: NO];
+	[cell0 key: @"username"];
+	[cell0 cellType: kTextField];
     [cell0 width: 150];
     [cell0 height: 1000];
     
     EditableUITableCellData* cell1 = [[[EditableUITableCellData alloc] init] autorelease];
     [cell1 label: @"昵称2"];
     [cell1 placeholder: @"请输入昵称2"];
-    [cell1 value: @"李金贝"];
+    [cell1 value: [defaults objectForKey:@"nickname"]];
     [cell1 keyboardType: UIKeyboardTypeDefault];
     [cell1 keyboardAppearance: UIKeyboardAppearanceDefault];
     [cell1 returnKeyType: UIReturnKeyDone];
     [cell1 isSecureTextEntry: NO];
+	[cell1 key: @"nickname"];
+	[cell1 cellType: kSwitch];
     [cell1 width: 150];
     [cell1 height: 1000];
     
@@ -64,6 +77,7 @@
     tableView = [[EditableUITableView alloc] init];
     [tableView.view setFrame:self.view.frame];
     [tableView data: tableViewData];
+	[tableView sectionHeader:@"第一批"];
     [tableView identifier: @"FirstSection"];
     [self.view addSubview:tableView.view];
     

@@ -32,9 +32,8 @@
 - (void)data:(NSArray *)arrData
 {
     if(arrData != data){
-        NSArray* tempData = data;
-        data = [arrData copy];
-        [tempData release];
+        [data release];
+        data = [arrData retain];
     }
 }
 

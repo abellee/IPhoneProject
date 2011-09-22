@@ -34,4 +34,6 @@
 
 @property (nonatomic, retain) UITabBar* tabBar;
 
+- (void)editCell;
+
 @end
