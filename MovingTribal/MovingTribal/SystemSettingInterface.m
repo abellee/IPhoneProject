@@ -55,7 +55,7 @@
 	[cell0 cellType: kTextField];
     [cell0 width: 150];
     [cell0 height: 1000];
-    
+
     EditableUITableCellData* cell1 = [[[EditableUITableCellData alloc] init] autorelease];
     [cell1 label: @"昵称2"];
     [cell1 placeholder: @"请输入昵称2"];

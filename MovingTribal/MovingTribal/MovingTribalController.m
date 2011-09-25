@@ -101,6 +101,7 @@ typedef enum{
     if(chatInterface == nil){
         chatInterface = [[ChatInterface alloc] init];
         chatInterface.view.backgroundColor = [UIColor whiteColor];
+		[chatInterface.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40)];
         chatInterface.delegate = self;
         [chatInterface userData:userData];
         [chatInterface initInterface];

@@ -17,6 +17,7 @@
 @synthesize password;
 @synthesize forgetPassword;
 @synthesize soundRecorder;
+@synthesize emotionsView;
 
 @synthesize delegate;
 

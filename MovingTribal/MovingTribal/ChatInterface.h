@@ -6,9 +6,13 @@
 //  Copyright 2011 Abel Lee. All rights reserved.
 //
 
+#import <UIkit/UIkit.h>
 #import "InterfaceDelegate.h"
 
-@interface ChatInterface : UIViewController{
+#import "ChatInput.h"
+#import "ChatCategory.h"
+
+@interface ChatInterface : UIViewController<ChatInputDelegate, ChatCategoryDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
     id<InterfaceDelegate> delegate;
     
 //    UIScrollView* scrollView;
@@ -18,9 +22,13 @@
 //    UIView* bottomBackground;
     
     UserData* userData;
+	ChatInput* chatInput;
+	ChatCategory* chatCategory;
 }
 
-@property (nonatomic, retain) id<InterfaceDelegate> delegate;
+@property (nonatomic, assign) id<InterfaceDelegate> delegate;
+@property (nonatomic, assign) ChatInput* chatInput;
+@property (nonatomic, assign) ChatCategory* chatCategory;
 
 //@property (nonatomic, retain) UIScrollView* scrollView;
 //@property (nonatomic, retain) UITextField* chatInput;

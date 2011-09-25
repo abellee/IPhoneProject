@@ -27,7 +27,7 @@
 - (void)dealloc
 {
     NSLog(@"******| UserData |****** receive dealloc message!");
-    [weiboId release];
+//    [weiboId release];
     [username release];
     [super dealloc];
 }

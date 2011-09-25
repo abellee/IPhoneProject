@@ -71,9 +71,9 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-	NSLog(@"%f", newLocation.coordinate.latitude);
-	TestingAnnotation* ano = [[TestingAnnotation alloc] initWidthCoordinate:newLocation.coordinate];
-	[map addAnnotation:ano];
+//	NSLog(@"%f", newLocation.coordinate.latitude);
+//	TestingAnnotation* ano = [[TestingAnnotation alloc] initWidthCoordinate:newLocation.coordinate];
+//	[map addAnnotation:ano];
 }
 
 - (void)mapViewDidStopLocatingUser:(MKMapView *)mapView

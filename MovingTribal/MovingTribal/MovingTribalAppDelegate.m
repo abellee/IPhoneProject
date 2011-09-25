@@ -8,6 +8,7 @@
 
 #import "MovingTribalAppDelegate.h"
 #import "MovingTribalController.h"
+#import "Globals.h"
 
 @implementation MovingTribalAppDelegate
 
@@ -110,7 +111,7 @@
 	// Build URL String for Registration
 	// !!! CHANGE "www.mywebsite.com" TO YOUR WEBSITE. Leave out the http://
 	// !!! SAMPLE: "secure.awesomeapp.com"
-	NSString *host = @"192.168.1.101/forios/easyAPNS";
+	
 	
 	// !!! CHANGE "/apns.php?" TO THE PATH TO WHERE apns.php IS INSTALLED 
 	// !!! ( MUST START WITH / AND END WITH ? ). 
@@ -119,7 +120,7 @@
 	
 	// Register the Device Data
 	// !!! CHANGE "http" TO "https" IF YOU ARE USING HTTPS PROTOCOL
-	NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:host path:urlString];
+	NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:[Globals root] path:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
 	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	NSLog(@"Register URL: %@", url);

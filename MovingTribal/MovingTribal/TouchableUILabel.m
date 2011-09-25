@@ -30,6 +30,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [delegate touchLabel:self touchableLabelTag:self.tag];
+	[super touchesBegan:touches withEvent:event];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

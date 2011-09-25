@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 #import "TouchableUILabel.h"
 #import "SoundRecorder.h"
+#import "EmotionsView.h"
 
 #import "LoginContainerDelegate.h"
 
@@ -24,6 +26,7 @@
     id <LoginContainerDelegate> delegate;
     
     SoundRecorder* soundRecorder;
+	EmotionsView* emotionsView;
 }
 
 @property (nonatomic, assign) id<LoginContainerDelegate> delegate;
@@ -35,6 +38,7 @@
 @property (nonatomic, retain) UITextField* password;
 @property (nonatomic, retain) TouchableUILabel* forgetPassword;
 @property (nonatomic, assign) SoundRecorder* soundRecorder;
+@property (nonatomic, assign) EmotionsView* emotionsView;
 
 - (void)initInterface;
 - (void)resignTextField;
