@@ -146,15 +146,15 @@
 	CGRect keyboardRect = [sizeValue CGRectValue];
 	CGFloat height = keyboardRect.size.height;
 	
-	CGRect chatInputRect = self.view.frame;
-	[self.view setFrame:CGRectMake(0, chatInputRect.origin.y - height, self.view.frame.size.width, chatInputRect.size.height)];
-	CATransition* animation = [CATransition animation];
+	CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+	animation.removedOnCompletion = NO;
+	animation.autoreverses = NO;
+	animation.fillMode = kCAFillModeForwards;
+	animation.fromValue = [NSNumber numberWithInt:0];
+	animation.toValue = [NSNumber numberWithInt:-height];
 	[animation setDuration:animationInterval];
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    animation.type = kCATransitionReveal;
-    animation.subtype = kCATransitionFromBottom;
-    animation.delegate = self;
-    [self.view.layer addAnimation:animation forKey:nil];
+	animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	[self.view.layer addAnimation:animation forKey:nil];
 }
 
 - (void)keyboardWillHide:(NSNotification *) notification
@@ -168,15 +168,15 @@
 	CGRect keyboardRect = [sizeValue CGRectValue];
 	CGFloat height = keyboardRect.size.height;
 	
-	CGRect chatInputRect = self.view.frame;
-	[self.view setFrame:CGRectMake(0, chatInputRect.origin.y + height, self.view.frame.size.width, chatInputRect.size.height)];
-	CATransition* animation = [CATransition animation];
+	CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+	animation.removedOnCompletion = NO;
+	animation.autoreverses = NO;
+	animation.fillMode = kCAFillModeForwards;
+	animation.fromValue = [NSNumber numberWithInt:-height];
+	animation.toValue = [NSNumber numberWithInt:0];
 	[animation setDuration:animationInterval];
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    animation.type = kCATransitionReveal;
-    animation.subtype = kCATransitionFromBottom;
-    animation.delegate = self;
-    [self.view.layer addAnimation:animation forKey:nil];
+	animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	[self.view.layer addAnimation:animation forKey:nil];
 }
 
 /*----------------------------------------------------------------------------*/

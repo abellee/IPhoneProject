@@ -7,6 +7,7 @@
 //
 
 #import "LoginInterface.h"
+#import "NetWork.h"
 
 @implementation LoginInterface
 
@@ -57,7 +58,6 @@
     username.borderStyle = UITextBorderStyleRoundedRect;
     username.placeholder = @"邮箱";
     username.returnKeyType = UIReturnKeyNext;
-    username.clearButtonMode = UITextFieldViewModeWhileEditing;
     username.autocorrectionType = UITextAutocorrectionTypeNo;
     username.keyboardAppearance = UIKeyboardAppearanceAlert;
     username.keyboardType = UIKeyboardTypeEmailAddress;
@@ -71,7 +71,6 @@
     password.borderStyle = UITextBorderStyleRoundedRect;
     password.placeholder = @"密码";
     password.returnKeyType = UIReturnKeyDone;
-    password.clearButtonMode = UITextFieldViewModeWhileEditing;
     password.keyboardAppearance = UIKeyboardAppearanceAlert;
     password.autocorrectionType = UITextAutocorrectionTypeNo;
     password.keyboardType = UIKeyboardTypeASCIICapable;
@@ -143,7 +142,27 @@
     switch (view.tag) {
         case 0:
             // do login
-            [self doLogin];
+			if(username.text && password.text && username.text != @"" && password.text != @""){
+				int reulst = [NetWork login:username.text password:password.text];
+				switch (reulst) {
+					case AccountPatternError:
+						[self performSelector:@selector(alert:) withObject:@"帐号格式不正确!"];
+						break;
+					case PasswordLenError:
+						[self performSelector:@selector(alert:) withObject:@"密码长度必需为6-20个字符!"];
+						break;
+					case LoginFailed:
+						[self performSelector:@selector(alert:) withObject:@"帐号或者密码不正确!"];
+						break;
+					case LoginSuccess:
+						[self doLogin];
+						break;
+					default:
+						break;
+				}
+			}else{
+				[self performSelector:@selector(alert:) withObject:@"帐号密码不能为空!"];
+			}
             break;
         case 1:
             // others platform login
@@ -160,9 +179,16 @@
             }
             break;
         default:
-            // who could tell me what i can do - -!!!
+            // who could tell me what i should do - -!!!
             break;
     }
+}
+
+- (void)alert:(NSString *)message
+{
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+	[alert show];
+	[alert release];
 }
 
 #pragma mark - 提交服务器验证 并登录

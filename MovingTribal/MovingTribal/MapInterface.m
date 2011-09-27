@@ -7,6 +7,8 @@
 //
 
 #import "MapInterface.h"
+#import "NetWork.h"
+#import "Globals.h"
 
 @implementation MapInterface
 
@@ -48,7 +50,7 @@
 {
     if(!map.showsUserLocation || map.showsUserLocation == NO){
 //        NSLog(@"%@", map.showsUserLocation);
-//        map.showsUserLocation = YES;
+        map.showsUserLocation = YES;
     }
 }
 
@@ -95,6 +97,10 @@
 //    [map addAnnotation:anno];
     [map setCenterCoordinate:userLocation.coordinate];
     [map setUserTrackingMode:MKUserTrackingModeFollow];
+	NSLog(@"%f>>>>%f", userLocation.coordinate.longitude, userLocation.coordinate.latitude);
+	[[Globals getUserData] longtitude:userLocation.coordinate.longitude];
+	[[Globals getUserData] latitude:userLocation.coordinate.latitude];
+	[NetWork locate];
 }
 
 - (void)mapView:(MKMapView *)mapView didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated

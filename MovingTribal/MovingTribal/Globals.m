@@ -7,8 +7,12 @@
 //
 
 #import "Globals.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation Globals
+
+static UserData* userData;
+static NSString* root = @"192.168.1.101/forios";
 
 - (id)init
 {
@@ -20,9 +24,34 @@
     return self;
 }
 
++ (UserData *)getUserData
+{
+	return userData;
+}
+
++ (void)setUserData:(UserData *)data
+{
+	if(userData != data){
+		[userData release];
+		userData = [data retain];
+	}
+}
+
 + (NSString *)root
 {
-	return @"192.168.1.101/forios/easyAPNS";
+	return root;
 }
+
++(NSString *)md5:(NSString *)str { 
+    const char *cStr = [str UTF8String]; 
+    unsigned char result[CC_MD5_DIGEST_LENGTH]; 
+    CC_MD5(cStr, strlen(cStr), result);
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+	for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+		[output appendFormat:@"%02x",result[i]];
+	return output;
+}
+
+
 
 @end

@@ -21,11 +21,11 @@
 - (void)dealloc
 {
     NSLog(@"******| Main Container |****** receive dealloc message!");
-    if(mapInterface != nil) [mapInterface release];
-    if(chatListInterface != nil) [chatListInterface release];
-    if(friendInterface != nil) [friendInterface release];
-    if(systemSettingInterface != nil) [systemSettingInterface release];
-    if(tabBar != nil) [tabBar release];
+    [mapInterface release];
+    [chatListInterface release];
+    [friendInterface release];
+    [systemSettingInterface release];
+    [tabBar release];
     delegate = nil;
     [super dealloc];
 }

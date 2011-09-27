@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserData.h"
 
-@interface Globals : NSObject{
-}
+@interface Globals : NSObject
 
 + (NSString *)root;
++ (NSString *)md5:(NSString *)str;
++ (void)setUserData:(UserData *)data;
++ (UserData*)getUserData;
 
 @end

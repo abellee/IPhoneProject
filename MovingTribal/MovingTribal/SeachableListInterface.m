@@ -91,7 +91,7 @@
     if(delegate != nil && [delegate conformsToProtocol:@protocol(MainContainerDelegate)]){
         UserData* userData = [[UserData alloc] init];
         [userData uid:5];
-        [userData username: @"李金贝"];
+        [userData nickname: @"李金贝"];
         [delegate showChatInterface:userData];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [userData release];

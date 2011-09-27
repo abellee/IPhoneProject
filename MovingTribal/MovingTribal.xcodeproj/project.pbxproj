@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0AAC201430AF0C0099A692 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AAC1E1430AF0C0099A692 /* GDataXMLNode.m */; };
+		0C0AAC231430AF2B0099A692 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0AAC221430AF2B0099A692 /* libxml2.dylib */; };
 		0C110B80142981F0008DF69A /* developer_identity.cer in Resources */ = {isa = PBXBuildFile; fileRef = 0C110B7F142981F0008DF69A /* developer_identity.cer */; };
 		0C331FE714251742006810FB /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C331FE614251742006810FB /* SearchBar.m */; };
+		0C459DB414317D7B00C69DD4 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C459DB314317D7B00C69DD4 /* Task.m */; };
+		0C459DBA1431AF7000C69DD4 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C459DB91431AF7000C69DD4 /* libicucore.dylib */; };
+		0C459DC61431B50400C69DD4 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C459DC41431B50400C69DD4 /* RegexKitLite.m */; };
 		0C5719711427C5FE00011F6E /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5719701427C5FE00011F6E /* 72.png */; };
 		0C5719751427CE2A00011F6E /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5719741427CE2A00011F6E /* 114.png */; };
 		0C5719771427CE5200011F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5719761427CE5200011F6E /* Default@2x.png */; };
@@ -58,9 +63,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C0AAC1E1430AF0C0099A692 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		0C0AAC1F1430AF0C0099A692 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		0C0AAC221430AF2B0099A692 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		0C110B7F142981F0008DF69A /* developer_identity.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = developer_identity.cer; path = ../developer_identity.cer; sourceTree = "<group>"; };
 		0C331FE514251742006810FB /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
 		0C331FE614251742006810FB /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
+		0C459DB214317D7B00C69DD4 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		0C459DB314317D7B00C69DD4 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		0C459DB91431AF7000C69DD4 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		0C459DC41431B50400C69DD4 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		0C459DC51431B50400C69DD4 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		0C5719701427C5FE00011F6E /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
 		0C5719741427CE2A00011F6E /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 114.png; path = ../114.png; sourceTree = "<group>"; };
 		0C5719761427CE5200011F6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
@@ -158,6 +171,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C459DBA1431AF7000C69DD4 /* libicucore.dylib in Frameworks */,
+				0C0AAC231430AF2B0099A692 /* libxml2.dylib in Frameworks */,
 				0C57197E1427D7E100011F6E /* AVFoundation.framework in Frameworks */,
 				0C5719791427CEFA00011F6E /* CoreLocation.framework in Frameworks */,
 				0CF86E57141E60C4002792F3 /* QuartzCore.framework in Frameworks */,
@@ -253,6 +268,8 @@
 		0CB90A29141C9D3A00DF0C14 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C459DB91431AF7000C69DD4 /* libicucore.dylib */,
+				0C0AAC221430AF2B0099A692 /* libxml2.dylib */,
 				0C57197D1427D7E100011F6E /* AVFoundation.framework */,
 				0C5719781427CEFA00011F6E /* CoreLocation.framework */,
 				0CF86E56141E60C4002792F3 /* QuartzCore.framework */,
@@ -321,6 +338,10 @@
 		0CCF913914267CD300816374 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0C0AAC1E1430AF0C0099A692 /* GDataXMLNode.m */,
+				0C0AAC1F1430AF0C0099A692 /* GDataXMLNode.h */,
+				0C459DC41431B50400C69DD4 /* RegexKitLite.m */,
+				0C459DC51431B50400C69DD4 /* RegexKitLite.h */,
 				0CCF913A14267F7000816374 /* DataGetter.h */,
 				0CCF913B14267F7000816374 /* DataGetter.m */,
 				0C57197A1427D7AB00011F6E /* SoundRecorder.h */,
@@ -349,6 +370,8 @@
 				0CCF91371426543C00816374 /* TransitionVariable.m */,
 				0C96D636142F0BF200EB1EA6 /* Globals.h */,
 				0C96D637142F0BF200EB1EA6 /* Globals.m */,
+				0C459DB214317D7B00C69DD4 /* Task.h */,
+				0C459DB314317D7B00C69DD4 /* Task.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -482,6 +505,9 @@
 				0C96D617142ED78200EB1EA6 /* TouchableUIScrollView.m in Sources */,
 				0C96D638142F0BF200EB1EA6 /* Globals.m in Sources */,
 				0C96D63B142F0E5D00EB1EA6 /* NetWork.m in Sources */,
+				0C0AAC201430AF0C0099A692 /* GDataXMLNode.m in Sources */,
+				0C459DB414317D7B00C69DD4 /* Task.m in Sources */,
+				0C459DC61431B50400C69DD4 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +591,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovingTribal/MovingTribal-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MovingTribal/MovingTribal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -583,6 +610,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovingTribal/MovingTribal-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MovingTribal/MovingTribal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -627,6 +655,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovingTribal/MovingTribal-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MovingTribal/MovingTribal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "${TARGET_NAME}";

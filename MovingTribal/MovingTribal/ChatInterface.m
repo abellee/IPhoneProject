@@ -62,7 +62,7 @@
 
 - (void)initInterface
 {
-	self.navigationItem.title = userData.username;
+	self.navigationItem.title = userData.nickname;
     CGRect scrollViewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 84);
     TouchableUIScrollView* scrollView = [[TouchableUIScrollView alloc] initWithFrame:scrollViewRect];
 	scrollView.backgroundColor = [UIColor redColor];

@@ -10,8 +10,32 @@
 #import "UserData.h"
 #import "Globals.h"
 
+typedef enum LoginResult{
+	LoginSuccess,
+	AccountPatternError,
+	LoginFailed,
+	PasswordLenError,
+	
+	NicknamePatternError,
+	NicknameLenError,
+	AccountExsit,
+	RegistSuccess,
+	RegistFailed,
+	
+	ServerError
+}LoginResult;
+
+typedef enum ChatResult{
+	SendSuccess,
+	SendFailed
+}ChatResult;
+
 @interface NetWork : NSObject
 
-+ (BOOL)sendText:(NSString *)text targetUser:(UserData *)userData;
++ (void)logout:(UserData *)userData;
++ (int)login:(NSString *)username password:(NSString *)password;
++ (int)regist:(NSString *)nickname account:(NSString *)username password:(NSString *)password;
++ (int)sendText:(NSString *)text targetUser:(UserData *)userData;
++ (void)locate;
 
 @end

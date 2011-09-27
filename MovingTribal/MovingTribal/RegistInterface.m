@@ -7,6 +7,7 @@
 //
 
 #import "RegistInterface.h"
+#import "NetWork.h"
 
 @implementation RegistInterface
 
@@ -62,7 +63,7 @@
     // 昵称
     CGRect nicknameRect = CGRectMake(20, rect.origin.y + rect.size.height + 5, w, 30);
     nickname = [[UITextField alloc] initWithFrame:nicknameRect];
-    nickname.placeholder = @"昵称（4-20个字符）";
+    nickname.placeholder = @"昵称（4-12个字符）";
     nickname.autocorrectionType = UITextAutocorrectionTypeNo;
     nickname.keyboardType = UIKeyboardTypeDefault;
     nickname.borderStyle = UITextBorderStyleRoundedRect;
@@ -125,6 +126,41 @@
     switch (view.tag) {
         case 0:
             // do regist;
+			if(nickname.text && password.text && account.text && nickname.text != @"" && account.text != @"" && password.text != @""){
+				int result = [NetWork regist:nickname.text account:account.text password:password.text];
+				NSLog(@"%d", result);
+				switch (result) {
+					case RegistSuccess:
+						[self performSelector:@selector(alert:) withObject:@"注册成功!"];
+						[self performSelector:@selector(buttonPressed:) withObject:backwardBtn];
+						break;
+					case NicknameLenError:
+						[self performSelector:@selector(alert:) withObject:@"昵称长度必需为4-12个字符!"];
+						break;
+					case NicknamePatternError:
+						[self performSelector:@selector(alert:) withObject:@"昵称格式不正确!"];
+						break;
+					case AccountPatternError:
+						[self performSelector:@selector(alert:) withObject:@"帐号格式不正确!"];
+						break;
+					case AccountExsit:
+						[self performSelector:@selector(alert:) withObject:@"该帐号已经存在!"];
+						break;
+					case RegistFailed:
+						[self performSelector:@selector(alert:) withObject:@"注册失败, 请检查信息填写是否正确!"];
+						break;
+					case PasswordLenError:
+						[self performSelector:@selector(alert:) withObject:@"密码长度必需为6-20个字符!"];
+						break;
+					case ServerError:
+						[self performSelector:@selector(alert:) withObject:@"服务器错误!"];
+						break;
+					default:
+						break;
+				}
+			}else{
+				[self performSelector:@selector(alert:) withObject:@"信息填写不完整!"];
+			}
             break;
         case 1:
             // return backward
@@ -137,6 +173,13 @@
             // damn, why you can reach here - -!!
             break;
     }
+}
+
+- (void)alert:(NSString *)message
+{
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+	[alert show];
+	[alert release];
 }
 
 - (void)resignAll
