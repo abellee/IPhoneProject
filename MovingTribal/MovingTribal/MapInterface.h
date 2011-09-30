@@ -21,7 +21,14 @@
     UIAlertView* alertView;
     BOOL found;
     BOOL isService;
+	
+	NSMutableArray* onlineUser;
+	NSTimer* timer;
+	
+	UILabel* la;
 }
+
+@property (nonatomic, assign) UILabel* la;
 
 @property (nonatomic, assign) id<MainContainerDelegate> delegate;
 @property (nonatomic, assign) TestingAnnotation* anno;
@@ -30,6 +37,8 @@
 @property (nonatomic, assign) UIAlertView* alertView;
 @property (nonatomic, assign) BOOL found;
 @property (nonatomic, assign) BOOL isService;
+@property (nonatomic, assign) NSMutableArray* onlineUser;
+@property (nonatomic, retain) NSTimer* timer;
 
 - (void)initInterface;
 

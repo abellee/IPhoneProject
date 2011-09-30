@@ -20,6 +20,7 @@
 @synthesize taskExpireTime;
 @synthesize isExpired;
 @synthesize completion;
+@synthesize taskId;
 
 - (id)init
 {
@@ -45,6 +46,16 @@
 	taskPublisher = nil;
 	taskRequirement = nil;
 	[super dealloc];
+}
+
+- (int)taskId
+{
+	return taskId;
+}
+
+- (void)taskId:(int)num
+{
+	if(taskId != num) taskId = num;
 }
 
 - (NSString *)taskDescription

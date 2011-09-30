@@ -14,6 +14,9 @@ typedef enum{
     LOGIN_STATE,
     MAIN_STATE,
     CHAT_STATE,
+	PROFILE_STATE,
+	UNCOMPLETE_TASK_STATE,
+	COMPLETE_TASK_STATE
 }InterfaceState;
 
 @implementation MovingTribalController
@@ -25,6 +28,10 @@ typedef enum{
 @synthesize dataGetter;
 @synthesize currentState;
 @synthesize navigationController;
+@synthesize profileInterface;
+@synthesize taskInterface;
+@synthesize taskDetailInterface;
+@synthesize emotionActionInterface;
 
 - (void)dealloc
 {
@@ -95,16 +102,91 @@ typedef enum{
     }
 }
 
+#pragma 显示目标玩家资料界面
+- (void)showProfileInterface:(UserData *)userData
+{
+	if(profileInterface == nil){
+		profileInterface = [[ProfileInterface alloc] initWithUserData:userData];
+		profileInterface.view.backgroundColor = [UIColor grayColor];
+		[profileInterface.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40)];
+		profileInterface.delegate = self;
+		[navigationController pushViewController:profileInterface animated:YES];
+		[profileInterface release];
+		profileInterface = nil;
+	}
+}
+
+#pragma 显示可做的任务列表
+- (void)showAbleTaskInterfaceWithUserData:(UserData *)userData
+{
+	if(taskInterface == nil){
+		Task* task0 = [[Task alloc] init];
+		task0.taskId = 1;
+		task0.taskName = @"初识好友";
+		task0.taskDescription = [NSString stringWithFormat:@"请入移族世界的第一件事件，就是去结交新朋友喔\ue056，那就赶快行动吧！\ue409\n点击[发起任务]就可以向%@问声好啦～", userData.nickname];
+		task0.taskPublisher = @"移族";
+		task0.taskPublishTime = 13000000;
+		task0.taskExpireTime = 135453434;
+		task0.taskAward = @"增加50移族积分";
+		
+		Task* task1 = [[Task alloc] init];
+		task1.taskId = 2;
+		task1.taskName = @"摇一摇";
+		task1.taskDescription = [NSString stringWithFormat:@"摇一摇你的手机，跟%@打声招呼吧～\ue011", userData.nickname];
+		task1.taskPublisher = @"移族";
+		task1.taskPublishTime = 13000000;
+		task1.taskExpireTime = 135453434;
+		task1.taskAward = @"增加50移族积分";
+
+		NSArray* arr = [NSArray arrayWithObjects:task0, task1, nil];
+		taskInterface = [[TaskInterface alloc] initWithTasks:arr userData:userData];
+		taskInterface.view.backgroundColor = [UIColor whiteColor];
+		[taskInterface.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40)];
+		taskInterface.delegate = self;
+		[navigationController pushViewController:taskInterface animated:YES];
+		[taskInterface release];
+		taskInterface = nil;
+		
+		[task0 release];
+		[task1 release];
+	}
+}
+
+#pragma 显示任务详细说明界面
+- (void)showTaskDetailWithTaskData:(Task *)taskData withUserData:(UserData *)userData
+{
+	if(taskDetailInterface == nil){
+		taskDetailInterface = [[TaskDetailInterface alloc] initWithTaskData:taskData userData:userData];
+		taskDetailInterface.view.backgroundColor = [UIColor whiteColor];
+		[taskDetailInterface.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40)];
+		taskDetailInterface.delegate = self;
+		[navigationController pushViewController:taskDetailInterface animated:YES];
+		[taskDetailInterface release];
+		taskDetailInterface = nil;
+	}
+}
+
+#pragma 显示表情运作列表
+- (void)showEmotionListWithUserData:(UserData *)userData
+{
+	if(emotionActionInterface == nil){
+		emotionActionInterface = [[EmotionActionInterface alloc] initWithUserData:userData];
+		emotionActionInterface.view.backgroundColor = [UIColor whiteColor];
+		[emotionActionInterface.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40)];
+		emotionActionInterface.delegate = self;
+		[navigationController pushViewController:emotionActionInterface animated:YES];
+		[emotionActionInterface release];
+		emotionActionInterface = nil;
+	}
+}
+
 #pragma 显示与指定好友之间的聊天界面
 - (void)showChatInterface:(UserData *)userData
 {
     if(chatInterface == nil){
-        chatInterface = [[ChatInterface alloc] init];
+        chatInterface = [[ChatInterface alloc] initWithUserData:userData frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40)];
         chatInterface.view.backgroundColor = [UIColor whiteColor];
-		[chatInterface.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 40)];
         chatInterface.delegate = self;
-        [chatInterface userData:userData];
-        [chatInterface initInterface];
 		[navigationController pushViewController:chatInterface animated:YES];
 		[chatInterface release];
 		chatInterface = nil;

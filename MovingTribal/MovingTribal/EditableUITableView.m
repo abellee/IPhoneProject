@@ -77,12 +77,17 @@
 	return sectionHeader;
 }
 
-- (void)initInterface
+- (id)initWithFrame:(CGRect)rect
 {
-    tableView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 280, 300) style:UITableViewStyleGrouped];
-    tableView.dataSource = self;
-    tableView.delegate = self;
-    [self.view addSubview:tableView];
+    self = [super init];
+	if(self){
+		[self.view setFrame:rect];
+		tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height) style:UITableViewStyleGrouped];
+		tableView.dataSource = self;
+		tableView.delegate = self;
+		[self.view addSubview:tableView];
+	}
+	return self;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tb cellForRowAtIndexPath:(NSIndexPath *)indexPath

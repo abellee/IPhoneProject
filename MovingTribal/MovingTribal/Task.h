@@ -32,6 +32,7 @@ typedef enum SexRequirement{
 										   // 形式: {sex:Same, age:24, personNum:3}
 	                                       // 说明: 需要与3位同性别的玩家，年龄要求24岁完成该任务
 	
+	int taskId;
 	int taskType;                          // 任务类型 typedef enum TaskType { ... } TaskType;
 	int taskPublishTime;                   // 任务发布时间
 	int taskExpireTime;                    // 任务结束时间
@@ -45,6 +46,7 @@ typedef enum SexRequirement{
 @property (nonatomic, assign, getter = taskName, setter = taskName:) NSString* taskName;
 @property (nonatomic, assign, getter = taskPublisher, setter = taskPublisher:) NSString* taskPublisher;
 @property (nonatomic, assign, getter = taskRequirement, setter = taskRequirement:) NSDictionary* taskRequirement;
+@property (nonatomic, assign, getter = taskId, setter = taskId:) int taskId;
 @property (nonatomic, assign, getter = taskType, setter = taskType:) int taskType;
 @property (nonatomic, assign, getter = taskPublishTime, setter = taskPublishTime:) int taskPublishTime;
 @property (nonatomic, assign, getter = taskExpireTime, setter = taskExpireTime:) int taskExpireTime;

@@ -36,14 +36,11 @@
 {
 	NSLog(@"******| ChatInput |****** receive dealloc message!");
 	[textInput release];
-	[recordButton release];
-	[emotionsButton release];
-	[functionButton release];
 	delegate = nil;
+	textInput = nil;
+	emotionsButton = nil;
+	functionButton = nil;
 	[super dealloc];
-//	textInput = nil;
-//	emotionsButton = nil;
-//	functionButton = nil;
 }
 
 - (void)initInterface
@@ -64,12 +61,14 @@
 	
 	emotionsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	emotionsButton.tag = kEmotion;
+	[emotionsButton addTarget:self action:@selector(emotionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[emotionsButton setTitle:@"E" forState:UIControlStateNormal];
 	[emotionsButton setFrame:CGRectMake(270, 5, 40, 40)];
 	
 	recordButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	recordButton.tag = kRecorder;
 	[recordButton setTitle:@"按住 说话" forState:UIControlStateNormal];
+	[recordButton setTitle:@"松开 结束" forState:UIControlStateHighlighted];
 	[recordButton setFrame:CGRectMake(50, 5, 255, 40)];
 	
 	[self.view addSubview:functionButton];
@@ -77,9 +76,13 @@
 	[self.view addSubview:emotionsButton];
 	[self.view addSubview:recordButton];
 	[recordButton setHidden:YES];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)emotionButtonPressed:(id)sender
+{
+	if(delegate && [delegate conformsToProtocol:@protocol(ChatInputDelegate)]){
+		[delegate showEmotionView];
+	}
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -135,48 +138,9 @@
 	[textInput resignFirstResponder];
 }
 
-- (void)keyboardWillShow:(NSNotification *) notification
+- (void)sign
 {
-	NSDictionary* info = [notification userInfo];
-	NSValue* value = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-	NSTimeInterval animationInterval;
-	[value getValue:&animationInterval];
-	
-	NSValue* sizeValue = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
-	CGRect keyboardRect = [sizeValue CGRectValue];
-	CGFloat height = keyboardRect.size.height;
-	
-	CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
-	animation.removedOnCompletion = NO;
-	animation.autoreverses = NO;
-	animation.fillMode = kCAFillModeForwards;
-	animation.fromValue = [NSNumber numberWithInt:0];
-	animation.toValue = [NSNumber numberWithInt:-height];
-	[animation setDuration:animationInterval];
-	animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-	[self.view.layer addAnimation:animation forKey:nil];
-}
-
-- (void)keyboardWillHide:(NSNotification *) notification
-{
-	NSDictionary* info = [notification userInfo];
-	NSValue* value = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-	NSTimeInterval animationInterval;
-	[value getValue:&animationInterval];
-	
-	NSValue* sizeValue = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
-	CGRect keyboardRect = [sizeValue CGRectValue];
-	CGFloat height = keyboardRect.size.height;
-	
-	CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
-	animation.removedOnCompletion = NO;
-	animation.autoreverses = NO;
-	animation.fillMode = kCAFillModeForwards;
-	animation.fromValue = [NSNumber numberWithInt:-height];
-	animation.toValue = [NSNumber numberWithInt:0];
-	[animation setDuration:animationInterval];
-	animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-	[self.view.layer addAnimation:animation forKey:nil];
+	[textInput becomeFirstResponder];
 }
 
 /*----------------------------------------------------------------------------*/

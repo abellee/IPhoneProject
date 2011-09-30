@@ -13,5 +13,6 @@
 
 @required
 - (void)showChatInterface:(UserData *)userData;
+- (void)showProfileInterface:(UserData *)userData;
 
 @end

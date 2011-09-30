@@ -72,6 +72,12 @@
     [self.view insertSubview:chatListInterface.view atIndex:0];
 }
 
+#pragma 显示资料界面
+- (void)showProfileInterface:(UserData *)userData
+{
+	if(delegate && [delegate conformsToProtocol:@protocol(InterfaceDelegate)]) [delegate showProfileInterface:userData];
+}
+
 #pragma 退出聊天列表界面
 - (void)exitChatListInterface
 {

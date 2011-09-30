@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
 
 #import "ChatInputDelegate.h"
 #import "NetWork.h"
@@ -34,6 +33,7 @@ enum{
 @property (nonatomic, retain) UIButton* emotionsButton;
 
 - (void)resign;
+- (void)sign;
 - (void)showText;
 - (void)hideText;
 - (void)showRecorder;

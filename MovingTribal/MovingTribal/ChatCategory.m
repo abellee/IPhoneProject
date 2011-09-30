@@ -30,11 +30,11 @@
 {
 	NSLog(@"******| ChatCategory |****** receive dealloc message!");
 	delegate = nil;
-	[voiceButton release];
-	[textButton release];
-	[imageButton release];
-	[locationButton release];
-	[videoButton release];
+	voiceButton = nil;
+	textButton = nil;
+	imageButton = nil;
+	locationButton = nil;
+	videoButton = nil;
 	[super dealloc];
 }
 

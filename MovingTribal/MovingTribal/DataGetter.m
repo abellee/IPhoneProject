@@ -26,7 +26,7 @@
 {
     NSLog(@"******| DataGetter |****** receive dealloc message!");
     [timer invalidate];
-    [timer release];
+	timer = nil;
     [super dealloc];
 }
 

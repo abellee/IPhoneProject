@@ -29,6 +29,9 @@
     [password release];
     [forgetPassword release];
     delegate = nil;
+	username = nil;
+	password = nil;
+	forgetPassword = nil;
     [super dealloc];
 }
 
@@ -61,8 +64,10 @@
     username.autocorrectionType = UITextAutocorrectionTypeNo;
     username.keyboardAppearance = UIKeyboardAppearanceAlert;
     username.keyboardType = UIKeyboardTypeEmailAddress;
+	username.clearButtonMode = UITextFieldViewModeWhileEditing;
     username.delegate = self;
     username.tag = 0;
+	username.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     [self.view addSubview:username];
     
     // 密码输入框
@@ -74,9 +79,11 @@
     password.keyboardAppearance = UIKeyboardAppearanceAlert;
     password.autocorrectionType = UITextAutocorrectionTypeNo;
     password.keyboardType = UIKeyboardTypeASCIICapable;
+	password.clearButtonMode = UITextFieldViewModeWhileEditing;
     password.secureTextEntry = YES;
     password.delegate = self;
     password.tag = 1;
+	password.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
     [self.view addSubview:password];
     
     // 登录按钮
@@ -155,6 +162,8 @@
 						[self performSelector:@selector(alert:) withObject:@"帐号或者密码不正确!"];
 						break;
 					case LoginSuccess:
+						[[NSUserDefaults standardUserDefaults] setObject:username.text forKey:@"username"];
+						[[NSUserDefaults standardUserDefaults] setObject:password.text forKey:@"password"];
 						[self doLogin];
 						break;
 					default:
@@ -195,7 +204,9 @@
 - (void)doLogin
 {
     [self resignTextField];
-    [delegate loginSuccess];
+    if(delegate && [delegate conformsToProtocol:@protocol(LoginContainerDelegate)]){
+		[delegate loginSuccess];
+	}
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -218,6 +229,7 @@
             return NO;
             break;
         case 1:                                 //如果按下done键，隐藏键盘，并进行登录验证！
+			[self performSelector:@selector(buttonPressed:) withObject:loginButton];
             return YES;
             break;
         default:

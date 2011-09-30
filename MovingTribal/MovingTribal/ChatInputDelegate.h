@@ -10,6 +10,8 @@
 
 @protocol ChatInputDelegate <NSObject>
 
+@optional
 - (void)showChatCategory;
+- (void)showEmotionView;
 
 @end

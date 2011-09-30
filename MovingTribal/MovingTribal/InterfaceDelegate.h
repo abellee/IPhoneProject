@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UserData.h"
+#import "Task.h"
 
 @protocol InterfaceDelegate <NSObject>
 
@@ -15,5 +16,9 @@
 - (void)showChatInterface:(UserData *)userData;
 - (void)exitChatInterface;
 - (void)changeTitle:(NSInteger)tag;
+- (void)showProfileInterface:(UserData *)userData;
+- (void)showAbleTaskInterfaceWithUserData:(UserData *)userData;
+- (void)showTaskDetailWithTaskData:(Task *)taskData withUserData:(UserData *)userData;
+- (void)showEmotionListWithUserData:(UserData *)userData;
 
 @end

@@ -24,4 +24,6 @@
 @property (nonatomic, assign, getter = identifier, setter = identifier:) NSString* identifier;
 @property (nonatomic, assign, getter = sectionHeader, setter = sectionHeader:) NSString* sectionHeader;
 
+- (id)initWithFrame:(CGRect)rect;
+
 @end

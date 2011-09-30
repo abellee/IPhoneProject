@@ -7,12 +7,16 @@
 //
 
 #import <UIkit/UIkit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "InterfaceDelegate.h"
 
 #import "ChatInput.h"
 #import "ChatCategory.h"
+#import "TouchableUIScrollView.h"
+#import "EmotionsView.h"
+#import "EmotionsDelegate.h"
 
-@interface ChatInterface : UIViewController<ChatInputDelegate, ChatCategoryDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
+@interface ChatInterface : UIViewController<ChatInputDelegate, ChatCategoryDelegate, EmotionsDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
     id<InterfaceDelegate> delegate;
     
 //    UIScrollView* scrollView;
@@ -24,11 +28,24 @@
     UserData* userData;
 	ChatInput* chatInput;
 	ChatCategory* chatCategory;
+	TouchableUIScrollView* scrollView;
+	EmotionsView* emotionView;
+	
+	NSString* dir;
+	CGFloat keyboardHeight;
+	CGFloat chatInputPosY;
+	BOOL isEmotion;
 }
 
 @property (nonatomic, assign) id<InterfaceDelegate> delegate;
 @property (nonatomic, assign) ChatInput* chatInput;
 @property (nonatomic, assign) ChatCategory* chatCategory;
+@property (nonatomic, assign) TouchableUIScrollView* scrollView;
+@property (nonatomic, assign) EmotionsView* emotionView;
+@property (nonatomic, assign) NSString* dir;
+@property (nonatomic, assign) CGFloat keyboardHeight;
+@property (nonatomic, assign) CGFloat chatInputPosY;
+@property (nonatomic, assign) BOOL isEmotion;
 
 //@property (nonatomic, retain) UIScrollView* scrollView;
 //@property (nonatomic, retain) UITextField* chatInput;
@@ -37,6 +54,10 @@
 
 @property (nonatomic, assign, getter = userData, setter = userData:) UserData* userData;
 
-- (void)initInterface;
+- (id)initWithUserData:(UserData *)data frame:(CGRect)frame;
+- (void)chatInputMoveUp:(NSTimeInterval)animationInterval;
+- (void)chatInputMoveDown:(NSTimeInterval)animationInterval;
+- (void)emotionViewMoveUp:(NSTimeInterval)animationInterval;
+- (void)emotionViewMoveDown:(NSTimeInterval)animationInterval;
 
 @end

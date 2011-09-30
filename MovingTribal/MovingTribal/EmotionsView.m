@@ -14,22 +14,31 @@
 @synthesize isPageControl;
 @synthesize scrollView;
 @synthesize pageControl;
+@synthesize delegate;
 
 - (id)init
 {
 	self = [super init];
 	if(self){
-		[self performSelector:@selector(initEmotions)];
+		
 	}
 	return self;
+}
+
+- (void)setView:(UIView *)view
+{
+	[super setView:view];
+	[self performSelector:@selector(initEmotions)];
 }
 
 - (void)dealloc
 {
 	NSLog(@"******| EmotionsView |****** receive dealloc message!");
-	[emotions release];
 	[scrollView release];
 	[pageControl release];
+	emotions = nil;
+	scrollView = nil;
+	pageControl = nil;
 	[super dealloc];
 }
 
@@ -39,12 +48,12 @@
 
 	isPageControl = false;
 	NSUInteger totalPage = ceil([emotions count] / (NUM_PER_ROW * ROWS_PER_PAGE));
-	scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+	scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 	[scrollView setContentSize:CGSizeMake(self.view.frame.size.width * totalPage, self.view.frame.size.height)];
 	scrollView.pagingEnabled = YES;
 	scrollView.delegate = self;
-	self.view.backgroundColor = [UIColor blackColor];
-	pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 210, self.view.frame.size.width, 40)];
+	self.view.backgroundColor = [UIColor grayColor];
+	pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 190, self.view.frame.size.width, 20)];
 	pageControl.numberOfPages = totalPage;
 	pageControl.currentPage = 0;
 	pageControl.userInteractionEnabled = YES;
@@ -52,14 +61,14 @@
 	[pageControl addTarget:self action:@selector(pageControlPressed:) forControlEvents:UIControlEventValueChanged];
 	UIButton* emotionButton;
 	for (NSUInteger j = 0; j < totalPage; j++) {
-		NSUInteger startX = j * self.view.frame.size.width;
+		NSUInteger startX = j * self.view.frame.size.width + 2;
 		NSUInteger curStart = j * NUM_PER_ROW * ROWS_PER_PAGE;
 		NSUInteger curEnd = curStart + NUM_PER_ROW * ROWS_PER_PAGE;
 		for (NSUInteger i = curStart; i < curEnd; i++) {
 			emotionButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			NSString* str = [emotions objectAtIndex:i];
 			[emotionButton setTitle:str forState:UIControlStateNormal];
-			CGRect rect = CGRectMake((i % NUM_PER_ROW) * (ITEM_SIZE + GAP) + GAP + startX, floorf((i - curStart) / NUM_PER_ROW) * (ITEM_SIZE + GAP) + GAP, ITEM_SIZE, ITEM_SIZE);
+			CGRect rect = CGRectMake((i % NUM_PER_ROW) * (ITEM_SIZE + GAP) + GAP + startX, floorf((i - curStart) / NUM_PER_ROW) * (ITEM_SIZE + GAP) + GAP + 2, ITEM_SIZE, ITEM_SIZE);
 			[emotionButton setFrame:rect];
 			emotionButton.titleLabel.font = [UIFont systemFontOfSize:30];
 			[[emotionButton layer] setBorderWidth:0.25];
@@ -79,10 +88,8 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sv
 {
 	if(isPageControl){
-		NSLog(@"YES");
 		return;
 	}
-	NSLog(@"NO");
 	CGRect rect = sv.frame;
 	NSUInteger page = floor(sv.contentOffset.x / rect.size.width);
 	pageControl.currentPage = page;
@@ -98,7 +105,9 @@
 
 - (void)emotionsPressed:(id)sender
 {
-	NSLog(@"%@", [sender titleForState:UIControlStateNormal]);
+	if(delegate && [delegate conformsToProtocol:@protocol(EmotionsDelegate)]){
+		[delegate emotionInput:[sender titleForState:UIControlStateNormal]];
+	}
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

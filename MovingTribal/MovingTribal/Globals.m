@@ -12,7 +12,7 @@
 @implementation Globals
 
 static UserData* userData;
-static NSString* root = @"192.168.1.101/forios";
+static NSString* root = @"192.168.1.101/forios/easyAPNS";
 
 - (id)init
 {

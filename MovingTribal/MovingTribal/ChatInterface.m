@@ -5,9 +5,9 @@
 //  Created by Lee Abel on 9/14/11.
 //  Copyright 2011 Abel Lee. All rights reserved.
 //
+//  ios5 如果中文输入法 键盘上方会有一个白条 高度不同
 
 #import "ChatInterface.h"
-#import "TouchableUIScrollView.h"
 
 @implementation ChatInterface
 
@@ -16,10 +16,15 @@
 //@synthesize topBackground;
 //@synthesize bottomBackground;
 //@synthesize chatInput;
-//@synthesize scrollView;
+@synthesize scrollView;
 @synthesize userData;
 @synthesize chatInput;
 @synthesize chatCategory;
+@synthesize emotionView;
+@synthesize dir;
+@synthesize keyboardHeight;
+@synthesize isEmotion;
+@synthesize chatInputPosY;
 
 - (void)dealloc
 {
@@ -27,24 +32,32 @@
 //    [topBackground release];
 //    [bottomBackground release];
 //    [chatInput release];
-//    [scrollView release];
+    [scrollView release];
 	[chatInput release];
     [userData release];
+	[emotionView release];
 	[chatCategory release];
     delegate = nil;
-    [super dealloc];
+	emotionView = nil;
 	userData = nil;
 	chatInput = nil;
 	chatCategory = nil;
+	scrollView = nil;
+	dir = nil;
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [super dealloc];
 }
 
-- (id)init
+- (id)initWithUserData:(UserData *)data frame:(CGRect)frame
 {
-    self = [super init];
-    if(self){
-        
-    }
-    return self;
+	self = [super init];
+	if(self){
+		[self.view setFrame:frame];
+		userData = [data retain];
+		[self performSelector:@selector(initInterface)];
+	}
+	return self;
 }
 
 - (UserData *)userData
@@ -62,9 +75,10 @@
 
 - (void)initInterface
 {
+	isEmotion = NO;
 	self.navigationItem.title = userData.nickname;
     CGRect scrollViewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 84);
-    TouchableUIScrollView* scrollView = [[TouchableUIScrollView alloc] initWithFrame:scrollViewRect];
+    scrollView = [[TouchableUIScrollView alloc] initWithFrame:scrollViewRect];
 	scrollView.backgroundColor = [UIColor redColor];
 	scrollView.userInteractionEnabled = YES;
     [self.view addSubview:scrollView];
@@ -76,8 +90,8 @@
 	
 	chatInput = [[ChatInput alloc] init];
 	chatInput.delegate = self;
-	CGFloat posY = bottomRect.origin.y + (bottomRect.size.height - 50) / 2;
-	CGRect chatInputRect = CGRectMake(0, posY, self.view.frame.size.width, 50.0);
+	chatInputPosY = bottomRect.origin.y + (bottomRect.size.height - 50) / 2;
+	CGRect chatInputRect = CGRectMake(0, chatInputPosY, self.view.frame.size.width, 50.0);
 	UIView* view = [[UIView alloc] initWithFrame:chatInputRect];
 	[chatInput setView:view];
 	[view release];
@@ -85,36 +99,215 @@
 	
 	chatCategory = [[ChatCategory alloc] init];
 	chatCategory.delegate = self;
-	[chatCategory.view setFrame:CGRectMake(10, posY - 40, 250, 40)];
+	[chatCategory.view setFrame:CGRectMake(10, chatInputPosY - 40, 250, 40)];
     
-    [scrollView release];
     [bottomBackground release];
+	
+	emotionView = [[EmotionsView alloc] init];
+	UIView* emoView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 216)];
+	emotionView.delegate = self;
+	[emotionView setView:emoView];
+	[emoView release];
+	emoView = nil;
+	[self.view addSubview:emotionView.view];
+	[emotionView.view setHidden:YES];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-//- (void)buttonPressed:(id)sender
-//{
-//    UIView* view = (UIView *)sender;
-//    switch (view.tag) {
-//        case 0:
-//            if(delegate != nil && [delegate conformsToProtocol:@protocol(InterfaceDelegate)]) [delegate exitChatInterface];
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//}
+- (void)showEmotionView
+{
+	if(isEmotion){
+		[chatInput sign];
+		return;
+	}
+	isEmotion = YES;
+	[emotionView.view setHidden:NO];
+	[chatInput resign];
+	
+	keyboardHeight = emotionView.view.frame.size.height;
+	
+	CGRect frame = chatInput.view.frame;
+	if(frame.origin.y > emotionView.view.frame.size.height){
+		[self chatInputMoveUp:0.3];
+	}
+	[self emotionViewMoveUp:0.3];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+	CAAnimation* emoAnime = [emotionView.view.layer animationForKey:@"EmotionAnimation"];
+	CAAnimation* inputAnime = [chatInput.view.layer animationForKey:@"ChatInputAnimation"];
+	CGRect emoFrame = emotionView.view.frame;
+	if(isEmotion){
+		if(anim == inputAnime) [self performSelector:@selector(animationStop)];
+		if(anim == emoAnime){
+			emoFrame.origin.y -= emoFrame.size.height;
+			[emotionView.view setFrame:emoFrame];
+			[emotionView.view.layer removeAllAnimations];
+		}
+		return;
+	}
+	if(anim == inputAnime) [self performSelector:@selector(animationStop)];
+	if(anim == emoAnime && !emotionView.view.isHidden){
+		emoFrame.origin.y = self.view.frame.size.height;
+		[emotionView.view setFrame:emoFrame];
+		[emotionView.view setHidden:YES];
+		[emotionView.view.layer removeAllAnimations];
+	}
+}
+
+- (void)animationStop
+{
+	CGRect frame = chatInput.view.frame;
+	CGRect scrollViewFrame = scrollView.frame;
+	if(dir == @"up"){
+		frame.origin.y = self.view.frame.size.height - keyboardHeight - frame.size.height;
+		scrollViewFrame.size.height = self.view.frame.size.height - keyboardHeight - frame.size.height;
+	}else if(dir == @"down"){
+		frame.origin.y = chatInputPosY;
+		scrollViewFrame.size.height = self.view.frame.size.height - 84;
+	}
+	[chatInput.view setFrame:frame];
+	[chatInput.view.layer removeAllAnimations];
+	[scrollView setFrame:scrollViewFrame];
+}
+
+- (void)keyboardWillShow:(NSNotification *) notification
+{
+	if([chatCategory.view superview]){
+		[chatCategory.view removeFromSuperview];
+	}
+	NSDictionary* info = [notification userInfo];
+	NSValue* value = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+	NSTimeInterval animationInterval;
+	[value getValue:&animationInterval];
+	if(isEmotion){
+		[self emotionViewMoveDown:animationInterval];
+		return;
+	}
+	
+	NSValue* sizeValue = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
+	CGRect keyboardRect = [sizeValue CGRectValue];
+	keyboardHeight = keyboardRect.size.height;
+	
+	[self chatInputMoveUp:animationInterval];
+}
+
+- (void)keyboardWillHide:(NSNotification *) notification
+{
+	if([chatCategory.view superview]){
+		[chatCategory.view removeFromSuperview];
+	}
+	
+	NSDictionary* info = [notification userInfo];
+	NSValue* value = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+	NSTimeInterval animationInterval;
+	[value getValue:&animationInterval];
+	
+	if(isEmotion){
+		if([emotionView.view isHidden]){
+			[self emotionViewMoveDown:animationInterval];
+		}
+		return;
+	}
+	
+	NSValue* sizeValue = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
+	CGRect keyboardRect = [sizeValue CGRectValue];
+	keyboardHeight = keyboardRect.size.height;
+	
+	[self chatInputMoveDown:animationInterval];
+}
+
+- (void)emotionViewMoveUp:(NSTimeInterval)animationInterval
+{
+	CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+	animation.removedOnCompletion = NO;
+	animation.autoreverses = NO;
+	animation.delegate = self;
+	animation.fillMode = kCAFillModeForwards;
+	animation.fromValue = [NSNumber numberWithInt:0];
+	animation.toValue = [NSNumber numberWithInt:-emotionView.view.frame.size.height];
+	[animation setDuration:animationInterval];
+	animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	[emotionView.view.layer addAnimation:animation forKey:@"EmotionAnimation"];
+}
+
+- (void)emotionViewMoveDown:(NSTimeInterval)animationInterval
+{
+	isEmotion = NO;
+	CABasicAnimation* emotionAnime = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+	emotionAnime.removedOnCompletion = NO;
+	emotionAnime.autoreverses = NO;
+	emotionAnime.delegate = self;
+	emotionAnime.fillMode = kCAFillModeForwards;
+	emotionAnime.fromValue = [NSNumber numberWithInt:0];
+	emotionAnime.toValue = [NSNumber numberWithInt:emotionView.view.frame.size.height];
+	[emotionAnime setDuration:animationInterval];
+	emotionAnime.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	[emotionView.view.layer addAnimation:emotionAnime forKey:@"EmotionAnimation"];
+}
+
+- (void)chatInputMoveUp:(NSTimeInterval)animationInterval
+{
+	dir = @"up";
+	CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+	animation.removedOnCompletion = NO;
+	animation.autoreverses = NO;
+	animation.delegate = self;
+	animation.fillMode = kCAFillModeForwards;
+	animation.fromValue = [NSNumber numberWithInt:0];
+	animation.toValue = [NSNumber numberWithInt:-keyboardHeight];
+	[animation setDuration:animationInterval];
+	animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	[chatInput.view.layer addAnimation:animation forKey:@"ChatInputAnimation"];
+}
+
+- (void)chatInputMoveDown:(NSTimeInterval)animationInterval
+{
+	dir = @"down";
+	CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+	animation.removedOnCompletion = NO;
+	animation.autoreverses = NO;
+	animation.delegate = self;
+	animation.fillMode = kCAFillModeForwards;
+	animation.fromValue = [NSNumber numberWithInt:0];
+	animation.toValue = [NSNumber numberWithInt:keyboardHeight];
+	[animation setDuration:animationInterval];
+	animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	[chatInput.view.layer addAnimation:animation forKey:@"ChatInputAnimation"];
+}
+
+- (void)emotionInput:(NSString *)emotionStr
+{
+	[chatInput sign];
+	chatInput.textInput.text = [NSString stringWithFormat:@"%@%@", chatInput.textInput.text, emotionStr];
+}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	UITouch* touch = [touches anyObject];
-	if([touch.view isKindOfClass:[TouchableUIScrollView class]]) [chatInput resign];
+	if([touch.view isKindOfClass:[TouchableUIScrollView class]]){
+		if(isEmotion){
+			[self emotionViewMoveDown:0.3];
+			[self chatInputMoveDown:0.3];
+		}else{
+			[chatInput resign];
+		}
+	}
 	[super touchesBegan:touches withEvent:event];
 }
 
 - (void)showChatCategory
 {
-	if([chatCategory.view superview]) [chatCategory.view removeFromSuperview];
-	else [self.view addSubview:chatCategory.view];
+	if([chatCategory.view superview]){
+		[chatCategory.view removeFromSuperview];
+	}else{
+		CGRect frame = chatInput.view.frame;
+		[chatCategory.view setFrame:CGRectMake(10, frame.origin.y - 40, 250, 40)];
+		[self.view addSubview:chatCategory.view];
+	}
 }
 
 - (void)determineCategory:(NSUInteger)tag
@@ -122,6 +315,7 @@
 	[self showChatCategory];
 	switch (tag) {
 		case kRecorder:
+			[chatInput resign];
 			[chatInput hideText];
 			[chatInput showRecorder];
 			break;

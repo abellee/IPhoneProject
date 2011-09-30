@@ -24,7 +24,7 @@
 @synthesize profile;
 @synthesize signature;
 @synthesize account;
-@synthesize longtitude;
+@synthesize longitude;
 @synthesize latitude;
 @synthesize did;
 @synthesize phoneNumber;
@@ -45,6 +45,7 @@
 @synthesize marriage;
 @synthesize version;
 @synthesize active;
+@synthesize anno;
 
 - (id)init
 {
@@ -73,7 +74,9 @@
 	[signature release];
 	[account release];
 	[did release];
+	[anno release];
 	
+	anno = nil;
 	weiboId = nil;
 	realName = nil;
 	nickname = nil;
@@ -92,13 +95,9 @@
     [super dealloc];
 }
 
-- (UserData *)parse:(NSData *)xmlData
+- (UserData *)parse:(GDataXMLElement *)item
 {
-	GDataXMLDocument* doc = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:nil];
-	if(doc){
-		NSArray* arr = [doc.rootElement elementsForName:@"user"];
-		NSLog(@"%@", [[doc.rootElement elementsForName:@"user"] description]);
-		GDataXMLElement* item = [arr objectAtIndex:0];
+	if(item){
 		if([item elementsForName:@"account"]) account = [[[item elementsForName:@"account"] objectAtIndex:0] stringValue];
 		if([item elementsForName:@"uid"]) uid = [[[[item elementsForName:@"uid"] objectAtIndex:0] stringValue] intValue];
 		if([item elementsForName:@"nickname"]) nickname = [[[item elementsForName:@"nickname"] objectAtIndex:0] stringValue];
@@ -111,8 +110,8 @@
 		if([item elementsForName:@"profession"]) profession = [[[item elementsForName:@"profession"] objectAtIndex:0] stringValue];
 		if([item elementsForName:@"signature"]) signature = [[[item elementsForName:@"signature"] objectAtIndex:0] stringValue];
 		if([item elementsForName:@"realName"]) realName = [[[item elementsForName:@"realName"] objectAtIndex:0] stringValue];
-		if([item elementsForName:@"longitude"]) longitude = [[[[item elementsForName:@"longitude"] objectAtIndex:0] stringValue] floatValue];
-		if([item elementsForName:@"latitude"]) latitude = [[[[item elementsForName:@"latitude"] objectAtIndex:0] stringValue] floatValue];
+		if([item elementsForName:@"longitude"]) longitude = [[[[item elementsForName:@"longitude"] objectAtIndex:0] stringValue] doubleValue];
+		if([item elementsForName:@"latitude"]) latitude = [[[[item elementsForName:@"latitude"] objectAtIndex:0] stringValue] doubleValue];
 		if([item elementsForName:@"phoneNumber"]) phoneNumber = [[[[item elementsForName:@"phoneNumber"] objectAtIndex:0] stringValue] intValue];
 		if([item elementsForName:@"age"]) age = [[[[item elementsForName:@"age"] objectAtIndex:0] stringValue] intValue];
 		if([item elementsForName:@"school"]) school = [[[[item elementsForName:@"school"] objectAtIndex:0] stringValue] intValue];
@@ -132,6 +131,19 @@
 		if([item elementsForName:@"bound"]) bound = [[[[item elementsForName:@"bound"] objectAtIndex:0] stringValue] intValue];
 	}
 	return self;
+}
+
+- (TestingAnnotation *)annotation
+{
+	return anno;
+}
+
+- (void)annotation:(TestingAnnotation *)ao
+{
+	if(anno != ao){
+		[anno release];
+		anno = [ao retain];
+	}
 }
 
 - (int)uid
@@ -313,15 +325,15 @@
 	}
 }
 
-- (CGFloat)longtitude
+- (CGFloat)longitude
 {
-	return longtitude;
+	return longitude;
 }
 
-- (void)longtitude:(CGFloat)num
+- (void)longitude:(CGFloat)num
 {
-	if(longtitude != num){
-		longtitude = num;
+	if(longitude != num){
+		longitude = num;
 	}
 }
 

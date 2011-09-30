@@ -15,6 +15,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GDataXMLNode.h"
+#import "TestingAnnotation.h"
 
 @interface UserData : NSObject{
     // 微博帐号存于本地 
@@ -56,8 +57,11 @@
 	int version;                 // 缓存版本 以保存时的时间戳为版本号
 	int active;                  // 是否在线 0:离线 1:在线
 	int bound;                   // 要显示的范围
+	
+	TestingAnnotation* anno;
 }
 
+@property (nonatomic, assign, getter = annotation, setter = annotation:) TestingAnnotation* anno;
 @property (nonatomic, assign, getter = uid, setter = uid:) int uid;
 @property (nonatomic, assign, getter = weiboId, setter = weiboId:) NSString* weiboId;
 @property (nonatomic, assign, getter = realName, setter = realName:) NSString* realName;
@@ -72,7 +76,7 @@
 @property (nonatomic, assign, getter = profile, setter = profile:) NSString* profile;
 @property (nonatomic, assign, getter = signature, setter = signature:) NSString* signature;
 @property (nonatomic, assign, getter = account, setter = account:) NSString* account;
-@property (nonatomic, assign, getter = longtitude, setter = longtitude:) CGFloat longtitude;
+@property (nonatomic, assign, getter = longitude, setter = longitude:) CGFloat longitude;
 @property (nonatomic, assign, getter = latitude, setter = latitude:) CGFloat latitude;
 @property (nonatomic, assign, getter = did, setter = did:) NSString* did;
 @property (nonatomic, assign, getter = phoneNumber, setter = phoneNumber:) int phoneNumber;
@@ -95,6 +99,6 @@
 @property (nonatomic, assign, getter = active, setter = active:) int active;
 @property (nonatomic, assign, getter = bound, setter = bound:) int bound;
 
-- (UserData *)parse:(NSData *)xmlData;
+- (UserData *)parse:(GDataXMLElement *)xmlData;
 
 @end

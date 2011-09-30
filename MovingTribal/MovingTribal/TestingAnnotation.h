@@ -10,9 +10,17 @@
 
 @interface TestingAnnotation : NSObject<MKAnnotation>{
     CLLocationCoordinate2D coordinate;
+	
+	NSString* anoTitle;
+	NSString* anoSubtitle;
+	
+	int uid;
 }
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+@property (nonatomic, assign, getter = title, setter = title:) NSString* anoTitle;
+@property (nonatomic, assign, getter = subtitle, setter = subtitle:) NSString* anoSubtitle;
+@property (nonatomic, assign, getter = uid, setter = uid:) int uid;
 
 - (id)initWidthCoordinate:(CLLocationCoordinate2D)coor;
 
