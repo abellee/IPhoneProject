@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define NEW_MESSAGE @"new_message"
+
 @protocol NotificationType <NSObject>
 
 @end

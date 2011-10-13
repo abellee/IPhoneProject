@@ -25,6 +25,7 @@
 @synthesize keyboardHeight;
 @synthesize isEmotion;
 @synthesize chatInputPosY;
+@synthesize entryList;
 
 - (void)dealloc
 {
@@ -37,6 +38,9 @@
     [userData release];
 	[emotionView release];
 	[chatCategory release];
+	[entryList removeAllObjects];
+	[entryList release];
+	entryList = nil;
     delegate = nil;
 	emotionView = nil;
 	userData = nil;
@@ -46,6 +50,7 @@
 	dir = nil;
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:NEW_MESSAGE object:nil];
     [super dealloc];
 }
 
@@ -55,6 +60,7 @@
 	if(self){
 		[self.view setFrame:frame];
 		userData = [data retain];
+		entryList = [[NSMutableArray arrayWithCapacity:10] retain];
 		[self performSelector:@selector(initInterface)];
 	}
 	return self;
@@ -79,7 +85,7 @@
 	self.navigationItem.title = userData.nickname;
     CGRect scrollViewRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 84);
     scrollView = [[TouchableUIScrollView alloc] initWithFrame:scrollViewRect];
-	scrollView.backgroundColor = [UIColor redColor];
+//	scrollView.backgroundColor = [UIColor redColor];
 	scrollView.userInteractionEnabled = YES;
     [self.view addSubview:scrollView];
     
@@ -88,7 +94,7 @@
     bottomBackground.backgroundColor = [UIColor grayColor];
     [self.view addSubview:bottomBackground];
 	
-	chatInput = [[ChatInput alloc] init];
+	chatInput = [[ChatInput alloc] initWithUserData:userData];
 	chatInput.delegate = self;
 	chatInputPosY = bottomRect.origin.y + (bottomRect.size.height - 50) / 2;
 	CGRect chatInputRect = CGRectMake(0, chatInputPosY, self.view.frame.size.width, 50.0);
@@ -114,6 +120,7 @@
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newMessage:) name:NEW_MESSAGE object:nil];
 }
 
 - (void)showEmotionView
@@ -172,6 +179,14 @@
 	[chatInput.view setFrame:frame];
 	[chatInput.view.layer removeAllAnimations];
 	[scrollView setFrame:scrollViewFrame];
+}
+
+- (void)newMessage:(NSNotification *) notification
+{
+	MessageInfo* messageInfo = (MessageInfo *)[notification object];
+	if(messageInfo){
+		[self performSelector:@selector(addMessage:) withObject:messageInfo];
+	}
 }
 
 - (void)keyboardWillShow:(NSNotification *) notification
@@ -288,6 +303,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	UITouch* touch = [touches anyObject];
+	NSLog(@"%@", [touch.view class]);
 	if([touch.view isKindOfClass:[TouchableUIScrollView class]]){
 		if(isEmotion){
 			[self emotionViewMoveDown:0.3];
@@ -297,6 +313,102 @@
 		}
 	}
 	[super touchesBegan:touches withEvent:event];
+}
+
+- (void)sendText:(NSString *)str
+{
+	CGRect constainedRect = CGRectMake(0, 0, scrollView.frame.size.width - 100, 500);
+	UIView* view = [[UIView alloc] initWithFrame:constainedRect];
+	view.backgroundColor = [UIColor grayColor];
+	TextEntry* entry = [[TextEntry alloc] initWithCustomBackground:view text:str userData:[Globals getUserData] constrainedSize:constainedRect];
+	[view release];
+	CGRect entryFrame = CGRectMake(scrollView.frame.size.width - entry.entrySize.width - 10, 10, entry.entrySize.width, entry.entrySize.height);
+	UIViewController* tempView = [entryList count] > 0 ? [entryList objectAtIndex:[entryList count] - 1] : nil;
+	if(tempView){
+		NSLog(@"tempview frame:%@", NSStringFromCGRect(tempView.view.frame));
+		entryFrame.origin.y += tempView.view.frame.origin.y + tempView.view.frame.size.height;
+	}
+	NSLog(@"%@", NSStringFromCGRect(entryFrame));
+	[entry.view setFrame:entryFrame];
+	[scrollView addSubview:entry.view];
+	UIView* lastView = [scrollView.subviews objectAtIndex:[scrollView.subviews count] - 1];
+	CGFloat totalHeight = lastView.frame.origin.y + lastView.frame.size.height;
+	[scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, totalHeight)];
+	[entryList addObject:entry];
+	[entry release];
+	System* system = [Globals getMainSystem];
+	[system playSystemSound:SentMessage];
+}
+
+- (void)addMessage:(MessageInfo *)messageInfo
+{
+	SEL selector;
+	if(messageInfo.type == TextMessage){
+		NSLog(@"%@>>>>>>%d", messageInfo.text, messageInfo.from.uid);
+		selector = @selector(addTextMessageWithMessageInfo:);
+	}else if(messageInfo.type == TaskMessage){
+		selector = @selector(addTaskMessageWithMessageInfo:);
+	}
+	[self performSelector:selector withObject:messageInfo];
+	[[Globals getMainSystem] playSystemSound:ReceivedMessage];
+}
+
+- (void)addTextMessageWithMessageInfo:(MessageInfo *)messageInfo
+{
+	NSString* str = messageInfo.text;
+	UserData* ud = messageInfo.from;
+	CGRect constainedRect = CGRectMake(0, 0, scrollView.frame.size.width - 100, 500);
+	UIView* view = [[UIView alloc] initWithFrame:constainedRect];
+	view.backgroundColor = [UIColor grayColor];
+	TextEntry* entry = [[TextEntry alloc] initWithCustomBackground:view text:str userData:ud constrainedSize:constainedRect];
+	[view release];
+	CGRect entryFrame = CGRectMake(10, 10, entry.entrySize.width, entry.entrySize.height);
+	UIViewController* tempView = [entryList count] > 0 ? [entryList objectAtIndex:[entryList count] - 1] : nil;
+	if(tempView){
+		NSLog(@"tempView frame add:%@", NSStringFromCGRect(tempView.view.frame));
+		entryFrame.origin.y += tempView.view.frame.origin.y + tempView.view.frame.size.height;
+	}
+	NSLog(@"add:%@", NSStringFromCGRect(entryFrame));
+	[entry.view setFrame:entryFrame];
+	[scrollView addSubview:entry.view];
+	UIView* lastView = [scrollView.subviews objectAtIndex:[scrollView.subviews count] - 1];
+	CGFloat totalHeight = lastView.frame.origin.y + lastView.frame.size.height;
+	[scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, totalHeight)];
+	[entryList addObject:entry];
+	[entry release];
+}
+
+- (void)addTaskMessageWithMessageInfo:(MessageInfo *)messageInfo
+{
+	TaskMessageInfo* taskMessageInfo = (TaskMessageInfo *)messageInfo;
+	UserData* ud = taskMessageInfo.from;
+	CGRect constainedRect = CGRectMake(0, 0, scrollView.frame.size.width - 100, 500);
+	UIView* view = [[UIView alloc] initWithFrame:constainedRect];
+	view.backgroundColor = [UIColor grayColor];
+	TaskEntry* entry = [[TaskEntry alloc] initWithCustomBackground:view taskData:taskMessageInfo.taskData userData:ud constrainedSize:constainedRect];
+	entry.delegate = self;
+	[view release];
+	CGRect entryFrame = CGRectMake(10, 10, entry.entrySize.width, entry.entrySize.height);
+	UIViewController* tempView = [entryList count] > 0 ? [entryList objectAtIndex:[entryList count] - 1] : nil;
+	if(tempView){
+		NSLog(@"tempView frame task:%@", NSStringFromCGRect(tempView.view.frame));
+		entryFrame.origin.y += tempView.view.frame.origin.y + tempView.view.frame.size.height;
+	}
+	NSLog(@"task:%@", NSStringFromCGRect(entryFrame));
+	[entry.view setFrame:entryFrame];
+	[scrollView addSubview:entry.view];
+	UIView* lastView = [scrollView.subviews objectAtIndex:[scrollView.subviews count] - 1];
+	CGFloat totalHeight = lastView.frame.origin.y + lastView.frame.size.height;
+	[scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, totalHeight)];
+	[entryList addObject:entry];
+	[entry release];
+}
+
+- (void)showTaskDetailByTask:(Task *)task ud:(UserData *)data
+{
+	if(delegate && [delegate conformsToProtocol:@protocol(InterfaceDelegate)]){
+		[delegate showTaskDetailWithTaskData:task withUserData:data];
+	}
 }
 
 - (void)showChatCategory

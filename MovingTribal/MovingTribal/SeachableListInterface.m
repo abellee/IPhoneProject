@@ -8,6 +8,7 @@
 
 #import "SearchableListInterface.h"
 #import "UserData.h"
+#import "Globals.h"
 
 @implementation SearchableListInterface
 
@@ -16,6 +17,7 @@
 @synthesize keys;
 @synthesize names;
 @synthesize delegate;
+@synthesize type;
 
 - (void)dealloc
 {
@@ -25,13 +27,15 @@
     [keys release];
 	[names release];
     delegate = nil;
+	type = nil;
     [super dealloc];
 }
 
-- (id)init
+- (id)initWithType:(NSString *)typeStr
 {
     self = [super init];
     if(self){
+		type = typeStr;
         [self performSelector:@selector(initInterface)];
     }
     return self;
@@ -39,20 +43,19 @@
 
 - (void)initInterface
 {
-	NSArray* indexArr = [[NSArray alloc] initWithObjects:@"A", @"B", @"C", @"D", nil];
-	NSArray* nameArr0 = [[NSArray alloc] initWithObjects:@"李金贝A", @"李金贝B", @"李金贝C", @"李金贝D", nil];
-	NSArray* nameArr1 = [[NSArray alloc] initWithObjects:@"李金贝A1", @"李金贝B1", @"李金贝C1", @"李金贝D1", nil];
-	NSArray* nameArr2 = [[NSArray alloc] initWithObjects:@"李金贝A2", @"李金贝B2", @"李金贝C2", @"李金贝D2", nil];
-	NSArray* nameArr3 = [[NSArray alloc] initWithObjects:@"李金贝A3", @"李金贝B3", @"李金贝C3", @"李金贝D3", nil];
-	NSArray* nameArr = [[NSArray alloc] initWithObjects:nameArr0, nameArr1, nameArr2, nameArr3, nil];
+	NSArray* indexArr = [[NSArray alloc] initWithObjects:@"A", nil];
+	NSArray* nameArr0;
+	if([Globals getUserData].uid == 10001){
+		nameArr0 = [[NSArray alloc] initWithObjects:@"Amak", nil];
+	}else{
+		nameArr0 = [[NSArray alloc] initWithObjects:@"Abel Lee", nil];
+	}
+	NSArray* nameArr = [[NSArray alloc] initWithObjects:nameArr0, nil];
     NSDictionary* list = [[NSDictionary alloc] initWithObjects:nameArr forKeys:indexArr];
 	names = [list retain];
 	keys = [[[names allKeys] sortedArrayUsingSelector:@selector(compare:)] retain];
 	[indexArr release];
 	[nameArr0 release];
-	[nameArr1 release];
-	[nameArr2 release];
-	[nameArr3 release];
 	[nameArr release];
 	[list release];
     tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -89,12 +92,23 @@
 {
 //    NSString* name = [list objectAtIndex:indexPath.row];
     if(delegate != nil && [delegate conformsToProtocol:@protocol(MainContainerDelegate)]){
-        UserData* userData = [[UserData alloc] init];
-        [userData uid:5];
-        [userData nickname: @"李金贝"];
-        [delegate showChatInterface:userData];
+		UserData* userData;
+		if([Globals getUserData].uid == 10001){
+			userData = [[UserData alloc] init];
+			[userData uid:10002];
+			[userData nickname: @"Amak"];
+		}else{
+			userData = [[UserData alloc] init];
+			[userData uid:10001];
+			[userData nickname: @"Abel Lee"];
+		}
+        if(type == @"chatList"){
+			[delegate showChatInterface:userData];
+		}else{
+			[delegate showProfileInterface:userData];
+		}
+		[userData release];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [userData release];
     }
 }
 

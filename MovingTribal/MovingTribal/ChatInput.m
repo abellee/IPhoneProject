@@ -16,12 +16,13 @@
 @synthesize recordButton;
 @synthesize emotionsButton;
 @synthesize functionButton;
+@synthesize userData;
 
-- (id)init
+- (id)initWithUserData:(UserData *)data
 {
 	self = [super init];
 	if(self){
-		
+		userData = [data retain];
 	}
 	return self;
 }
@@ -51,14 +52,13 @@
 	[functionButton setFrame:CGRectMake(5, 5, 40, 40)];
 	[functionButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	
-	textInput = [[UITextField alloc] initWithFrame:CGRectMake(50, 5, 215, 40)];
+	textInput = [[UITextField alloc] initWithFrame:CGRectMake(50, 5, 215, 30)];
 	textInput.delegate = self;
 	textInput.borderStyle = UITextBorderStyleRoundedRect;
 	textInput.returnKeyType = UIReturnKeySend;
-	textInput.keyboardAppearance = UIKeyboardAppearanceAlert;
 	textInput.autocorrectionType = UITextAutocorrectionTypeNo;
 	textInput.keyboardType = UIKeyboardTypeDefault;
-	
+
 	emotionsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	emotionsButton.tag = kEmotion;
 	[emotionsButton addTarget:self action:@selector(emotionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -88,7 +88,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 	if(textField.text != @""){
-		[NetWork sendText:textField.text targetUser:nil];
+		if(delegate && [delegate conformsToProtocol:@protocol(ChatInputDelegate)]){
+			[delegate sendText:textField.text];
+		}
+		[NetWork sendText:textField.text targetUser:userData];
 		textField.text = @"";
 		return YES;
 	}

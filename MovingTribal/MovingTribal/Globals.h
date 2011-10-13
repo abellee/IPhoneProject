@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "UserData.h"
+#import "System.h"
+#import "MessageCenter.h"
 
 @interface Globals : NSObject
 
@@ -15,5 +17,7 @@
 + (NSString *)md5:(NSString *)str;
 + (void)setUserData:(UserData *)data;
 + (UserData*)getUserData;
++ (System *)getMainSystem;
++ (MessageCenter *)getMessageCenter;
 
 @end

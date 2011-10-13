@@ -13,5 +13,6 @@
 @optional
 - (void)showChatCategory;
 - (void)showEmotionView;
+- (void)sendText:(NSString *)str;
 
 @end

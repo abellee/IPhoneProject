@@ -15,6 +15,8 @@
     UISearchBar* searchBar;
     NSArray* keys;
 	NSDictionary* names;
+	
+	NSString* type;
 }
 
 @property (nonatomic, assign) id<MainContainerDelegate> delegate;
@@ -22,7 +24,9 @@
 @property (nonatomic, retain) UISearchBar* searchBar;
 @property (nonatomic, assign) NSArray* keys;
 @property (nonatomic, assign) NSDictionary* names;
+@property (nonatomic, assign) NSString* type;
 
 - (void)editCell;
+- (id)initWithType:(NSString *)typeStr;
 
 @end

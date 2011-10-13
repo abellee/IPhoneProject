@@ -9,14 +9,20 @@
 #import <UIkit/UIkit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "InterfaceDelegate.h"
+#import "TaskEntryDelegate.h"
+#import "NotificationType.h"
+#import "TaskMessageInfo.h"
 
 #import "ChatInput.h"
 #import "ChatCategory.h"
 #import "TouchableUIScrollView.h"
 #import "EmotionsView.h"
 #import "EmotionsDelegate.h"
+#import "TextEntry.h"
+#import "VoiceEntry.h"
+#import "TaskEntry.h"
 
-@interface ChatInterface : UIViewController<ChatInputDelegate, ChatCategoryDelegate, EmotionsDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
+@interface ChatInterface : UIViewController<ChatInputDelegate, ChatCategoryDelegate, EmotionsDelegate, TaskEntryDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
     id<InterfaceDelegate> delegate;
     
 //    UIScrollView* scrollView;
@@ -35,6 +41,7 @@
 	CGFloat keyboardHeight;
 	CGFloat chatInputPosY;
 	BOOL isEmotion;
+	NSMutableArray* entryList;
 }
 
 @property (nonatomic, assign) id<InterfaceDelegate> delegate;
@@ -46,6 +53,7 @@
 @property (nonatomic, assign) CGFloat keyboardHeight;
 @property (nonatomic, assign) CGFloat chatInputPosY;
 @property (nonatomic, assign) BOOL isEmotion;
+@property (nonatomic, assign) NSMutableArray* entryList;
 
 //@property (nonatomic, retain) UIScrollView* scrollView;
 //@property (nonatomic, retain) UITextField* chatInput;

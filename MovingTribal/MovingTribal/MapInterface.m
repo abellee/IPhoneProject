@@ -90,7 +90,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
 	NSLog(@"locating by location manager");
-//	[locationManager stopUpdatingLocation];
+	[locationManager stopUpdatingLocation];
 	if(alertView){
         [alertView dismissWithClickedButtonIndex:0 animated:YES];
         [alertView release];

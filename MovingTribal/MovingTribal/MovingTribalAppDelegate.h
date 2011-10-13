@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MovingTribalController.h"
+#import "Globals.h"
+#import "TaskMessageInfo.h"
+#import "NotificationType.h"
 
 @class MovingTribalController;
 

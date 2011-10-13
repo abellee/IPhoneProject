@@ -7,8 +7,6 @@
 //
 
 #import "MovingTribalAppDelegate.h"
-#import "MovingTribalController.h"
-#import "Globals.h"
 
 @implementation MovingTribalAppDelegate
 
@@ -26,7 +24,6 @@
     [self.movingTribal.view setFrame:rect];
     [self.window addSubview:self.movingTribal.view];
     [self.window makeKeyAndVisible];
-    
     return YES;
 }
 
@@ -131,9 +128,82 @@
 #endif
 }
 
+/**
+ * 正式版需要调整为:
+ * 服务端只发送聊天信息发送者的uid，客户端进行检测本地缓存中是否存在该用户的数据，否则请示服务器取得用户数据;
+ * 并通过uid向服务端请示未读消息列表
+ */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    NSLog(@"receive remote notice:%@", [userInfo description]);
+	NSLog(@"%@", [userInfo description]);
+    NSDictionary* apsDic = [userInfo objectForKey:@"aps"];
+	if(apsDic){
+		int type = [[userInfo objectForKey:@"type"] intValue];
+		if(type == -1){
+			NSString* alertStr = [apsDic objectForKey:@"alert"];
+			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:alertStr delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+			[alert show];
+			[alert release];
+			[[Globals getMainSystem] playSystemSound:DefaultSound];
+			return;
+		}
+		NSString* str = [userInfo objectForKey:@"text"];
+		NSDate* time = [NSDate dateWithTimeIntervalSince1970:[[userInfo objectForKey:@"time"] intValue]];
+		UserData* userData = [[UserData alloc] init];
+		userData.uid = [[userInfo objectForKey:@"uid"] intValue];
+		userData.nickname = [userInfo objectForKey:@"nickname"];
+		NSLog(@"%d", type);
+		if(type == TextMessage){
+			MessageInfo* messageInfo = [[MessageInfo alloc] init];
+			messageInfo.type = type;
+			messageInfo.text = str;
+			messageInfo.time = time;
+			messageInfo.from = userData;
+			[[Globals getMessageCenter] insertUnreadMessage:messageInfo userData:userData];
+			[[NSNotificationCenter defaultCenter] postNotificationName:NEW_MESSAGE object:messageInfo];
+			[messageInfo release];
+		}else if(type == TaskMessage){
+			TaskMessageInfo* taskMessageInfo = [[TaskMessageInfo alloc] init];
+			taskMessageInfo.type = type;
+			taskMessageInfo.text = str;
+			taskMessageInfo.time = time;
+			taskMessageInfo.from = userData;
+			int taskId = [[userInfo objectForKey:@"taskId"] intValue];
+			taskMessageInfo.taskId = taskId;
+			int aid = userData.uid;
+			
+			Task* task;
+			if(taskMessageInfo.taskId == 1){
+				task = [[Task alloc] init];
+				task.taskId = 1;
+				task.taskName = @"初识好友";
+				task.taskDescription = [NSString stringWithFormat:@"请入移族世界的第一件事件，就是去结交新朋友喔\ue056，那就赶快行动吧！\ue409", userData.nickname];
+				task.taskPublisher = @"移族";
+				task.taskPublishTime = 13000000;
+				task.taskExpireTime = 135453434;
+				task.taskAward = @"增加50移族积分";
+				task.authorId = aid;
+			}else{
+				task = [[Task alloc] init];
+				task.taskId = 2;
+				task.taskName = @"摇一摇";
+				task.taskDescription = [NSString stringWithFormat:@"摇一摇你的手机，跟%@打声招呼吧～\ue011", userData.nickname];
+				task.taskPublisher = @"移族";
+				task.taskPublishTime = 13000000;
+				task.taskExpireTime = 135453434;
+				task.taskAward = @"增加50移族积分";
+				task.authorId = aid;
+			}
+			
+			taskMessageInfo.taskData = task;
+			[task release];
+			
+			[[Globals getMessageCenter] insertUnreadMessage:taskMessageInfo userData:userData];
+			[[NSNotificationCenter defaultCenter] postNotificationName:NEW_MESSAGE object:taskMessageInfo];
+			[taskMessageInfo release];
+		}
+		[userData release];
+	}
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

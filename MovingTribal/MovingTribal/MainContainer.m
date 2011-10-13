@@ -65,7 +65,7 @@
 {
     CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     if(chatListInterface == nil){
-        chatListInterface = [[SearchableListInterface alloc] init];
+        chatListInterface = [[SearchableListInterface alloc] initWithType:@"chatList"];
         chatListInterface.delegate = self;
     }
     [chatListInterface.view setFrame:rect];
@@ -89,7 +89,7 @@
 {
     CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     if(friendInterface == nil){
-        friendInterface = [[SearchableListInterface alloc] init];
+        friendInterface = [[SearchableListInterface alloc] initWithType:@"friendList"];
         friendInterface.delegate = self;
     }
     [friendInterface.view setFrame:rect];
@@ -131,7 +131,7 @@
     UITabBarItem* chatItem = [[UITabBarItem alloc] initWithTitle:@"聊天" image:nil tag:1];
     UITabBarItem* friendItem = [[UITabBarItem alloc] initWithTitle:@"好友" image:nil tag:2];
     UITabBarItem* systemSettingItem = [[UITabBarItem alloc] initWithTitle:@"设置" image:nil tag:3];
-    NSArray* arr = [[NSArray alloc] initWithObjects:indexItem, chatItem, friendItem, systemSettingItem, nil];
+    NSArray* arr = [[NSArray alloc] initWithObjects:indexItem, chatItem, friendItem, nil];
     [tabBar setItems:arr];
     tabBar.selectedItem = indexItem;
     [self.view addSubview:tabBar];

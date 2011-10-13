@@ -39,6 +39,8 @@ typedef enum SexRequirement{
 	
 	BOOL isExpired;                        // 是否已过期
 	BOOL completion;                       // 是否已完成 0:未完成 1:已完成
+	
+	int authorId;                          // 任务发起人uid
 }
 
 @property (nonatomic, assign, getter = taskDescription, setter = taskDescription:) NSString* taskDescription;
@@ -52,5 +54,6 @@ typedef enum SexRequirement{
 @property (nonatomic, assign, getter = taskExpireTime, setter = taskExpireTime:) int taskExpireTime;
 @property (nonatomic, assign, getter = isExpired, setter = isExpired:) BOOL isExpired;
 @property (nonatomic, assign, getter = completion, setter = completion:) BOOL completion;
+@property (nonatomic, assign, getter = authorId, setter = authorId:) int authorId;
 
 @end

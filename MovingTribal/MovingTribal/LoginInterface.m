@@ -62,9 +62,9 @@
     username.placeholder = @"邮箱";
     username.returnKeyType = UIReturnKeyNext;
     username.autocorrectionType = UITextAutocorrectionTypeNo;
-    username.keyboardAppearance = UIKeyboardAppearanceAlert;
     username.keyboardType = UIKeyboardTypeEmailAddress;
 	username.clearButtonMode = UITextFieldViewModeWhileEditing;
+	username.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     username.delegate = self;
     username.tag = 0;
 	username.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
@@ -76,7 +76,6 @@
     password.borderStyle = UITextBorderStyleRoundedRect;
     password.placeholder = @"密码";
     password.returnKeyType = UIReturnKeyDone;
-    password.keyboardAppearance = UIKeyboardAppearanceAlert;
     password.autocorrectionType = UITextAutocorrectionTypeNo;
     password.keyboardType = UIKeyboardTypeASCIICapable;
 	password.clearButtonMode = UITextFieldViewModeWhileEditing;

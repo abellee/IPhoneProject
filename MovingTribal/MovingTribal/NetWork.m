@@ -23,24 +23,27 @@
 
 + (NSData *)locate
 {
+	NSLog(@"%d>>>>%f>>>>%f", [[Globals getUserData] uid], [[Globals getUserData] longitude], [[Globals getUserData] latitude]);
 	NSString* urlString = [NSString stringWithFormat:@"/query.php?action=locate&uid=%d&longitude=%f&latitude=%f", [[Globals getUserData] uid], [[Globals getUserData] longitude], [[Globals getUserData] latitude]];
 	NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:[Globals root] path:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
 	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	[url release];
 	[request release];
-	NSLog(@"%@", [returnData description]);
 	return returnData;
 }
 
 + (MTInfo *)inviteWithTask:(Task *)task userData:(UserData *)data
 {
-	NSString* urlString = [NSString stringWithFormat:@"/query.php?action=task&tid=%d&from=%d&to=%d", task.taskId, [[Globals getUserData] uid], data.uid];
+	NSLog(@"%d>>>>>%d>>>>>%d", [[Globals getUserData] uid], data.uid, task.authorId);
+	NSString* urlString = [NSString stringWithFormat:@"/query.php?action=task&tid=%d&from=%d&to=%d&aid=%d", task.taskId, [[Globals getUserData] uid], data.uid, task.authorId];
 	NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:[Globals root] path:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
 	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	[url release];
 	[request release];
+	NSLog(@"invite task return!");
+	NSLog(@"%@", [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding]);
 	GDataXMLDocument* doc = [[GDataXMLDocument alloc] initWithData:returnData options:0 error:nil];
 	if(doc){
 		NSArray* arr = [doc.rootElement elementsForName:@"result"];
@@ -220,22 +223,34 @@
 	return ServerError;
 }
 
-+ (int)sendText:(NSString *)text targetUser:(UserData *)userData
++ (MTInfo *)sendText:(NSString *)text targetUser:(UserData *)userData
 {
-	NSString* urlString = [NSString stringWithFormat:@"/push.php?text=%@&uid=%d", text, userData.uid];
+	NSString* urlString = [NSString stringWithFormat:@"/query.php?action=chat&text=%@&from=%d&to=%d", text, [Globals getUserData].uid, userData.uid];
 	NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:[Globals root] path:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
 	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	NSString* str = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     [url release];
     [request release];
-	if(str == @"YES"){
-		[str release];
-		return SendSuccess;
-	}else{
-		[str release];
-		return SendFailed;
+	GDataXMLDocument* doc = [[GDataXMLDocument alloc] initWithData:returnData options:0 error:nil];
+	if(doc){
+		NSArray* arr = [doc.rootElement elementsForName:@"result"];
+		GDataXMLElement* item = [arr objectAtIndex:0];
+		int type = [[[[item elementsForName:@"type"] objectAtIndex:0] stringValue] intValue];
+		int code = [[[[item elementsForName:@"code"] objectAtIndex:0] stringValue] intValue];
+		NSString* info = [[[item elementsForName:@"info"] objectAtIndex:0] stringValue];
+		[doc release];
+		if(type == 0){               // 错误返回
+			MTError* error = [[MTError alloc] init];
+			error.errorCode = code;
+			error.infoString = info;
+			return error;
+		}else if(type == 1){         // 成功返回
+			MTSucceed* succeed = [[MTSucceed alloc] init];
+			succeed.infoString = info;
+			return succeed;
+		}
 	}
+	return nil;
 }
 
 @end

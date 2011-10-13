@@ -15,4 +15,9 @@
 	[self.nextResponder touchesBegan:touches withEvent:event];
 }
 
+- (BOOL)touchesShouldBegin:(NSSet *)touches withEvent:(UIEvent *)event inContentView:(UIView *)view
+{
+	return YES;
+}
+
 @end

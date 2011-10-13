@@ -46,7 +46,7 @@ typedef enum TaskResult{
 + (void)logout:(UserData *)userData;
 + (int)login:(NSString *)username password:(NSString *)password;
 + (int)regist:(NSString *)nickname account:(NSString *)username password:(NSString *)password;
-+ (int)sendText:(NSString *)text targetUser:(UserData *)userData;
++ (MTInfo *)sendText:(NSString *)text targetUser:(UserData *)userData;
 + (MTInfo *)inviteWithTask:(Task *)task userData:(UserData *)data;
 + (MTInfo *)sendActionEmotion:(EmotionAction *)emo userData:(UserData *)data;
 + (NSData *)locate;

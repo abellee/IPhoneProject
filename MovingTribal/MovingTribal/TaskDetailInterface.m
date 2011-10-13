@@ -33,11 +33,17 @@
 	if(self){
 		left = NO;
 		right = NO;
-		userData = [userData retain];
+		userData = [data retain];
 		taskData = [task retain];
 		[self performSelector:@selector(initInterface)];
 	}
 	return self;
+}
+
+- (void)dealloc
+{
+	NSLog(@"******| TaskDetailInterface |****** receive dealloc message!");
+	[super dealloc];
 }
 
 - (void)initInterface

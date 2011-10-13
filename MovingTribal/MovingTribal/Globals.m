@@ -12,6 +12,8 @@
 @implementation Globals
 
 static UserData* userData;
+static System* mainSystem;
+static MessageCenter* messageCenter;
 static NSString* root = @"192.168.1.101/forios/easyAPNS";
 
 - (id)init
@@ -22,6 +24,22 @@ static NSString* root = @"192.168.1.101/forios/easyAPNS";
     }
     
     return self;
+}
+
++ (MessageCenter *)getMessageCenter
+{
+	if(messageCenter == nil){
+		messageCenter = [[MessageCenter alloc] init];
+	}
+	return messageCenter;
+}
+
++ (System *)getMainSystem
+{
+	if(mainSystem == nil){
+		mainSystem = [[System alloc] init];
+	}
+	return mainSystem;
 }
 
 + (UserData *)getUserData

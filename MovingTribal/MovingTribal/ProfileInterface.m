@@ -150,7 +150,9 @@
 	UIView* view = (UIView *)sender;
 	switch(view.tag){
 		case 0:
-			
+			if(delegate && [delegate conformsToProtocol:@protocol(InterfaceDelegate)]){
+				[delegate showChatInterface:userData];
+			}
 			break;
 		case 1:
 			

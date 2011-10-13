@@ -21,6 +21,7 @@
 @synthesize isExpired;
 @synthesize completion;
 @synthesize taskId;
+@synthesize authorId;
 
 - (id)init
 {
@@ -46,6 +47,16 @@
 	taskPublisher = nil;
 	taskRequirement = nil;
 	[super dealloc];
+}
+
+- (int)authorId
+{
+	return authorId;
+}
+
+- (void)authorId:(int)num
+{
+	if(authorId != num) authorId = num;
 }
 
 - (int)taskId

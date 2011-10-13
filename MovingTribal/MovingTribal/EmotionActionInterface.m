@@ -24,7 +24,6 @@
 	for (EmotionAction* item in emotionsData) {
 		[item release];
 	}
-	[emotionsData release];
 	emotionsData = nil;
 	userData = nil;
 	emotionsList = nil;
