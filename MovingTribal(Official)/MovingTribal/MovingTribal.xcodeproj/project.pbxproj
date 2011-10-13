@@ -20,11 +20,11 @@
 		0CDCF04514470AF000193730 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0CDCF04714470AF000193730 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0CDCF04914470AF000193730 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		0CDCF04D14470AF000193730 /* MovingTribal-Info.plist */ = {isa = PBXFileReference; path = "MovingTribal-Info.plist"; sourceTree = "<group>"; };
+		0CDCF04D14470AF000193730 /* MovingTribal-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MovingTribal-Info.plist"; sourceTree = "<group>"; };
 		0CDCF04F14470AF000193730 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0CDCF05114470AF000193730 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0CDCF05314470AF000193730 /* MovingTribal-Prefix.pch */ = {isa = PBXFileReference; path = "MovingTribal-Prefix.pch"; sourceTree = "<group>"; };
-		0CDCF05414470AF000193730 /* MovingTribalAppDelegate.h */ = {isa = PBXFileReference; path = MovingTribalAppDelegate.h; sourceTree = "<group>"; };
+		0CDCF05314470AF000193730 /* MovingTribal-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MovingTribal-Prefix.pch"; sourceTree = "<group>"; };
+		0CDCF05414470AF000193730 /* MovingTribalAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovingTribalAppDelegate.h; sourceTree = "<group>"; };
 		0CDCF05514470AF000193730 /* MovingTribalAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovingTribalAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
