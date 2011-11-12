@@ -127,6 +127,7 @@ typedef enum{
 		task0.taskPublisher = @"移族";
 		task0.taskPublishTime = 13000000;
 		task0.taskExpireTime = 135453434;
+        task0.authorId = [Globals getUserData].uid;
 		task0.taskAward = @"增加50移族积分";
 		
 		Task* task1 = [[Task alloc] init];
@@ -136,7 +137,10 @@ typedef enum{
 		task1.taskPublisher = @"移族";
 		task1.taskPublishTime = 13000000;
 		task1.taskExpireTime = 135453434;
+        task1.authorId = [Globals getUserData].uid;
 		task1.taskAward = @"增加50移族积分";
+        
+        NSLog(@"%d>>>>>%d", task0.authorId, task1.authorId);
 
 		NSArray* arr = [NSArray arrayWithObjects:task0, task1, nil];
 		taskInterface = [[TaskInterface alloc] initWithTasks:arr userData:userData];

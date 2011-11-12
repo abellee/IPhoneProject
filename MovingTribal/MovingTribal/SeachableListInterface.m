@@ -46,7 +46,7 @@
 	NSArray* indexArr = [[NSArray alloc] initWithObjects:@"A", nil];
 	NSArray* nameArr0;
 	if([Globals getUserData].uid == 10001){
-		nameArr0 = [[NSArray alloc] initWithObjects:@"Amak", nil];
+		nameArr0 = [[NSArray alloc] initWithObjects:@"Lijinbei", nil];
 	}else{
 		nameArr0 = [[NSArray alloc] initWithObjects:@"Abel Lee", nil];
 	}
@@ -96,7 +96,7 @@
 		if([Globals getUserData].uid == 10001){
 			userData = [[UserData alloc] init];
 			[userData uid:10002];
-			[userData nickname: @"Amak"];
+			[userData nickname: @"Lijinbei"];
 		}else{
 			userData = [[UserData alloc] init];
 			[userData uid:10001];

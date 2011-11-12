@@ -14,7 +14,7 @@
 static UserData* userData;
 static System* mainSystem;
 static MessageCenter* messageCenter;
-static NSString* root = @"192.168.1.101/forios/easyAPNS";
+static NSString* root = @"172.16.11.40/forios";
 
 - (id)init
 {

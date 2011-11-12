@@ -19,6 +19,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
     CGRect rect = CGRectMake(0, 20, self.window.frame.size.width, self.window.frame.size.height - 20);
     self.movingTribal = [[MovingTribalController alloc] init];
     [self.movingTribal.view setFrame:rect];
@@ -114,12 +116,12 @@
 	// !!! ( MUST START WITH / AND END WITH ? ). 
 	// !!! SAMPLE: "/path/to/apns.php?"
 	NSString *urlString = [NSString stringWithFormat:@"/apns.php?task=%@&appname=%@&appversion=%@&deviceuid=%@&devicetoken=%@&devicename=%@&devicemodel=%@&deviceversion=%@&pushbadge=%@&pushalert=%@&pushsound=%@", @"register", appName,appVersion, deviceUuid, deviceToken, deviceName, deviceModel, deviceSystemVersion, pushBadge, pushAlert, pushSound];
-	
+//	NSLog(@"%@", urlString);
 	// Register the Device Data
 	// !!! CHANGE "http" TO "https" IF YOU ARE USING HTTPS PROTOCOL
 	NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:[Globals root] path:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-//	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 //	NSLog(@"Register URL: %@", url);
 //	NSLog(@"Return Data: %@", returnData);
     [url release];
@@ -138,8 +140,7 @@
 	NSLog(@"%@", [userInfo description]);
     NSDictionary* apsDic = [userInfo objectForKey:@"aps"];
 	if(apsDic){
-		int type = [[userInfo objectForKey:@"type"] intValue];
-		if(type == -1){
+		if(![userInfo objectForKey:@"type"]){
 			NSString* alertStr = [apsDic objectForKey:@"alert"];
 			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:alertStr delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
 			[alert show];
@@ -147,6 +148,7 @@
 			[[Globals getMainSystem] playSystemSound:DefaultSound];
 			return;
 		}
+        int type = [[userInfo objectForKey:@"type"] intValue];
 		NSString* str = [userInfo objectForKey:@"text"];
 		NSDate* time = [NSDate dateWithTimeIntervalSince1970:[[userInfo objectForKey:@"time"] intValue]];
 		UserData* userData = [[UserData alloc] init];
@@ -170,14 +172,14 @@
 			taskMessageInfo.from = userData;
 			int taskId = [[userInfo objectForKey:@"taskId"] intValue];
 			taskMessageInfo.taskId = taskId;
-			int aid = userData.uid;
+			int aid = [[userInfo objectForKey:@"aid"] intValue];
 			
 			Task* task;
 			if(taskMessageInfo.taskId == 1){
 				task = [[Task alloc] init];
 				task.taskId = 1;
 				task.taskName = @"初识好友";
-				task.taskDescription = [NSString stringWithFormat:@"请入移族世界的第一件事件，就是去结交新朋友喔\ue056，那就赶快行动吧！\ue409", userData.nickname];
+				task.taskDescription = [NSString stringWithFormat:@"进入移族世界的第一件事件，就是去结交新朋友喔\ue056，那就赶快行动吧！\ue409", userData.nickname];
 				task.taskPublisher = @"移族";
 				task.taskPublishTime = 13000000;
 				task.taskExpireTime = 135453434;

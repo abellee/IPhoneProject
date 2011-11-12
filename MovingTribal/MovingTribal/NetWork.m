@@ -198,7 +198,7 @@
 	username = [username lowercaseString];
 	password = [password lowercaseString];
 	
-	NSString* urlString = [NSString stringWithFormat:@"/regist.php?nickname=%@&account=%@&password=%@&deviceuid=%@", nickname, username, [Globals md5:password], deviceUuid];
+	NSString* urlString = [NSString stringWithFormat:@"/regist.php?realName=%@&account=%@&password=%@&deviceuid=%@", nickname, username, [Globals md5:password], deviceUuid];
 	NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:[Globals root] path:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
 	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
@@ -211,10 +211,10 @@
 		case 1:
 			return RegistSuccess;
 			break;
-		case 0:
+		case 2:
 			return RegistFailed;
 			break;
-		case 2:
+		case 0:
 			return AccountExsit;
 			break;
 		default:
