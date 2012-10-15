@@ -1,0 +1,13 @@
+//
+//  PlayerData.h
+//  YiZu
+//
+//  Created by Abel Lee on 12-6-28.
+//  Copyright (c) 2012年 Abel. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface PlayerData : UIView
+
+@end
