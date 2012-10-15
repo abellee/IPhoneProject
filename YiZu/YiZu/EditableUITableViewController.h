@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EditableUITableViewData.h"
 #import "ToggleableUITableViewCell.h"
+#import "AvatarCell.h"
 
 @interface EditableUITableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>{
 	UITableViewController *tableViewController;

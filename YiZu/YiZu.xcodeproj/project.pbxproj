@@ -249,7 +249,7 @@
 		B530504615A14CD600CE2862 /* fight-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fight-hd.pvr.ccz"; sourceTree = "<group>"; };
 		B530504715A14CD600CE2862 /* fight.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fight.plist; sourceTree = "<group>"; };
 		B530504815A14CD600CE2862 /* fight.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = fight.pvr.ccz; sourceTree = "<group>"; };
-		B5C834AB158A3FE5007732E8 /* YiZu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YiZu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5C834AB158A3FE5007732E8 /* 口袋宠物.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "口袋宠物.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C834AF158A3FE6007732E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B5C834B1158A3FE6007732E8 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		B5C834B3158A3FE6007732E8 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -689,7 +689,7 @@
 		B5C834AC158A3FE5007732E8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B5C834AB158A3FE5007732E8 /* YiZu.app */,
+				B5C834AB158A3FE5007732E8 /* 口袋宠物.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1135,7 +1135,7 @@
 			);
 			name = YiZu;
 			productName = YiZu;
-			productReference = B5C834AB158A3FE5007732E8 /* YiZu.app */;
+			productReference = B5C834AB158A3FE5007732E8 /* 口袋宠物.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1356,6 +1356,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "口袋宠物";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1372,6 +1373,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "口袋宠物";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -1394,7 +1396,7 @@
 				INFOPLIST_FILE = YiZu/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lz";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "口袋宠物";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1416,7 +1418,7 @@
 				INFOPLIST_FILE = YiZu/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lz";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "口袋宠物";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

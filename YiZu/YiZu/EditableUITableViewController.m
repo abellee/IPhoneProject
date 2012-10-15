@@ -30,6 +30,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    AvatarCell* avatarCell = [[AvatarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kEditableUITableViewCell];
+    return avatarCell;
     ToggleableUITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kEditableUITableViewCell];
     EditableUITableViewCellData* cellData = [data getDataByIndexPath:indexPath];
     if(cell == nil){
@@ -109,6 +111,11 @@
 	if (view)
 		return view;
 	return nil;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
