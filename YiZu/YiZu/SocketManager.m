@@ -11,7 +11,7 @@
 @implementation SocketManager
 
 @synthesize thread;
-@synthesize hbThread;
+//@synthesize hbThread;
 
 -(void)connect
 {
@@ -20,11 +20,11 @@
         [thread setName:@"socket_thread"];
         [thread start];
     }
-    if(hbThread == nil){
+    /*if(hbThread == nil){
         hbThread = [[NSThread alloc] initWithTarget:self selector:@selector(hbThreadFunc) object:nil];
         [hbThread setName:@"heart_beat_thread"];
         [hbThread start];
-    }
+    }*/
 }
 
 -(void)connectToServer
@@ -87,7 +87,8 @@
                         NSLog(@">>>%@", avatarImg);
                     }break;
                     case HEART_BEAT:{
-                        [self performSelector:@selector(sendHeartBeat) onThread:hbThread withObject:nil waitUntilDone:NO];
+                        //[self performSelector:@selector(sendHeartBeat) onThread:hbThread withObject:nil waitUntilDone:NO];
+                        [self performSelectorInBackground:@selector(sendHeartBeat) withObject:nil];
                     }break;
                     case DATA_ERROR:{
                         PP_Error* errorPack = (PP_Error*)content;
@@ -151,14 +152,13 @@
     [pool release];
 }
 
--(void)test
+/*-(void)test
 {
     [self performSelector:@selector(loginTest:) onThread:hbThread withObject:@"aaaa" waitUntilDone:NO];
 }
 
 -(void)hbThreadFunc
 {
-    NSLog(@"threada");
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     
     NSRunLoop* loop = [NSRunLoop currentRunLoop];
@@ -169,7 +169,7 @@
     }
     
     [pool release];
-}
+}*/
 
 -(void)sendHeartBeat
 {

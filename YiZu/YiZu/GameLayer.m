@@ -45,12 +45,13 @@
         popUpLayerView.multipleTouchEnabled = NO;
         popUpLayerView.userInteractionEnabled = NO;
         [popUpLayer setView:popUpLayerView];
-        [popUpLayerView release];
         [[[CCDirector sharedDirector] openGLView] addSubview:popUpLayerView];
         [[Global sharedGlobal] setPopUpLayer:popUpLayer];
         [[Global sharedGlobal] setSocketManager:[[SocketManager alloc] init]];
         
         [[[Global sharedGlobal] socketManager] connect];
+        [popUpLayerView release];
+        popUpLayerView = nil;
         
 //        self.isTouchEnabled = YES;
 	}

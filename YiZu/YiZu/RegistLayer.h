@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LoginDelegate.h"
 #import "SystemConfig.h"
+#import "EditableUITableViewController.h"
 
 @interface RegistLayer : UIViewController{
     UITextField *nickname;
@@ -24,7 +25,7 @@
     UIButton* takePhoto;
     UIButton* album;
     
-    UITableView* registForm;
+    EditableUITableViewController* registForm;
     
     id<LoginDelegate> delegate;
 }
@@ -36,7 +37,7 @@
 @property (nonatomic, retain) UIButton* head;
 @property (nonatomic, retain) UIButton* takePhoto;
 @property (nonatomic, retain) UIButton* album;
-@property (nonatomic, retain) UITableView* registForm;
+@property (nonatomic, retain) EditableUITableViewController* registForm;
 
 @property (nonatomic, assign) id<LoginDelegate> delegate;
 

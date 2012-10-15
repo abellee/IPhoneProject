@@ -20,14 +20,14 @@
 
 @interface SocketManager : NSObject{
     NSThread* thread;
-    NSThread* hbThread;
+    //NSThread* hbThread;
     
     int sockfd;
     struct sockaddr_in addr;
 }
 
 @property (nonatomic, retain) NSThread* thread;
-@property (nonatomic, retain) NSThread* hbThread;
+//@property (nonatomic, retain) NSThread* hbThread;
 
 -(void)connect;
 -(void)test;

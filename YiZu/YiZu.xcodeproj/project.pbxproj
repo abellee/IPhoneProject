@@ -10,6 +10,12 @@
 		0C1DB4F315D4215B003E83B1 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1DB4F215D4215B003E83B1 /* Utils.m */; };
 		0C31C95D15E7943400D80B89 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C31C95C15E7943400D80B89 /* JSONKit.m */; };
 		0C31C98C15E7E95E00D80B89 /* SocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C31C98B15E7E95E00D80B89 /* SocketManager.m */; };
+		0C3393E6162C6C3100BA3EF3 /* EditableUITableViewCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3393DC162C6C3100BA3EF3 /* EditableUITableViewCellData.m */; };
+		0C3393E7162C6C3100BA3EF3 /* EditableUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3393DF162C6C3100BA3EF3 /* EditableUITableViewController.m */; };
+		0C3393E8162C6C3100BA3EF3 /* EditableUITableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3393E1162C6C3100BA3EF3 /* EditableUITableViewData.m */; };
+		0C3393E9162C6C3100BA3EF3 /* ToggleableUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3393E3162C6C3100BA3EF3 /* ToggleableUITableViewCell.m */; };
+		0C3393EA162C6C3100BA3EF3 /* TouchableUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3393E5162C6C3100BA3EF3 /* TouchableUILabel.m */; };
+		0C667F59162C5F5D00C2CD8A /* AvatarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C667F58162C5F5D00C2CD8A /* AvatarCell.m */; };
 		0C7B524E15E77D1A0021AE91 /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B524D15E77D1A0021AE91 /* HTTPManager.m */; };
 		0C7B525215E77E160021AE91 /* ServerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B525115E77E160021AE91 /* ServerInfo.m */; };
 		0CCE751B15D44DCF00C80CD4 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE751A15D44DCF00C80CD4 /* Global.m */; };
@@ -177,10 +183,24 @@
 		0C1DB4F215D4215B003E83B1 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		0C1DB4F715D42519003E83B1 /* SystemConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemConfig.h; sourceTree = "<group>"; };
 		0C1DB4F815D4262B003E83B1 /* ActionLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionLog.h; sourceTree = "<group>"; };
-		0C31C95B15E7943400D80B89 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		0C31C95C15E7943400D80B89 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		0C31C95B15E7943400D80B89 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../JSONKit.h; sourceTree = "<group>"; };
+		0C31C95C15E7943400D80B89 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../JSONKit.m; sourceTree = "<group>"; };
 		0C31C98A15E7E95E00D80B89 /* SocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketManager.h; sourceTree = "<group>"; };
 		0C31C98B15E7E95E00D80B89 /* SocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketManager.m; sourceTree = "<group>"; };
+		0C3393DB162C6C3100BA3EF3 /* EditableUITableViewCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableUITableViewCellData.h; sourceTree = "<group>"; };
+		0C3393DC162C6C3100BA3EF3 /* EditableUITableViewCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableUITableViewCellData.m; sourceTree = "<group>"; };
+		0C3393DD162C6C3100BA3EF3 /* EditableUITableViewCellDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableUITableViewCellDefinition.h; sourceTree = "<group>"; };
+		0C3393DE162C6C3100BA3EF3 /* EditableUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableUITableViewController.h; sourceTree = "<group>"; };
+		0C3393DF162C6C3100BA3EF3 /* EditableUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableUITableViewController.m; sourceTree = "<group>"; };
+		0C3393E0162C6C3100BA3EF3 /* EditableUITableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableUITableViewData.h; sourceTree = "<group>"; };
+		0C3393E1162C6C3100BA3EF3 /* EditableUITableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableUITableViewData.m; sourceTree = "<group>"; };
+		0C3393E2162C6C3100BA3EF3 /* ToggleableUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleableUITableViewCell.h; sourceTree = "<group>"; };
+		0C3393E3162C6C3100BA3EF3 /* ToggleableUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleableUITableViewCell.m; sourceTree = "<group>"; };
+		0C3393E4162C6C3100BA3EF3 /* TouchableUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableUILabel.h; sourceTree = "<group>"; };
+		0C3393E5162C6C3100BA3EF3 /* TouchableUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchableUILabel.m; sourceTree = "<group>"; };
+		0C3393EB162C6C4F00BA3EF3 /* TouchableUILabelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchableUILabelDelegate.h; sourceTree = "<group>"; };
+		0C667F57162C5F5D00C2CD8A /* AvatarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarCell.h; sourceTree = "<group>"; };
+		0C667F58162C5F5D00C2CD8A /* AvatarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarCell.m; sourceTree = "<group>"; };
 		0C700B0615DCF19600825A4E /* PP_Package.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PP_Package.h; sourceTree = "<group>"; };
 		0C7B524C15E77D1A0021AE91 /* HTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPManager.h; sourceTree = "<group>"; };
 		0C7B524D15E77D1A0021AE91 /* HTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPManager.m; sourceTree = "<group>"; };
@@ -521,6 +541,7 @@
 		0C0283D9162C0069002448A7 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				0C3393EB162C6C4F00BA3EF3 /* TouchableUILabelDelegate.h */,
 				0C0283DB162C00A9002448A7 /* LoginDelegate.h */,
 			);
 			name = Delegates;
@@ -529,6 +550,19 @@
 		0C0283DC162C4FF4002448A7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				0C3393DB162C6C3100BA3EF3 /* EditableUITableViewCellData.h */,
+				0C3393DC162C6C3100BA3EF3 /* EditableUITableViewCellData.m */,
+				0C3393DD162C6C3100BA3EF3 /* EditableUITableViewCellDefinition.h */,
+				0C3393DE162C6C3100BA3EF3 /* EditableUITableViewController.h */,
+				0C3393DF162C6C3100BA3EF3 /* EditableUITableViewController.m */,
+				0C3393E0162C6C3100BA3EF3 /* EditableUITableViewData.h */,
+				0C3393E1162C6C3100BA3EF3 /* EditableUITableViewData.m */,
+				0C3393E2162C6C3100BA3EF3 /* ToggleableUITableViewCell.h */,
+				0C3393E3162C6C3100BA3EF3 /* ToggleableUITableViewCell.m */,
+				0C3393E4162C6C3100BA3EF3 /* TouchableUILabel.h */,
+				0C3393E5162C6C3100BA3EF3 /* TouchableUILabel.m */,
+				0C667F57162C5F5D00C2CD8A /* AvatarCell.h */,
+				0C667F58162C5F5D00C2CD8A /* AvatarCell.m */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -551,6 +585,17 @@
 				0C31C98B15E7E95E00D80B89 /* SocketManager.m */,
 			);
 			name = PocketPet;
+			sourceTree = "<group>";
+		};
+		0C667F47162C5E2000C2CD8A /* ThirdPart */ = {
+			isa = PBXGroup;
+			children = (
+				0C31C95B15E7943400D80B89 /* JSONKit.h */,
+				0C31C95C15E7943400D80B89 /* JSONKit.m */,
+				B5125EBC15A05E1800FB11B8 /* Reachability */,
+				B5125EC015A060E500FB11B8 /* ASIHttpRequest */,
+			);
+			name = ThirdPart;
 			sourceTree = "<group>";
 		};
 		0C700B0415DCF17D00825A4E /* Packages */ = {
@@ -635,8 +680,6 @@
 		B5C834A0158A3FE5007732E8 = {
 			isa = PBXGroup;
 			children = (
-				0C31C95B15E7943400D80B89 /* JSONKit.h */,
-				0C31C95C15E7943400D80B89 /* JSONKit.m */,
 				B5C834BF158A3FE6007732E8 /* YiZu */,
 				B5C834AE158A3FE5007732E8 /* Frameworks */,
 				B5C834AC158A3FE5007732E8 /* Products */,
@@ -674,6 +717,7 @@
 		B5C834BF158A3FE6007732E8 /* YiZu */ = {
 			isa = PBXGroup;
 			children = (
+				0C667F47162C5E2000C2CD8A /* ThirdPart */,
 				0C0283DC162C4FF4002448A7 /* Custom */,
 				0C0283D9162C0069002448A7 /* Delegates */,
 				0C1DB4EF15D42130003E83B1 /* PocketPet */,
@@ -685,8 +729,6 @@
 				B530503A15A12FB800CE2862 /* bear-hd.pvr.ccz */,
 				B530503B15A12FB800CE2862 /* bear.plist */,
 				B530503C15A12FB800CE2862 /* bear.pvr.ccz */,
-				B5125EBC15A05E1800FB11B8 /* Reachability */,
-				B5125EC015A060E500FB11B8 /* ASIHttpRequest */,
 				B5C83611158A3FE8007732E8 /* AppDelegate.h */,
 				B5C83612158A3FE8007732E8 /* AppDelegate.m */,
 				B5C83614158A3FE8007732E8 /* RootViewController.h */,
@@ -1286,6 +1328,12 @@
 				0C7B525215E77E160021AE91 /* ServerInfo.m in Sources */,
 				0C31C95D15E7943400D80B89 /* JSONKit.m in Sources */,
 				0C31C98C15E7E95E00D80B89 /* SocketManager.m in Sources */,
+				0C667F59162C5F5D00C2CD8A /* AvatarCell.m in Sources */,
+				0C3393E6162C6C3100BA3EF3 /* EditableUITableViewCellData.m in Sources */,
+				0C3393E7162C6C3100BA3EF3 /* EditableUITableViewController.m in Sources */,
+				0C3393E8162C6C3100BA3EF3 /* EditableUITableViewData.m in Sources */,
+				0C3393E9162C6C3100BA3EF3 /* ToggleableUITableViewCell.m in Sources */,
+				0C3393EA162C6C3100BA3EF3 /* TouchableUILabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
