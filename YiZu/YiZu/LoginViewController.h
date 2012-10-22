@@ -12,6 +12,8 @@
 #import "Global.h"
 #import "RegistLayer.h"
 #import "LoginDelegate.h"
+#import "UIView+ScreenShot.h"
+#import "UIImage+Overlay.h"
 
 @interface LoginViewController : UIViewController <UIWebViewDelegate, LoginDelegate, UITextFieldDelegate>{
     UITextField *username;

@@ -18,6 +18,8 @@
 		0C667F59162C5F5D00C2CD8A /* AvatarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C667F58162C5F5D00C2CD8A /* AvatarCell.m */; };
 		0C7B524E15E77D1A0021AE91 /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B524D15E77D1A0021AE91 /* HTTPManager.m */; };
 		0C7B525215E77E160021AE91 /* ServerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B525115E77E160021AE91 /* ServerInfo.m */; };
+		0CAFE741163545F4002A34D8 /* UIView+ScreenShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFE740163545F4002A34D8 /* UIView+ScreenShot.m */; };
+		0CAFE74416354BF5002A34D8 /* UIImage+Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFE74316354BF5002A34D8 /* UIImage+Overlay.m */; };
 		0CCE751B15D44DCF00C80CD4 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE751A15D44DCF00C80CD4 /* Global.m */; };
 		0CCE751F15D450E300C80CD4 /* PopUpLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE751E15D450E300C80CD4 /* PopUpLayer.m */; };
 		B5125E7A159CC83D00FB11B8 /* renren.png in Resources */ = {isa = PBXBuildFile; fileRef = B5125E76159CC83D00FB11B8 /* renren.png */; };
@@ -206,6 +208,10 @@
 		0C7B524D15E77D1A0021AE91 /* HTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPManager.m; sourceTree = "<group>"; };
 		0C7B525015E77E160021AE91 /* ServerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerInfo.h; sourceTree = "<group>"; };
 		0C7B525115E77E160021AE91 /* ServerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerInfo.m; sourceTree = "<group>"; };
+		0CAFE73F163545F4002A34D8 /* UIView+ScreenShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ScreenShot.h"; sourceTree = "<group>"; };
+		0CAFE740163545F4002A34D8 /* UIView+ScreenShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ScreenShot.m"; sourceTree = "<group>"; };
+		0CAFE74216354BF5002A34D8 /* UIImage+Overlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Overlay.h"; sourceTree = "<group>"; };
+		0CAFE74316354BF5002A34D8 /* UIImage+Overlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Overlay.m"; sourceTree = "<group>"; };
 		0CCE751915D44DCF00C80CD4 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		0CCE751A15D44DCF00C80CD4 /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		0CCE751D15D450E300C80CD4 /* PopUpLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpLayer.h; sourceTree = "<group>"; };
@@ -583,6 +589,10 @@
 				0C7B525115E77E160021AE91 /* ServerInfo.m */,
 				0C31C98A15E7E95E00D80B89 /* SocketManager.h */,
 				0C31C98B15E7E95E00D80B89 /* SocketManager.m */,
+				0CAFE73F163545F4002A34D8 /* UIView+ScreenShot.h */,
+				0CAFE740163545F4002A34D8 /* UIView+ScreenShot.m */,
+				0CAFE74216354BF5002A34D8 /* UIImage+Overlay.h */,
+				0CAFE74316354BF5002A34D8 /* UIImage+Overlay.m */,
 			);
 			name = PocketPet;
 			sourceTree = "<group>";
@@ -1334,6 +1344,8 @@
 				0C3393E9162C6C3100BA3EF3 /* ToggleableUITableViewCell.m in Sources */,
 				0C3393EA162C6C3100BA3EF3 /* TouchableUILabel.m in Sources */,
 				0C39917A162C8F4600F1B936 /* JSONKit.m in Sources */,
+				0CAFE741163545F4002A34D8 /* UIView+ScreenShot.m in Sources */,
+				0CAFE74416354BF5002A34D8 /* UIImage+Overlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
