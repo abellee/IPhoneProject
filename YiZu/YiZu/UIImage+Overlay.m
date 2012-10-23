@@ -40,4 +40,9 @@
     return image;
 }
 
+- (void)saveToAlbum
+{
+    UIImageWriteToSavedPhotosAlbum(self, nil, nil, nil);
+}
+
 @end

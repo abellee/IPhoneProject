@@ -11,5 +11,6 @@
 @interface UIImage (Overlay)
 
 - (UIImage*)imageWithOverlayColor:(UIColor*)color;
+- (void)saveToAlbum;
 
 @end

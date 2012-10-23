@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Global.h"
 
-@interface AvatarCell : UITableViewCell{
+@interface AvatarCell : UITableViewCell<UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
     UIButton* head;
     UIButton* takePhoto;
     UIButton* album;

@@ -11,6 +11,8 @@
 #import "SystemConfig.h"
 #import "EditableUITableViewController.h"
 
+@class LoginViewController;
+
 @interface RegistLayer : UIViewController{
     UITextField *nickname;
     UITextField *password;

@@ -50,4 +50,7 @@
 #pragma mark - cell左边的图片
 @property (nonatomic, retain) UIImage *image;
 
+#pragma mark - 自定义的UITableViewCell
+@property (nonatomic, retain) UITableViewCell* customCell;
+
 @end

@@ -15,7 +15,8 @@ typedef enum{
 	kImage,
 	kSwitch,
 	kNormal,
-	kCheck
+	kCheck,
+    kCustom
 }EditableUITableViewCellType;
 
 #define kEditableUITableViewCell @"EditableUITableViewCell"

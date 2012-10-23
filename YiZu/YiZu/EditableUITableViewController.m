@@ -30,10 +30,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AvatarCell* avatarCell = [[AvatarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kEditableUITableViewCell];
-    return avatarCell;
-    ToggleableUITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kEditableUITableViewCell];
     EditableUITableViewCellData* cellData = [data getDataByIndexPath:indexPath];
+    if(cellData.cellType == kCustom){
+        return cellData.customCell;
+    }
+    ToggleableUITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kEditableUITableViewCell];
     if(cell == nil){
         cell = [[[ToggleableUITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kEditableUITableViewCell] autorelease];
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -115,7 +116,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return [data getDataByIndexPath:indexPath].height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

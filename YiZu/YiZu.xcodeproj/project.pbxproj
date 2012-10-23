@@ -185,6 +185,7 @@
 		0C1DB4F215D4215B003E83B1 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		0C1DB4F715D42519003E83B1 /* SystemConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemConfig.h; sourceTree = "<group>"; };
 		0C1DB4F815D4262B003E83B1 /* ActionLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionLog.h; sourceTree = "<group>"; };
+		0C22182E16369DDE0073E8AC /* AvatarCellDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarCellDelegate.h; sourceTree = "<group>"; };
 		0C31C98A15E7E95E00D80B89 /* SocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketManager.h; sourceTree = "<group>"; };
 		0C31C98B15E7E95E00D80B89 /* SocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketManager.m; sourceTree = "<group>"; };
 		0C3393DB162C6C3100BA3EF3 /* EditableUITableViewCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableUITableViewCellData.h; sourceTree = "<group>"; };
@@ -549,6 +550,7 @@
 			children = (
 				0C3393EB162C6C4F00BA3EF3 /* TouchableUILabelDelegate.h */,
 				0C0283DB162C00A9002448A7 /* LoginDelegate.h */,
+				0C22182E16369DDE0073E8AC /* AvatarCellDelegate.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";

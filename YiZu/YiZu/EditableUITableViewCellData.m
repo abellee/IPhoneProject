@@ -26,6 +26,7 @@
 
 @synthesize secondView;
 @synthesize image;
+@synthesize customCell;
 
 - (id)init
 {
@@ -46,6 +47,7 @@
 	[secondView release];
 	[key release];
 	[image release];
+    [customCell release];
 	
 	label = nil;
 	placeholder = nil;
@@ -53,6 +55,7 @@
 	secondView = nil;
 	key = nil;
 	image = nil;
+    customCell = nil;
 	
     [super dealloc];
 }

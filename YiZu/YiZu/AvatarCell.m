@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UIImage* headImg = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"qq" ofType:@"png"]];
-        head = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 100, 100)];
+        head = [[UIButton alloc] initWithFrame:CGRectMake(15, 5, 80, 80)];
         [head setBackgroundImage:headImg forState:UIControlStateNormal];
         [head addTarget:self action:@selector(showChooser:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:head];
@@ -23,19 +23,69 @@
         takePhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [takePhoto setTitle:@"马上拍一张!" forState:UIControlStateNormal];
         [takePhoto setFrame:CGRectMake(140, 0, 150, 40)];
+        [takePhoto addTarget:self action:@selector(showCamera:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:takePhoto];
         
         album = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [album setTitle:@"选择相册照片" forState:UIControlStateNormal];
         [album setFrame:CGRectMake(140, 50, 150, 40)];
+        [album addTarget:self action:@selector(showAlbum:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:album];
+        
+        [takePhoto addTarget:self action:@selector(showCamera:) forControlEvents:UIControlEventTouchUpInside];
+        [album addTarget:self action:@selector(showAlbum:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
 
--(void)showChooser:(id)sender
+- (void)showChooser:(id)sender
 {
-    NSLog(@"aaa");
+    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"请选择头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"马上拍一张！", @"选择相册照片", nil];
+    [sheet showInView:self];
+}
+
+- (void)showCamera:(id)sender
+{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerCameraDeviceFront;
+    UIImagePickerController* picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = sourceType;
+    [[[Global sharedGlobal] popUpLayer] presentModalViewController:picker animated:YES];
+    [picker release];
+    picker = nil;
+}
+
+- (void)showAlbum:(id)sender
+{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    UIImagePickerController* picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = sourceType;
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    [[[Global sharedGlobal] popUpLayer] presentModalViewController:picker animated:YES];
+    [picker release];
+    picker = nil;
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissModalViewControllerAnimated:YES];
+    UIImage* img = [info objectForKey:UIImagePickerControllerEditedImage];
+    [head setImage:img forState:UIControlStateNormal];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            [self performSelector:@selector(showCamera:) withObject:takePhoto];
+            break;
+        case 1:
+            [self performSelector:@selector(showAlbum:) withObject:album];
+        default:
+            break;
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -73,12 +123,8 @@
 {
     NSLog(@"***********| AvatarCell dealloc! |***********");
     [head release];
-    [takePhoto release];
-    [album release];
     
     head = nil;
-    takePhoto = nil;
-    album = nil;
     
     [super dealloc];
 }
