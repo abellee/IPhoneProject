@@ -7,24 +7,17 @@
 //
 
 #import "cocos2d.h"
-#import "LoginViewController.h"
-#import "RegistLayer.h"
-#import "Utils.h"
-#import "SystemConfig.h"
-#import "ActionLog.h"
-#import "PopUpLayer.h"
-#import "Global.h"
+
+@class LoginViewController;
 
 @interface GameLayer : CCLayer{
     LoginViewController *loginLayer;
-    RegistLayer *registLayer;
     int count;
     CCSprite *sprite;
     CCSpriteBatchNode *batchNode;
 }
-@property (nonatomic, retain) LoginViewController *loginLayer;
-@property (nonatomic, retain) RegistLayer *registLayer;
-@property (nonatomic, assign) int count;
+@property (nonatomic, retain, getter = loginLayer, setter = loginLayer:) LoginViewController *loginLayer;
+@property (nonatomic, assign, getter = count, setter = count:) int count;
 @property (nonatomic, assign) CCSprite *sprite;
 @property (nonatomic, assign) CCSpriteBatchNode *batchNode;
 

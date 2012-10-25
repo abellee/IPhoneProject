@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSONKit.h"
 
 @interface ServerInfo : NSObject{
     NSString* ip;

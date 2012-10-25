@@ -135,6 +135,7 @@ typedef struct PP_LoginPack{
 typedef struct PP_RegistPack{
     PP_Account account;
     char nickname[20];
+    char avatar_img[40];
 }PP_RegistPack;
 
 /**
@@ -144,7 +145,7 @@ typedef struct PP_CLUser{
     int uid;
     int version;
     char nickname[20];
-    char avatar_img[20];
+    char avatar_img[40];
     char signature[280];
     char hobby[140];
     char job[20];

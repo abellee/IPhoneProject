@@ -7,12 +7,18 @@
 //
 
 #import "Global.h"
+#import "RegexKitLite.h"
+#import "PlayerData.h"
 
 @implementation Global
 
 @synthesize popUpLayer;
 @synthesize serverInfo;
 @synthesize socketManager;
+@synthesize callback;
+@synthesize gameLayer;
+@synthesize userDataVersion;
+@synthesize player;
 
 static Global *instance;
 
@@ -31,6 +37,31 @@ static Global *instance;
 	for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
 		[output appendFormat:@"%02x",result[i]];
 	return output;
+}
+
++(BOOL)checkUsername:(NSString *)str
+{
+    return [str isMatchedByRegex:@"\\b([a-zA-Z0-9%_.+\\-]+)@([a-zA-Z0-9.\\-]+?\\.[a-zA-Z]{2,6})\\b"];
+}
+
++(BOOL)checkPassword:(NSString *)str
+{
+    if(str.length < 6 || str.length > 40){
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
++(BOOL)checkNickname:(NSString *)str
+{
+    return [str isMatchedByRegex:[NSString stringWithFormat:@"[a-zA-Z\\d\\u4e00-\\u9fa5_\\-]{%d}?", [str length]]];
+}
+
++(NSString*)gbencodingWithChar:(char*)str
+{
+    NSStringEncoding nsEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    return [NSString stringWithCString:str encoding:nsEncoding];
 }
 
 @end

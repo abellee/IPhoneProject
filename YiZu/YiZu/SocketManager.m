@@ -7,6 +7,14 @@
 //
 
 #import "SocketManager.h"
+#import "Global.h"
+#import "LoginViewController.h"
+#import "ServerInfo.h"
+#import "HTTPManager.h"
+#import "GameLayer.h"
+#import "PP_Package.h"
+#import "PopUpLayer.h"
+#import "PlayerData.h"
 
 @implementation SocketManager
 
@@ -30,7 +38,7 @@
 -(void)connectToServer
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    [[Global sharedGlobal] setServerInfo:[[HTTPManager sharedHTTPManager] getSocketServerInfo]];
+    [[Global sharedGlobal] serverInfo:[[HTTPManager sharedHTTPManager] getSocketServerInfo]];
     if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1){
         NSLog(@"error");
         exit(1);
@@ -75,16 +83,52 @@
                 recv(sockfd, content, sizeof(content), 0);
                 switch (b->head.type) {
                     case REGIST:{
-                        NSLog(@"regist success");
+                        [self performSelectorOnMainThread:@selector(registSuccess) withObject:nil waitUntilDone:NO];
                     }break;
                     case IS_LAST_USER_DATA:{
-                        NSLog(@"is last_user_data");
+                        [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:@"YES" waitUntilDone:NO];
                     }break;
                     case LOGIN:{
                         PP_CLUser* userData = (PP_CLUser*)content;
-                        NSStringEncoding nsEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-                        NSString* avatarImg = [NSString stringWithCString:userData->nickname encoding:nsEncoding];
-                        NSLog(@">>>%@", avatarImg);
+                        NSString* avatarImg = [Global gbencodingWithChar:userData->avatar_img];
+                        NSString* nickname = [Global gbencodingWithChar:userData->nickname];
+                        NSString* signature = [Global gbencodingWithChar:userData->signature];
+                        NSString* hobby = [Global gbencodingWithChar:userData->hobby];
+                        NSString* job = [Global gbencodingWithChar:userData->job];
+                        NSString* telephone = [Global gbencodingWithChar:userData->telephone];
+                        PlayerData* playerData = [[PlayerData alloc] init];
+                        playerData.nickname = nickname;
+                        playerData.avatar_img = avatarImg;
+                        playerData.signature = signature;
+                        playerData.hobby = hobby;
+                        playerData.job = job;
+                        playerData.telephone = telephone;
+                        
+                        playerData.uid = userData->uid;
+                        playerData.sex = userData->sex;
+                        playerData.age = userData->age;
+                        playerData.constellation = userData->constellation;
+                        playerData.birthday = userData->birthday;
+                        playerData.blood_type = userData->blood_type;
+                        playerData.nation = userData->nation;
+                        playerData.province = userData->province;
+                        playerData.city = userData->city;
+                        playerData.coin = userData->coin;
+                        playerData.token = userData->token;
+                        playerData.level = userData->level;
+                        playerData.country = userData->country;
+                        playerData.resource_num = userData->resource_num;
+                        playerData.pet_num = userData->pet_num;
+                        playerData.bag_num = userData->bag_num;
+                        playerData.create_time = userData->acc_time.create_time;
+                        playerData.last_login = userData->acc_time.last_login;
+                        playerData.home_latitude = userData->home_location.latitude;
+                        playerData.home_longitude = userData->home_location.longitude;
+                        
+                        [[Global sharedGlobal] player:playerData];
+                        
+                        [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:@"NO" waitUntilDone:NO];
+                        
                     }break;
                     case HEART_BEAT:{
                         //[self performSelector:@selector(sendHeartBeat) onThread:hbThread withObject:nil waitUntilDone:NO];
@@ -171,6 +215,35 @@
     [pool release];
 }*/
 
+- (void)loginSuccess:(NSString*)isLast
+{
+    if([isLast isEqualToString:@"YES"]){
+        
+    }
+    if([[[Global sharedGlobal] gameLayer] loginLayer]){
+        [[[[Global sharedGlobal] gameLayer] loginLayer] performSelector:@selector(loginSuccess)];
+    }
+}
+
+-(void)registSuccess
+{
+    [[[[Global sharedGlobal] gameLayer] loginLayer] performSelector:@selector(registSuccess)];
+}
+
+-(void)doRegist:(NSString *)avatarURL nickname:(NSString *)nickname username:(NSString *)username password:(NSString *)password
+{
+    PP_Package package;
+    PP_RegistPack registPack;
+    if(avatarURL) strcpy(registPack.avatar_img, [avatarURL UTF8String]);
+    strcpy(registPack.nickname, [nickname UTF8String]);
+    strcpy(registPack.account.username, [username UTF8String]);
+    strcpy(registPack.account.password, [[Global md5:password] UTF8String]);
+    package.head.type = REGIST;
+    package.head.length = sizeof(registPack);
+    memcpy(package.content, &registPack, sizeof(registPack));
+    send(sockfd, &package, sizeof(registPack) + sizeof(package.head), 0);
+}
+
 -(void)sendHeartBeat
 {
     PP_Package package;
@@ -191,7 +264,8 @@
     strcpy(loginPack.account.username, [username UTF8String]);
     strcpy(loginPack.account.password, [[Global md5:password] UTF8String]);
     loginPack.login_mode = PP_LOGIN;
-    loginPack.version = 0;
+    //loginPack.version = [[Global sharedGlobal] userDataVersion];
+    loginPack.version = 100;
     package.head.type = LOGIN;
     memcpy(package.content, &loginPack, sizeof(loginPack));
     package.head.length = sizeof(loginPack);
@@ -222,21 +296,6 @@
     package.head.length = sizeof(userState);
     memcpy(package.content, &userState, sizeof(userState));
     send(sockfd, &package, sizeof(userState) + sizeof(package.head), 0);
-}
-
--(void)loginTest:(id)content
-{
-    PP_Package package;
-    PP_LoginPack loginPack;
-    strcpy(loginPack.account.username, "abellee87@gmail.com");
-    strcpy(loginPack.account.password, "lijinbei");
-    loginPack.login_mode = PP_LOGIN;
-    loginPack.version = 0;
-    package.head.type = LOGIN;
-    memcpy(package.content, &loginPack, sizeof(loginPack));
-    package.head.length = sizeof(loginPack);
-    send(sockfd, &package, sizeof(loginPack) + sizeof(package.head), 0);
-    [self performSelectorOnMainThread:@selector(callMain:) withObject:@"hello main" waitUntilDone:NO];
 }
 
 -(void)callMain:(NSString *)str

@@ -30,6 +30,17 @@
     return self;
 }
 
+- (EditableUITableViewCellData*)getDataByKey:(NSString*)key
+{
+    for(NSDictionary* dict in data){
+        NSArray* arr = [dict objectForKey:kSectionData];
+        for(EditableUITableViewCellData* cellData in arr){
+            if([cellData.key isEqualToString:key]) return cellData;
+        }
+    }
+    return nil;
+}
+
 - (EditableUITableViewCellData *)getDataByIndexPath:(NSIndexPath *)indexPath
 {
     if(data && [data count]){

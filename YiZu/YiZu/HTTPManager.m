@@ -7,6 +7,8 @@
 //
 
 #import "HTTPManager.h"
+#import "SystemConfig.h"
+#import "ServerInfo.h"
 
 @implementation HTTPManager
 

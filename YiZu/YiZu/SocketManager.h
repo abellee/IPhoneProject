@@ -13,10 +13,10 @@
 #import <arpa/inet.h>
 #import <netdb.h>
 #import <stdio.h>
-#import "Global.h"
-#import "PP_Package.h"
-#import "HTTPManager.h"
-#import "ServerInfo.h"
+
+@class ServerInfo;
+@class Global;
+@class HTTPManager;
 
 @interface SocketManager : NSObject{
     NSThread* thread;
@@ -30,9 +30,9 @@
 //@property (nonatomic, retain) NSThread* hbThread;
 
 -(void)connect;
--(void)test;
 -(void)backgroundTest;
 -(void)foregroundTest;
 -(void)doLogin:(NSString*)username pass:(NSString*)password;
+-(void)doRegist:(NSString*)avatarURL nickname:(NSString*)nickname username:(NSString*)username password:(NSString*)password;
 
 @end

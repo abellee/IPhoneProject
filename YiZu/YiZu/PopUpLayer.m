@@ -7,6 +7,7 @@
 //
 
 #import "PopUpLayer.h"
+#import "SystemConfig.h"
 
 @implementation PopUpLayer
 
@@ -36,14 +37,17 @@
 
 -(void)hideActivityView
 {
-    [activityView stopAnimating];
-    [activityView removeFromSuperview];
-    [masker removeFromSuperview];
+    if(activityView){
+        [activityView stopAnimating];
+        [activityView removeFromSuperview];
+        [masker removeFromSuperview];
+    }
 }
 
 -(void)showErrorAlertWithTitle:(NSString *)title info:(NSString *)error
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:error delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [self hideActivityView];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:error delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
     alert = nil;
@@ -53,6 +57,8 @@
 {
     [activityView release];
     [masker release];
+    
+    [super dealloc];
 }
 
 @end

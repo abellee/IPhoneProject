@@ -18,6 +18,7 @@
 
 @property (nonatomic, retain) NSArray *data;
 
+- (EditableUITableViewCellData*)getDataByKey:(NSString*)key;
 - (EditableUITableViewCellData *)getDataByIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)getSectionTitleBySection:(NSInteger)section;
 - (NSUInteger)numberOfRowInSection:(NSInteger)section;

@@ -7,6 +7,7 @@
 //
 
 #import "ServerInfo.h"
+#import "JSONKit.h"
 
 @implementation ServerInfo
 

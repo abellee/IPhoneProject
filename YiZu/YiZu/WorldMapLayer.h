@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface WorldMapLayer : UIViewController
+@interface WorldMapLayer : UIViewController{
+    CLLocationManager* localManager;
+    MKMapView* map;
+}
+
+@property (nonatomic, retain) CLLocationManager* localManager;
+@property (nonatomic, retain) MKMapView* map;
 
 @end

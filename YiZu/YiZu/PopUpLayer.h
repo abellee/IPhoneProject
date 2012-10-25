@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SystemConfig.h"
 
 @interface PopUpLayer : UIViewController<UIAlertViewDelegate>{
     UIActivityIndicatorView *activityView;

@@ -13,6 +13,9 @@
 #define SOCKET_PORT     5552
 
 #define BASE_URL        @"http://forios.dyndns.biz"
+#define DIR_NAME        @"pocketpet"
+#define UPLOAD_FILE     @"upload.php"
+#define AVATAR_DIR      @"/pocketpet/"
 
 #define TOTLE_HEIGHT    480
 #define TOTLE_WIDTH     320

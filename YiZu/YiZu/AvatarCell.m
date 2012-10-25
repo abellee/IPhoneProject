@@ -7,6 +7,7 @@
 //
 
 #import "AvatarCell.h"
+#import "Global.h"
 
 @implementation AvatarCell
 
@@ -73,6 +74,12 @@
     [picker dismissModalViewControllerAnimated:YES];
     UIImage* img = [info objectForKey:UIImagePickerControllerEditedImage];
     [head setImage:img forState:UIControlStateNormal];
+}
+
+- (UIImage*)getAvatarImage
+{
+    UIImage* img = [head imageForState:UIControlStateNormal];
+    return img;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex

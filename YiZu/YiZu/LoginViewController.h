@@ -7,13 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Utils.h"
-#import "SystemConfig.h"
-#import "Global.h"
-#import "RegistLayer.h"
 #import "LoginDelegate.h"
-#import "UIView+ScreenShot.h"
-#import "UIImage+Overlay.h"
+
+@class RegistLayer;
 
 @interface LoginViewController : UIViewController <UIWebViewDelegate, LoginDelegate, UITextFieldDelegate>{
     UITextField *username;

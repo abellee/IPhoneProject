@@ -12,6 +12,7 @@
 #import "GameConfig.h"
 #import "GameLayer.h"
 #import "RootViewController.h"
+#import "SocketManager.h"
 
 @implementation AppDelegate
 

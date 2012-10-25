@@ -10,22 +10,69 @@
 
 @implementation PlayerData
 
-- (id)initWithFrame:(CGRect)frame
+@synthesize nickname;
+@synthesize avatar_img;
+@synthesize signature;
+@synthesize hobby;
+@synthesize job;
+@synthesize telephone;
+@synthesize petList;
+@synthesize allTasks;
+@synthesize doneTask;
+@synthesize doingTask;
+@synthesize uid;
+@synthesize sex;
+@synthesize constellation;
+@synthesize birthday;
+@synthesize blood_type;
+@synthesize nation;
+@synthesize province;
+@synthesize city;
+@synthesize coin;
+@synthesize token;
+@synthesize level;
+@synthesize country;
+@synthesize resource_num;
+@synthesize pet_num;
+@synthesize bag_num;
+@synthesize create_time;
+@synthesize last_login;
+@synthesize login_mode;
+@synthesize state;
+@synthesize bid;
+@synthesize home_latitude;
+@synthesize home_longitude;
+@synthesize cur_latitude;
+@synthesize cur_longitude;
+
+- (id)init
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    if(self = [super init]){
+        
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)dealloc
 {
-    // Drawing code
+    NSLog(@"*************| PlayerData dealloc! |************");
+    [nickname release];
+    [avatar_img release];
+    [signature release];
+    [hobby release];
+    [job release];
+    [telephone release];
+    
+    [petList removeAllObjects];
+    [allTasks removeAllObjects];
+    [doneTask removeAllObjects];
+    [doingTask removeAllObjects];
+    [petList release];
+    [allTasks release];
+    [doneTask release];
+    [doingTask release];
+    
+    [super dealloc];
 }
-*/
 
 @end

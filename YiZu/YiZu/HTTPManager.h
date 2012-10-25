@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ServerInfo.h"
-#import "SystemConfig.h"
+
+@class ServerInfo;
 
 @interface HTTPManager : NSObject
 

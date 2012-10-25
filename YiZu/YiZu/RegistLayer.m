@@ -7,14 +7,15 @@
 //
 
 #import "RegistLayer.h"
+#import "SocketManager.h"
+#import "SystemConfig.h"
+#import "EditableUITableViewController.h"
+#import "ASIFormDataRequest.h"
+#import "PopUpLayer.h"
+#import "Global.h"
 
 @implementation RegistLayer
 
-@synthesize nickname;
-@synthesize password;
-@synthesize repassword;
-@synthesize email;
-@synthesize head;
 @synthesize registForm;
 @synthesize delegate;
 
@@ -118,32 +119,108 @@
     return self;
 }
 
+-(void)doRegist:(id)sender
+{
+    [self.view endEditing:YES];
+    EditableUITableViewData* tableViewData = registForm.data;
+    EditableUITableViewCellData* cellData = [tableViewData getDataByKey:@"avatar"];
+    AvatarCell* avatarCell = (AvatarCell*)[cellData customCell];
+    UIImage* avatarImg = [avatarCell getAvatarImage];
+    [[[Global sharedGlobal] popUpLayer] showActivityViewWithMask:YES];
+    if(avatarImg){
+        NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@", BASE_URL, DIR_NAME, UPLOAD_FILE]];
+        ASIFormDataRequest* request = [[ASIFormDataRequest alloc] initWithURL:url];
+        NSData* imgData = UIImagePNGRepresentation(avatarImg);
+        [request setDelegate:self];
+        [request setData:imgData withFileName:@"temp.jpg" andContentType:@"image/jpeg" forKey:@"avatar"];
+        [request setDidFinishSelector:@selector(uploadAvatarFinished:)];
+        [request startAsynchronous];
+        [request release];
+        request = nil;
+    }else{
+        [self performSelector:@selector(registNextStep:) withObject:nil];
+    }
+}
+
+- (NSString *)getRegistedUsername
+{
+    [self.view endEditing:YES];
+    EditableUITableViewData* tableViewData = registForm.data;
+    EditableUITableViewCellData* cellData = [tableViewData getDataByKey:@"username"];
+    return cellData.value;
+}
+
+- (NSString *)getRegistedPassword
+{
+    [self.view endEditing:YES];
+    EditableUITableViewData* tableViewData = registForm.data;
+    EditableUITableViewCellData* cellData = [tableViewData getDataByKey:@"password"];
+    return cellData.value;
+}
+
+- (void)registNextStep:(NSString*)avatarURL
+{
+    EditableUITableViewData* tableViewData = registForm.data;
+    EditableUITableViewCellData* usernameCellData = [tableViewData getDataByKey:@"username"];
+    NSString* usernameStr = usernameCellData.value;
+    if(![Global checkUsername:usernameStr]){
+        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"邮箱地址格式不正确!"];
+        return;
+    }
+    if(usernameStr.length > 24){
+        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"邮箱地址长度不正确!"];
+        return;
+    }
+    
+    EditableUITableViewCellData* nicknameCellData = [tableViewData getDataByKey:@"nickname"];
+    NSString* nicknameStr = nicknameCellData.value;
+    if(nicknameStr.length > 10 || nicknameStr.length < 6){
+        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"昵称长度不得小于3个中文字!"];
+        return;
+    }
+    if(![Global checkNickname:nicknameStr]){
+        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"昵称只支持中英文，数字 \"_\"或\"-\""];
+        return;
+	}
+    
+    EditableUITableViewCellData* pwCellData = [tableViewData getDataByKey:@"password"];
+    EditableUITableViewCellData* rpwCellData = [tableViewData getDataByKey:@"repassword"];
+    NSString* pwStr = pwCellData.value;
+    NSString* rpwStr = rpwCellData.value;
+    if([pwStr isEqual:rpwStr]){
+        if(![Global checkPassword:pwStr]){
+            [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"密码长度不正确!"];
+            return;
+        }
+    }else{
+        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"两次输入的密码不相同!"];
+        return;
+    }
+    [[[Global sharedGlobal] socketManager] doRegist:avatarURL nickname:nicknameStr username:usernameStr password:pwStr];
+}
+
+- (void)uploadAvatarFinished:(ASIHTTPRequest*)request
+{
+    if([request responseString].intValue == 0){
+        [[[Global sharedGlobal] popUpLayer] hideActivityView];
+        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"提示" info:@"头像上传失败!"];
+    }else{
+        [self performSelector:@selector(registNextStep:) withObject:[request responseString]];
+    }
+}
+
 - (void)registDone
 {
     if(delegate && [delegate conformsToProtocol:@protocol(LoginDelegate)]){
-        [delegate doLogin:[email text] pass:[password text]];
+        //[delegate doLogin:[email text] pass:[password text]];
     }
 }
 
 - (void)dealloc
 {
     NSLog(@"***********| RegistLayer dealloc! |***********");
-    [nickname release];
-    [password release];
-    [repassword release];
-    [email release];
-    [head release];
-    [takePhoto release];
-    [album release];
     [registForm release];
     
-    nickname = nil;
-    password = nil;
-    repassword = nil;
-    email = nil;
-    head = nil;
-    takePhoto = nil;
-    album = nil;
     registForm = nil;
     delegate = nil;
     

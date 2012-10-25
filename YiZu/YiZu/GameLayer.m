@@ -7,11 +7,17 @@
 //
 
 #import "GameLayer.h"
+#import "LoginViewController.h"
+#import "Utils.h"
+#import "SystemConfig.h"
+#import "ActionLog.h"
+#import "PopUpLayer.h"
+#import "Global.h"
+#import "SocketManager.h"
 
 @implementation GameLayer
 
 @synthesize loginLayer;
-@synthesize registLayer;
 @synthesize count;
 @synthesize sprite;
 @synthesize batchNode;
@@ -46,8 +52,9 @@
         popUpLayerView.userInteractionEnabled = NO;
         [popUpLayer setView:popUpLayerView];
         [[[CCDirector sharedDirector] openGLView] addSubview:popUpLayerView];
-        [[Global sharedGlobal] setPopUpLayer:popUpLayer];
-        [[Global sharedGlobal] setSocketManager:[[SocketManager alloc] init]];
+        [[Global sharedGlobal] popUpLayer:popUpLayer];
+        [[Global sharedGlobal] socketManager:[[SocketManager alloc] init]];
+        [[Global sharedGlobal] gameLayer:self];
         
         [[[Global sharedGlobal] socketManager] connect];
         [popUpLayerView release];

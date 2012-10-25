@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Global.h"
 
 @interface AvatarCell : UITableViewCell<UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
     UIButton* head;
@@ -18,5 +17,7 @@
 @property (nonatomic, retain) UIButton* head;
 @property (nonatomic, retain) UIButton* takePhoto;
 @property (nonatomic, retain) UIButton* album;
+
+- (UIImage*)getAvatarImage;
 
 @end

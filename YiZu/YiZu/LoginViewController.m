@@ -7,10 +7,14 @@
 //
 
 #import "LoginViewController.h"
-
-@interface LoginViewController ()
-
-@end
+#import "Global.h"
+#import "Utils.h"
+#import "SystemConfig.h"
+#import "RegistLayer.h"
+#import "UIView+ScreenShot.h"
+#import "UIImage+Overlay.h"
+#import "PopUpLayer.h"
+#import "PlayerData.h"
 
 @implementation LoginViewController
 
@@ -46,6 +50,7 @@
 
 - (id) init{
     if(self = [super init]){
+        [[Global sharedGlobal] userDataVersion:[[[NSUserDefaults standardUserDefaults] objectForKey:@"userDataVersion"] intValue]];
         platformList = [NSArray arrayWithObjects:@"新浪微博", @"腾讯微博", @"网易微博", @"人人网", nil];
         [platformList retain];
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
@@ -53,23 +58,27 @@
         [self setView:view];
         username = [[UITextField alloc] initWithFrame:CGRectMake(20, 30, 200, 30)];
         username.borderStyle = UITextBorderStyleRoundedRect;
-        username.placeholder = @"邮箱";
+        username.placeholder = @"邮箱地址";
+        username.clearButtonMode = UITextFieldViewModeWhileEditing;
         username.autocapitalizationType = UITextAutocapitalizationTypeNone;
         username.autocorrectionType = UITextAutocorrectionTypeNo;
         username.returnKeyType = UIReturnKeyNext;
         username.delegate = self;
         username.tag = 0;
+        username.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
         [self.view addSubview:username];
         
         password = [[UITextField alloc] initWithFrame:CGRectMake(20, 70, 200, 30)];
         password.borderStyle = UITextBorderStyleRoundedRect;
         password.placeholder = @"密码";
         password.secureTextEntry = YES;
+        password.clearButtonMode = UITextFieldViewModeWhileEditing;
         password.autocapitalizationType = UITextAutocapitalizationTypeNone;
         password.autocorrectionType = UITextAutocorrectionTypeNo;
         password.returnKeyType = UIReturnKeyDone;
         password.delegate = self;
         password.tag = 1;
+        password.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
         [self.view addSubview:password];
         
         findPassword = [[UILabel alloc] initWithFrame:CGRectMake(20, 110, 100, 30)];
@@ -200,7 +209,23 @@
 
 -(void)loginButtonClick:(id)sender
 {
+    if(![Global checkUsername:[username text]]){
+        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"提示" info:@"邮箱地址不正确!"];
+        return;
+    }
+    if(![Global checkPassword:[password text]]){
+        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"提示" info:@"密码长度不正确!"];
+        return;
+    }
     [[[Global sharedGlobal] socketManager] doLogin:[username text] pass:[password text]];
+}
+
+-(void)loginSuccess
+{
+    NSLog(@"login success");
+    [[NSUserDefaults standardUserDefaults] setObject:username.text forKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] setObject:password.text forKey:@"password"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", [[Global sharedGlobal] userDataVersion]] forKey:@"userDataVersion"];
 }
 
 -(void)registButtonClick:(id)sender
@@ -208,11 +233,9 @@
     if(registLayer == nil){
         registLayer = [[RegistLayer alloc] init];
         navigationController = [[UINavigationController alloc] initWithRootViewController:registLayer];
-        [registLayer release];
-        registLayer = nil;
         navigationController.navigationBar.topItem.title = @"加入口袋宠物世界";
         UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(cancelRegist:)];
-        UIBarButtonItem* doRegistButton = [[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(doRegist:)];
+        UIBarButtonItem* doRegistButton = [[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:registLayer action:@selector(doRegist:)];
         navigationController.navigationBar.topItem.leftBarButtonItem = backButton;
         navigationController.navigationBar.topItem.rightBarButtonItem = doRegistButton;
         [backButton release];
@@ -223,16 +246,26 @@
     }
 }
 
--(void)cancelRegist:(id)sender
+-(void)registSuccess
 {
-    [self dismissModalViewControllerAnimated:YES];
-    [navigationController release];
-    navigationController = nil;
+    [[[Global sharedGlobal] popUpLayer] hideActivityView];
+    [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"提示" info:@"注册成功!"];
+    NSString* usernameStr = [registLayer getRegistedUsername];
+    NSString* passwordStr = [registLayer getRegistedPassword];
+    username.text = usernameStr;
+    password.text = passwordStr;
+    [self performSelector:@selector(cancelRegist:) withObject:navigationController.navigationBar.topItem.leftBarButtonItem];
 }
 
--(void)doRegist:(id)sender
+-(void)cancelRegist:(id)sender
 {
-    
+    if(registLayer){
+        [registLayer release];
+        registLayer = nil;
+        [self dismissModalViewControllerAnimated:YES];
+        [navigationController release];
+        navigationController = nil;
+    }
 }
 
 -(void)doLogin:(NSString *)username pass:(NSString *)password
@@ -267,6 +300,7 @@
 
 -(void)dealloc
 {
+    NSLog(@"*********| LoginViewController dealloc! |***********");
     [super dealloc];
 }
 
