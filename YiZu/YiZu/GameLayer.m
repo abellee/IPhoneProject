@@ -8,6 +8,7 @@
 
 #import "GameLayer.h"
 #import "LoginViewController.h"
+#import "MainLayerViewController.h"
 #import "Utils.h"
 #import "SystemConfig.h"
 #import "ActionLog.h"
@@ -18,6 +19,7 @@
 @implementation GameLayer
 
 @synthesize loginLayer;
+@synthesize mainLayer;
 @synthesize count;
 @synthesize sprite;
 @synthesize batchNode;
@@ -60,9 +62,23 @@
         [popUpLayerView release];
         popUpLayerView = nil;
         
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+        
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:10];
+        
 //        self.isTouchEnabled = YES;
 	}
 	return self;
+}
+
+-(void)loginSuccess
+{
+    [loginLayer.view removeFromSuperview];
+    [loginLayer release];
+    loginLayer = nil;
+    
+    mainLayer = [[MainLayerViewController alloc] init];
+    [[[CCDirector sharedDirector] openGLView] insertSubview:mainLayer.view atIndex:0];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

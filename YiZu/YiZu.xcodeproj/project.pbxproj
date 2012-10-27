@@ -22,10 +22,21 @@
 		0C7B525215E77E160021AE91 /* ServerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B525115E77E160021AE91 /* ServerInfo.m */; };
 		0C8F72D1163958A100645053 /* PlayerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8F72D0163958A100645053 /* PlayerInfoViewController.m */; };
 		0C8F72D51639652F00645053 /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8F72D41639652F00645053 /* Loader.m */; };
+		0C8F72D8163A549E00645053 /* ImageDownloadData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8F72D7163A549E00645053 /* ImageDownloadData.m */; };
 		0CAFE741163545F4002A34D8 /* UIView+ScreenShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFE740163545F4002A34D8 /* UIView+ScreenShot.m */; };
 		0CAFE74416354BF5002A34D8 /* UIImage+Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFE74316354BF5002A34D8 /* UIImage+Overlay.m */; };
 		0CCE751B15D44DCF00C80CD4 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE751A15D44DCF00C80CD4 /* Global.m */; };
 		0CCE751F15D450E300C80CD4 /* PopUpLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE751E15D450E300C80CD4 /* PopUpLayer.m */; };
+		0CF37DC3163BFAF60042FB68 /* ResourcePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF37DC2163BFAF60042FB68 /* ResourcePointViewController.m */; };
+		0CF37DC7163BFB090042FB68 /* ResourcePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF37DC6163BFB090042FB68 /* ResourcePoint.m */; };
+		0CF37DCA163BFD5B0042FB68 /* MainLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF37DC9163BFD5B0042FB68 /* MainLayerViewController.m */; };
+		0CF37DCD163C00BB0042FB68 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF37DCC163C00BB0042FB68 /* MapViewController.m */; };
+		0CF37DCF163C02CE0042FB68 /* worldmap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF37DCE163C02CE0042FB68 /* worldmap@2x.png */; };
+		0CF37DD2163C090F0042FB68 /* PetHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF37DD1163C090F0042FB68 /* PetHouseViewController.m */; };
+		0CF37DD5163C09290042FB68 /* StoreHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF37DD4163C09290042FB68 /* StoreHouseViewController.m */; };
+		0CF37DD8163C09570042FB68 /* ResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF37DD7163C09570042FB68 /* ResourceViewController.m */; };
+		0CF37DDB163C09810042FB68 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF37DDA163C09810042FB68 /* ShopViewController.m */; };
+		0CF37DDE163C13370042FB68 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF37DDD163C13370042FB68 /* MapKit.framework */; };
 		B5125E7A159CC83D00FB11B8 /* renren.png in Resources */ = {isa = PBXBuildFile; fileRef = B5125E76159CC83D00FB11B8 /* renren.png */; };
 		B5125E7B159CC83D00FB11B8 /* sina.png in Resources */ = {isa = PBXBuildFile; fileRef = B5125E77159CC83D00FB11B8 /* sina.png */; };
 		B5125E7C159CC83D00FB11B8 /* 163.png in Resources */ = {isa = PBXBuildFile; fileRef = B5125E78159CC83D00FB11B8 /* 163.png */; };
@@ -169,7 +180,6 @@
 		B5C83619158A3FE8007732E8 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C83618158A3FE8007732E8 /* HelloWorldLayer.m */; };
 		B5FAD6C6159CA64C00C33476 /* BattleFieldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6C5159CA64C00C33476 /* BattleFieldLayer.m */; };
 		B5FAD6CE159CA8B200C33476 /* WorldMapLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6CD159CA8B200C33476 /* WorldMapLayer.m */; };
-		B5FAD6D1159CA8C100C33476 /* SceneMapLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6D0159CA8C100C33476 /* SceneMapLayer.m */; };
 		B5FAD6D4159CA8D800C33476 /* SystemSettingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6D3159CA8D800C33476 /* SystemSettingLayer.m */; };
 		B5FAD6D7159CA8E700C33476 /* BagLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6D6159CA8E700C33476 /* BagLayer.m */; };
 		B5FAD6DA159CA8F000C33476 /* ProfileLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6D9159CA8F000C33476 /* ProfileLayer.m */; };
@@ -178,7 +188,6 @@
 		B5FAD6E4159CA92F00C33476 /* PetData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6E3159CA92F00C33476 /* PetData.m */; };
 		B5FAD6E7159CA93600C33476 /* TaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6E6159CA93600C33476 /* TaskData.m */; };
 		B5FAD6EA159CAB7300C33476 /* RegistLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6E9159CAB7300C33476 /* RegistLayer.m */; };
-		B5FAD6ED159CAB8300C33476 /* OAuthLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6EC159CAB8300C33476 /* OAuthLayer.m */; };
 		B5FAD6F0159CAEB900C33476 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6EF159CAEB800C33476 /* GameLayer.m */; };
 		B5FAD6F3159CB3E800C33476 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6F2159CB3E800C33476 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
@@ -220,6 +229,9 @@
 		0C8F72D0163958A100645053 /* PlayerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerInfoViewController.m; sourceTree = "<group>"; };
 		0C8F72D31639652E00645053 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
 		0C8F72D41639652F00645053 /* Loader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loader.m; sourceTree = "<group>"; };
+		0C8F72D6163A549E00645053 /* ImageDownloadData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloadData.h; sourceTree = "<group>"; };
+		0C8F72D7163A549E00645053 /* ImageDownloadData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloadData.m; sourceTree = "<group>"; };
+		0C8F72D9163A54AE00645053 /* ImageDownloadDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageDownloadDelegate.h; sourceTree = "<group>"; };
 		0CAFE73F163545F4002A34D8 /* UIView+ScreenShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ScreenShot.h"; sourceTree = "<group>"; };
 		0CAFE740163545F4002A34D8 /* UIView+ScreenShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ScreenShot.m"; sourceTree = "<group>"; };
 		0CAFE74216354BF5002A34D8 /* UIImage+Overlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Overlay.h"; sourceTree = "<group>"; };
@@ -228,6 +240,25 @@
 		0CCE751A15D44DCF00C80CD4 /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		0CCE751D15D450E300C80CD4 /* PopUpLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpLayer.h; sourceTree = "<group>"; };
 		0CCE751E15D450E300C80CD4 /* PopUpLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpLayer.m; sourceTree = "<group>"; };
+		0CF37DC1163BFAF60042FB68 /* ResourcePointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcePointViewController.h; sourceTree = "<group>"; };
+		0CF37DC2163BFAF60042FB68 /* ResourcePointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcePointViewController.m; sourceTree = "<group>"; };
+		0CF37DC5163BFB090042FB68 /* ResourcePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcePoint.h; sourceTree = "<group>"; };
+		0CF37DC6163BFB090042FB68 /* ResourcePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcePoint.m; sourceTree = "<group>"; };
+		0CF37DC8163BFD5B0042FB68 /* MainLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLayerViewController.h; sourceTree = "<group>"; };
+		0CF37DC9163BFD5B0042FB68 /* MainLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainLayerViewController.m; sourceTree = "<group>"; };
+		0CF37DCB163C00BB0042FB68 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		0CF37DCC163C00BB0042FB68 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		0CF37DCE163C02CE0042FB68 /* worldmap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "worldmap@2x.png"; sourceTree = "<group>"; };
+		0CF37DD0163C090F0042FB68 /* PetHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetHouseViewController.h; sourceTree = "<group>"; };
+		0CF37DD1163C090F0042FB68 /* PetHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetHouseViewController.m; sourceTree = "<group>"; };
+		0CF37DD3163C09290042FB68 /* StoreHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreHouseViewController.h; sourceTree = "<group>"; };
+		0CF37DD4163C09290042FB68 /* StoreHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreHouseViewController.m; sourceTree = "<group>"; };
+		0CF37DD6163C09570042FB68 /* ResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceViewController.h; sourceTree = "<group>"; };
+		0CF37DD7163C09570042FB68 /* ResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceViewController.m; sourceTree = "<group>"; };
+		0CF37DD9163C09810042FB68 /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
+		0CF37DDA163C09810042FB68 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
+		0CF37DDC163C0A9B0042FB68 /* MainViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewDelegate.h; sourceTree = "<group>"; };
+		0CF37DDD163C13370042FB68 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B5125E76159CC83D00FB11B8 /* renren.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renren.png; sourceTree = "<group>"; };
 		B5125E77159CC83D00FB11B8 /* sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sina.png; sourceTree = "<group>"; };
 		B5125E78159CC83D00FB11B8 /* 163.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 163.png; sourceTree = "<group>"; };
@@ -506,8 +537,6 @@
 		B5FAD6C5159CA64C00C33476 /* BattleFieldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleFieldLayer.m; sourceTree = "<group>"; };
 		B5FAD6CC159CA8B200C33476 /* WorldMapLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldMapLayer.h; sourceTree = "<group>"; };
 		B5FAD6CD159CA8B200C33476 /* WorldMapLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldMapLayer.m; sourceTree = "<group>"; };
-		B5FAD6CF159CA8C100C33476 /* SceneMapLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneMapLayer.h; sourceTree = "<group>"; };
-		B5FAD6D0159CA8C100C33476 /* SceneMapLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneMapLayer.m; sourceTree = "<group>"; };
 		B5FAD6D2159CA8D800C33476 /* SystemSettingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemSettingLayer.h; sourceTree = "<group>"; };
 		B5FAD6D3159CA8D800C33476 /* SystemSettingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemSettingLayer.m; sourceTree = "<group>"; };
 		B5FAD6D5159CA8E700C33476 /* BagLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BagLayer.h; sourceTree = "<group>"; };
@@ -524,8 +553,6 @@
 		B5FAD6E6159CA93600C33476 /* TaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskData.m; sourceTree = "<group>"; };
 		B5FAD6E8159CAB7300C33476 /* RegistLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistLayer.h; sourceTree = "<group>"; };
 		B5FAD6E9159CAB7300C33476 /* RegistLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistLayer.m; sourceTree = "<group>"; };
-		B5FAD6EB159CAB8300C33476 /* OAuthLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthLayer.h; sourceTree = "<group>"; };
-		B5FAD6EC159CAB8300C33476 /* OAuthLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthLayer.m; sourceTree = "<group>"; };
 		B5FAD6EE159CAEB800C33476 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		B5FAD6EF159CAEB800C33476 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		B5FAD6F1159CB3E700C33476 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -537,6 +564,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CF37DDE163C13370042FB68 /* MapKit.framework in Frameworks */,
 				0C22183C163745880073E8AC /* libicucore.dylib in Frameworks */,
 				B5125EBB15A05DE800FB11B8 /* libxml2.2.dylib in Frameworks */,
 				B5125EB915A05DDD00FB11B8 /* libz.1.2.5.dylib in Frameworks */,
@@ -563,6 +591,8 @@
 				0C3393EB162C6C4F00BA3EF3 /* TouchableUILabelDelegate.h */,
 				0C0283DB162C00A9002448A7 /* LoginDelegate.h */,
 				0C22182E16369DDE0073E8AC /* AvatarCellDelegate.h */,
+				0C8F72D9163A54AE00645053 /* ImageDownloadDelegate.h */,
+				0CF37DDC163C0A9B0042FB68 /* MainViewDelegate.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -585,6 +615,8 @@
 				0C667F58162C5F5D00C2CD8A /* AvatarCell.m */,
 				0C8F72CF163958A100645053 /* PlayerInfoViewController.h */,
 				0C8F72D0163958A100645053 /* PlayerInfoViewController.m */,
+				0CF37DC1163BFAF60042FB68 /* ResourcePointViewController.h */,
+				0CF37DC2163BFAF60042FB68 /* ResourcePointViewController.m */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -611,6 +643,8 @@
 				0CAFE74316354BF5002A34D8 /* UIImage+Overlay.m */,
 				0C8F72D31639652E00645053 /* Loader.h */,
 				0C8F72D41639652F00645053 /* Loader.m */,
+				0C8F72D6163A549E00645053 /* ImageDownloadData.h */,
+				0C8F72D7163A549E00645053 /* ImageDownloadData.m */,
 			);
 			name = PocketPet;
 			sourceTree = "<group>";
@@ -730,6 +764,7 @@
 				0C22183B163745880073E8AC /* libicucore.dylib */,
 				B5125EBA15A05DE800FB11B8 /* libxml2.2.dylib */,
 				B5125EB815A05DDD00FB11B8 /* libz.1.2.5.dylib */,
+				0CF37DDD163C13370042FB68 /* MapKit.framework */,
 				B5125EB615A05DCB00FB11B8 /* SystemConfiguration.framework */,
 				B5125EB415A05DC000FB11B8 /* MobileCoreServices.framework */,
 				B5125EB215A05DB000FB11B8 /* CFNetwork.framework */,
@@ -779,6 +814,7 @@
 		B5C834C0158A3FE6007732E8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0CF37DCE163C02CE0042FB68 /* worldmap@2x.png */,
 				B5125E74159CC80E00FB11B8 /* OpenPlatform */,
 				B5C834C1158A3FE6007732E8 /* Default.png */,
 				B5C834C3158A3FE6007732E8 /* fps_images.png */,
@@ -1112,8 +1148,6 @@
 				B5FAD6C5159CA64C00C33476 /* BattleFieldLayer.m */,
 				B5FAD6CC159CA8B200C33476 /* WorldMapLayer.h */,
 				B5FAD6CD159CA8B200C33476 /* WorldMapLayer.m */,
-				B5FAD6CF159CA8C100C33476 /* SceneMapLayer.h */,
-				B5FAD6D0159CA8C100C33476 /* SceneMapLayer.m */,
 				B5FAD6D2159CA8D800C33476 /* SystemSettingLayer.h */,
 				B5FAD6D3159CA8D800C33476 /* SystemSettingLayer.m */,
 				B5FAD6D5159CA8E700C33476 /* BagLayer.h */,
@@ -1124,14 +1158,24 @@
 				B5FAD6DC159CA90500C33476 /* PetProfileLayer.m */,
 				B5FAD6E8159CAB7300C33476 /* RegistLayer.h */,
 				B5FAD6E9159CAB7300C33476 /* RegistLayer.m */,
-				B5FAD6EB159CAB8300C33476 /* OAuthLayer.h */,
-				B5FAD6EC159CAB8300C33476 /* OAuthLayer.m */,
 				B5FAD6EE159CAEB800C33476 /* GameLayer.h */,
 				B5FAD6EF159CAEB800C33476 /* GameLayer.m */,
 				B5FAD6F1159CB3E700C33476 /* LoginViewController.h */,
 				B5FAD6F2159CB3E800C33476 /* LoginViewController.m */,
 				0CCE751D15D450E300C80CD4 /* PopUpLayer.h */,
 				0CCE751E15D450E300C80CD4 /* PopUpLayer.m */,
+				0CF37DC8163BFD5B0042FB68 /* MainLayerViewController.h */,
+				0CF37DC9163BFD5B0042FB68 /* MainLayerViewController.m */,
+				0CF37DCB163C00BB0042FB68 /* MapViewController.h */,
+				0CF37DCC163C00BB0042FB68 /* MapViewController.m */,
+				0CF37DD0163C090F0042FB68 /* PetHouseViewController.h */,
+				0CF37DD1163C090F0042FB68 /* PetHouseViewController.m */,
+				0CF37DD3163C09290042FB68 /* StoreHouseViewController.h */,
+				0CF37DD4163C09290042FB68 /* StoreHouseViewController.m */,
+				0CF37DD6163C09570042FB68 /* ResourceViewController.h */,
+				0CF37DD7163C09570042FB68 /* ResourceViewController.m */,
+				0CF37DD9163C09810042FB68 /* ShopViewController.h */,
+				0CF37DDA163C09810042FB68 /* ShopViewController.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -1145,6 +1189,8 @@
 				B5FAD6E3159CA92F00C33476 /* PetData.m */,
 				B5FAD6E5159CA93600C33476 /* TaskData.h */,
 				B5FAD6E6159CA93600C33476 /* TaskData.m */,
+				0CF37DC5163BFB090042FB68 /* ResourcePoint.h */,
+				0CF37DC6163BFB090042FB68 /* ResourcePoint.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1221,6 +1267,7 @@
 				B530504A15A14CD700CE2862 /* fight-hd.pvr.ccz in Resources */,
 				B530504B15A14CD700CE2862 /* fight.plist in Resources */,
 				B530504C15A14CD700CE2862 /* fight.pvr.ccz in Resources */,
+				0CF37DCF163C02CE0042FB68 /* worldmap@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1331,7 +1378,6 @@
 				B5C83619158A3FE8007732E8 /* HelloWorldLayer.m in Sources */,
 				B5FAD6C6159CA64C00C33476 /* BattleFieldLayer.m in Sources */,
 				B5FAD6CE159CA8B200C33476 /* WorldMapLayer.m in Sources */,
-				B5FAD6D1159CA8C100C33476 /* SceneMapLayer.m in Sources */,
 				B5FAD6D4159CA8D800C33476 /* SystemSettingLayer.m in Sources */,
 				B5FAD6D7159CA8E700C33476 /* BagLayer.m in Sources */,
 				B5FAD6DA159CA8F000C33476 /* ProfileLayer.m in Sources */,
@@ -1340,7 +1386,6 @@
 				B5FAD6E4159CA92F00C33476 /* PetData.m in Sources */,
 				B5FAD6E7159CA93600C33476 /* TaskData.m in Sources */,
 				B5FAD6EA159CAB7300C33476 /* RegistLayer.m in Sources */,
-				B5FAD6ED159CAB8300C33476 /* OAuthLayer.m in Sources */,
 				B5FAD6F0159CAEB900C33476 /* GameLayer.m in Sources */,
 				B5FAD6F3159CB3E800C33476 /* LoginViewController.m in Sources */,
 				B5125EBF15A05E1800FB11B8 /* Reachability.m in Sources */,
@@ -1370,6 +1415,15 @@
 				0C221836163742A20073E8AC /* RegexKitLite.m in Sources */,
 				0C8F72D1163958A100645053 /* PlayerInfoViewController.m in Sources */,
 				0C8F72D51639652F00645053 /* Loader.m in Sources */,
+				0C8F72D8163A549E00645053 /* ImageDownloadData.m in Sources */,
+				0CF37DC3163BFAF60042FB68 /* ResourcePointViewController.m in Sources */,
+				0CF37DC7163BFB090042FB68 /* ResourcePoint.m in Sources */,
+				0CF37DCA163BFD5B0042FB68 /* MainLayerViewController.m in Sources */,
+				0CF37DCD163C00BB0042FB68 /* MapViewController.m in Sources */,
+				0CF37DD2163C090F0042FB68 /* PetHouseViewController.m in Sources */,
+				0CF37DD5163C09290042FB68 /* StoreHouseViewController.m in Sources */,
+				0CF37DD8163C09570042FB68 /* ResourceViewController.m in Sources */,
+				0CF37DDB163C09810042FB68 /* ShopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,15 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
-#import <CoreLocation/CoreLocation.h>
+#import "MainViewDelegate.h"
 
 @interface WorldMapLayer : UIViewController{
-    CLLocationManager* localManager;
-    MKMapView* map;
+    UIImageView* background;
+    //UIImageView* map;
+    UIButton* map;
+    
+    UIButton* shop;
+    UIButton* storehouse;
+    UIButton* resource;
+    UIButton* pethouse;
+    
+    id<MainViewDelegate> delegate;
 }
 
-@property (nonatomic, retain) CLLocationManager* localManager;
-@property (nonatomic, retain) MKMapView* map;
+@property (nonatomic, retain) UIImageView* background;
+//@property (nonatomic, retain) UIImageView* map;
+@property (nonatomic, retain) UIButton* map;
+@property (nonatomic, retain) UIButton* shop;
+@property (nonatomic, retain) UIButton* storehouse;
+@property (nonatomic, retain) UIButton* resource;
+@property (nonatomic, retain) UIButton* pethouse;
+@property (nonatomic, retain, getter = delegate, setter = delegate:) id<MainViewDelegate> delegate;
 
 @end

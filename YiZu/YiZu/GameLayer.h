@@ -9,17 +9,21 @@
 #import "cocos2d.h"
 
 @class LoginViewController;
+@class MainLayerViewController;
 
 @interface GameLayer : CCLayer{
     LoginViewController *loginLayer;
+    MainLayerViewController* mainLayer;
     int count;
     CCSprite *sprite;
     CCSpriteBatchNode *batchNode;
 }
 @property (nonatomic, retain, getter = loginLayer, setter = loginLayer:) LoginViewController *loginLayer;
 @property (nonatomic, assign, getter = count, setter = count:) int count;
+@property (nonatomic, retain, getter = mainLayer, setter = mainLayer:) MainLayerViewController* mainLayer;
 @property (nonatomic, assign) CCSprite *sprite;
 @property (nonatomic, assign) CCSpriteBatchNode *batchNode;
 
 +(CCScene *) scene;
+-(void)loginSuccess;
 @end

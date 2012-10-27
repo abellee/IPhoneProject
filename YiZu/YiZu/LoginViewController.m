@@ -15,6 +15,10 @@
 #import "UIImage+Overlay.h"
 #import "PopUpLayer.h"
 #import "PlayerData.h"
+#import "GameLayer.h"
+
+#import "Loader.h"
+#import "ImageDownloadData.h"
 
 @implementation LoginViewController
 
@@ -34,28 +38,17 @@
 
 @synthesize registLayer;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (id) init{
     if(self = [super init]){
         [[Global sharedGlobal] userDataVersion:[[[NSUserDefaults standardUserDefaults] objectForKey:@"userDataVersion"] intValue]];
         platformList = [NSArray arrayWithObjects:@"新浪微博", @"腾讯微博", @"网易微博", @"人人网", nil];
         [platformList retain];
+        
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
         [view setBackgroundColor:[UIColor whiteColor]];
         [self setView:view];
+        [view release];
+        
         username = [[UITextField alloc] initWithFrame:CGRectMake(20, 30, 200, 30)];
         username.borderStyle = UITextBorderStyleRoundedRect;
         username.placeholder = @"邮箱地址";
@@ -226,6 +219,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:username.text forKey:@"username"];
     [[NSUserDefaults standardUserDefaults] setObject:password.text forKey:@"password"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", [[Global sharedGlobal] userDataVersion]] forKey:@"userDataVersion"];
+    [[[Global sharedGlobal] gameLayer] loginSuccess];
 }
 
 -(void)registButtonClick:(id)sender
@@ -301,6 +295,11 @@
 -(void)dealloc
 {
     NSLog(@"*********| LoginViewController dealloc! |***********");
+    [username release];
+    [password release];
+    [findPassword release];
+    [platformList release];
+    
     [super dealloc];
 }
 

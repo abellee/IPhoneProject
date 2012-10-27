@@ -8,8 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Loader : NSObject<NSURLConnectionDataDelegate{
+@class ImageDownloadData;
+
+@interface Loader : NSObject<NSURLConnectionDelegate>{
     NSURLConnection* conn;
+    NSMutableData* data;
+    NSMutableArray* imageList;
+    int count;
+    BOOL isDownloading;
 }
+
+@property (nonatomic, retain) NSURLConnection* conn;
+@property (nonatomic, assign, getter = isDownloading, setter = isDownloading:) BOOL isDownloading;
+
+-(void)load;
+-(void)addImage:(ImageDownloadData*)downloadData;
+-(void)reset;
 
 @end

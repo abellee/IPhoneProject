@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageDownloadDelegate.h"
 
 @class PlayerData;
-@interface PlayerInfoViewController : UIViewController{
+@class Loader;
+@interface PlayerInfoViewController : UIViewController<ImageDownloadDelegate>{
     UIImageView* imageView;
     UILabel* nickname;
     UILabel* level;
@@ -18,6 +20,7 @@
     UIView* background;
     
     PlayerData* player;
+    Loader* loader;
     
     UIActivityIndicatorView* activityView;
 }

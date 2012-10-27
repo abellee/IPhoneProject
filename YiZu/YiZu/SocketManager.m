@@ -272,7 +272,7 @@
     send(sockfd, &package, sizeof(loginPack) + sizeof(package.head), 0);
 }
 
--(void)backgroundTest
+-(void)enterBackground
 {
     PP_Package package;
     PP_UserState userState;
@@ -285,7 +285,7 @@
     send(sockfd, &package, sizeof(userState) + sizeof(package.head), 0);
 }
 
--(void)foregroundTest
+-(void)enterForeground
 {
     PP_Package package;
     PP_UserState userState;

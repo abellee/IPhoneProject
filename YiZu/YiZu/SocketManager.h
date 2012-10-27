@@ -30,8 +30,8 @@
 //@property (nonatomic, retain) NSThread* hbThread;
 
 -(void)connect;
--(void)backgroundTest;
--(void)foregroundTest;
+-(void)enterBackground;
+-(void)enterForeground;
 -(void)doLogin:(NSString*)username pass:(NSString*)password;
 -(void)doRegist:(NSString*)avatarURL nickname:(NSString*)nickname username:(NSString*)username password:(NSString*)password;
 

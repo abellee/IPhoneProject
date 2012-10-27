@@ -73,7 +73,7 @@
     if(![director enableRetinaDisplay:YES]){
         NSLog(@"not retina display");
     }
-	
+    
 //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
 //	if( ! [director enableRetinaDisplay:YES] )
 //		CCLOG(@"Retina Display Not supported");
@@ -134,12 +134,12 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {
 	[[CCDirector sharedDirector] stopAnimation];
-    [[[Global sharedGlobal] socketManager] backgroundTest];
+    [[[Global sharedGlobal] socketManager] enterBackground];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application {
 	[[CCDirector sharedDirector] startAnimation];
-    [[[Global sharedGlobal] socketManager] foregroundTest];
+    [[[Global sharedGlobal] socketManager] enterForeground];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
