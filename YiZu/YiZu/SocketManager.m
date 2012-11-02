@@ -7,6 +7,7 @@
 //
 
 #import "SocketManager.h"
+#import "JSONKit.h"
 #import "Global.h"
 #import "LoginViewController.h"
 #import "ServerInfo.h"
@@ -124,6 +125,7 @@
                         playerData.last_login = userData->acc_time.last_login;
                         playerData.home_latitude = userData->home_location.latitude;
                         playerData.home_longitude = userData->home_location.longitude;
+                        //playerData.petList = [[Global gbencodingWithChar:userData->pets] objectFromJSONString];
                         
                         [[Global sharedGlobal] player:playerData];
                         

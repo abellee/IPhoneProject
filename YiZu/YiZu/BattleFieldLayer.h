@@ -6,9 +6,11 @@
 //  Copyright (c) 2012年 Abel. All rights reserved.
 //
 
-#import "CCScene.h"
+#import "cocos2d.h"
 
-@interface BattleFieldLayer : CCScene
+@interface BattleFieldLayer : CCLayer{
+    CCSprite* background;
+}
 
 +(CCScene *) scene;
 

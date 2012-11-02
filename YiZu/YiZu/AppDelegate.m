@@ -72,6 +72,9 @@
     
     if(![director enableRetinaDisplay:YES]){
         NSLog(@"not retina display");
+        [[Global sharedGlobal] imageSuffix:@""];
+    }else{
+        [[Global sharedGlobal] imageSuffix:@"-hd"];
     }
     
 //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices

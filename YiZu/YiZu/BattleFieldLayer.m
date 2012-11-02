@@ -7,6 +7,8 @@
 //
 
 #import "BattleFieldLayer.h"
+#import "Global.h"
+#import "UIImage+Overlay.h"
 
 @implementation BattleFieldLayer
 
@@ -31,7 +33,25 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
+        CCSpriteFrameCache* frameCache0 = [CCSpriteFrameCache sharedSpriteFrameCache];
+        [frameCache0 addSpriteFramesWithFile:@"battle_bk.plist" textureFile:@"battle_bk.pvr.ccz"];
         
+        background = [CCSprite spriteWithSpriteFrameName:@"battle"];
+        [self addChild:background];
+        background.position = ccp([background boundingBox].size.width / 2, [background boundingBox].size.height / 2);
+        
+        CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
+        [frameCache addSpriteFramesWithFile:@"battle_pet.plist" textureFile:@"battle_pet.pvr.ccz"];
+        CCSprite* bear0 = [CCSprite spriteWithSpriteFrameName:@"bear0"];
+        CCSprite* bear1 = [CCSprite spriteWithSpriteFrameName:@"bear1"];
+        
+        [self addChild:bear0];
+        [self addChild:bear1];
+        bear0.position = ccp([background boundingBox].size.width / 2, [background boundingBox].size.height / 2 + 100);
+        bear1.position = ccp([background boundingBox].size.width / 2, [background boundingBox].size.height / 2 - 30);
+        
+        [frameCache0 removeSpriteFramesFromFile:@"battle_bk.plist"];
+        [frameCache removeSpriteFramesFromFile:@"battle_pet.plist"];
 	}
 	return self;
 }

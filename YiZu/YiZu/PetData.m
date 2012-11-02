@@ -10,22 +10,29 @@
 
 @implementation PetData
 
-- (id)initWithFrame:(CGRect)frame
+@synthesize uid;
+@synthesize state;
+@synthesize life;
+@synthesize grow;
+@synthesize feel;
+@synthesize cur_exp;
+@synthesize total_exp;
+@synthesize age;
+@synthesize equipList;
+
+-(id)init
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    if(self = [super init]){
+        
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+-(void)dealloc
 {
-    // Drawing code
+    NSLog(@"*********| PetData dealloc! |*********");
+    
+    [super dealloc];
 }
-*/
 
 @end

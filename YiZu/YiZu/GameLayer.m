@@ -15,6 +15,7 @@
 #import "PopUpLayer.h"
 #import "Global.h"
 #import "SocketManager.h"
+#import "BattleFieldLayer.h"
 
 @implementation GameLayer
 
@@ -65,6 +66,8 @@
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
         
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:10];
+        
+        //[self addChild:[BattleFieldLayer scene]];
         
 //        self.isTouchEnabled = YES;
 	}

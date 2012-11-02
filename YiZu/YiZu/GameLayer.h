@@ -10,6 +10,7 @@
 
 @class LoginViewController;
 @class MainLayerViewController;
+@class BattleFieldLayer;
 
 @interface GameLayer : CCLayer{
     LoginViewController *loginLayer;

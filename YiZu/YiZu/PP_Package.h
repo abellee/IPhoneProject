@@ -85,7 +85,7 @@ typedef struct PP_Head{
 
 typedef struct PP_Package{
     PP_Head head;
-    char content[1024];
+    char content[10240];
 }PP_Package;
 
 /**
@@ -165,6 +165,7 @@ typedef struct PP_CLUser{
     int resource_num;
     int pet_num;
     int bag_num;
+    char pets[1000];
     PP_AccTime acc_time;
     PP_Location home_location;
     PP_Location location;

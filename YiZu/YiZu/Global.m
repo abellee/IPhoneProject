@@ -9,6 +9,8 @@
 #import "Global.h"
 #import "RegexKitLite.h"
 #import "PlayerData.h"
+#import "cocos2d.h"
+#import "UIImage+Overlay.h"
 
 @implementation Global
 
@@ -19,6 +21,7 @@
 @synthesize gameLayer;
 @synthesize userDataVersion;
 @synthesize player;
+@synthesize imageSuffix;
 
 static Global *instance;
 
@@ -62,6 +65,29 @@ static Global *instance;
 {
     NSStringEncoding nsEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     return [NSString stringWithCString:str encoding:nsEncoding];
+}
+
++(CCSprite*)overlayCCSprite:(CCSprite *)sprite color:(UIColor *)color
+{
+    sprite.scale = 1.0f;
+    sprite.position = ccp(sprite.contentSize.width / 2, sprite.contentSize.height / 2);
+    CCRenderTexture* renderer = [CCRenderTexture renderTextureWithWidth:sprite.contentSize.width height:sprite.contentSize.height];
+    [renderer begin];
+    [sprite visit];
+    [renderer end];
+    UIImage* tempImg = [UIImage imageWithData:[renderer getUIImageAsDataFromBuffer:kCCImageFormatPNG]];
+    tempImg = [tempImg imageWithOverlayColor:color];
+    CCTexture2D* texture = [[CCTexture2D alloc] initWithImage:tempImg];
+    sprite = [CCSprite spriteWithTexture:texture];
+    [texture release];
+    return sprite;
+}
+
+-(NSString*)getImageName:(NSString *)name type:(NSString *)type
+{
+    NSString* str = [NSString stringWithFormat:@"%@%@.%@", name, imageSuffix, type];
+    NSLog(@"%@", str);
+    return str;
 }
 
 @end

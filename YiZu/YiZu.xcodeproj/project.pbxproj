@@ -18,6 +18,23 @@
 		0C3393EA162C6C3100BA3EF3 /* TouchableUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3393E5162C6C3100BA3EF3 /* TouchableUILabel.m */; };
 		0C39917A162C8F4600F1B936 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C399179162C8F4600F1B936 /* JSONKit.m */; };
 		0C667F59162C5F5D00C2CD8A /* AvatarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C667F58162C5F5D00C2CD8A /* AvatarCell.m */; };
+		0C67AC5B164009DF0027AB81 /* battle_bk-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC57164009DF0027AB81 /* battle_bk-hd.plist */; };
+		0C67AC5C164009DF0027AB81 /* battle_bk-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC58164009DF0027AB81 /* battle_bk-hd.pvr.ccz */; };
+		0C67AC5D164009DF0027AB81 /* battle_bk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC59164009DF0027AB81 /* battle_bk.plist */; };
+		0C67AC5E164009DF0027AB81 /* battle_bk.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC5A164009DF0027AB81 /* battle_bk.pvr.ccz */; };
+		0C67AC6716400C900027AB81 /* battle_item-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC6316400C900027AB81 /* battle_item-hd.plist */; };
+		0C67AC6816400C900027AB81 /* battle_item-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC6416400C900027AB81 /* battle_item-hd.pvr.ccz */; };
+		0C67AC6916400C900027AB81 /* battle_item.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC6516400C900027AB81 /* battle_item.plist */; };
+		0C67AC6A16400C900027AB81 /* battle_item.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC6616400C900027AB81 /* battle_item.pvr.ccz */; };
+		0C67AC73164014450027AB81 /* battle_pet-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC6F164014450027AB81 /* battle_pet-hd.plist */; };
+		0C67AC74164014450027AB81 /* battle_pet-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC70164014450027AB81 /* battle_pet-hd.pvr.ccz */; };
+		0C67AC75164014450027AB81 /* battle_pet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC71164014450027AB81 /* battle_pet.plist */; };
+		0C67AC76164014450027AB81 /* battle_pet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C67AC72164014450027AB81 /* battle_pet.pvr.ccz */; };
+		0C67AC7B16407B690027AB81 /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C67AC7A16407B690027AB81 /* Monster.m */; };
+		0C67AC7E16407F0A0027AB81 /* Skill.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C67AC7D16407F0A0027AB81 /* Skill.m */; };
+		0C67AC8116407F190027AB81 /* Equipment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C67AC8016407F190027AB81 /* Equipment.m */; };
+		0C67AC8416407F470027AB81 /* Organisms.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C67AC8316407F470027AB81 /* Organisms.m */; };
+		0C67AC8716407FFC0027AB81 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C67AC8616407FFB0027AB81 /* Character.m */; };
 		0C7B524E15E77D1A0021AE91 /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B524D15E77D1A0021AE91 /* HTTPManager.m */; };
 		0C7B525215E77E160021AE91 /* ServerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B525115E77E160021AE91 /* ServerInfo.m */; };
 		0C8F72D1163958A100645053 /* PlayerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8F72D0163958A100645053 /* PlayerInfoViewController.m */; };
@@ -177,7 +194,6 @@
 		B5C83610158A3FE8007732E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C8360F158A3FE8007732E8 /* main.m */; };
 		B5C83613158A3FE8007732E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C83612158A3FE8007732E8 /* AppDelegate.m */; };
 		B5C83616158A3FE8007732E8 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C83615158A3FE8007732E8 /* RootViewController.m */; };
-		B5C83619158A3FE8007732E8 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C83618158A3FE8007732E8 /* HelloWorldLayer.m */; };
 		B5FAD6C6159CA64C00C33476 /* BattleFieldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6C5159CA64C00C33476 /* BattleFieldLayer.m */; };
 		B5FAD6CE159CA8B200C33476 /* WorldMapLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6CD159CA8B200C33476 /* WorldMapLayer.m */; };
 		B5FAD6D4159CA8D800C33476 /* SystemSettingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FAD6D3159CA8D800C33476 /* SystemSettingLayer.m */; };
@@ -220,6 +236,28 @@
 		0C399179162C8F4600F1B936 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		0C667F57162C5F5D00C2CD8A /* AvatarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarCell.h; sourceTree = "<group>"; };
 		0C667F58162C5F5D00C2CD8A /* AvatarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarCell.m; sourceTree = "<group>"; };
+		0C67AC57164009DF0027AB81 /* battle_bk-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "battle_bk-hd.plist"; sourceTree = "<group>"; };
+		0C67AC58164009DF0027AB81 /* battle_bk-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "battle_bk-hd.pvr.ccz"; sourceTree = "<group>"; };
+		0C67AC59164009DF0027AB81 /* battle_bk.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = battle_bk.plist; sourceTree = "<group>"; };
+		0C67AC5A164009DF0027AB81 /* battle_bk.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = battle_bk.pvr.ccz; sourceTree = "<group>"; };
+		0C67AC6316400C900027AB81 /* battle_item-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "battle_item-hd.plist"; sourceTree = "<group>"; };
+		0C67AC6416400C900027AB81 /* battle_item-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "battle_item-hd.pvr.ccz"; sourceTree = "<group>"; };
+		0C67AC6516400C900027AB81 /* battle_item.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = battle_item.plist; sourceTree = "<group>"; };
+		0C67AC6616400C900027AB81 /* battle_item.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = battle_item.pvr.ccz; sourceTree = "<group>"; };
+		0C67AC6F164014450027AB81 /* battle_pet-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "battle_pet-hd.plist"; sourceTree = "<group>"; };
+		0C67AC70164014450027AB81 /* battle_pet-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "battle_pet-hd.pvr.ccz"; sourceTree = "<group>"; };
+		0C67AC71164014450027AB81 /* battle_pet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = battle_pet.plist; sourceTree = "<group>"; };
+		0C67AC72164014450027AB81 /* battle_pet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = battle_pet.pvr.ccz; sourceTree = "<group>"; };
+		0C67AC7916407B690027AB81 /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
+		0C67AC7A16407B690027AB81 /* Monster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monster.m; sourceTree = "<group>"; };
+		0C67AC7C16407F0A0027AB81 /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
+		0C67AC7D16407F0A0027AB81 /* Skill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skill.m; sourceTree = "<group>"; };
+		0C67AC7F16407F190027AB81 /* Equipment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Equipment.h; sourceTree = "<group>"; };
+		0C67AC8016407F190027AB81 /* Equipment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Equipment.m; sourceTree = "<group>"; };
+		0C67AC8216407F470027AB81 /* Organisms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Organisms.h; sourceTree = "<group>"; };
+		0C67AC8316407F470027AB81 /* Organisms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organisms.m; sourceTree = "<group>"; };
+		0C67AC8516407FFB0027AB81 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		0C67AC8616407FFB0027AB81 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		0C700B0615DCF19600825A4E /* PP_Package.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PP_Package.h; sourceTree = "<group>"; };
 		0C7B524C15E77D1A0021AE91 /* HTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPManager.h; sourceTree = "<group>"; };
 		0C7B524D15E77D1A0021AE91 /* HTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPManager.m; sourceTree = "<group>"; };
@@ -530,8 +568,6 @@
 		B5C83612158A3FE8007732E8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B5C83614158A3FE8007732E8 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		B5C83615158A3FE8007732E8 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		B5C83617158A3FE8007732E8 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		B5C83618158A3FE8007732E8 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		B5C8361A158A3FE8007732E8 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		B5FAD6C4159CA64C00C33476 /* BattleFieldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleFieldLayer.h; sourceTree = "<group>"; };
 		B5FAD6C5159CA64C00C33476 /* BattleFieldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleFieldLayer.m; sourceTree = "<group>"; };
@@ -799,8 +835,6 @@
 				B5C83612158A3FE8007732E8 /* AppDelegate.m */,
 				B5C83614158A3FE8007732E8 /* RootViewController.h */,
 				B5C83615158A3FE8007732E8 /* RootViewController.m */,
-				B5C83617158A3FE8007732E8 /* HelloWorldLayer.h */,
-				B5C83618158A3FE8007732E8 /* HelloWorldLayer.m */,
 				B5C8361A158A3FE8007732E8 /* GameConfig.h */,
 				B5FAD6DE159CA90D00C33476 /* Model */,
 				B5FAD6C8159CA69F00C33476 /* Layers */,
@@ -814,6 +848,18 @@
 		B5C834C0158A3FE6007732E8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0C67AC6F164014450027AB81 /* battle_pet-hd.plist */,
+				0C67AC70164014450027AB81 /* battle_pet-hd.pvr.ccz */,
+				0C67AC71164014450027AB81 /* battle_pet.plist */,
+				0C67AC72164014450027AB81 /* battle_pet.pvr.ccz */,
+				0C67AC6316400C900027AB81 /* battle_item-hd.plist */,
+				0C67AC6416400C900027AB81 /* battle_item-hd.pvr.ccz */,
+				0C67AC6516400C900027AB81 /* battle_item.plist */,
+				0C67AC6616400C900027AB81 /* battle_item.pvr.ccz */,
+				0C67AC57164009DF0027AB81 /* battle_bk-hd.plist */,
+				0C67AC58164009DF0027AB81 /* battle_bk-hd.pvr.ccz */,
+				0C67AC59164009DF0027AB81 /* battle_bk.plist */,
+				0C67AC5A164009DF0027AB81 /* battle_bk.pvr.ccz */,
 				0CF37DCE163C02CE0042FB68 /* worldmap@2x.png */,
 				B5125E74159CC80E00FB11B8 /* OpenPlatform */,
 				B5C834C1158A3FE6007732E8 /* Default.png */,
@@ -1191,6 +1237,16 @@
 				B5FAD6E6159CA93600C33476 /* TaskData.m */,
 				0CF37DC5163BFB090042FB68 /* ResourcePoint.h */,
 				0CF37DC6163BFB090042FB68 /* ResourcePoint.m */,
+				0C67AC7916407B690027AB81 /* Monster.h */,
+				0C67AC7A16407B690027AB81 /* Monster.m */,
+				0C67AC7C16407F0A0027AB81 /* Skill.h */,
+				0C67AC7D16407F0A0027AB81 /* Skill.m */,
+				0C67AC7F16407F190027AB81 /* Equipment.h */,
+				0C67AC8016407F190027AB81 /* Equipment.m */,
+				0C67AC8216407F470027AB81 /* Organisms.h */,
+				0C67AC8316407F470027AB81 /* Organisms.m */,
+				0C67AC8516407FFB0027AB81 /* Character.h */,
+				0C67AC8616407FFB0027AB81 /* Character.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1268,6 +1324,18 @@
 				B530504B15A14CD700CE2862 /* fight.plist in Resources */,
 				B530504C15A14CD700CE2862 /* fight.pvr.ccz in Resources */,
 				0CF37DCF163C02CE0042FB68 /* worldmap@2x.png in Resources */,
+				0C67AC5B164009DF0027AB81 /* battle_bk-hd.plist in Resources */,
+				0C67AC5C164009DF0027AB81 /* battle_bk-hd.pvr.ccz in Resources */,
+				0C67AC5D164009DF0027AB81 /* battle_bk.plist in Resources */,
+				0C67AC5E164009DF0027AB81 /* battle_bk.pvr.ccz in Resources */,
+				0C67AC6716400C900027AB81 /* battle_item-hd.plist in Resources */,
+				0C67AC6816400C900027AB81 /* battle_item-hd.pvr.ccz in Resources */,
+				0C67AC6916400C900027AB81 /* battle_item.plist in Resources */,
+				0C67AC6A16400C900027AB81 /* battle_item.pvr.ccz in Resources */,
+				0C67AC73164014450027AB81 /* battle_pet-hd.plist in Resources */,
+				0C67AC74164014450027AB81 /* battle_pet-hd.pvr.ccz in Resources */,
+				0C67AC75164014450027AB81 /* battle_pet.plist in Resources */,
+				0C67AC76164014450027AB81 /* battle_pet.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1375,7 +1443,6 @@
 				B5C83610158A3FE8007732E8 /* main.m in Sources */,
 				B5C83613158A3FE8007732E8 /* AppDelegate.m in Sources */,
 				B5C83616158A3FE8007732E8 /* RootViewController.m in Sources */,
-				B5C83619158A3FE8007732E8 /* HelloWorldLayer.m in Sources */,
 				B5FAD6C6159CA64C00C33476 /* BattleFieldLayer.m in Sources */,
 				B5FAD6CE159CA8B200C33476 /* WorldMapLayer.m in Sources */,
 				B5FAD6D4159CA8D800C33476 /* SystemSettingLayer.m in Sources */,
@@ -1424,6 +1491,11 @@
 				0CF37DD5163C09290042FB68 /* StoreHouseViewController.m in Sources */,
 				0CF37DD8163C09570042FB68 /* ResourceViewController.m in Sources */,
 				0CF37DDB163C09810042FB68 /* ShopViewController.m in Sources */,
+				0C67AC7B16407B690027AB81 /* Monster.m in Sources */,
+				0C67AC7E16407F0A0027AB81 /* Skill.m in Sources */,
+				0C67AC8116407F190027AB81 /* Equipment.m in Sources */,
+				0C67AC8416407F470027AB81 /* Organisms.m in Sources */,
+				0C67AC8716407FFC0027AB81 /* Character.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
