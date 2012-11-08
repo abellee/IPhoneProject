@@ -13,8 +13,9 @@
 @class GameLayer;
 @class PopUpLayer;
 @class ServerInfo;
-@class PlayerData;
+@class PP_CLUser;
 @class CCSprite;
+@class BattleFieldLayer;
 @interface Global : NSObject{
     PopUpLayer *popUpLayer;
     ServerInfo *serverInfo;
@@ -22,8 +23,9 @@
     GameLayer* gameLayer;
     NSString* callback;
     int userDataVerion;
-    PlayerData* player;
+    PP_CLUser* player;
     NSString* imageSuffix;
+    BattleFieldLayer* battleField;
 }
 
 @property (nonatomic, retain, getter = popUpLayer, setter = popUpLayer:) PopUpLayer *popUpLayer;
@@ -32,8 +34,9 @@
 @property (nonatomic, retain, getter = gameLayer, setter = gameLayer:) GameLayer* gameLayer;
 @property (nonatomic, retain, getter = callback, setter = callback:) NSString* callback;
 @property (nonatomic, assign, getter = userDataVersion, setter = userDataVersion:) int userDataVersion;
-@property (nonatomic, retain, getter = player, setter = player:) PlayerData* player;
+@property (nonatomic, retain, getter = player, setter = player:) PP_CLUser* player;
 @property (nonatomic, retain, getter = imageSuffix, setter = imageSuffix:) NSString* imageSuffix;
+@property (nonatomic, assign, getter = battleField, setter = battleField:) BattleFieldLayer* battleField;
 
 +(id)sharedGlobal;
 + (NSString *)md5:(NSString *)str;

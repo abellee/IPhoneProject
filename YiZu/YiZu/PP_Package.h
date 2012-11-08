@@ -38,7 +38,10 @@ typedef enum PP_Types{
     IS_LAST_USER_DATA = 100008,
     BACKGROUND = 100009,
     FOREGROUND = 100010,
-    HOME_LOCATE = 100011
+    HOME_LOCATE = 100011,
+    BATTLE = 100012,
+    BATTLE_ATTACK = 100013,
+    BATTLE_ATTACK_RESULT = 100014
 }PP_Types;
 
 /**
@@ -85,98 +88,9 @@ typedef struct PP_Head{
 
 typedef struct PP_Package{
     PP_Head head;
-    char content[10240];
+    char content[1024];
 }PP_Package;
 
-/**
- 错误包结构
- **/
-typedef struct PP_Error{
-    int errorType;
-    int errorId;
-}PP_Error;
 
-/**
- 定位数据包结构
- **/
-typedef struct PP_Location{
-    double latitude;
-    double longitude;
-}PP_Location;
-
-/**
- 帐号数据结构
- **/
-typedef struct PP_Account{
-    char username[24];
-    char password[40];
-}PP_Account;
-
-/**
- 最后登录时间跟创建时间
- **/
-typedef struct PP_AccTime{
-    int create_time;
-    int last_login;
-}PP_AccTime;
-
-/**
- 登录包结构
- **/
-typedef struct PP_LoginPack{
-    PP_Account account;
-    int login_mode;
-    int version;
-}PP_LoginPack;
-
-/**
- 注册包结构
- **/
-typedef struct PP_RegistPack{
-    PP_Account account;
-    char nickname[20];
-    char avatar_img[40];
-}PP_RegistPack;
-
-/**
- 客户端用户数据包结构
- **/
-typedef struct PP_CLUser{
-    int uid;
-    int version;
-    char nickname[20];
-    char avatar_img[40];
-    char signature[280];
-    char hobby[140];
-    char job[20];
-    int sex;
-    int age;
-    int constellation;
-    int birthday;
-    int blood_type;
-    int nation;
-    int province;
-    int city;
-    char telephone[11];
-    int coin;
-    int token;
-    int level;
-    int country;
-    int resource_num;
-    int pet_num;
-    int bag_num;
-    char pets[1000];
-    PP_AccTime acc_time;
-    PP_Location home_location;
-    PP_Location location;
-}PP_CLUser;
-
-/**
- 用户切换状态
- **/
-typedef struct PP_UserState{
-    int uid;
-    int state;
-}PP_UserState;
 
 #endif

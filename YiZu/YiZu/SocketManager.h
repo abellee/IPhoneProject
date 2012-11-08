@@ -20,19 +20,18 @@
 
 @interface SocketManager : NSObject{
     NSThread* thread;
-    //NSThread* hbThread;
     
     int sockfd;
     struct sockaddr_in addr;
 }
 
 @property (nonatomic, retain) NSThread* thread;
-//@property (nonatomic, retain) NSThread* hbThread;
 
 -(void)connect;
 -(void)enterBackground;
 -(void)enterForeground;
 -(void)doLogin:(NSString*)username pass:(NSString*)password;
 -(void)doRegist:(NSString*)avatarURL nickname:(NSString*)nickname username:(NSString*)username password:(NSString*)password;
+-(void)attackStartWithNSArray:(NSArray*)array;
 
 @end

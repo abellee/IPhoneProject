@@ -17,9 +17,6 @@
 #import "PlayerData.h"
 #import "GameLayer.h"
 
-#import "Loader.h"
-#import "ImageDownloadData.h"
-
 @implementation LoginViewController
 
 @synthesize username;

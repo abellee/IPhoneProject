@@ -11,6 +11,7 @@
 @class LoginViewController;
 @class MainLayerViewController;
 @class BattleFieldLayer;
+@class PP_BattleInfo;
 
 @interface GameLayer : CCLayer{
     LoginViewController *loginLayer;
@@ -27,4 +28,5 @@
 
 +(CCScene *) scene;
 -(void)loginSuccess;
+-(void)onBattleWithBattleInfo:(PP_BattleInfo*)battleInfo;
 @end

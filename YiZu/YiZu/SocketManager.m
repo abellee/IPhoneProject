@@ -17,10 +17,26 @@
 #import "PopUpLayer.h"
 #import "PlayerData.h"
 
+#import "PP_Account.pb.h"
+#import "PP_LoginPack.pb.h"
+#import "PP_CLUser.pb.h"
+#import "PP_UserState.pb.h"
+#import "PP_RegistPack.pb.h"
+#import "PP_Location.pb.h"
+#import "PP_AccTime.pb.h"
+#import "PP_Error.pb.h"
+#import "PP_Pet.pb.h"
+#import "PP_BattleInfo.pb.h"
+#import "PP_BattlePet.pb.h"
+#import "PP_GameControl.pb.h"
+#import "PP_AttackResult.pb.h"
+#import "PP_Attack.pb.h"
+#import "BattlePetSpriteController.h"
+#import "BattleFieldLayer.h"
+
 @implementation SocketManager
 
 @synthesize thread;
-//@synthesize hbThread;
 
 -(void)connect
 {
@@ -29,11 +45,6 @@
         [thread setName:@"socket_thread"];
         [thread start];
     }
-    /*if(hbThread == nil){
-        hbThread = [[NSThread alloc] initWithTarget:self selector:@selector(hbThreadFunc) object:nil];
-        [hbThread setName:@"heart_beat_thread"];
-        [hbThread start];
-    }*/
 }
 
 -(void)connectToServer
@@ -50,27 +61,9 @@
     bzero(addr.sin_zero, 8);
     int conn = connect(sockfd, (struct sockaddr *)&addr, sizeof(struct sockaddr));
     if(conn != -1){
-        /*PP_Package package;
-        PP_LoginPack loginPack;
-        strcpy(loginPack.account.username, "abellee87@gmail.com");
-        strcpy(loginPack.account.password, "lijinbei");
-        loginPack.login_mode = PP_LOGIN;
-        loginPack.version = 0;
-        package.head.type = LOGIN;
-        memcpy(package.content, &loginPack, sizeof(loginPack));
-        package.head.length = sizeof(loginPack);
-        send(sockfd, &package, sizeof(loginPack) + sizeof(package.head), 0);
-        [self performSelectorOnMainThread:@selector(callMain:) withObject:@"hello main" waitUntilDone:NO];*/
         
         char readBuffer[8];
         memset(&readBuffer, 0, sizeof(readBuffer));
-        //int br = 0;
-//        while ((br = recv(sockfd, readBuffer, sizeof(readBuffer), 0)) < sizeof(readBuffer)) {
-//            PP_Package* b = (PP_Package*)readBuffer;
-//            NSLog(@"from server:%d", b->head.length);
-//            //[readData appendBytes:readBuffer length:br];
-//            //NSLog(@"from server:%@", [[NSString alloc] initWithData:readData encoding:NSUTF8StringEncoding]);
-//        }
         while (1) {
             int br = recv(sockfd, readBuffer, sizeof(readBuffer), 0);
             if(br == 0){
@@ -90,103 +83,29 @@
                         [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:@"YES" waitUntilDone:NO];
                     }break;
                     case LOGIN:{
-                        PP_CLUser* userData = (PP_CLUser*)content;
-                        NSString* avatarImg = [Global gbencodingWithChar:userData->avatar_img];
-                        NSString* nickname = [Global gbencodingWithChar:userData->nickname];
-                        NSString* signature = [Global gbencodingWithChar:userData->signature];
-                        NSString* hobby = [Global gbencodingWithChar:userData->hobby];
-                        NSString* job = [Global gbencodingWithChar:userData->job];
-                        NSString* telephone = [Global gbencodingWithChar:userData->telephone];
-                        PlayerData* playerData = [[PlayerData alloc] init];
-                        playerData.nickname = nickname;
-                        playerData.avatar_img = avatarImg;
-                        playerData.signature = signature;
-                        playerData.hobby = hobby;
-                        playerData.job = job;
-                        playerData.telephone = telephone;
-                        
-                        playerData.uid = userData->uid;
-                        playerData.sex = userData->sex;
-                        playerData.age = userData->age;
-                        playerData.constellation = userData->constellation;
-                        playerData.birthday = userData->birthday;
-                        playerData.blood_type = userData->blood_type;
-                        playerData.nation = userData->nation;
-                        playerData.province = userData->province;
-                        playerData.city = userData->city;
-                        playerData.coin = userData->coin;
-                        playerData.token = userData->token;
-                        playerData.level = userData->level;
-                        playerData.country = userData->country;
-                        playerData.resource_num = userData->resource_num;
-                        playerData.pet_num = userData->pet_num;
-                        playerData.bag_num = userData->bag_num;
-                        playerData.create_time = userData->acc_time.create_time;
-                        playerData.last_login = userData->acc_time.last_login;
-                        playerData.home_latitude = userData->home_location.latitude;
-                        playerData.home_longitude = userData->home_location.longitude;
-                        //playerData.petList = [[Global gbencodingWithChar:userData->pets] objectFromJSONString];
-                        
-                        [[Global sharedGlobal] player:playerData];
+                        NSLog(@"received:%d", b->head.length);
+                        PP_CLUser* userData = [PP_CLUser parseFromData:[NSData dataWithBytes:content length:b->head.length]];
+                        [[Global sharedGlobal] player:userData];
                         
                         [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:@"NO" waitUntilDone:NO];
                         
                     }break;
                     case HEART_BEAT:{
-                        //[self performSelector:@selector(sendHeartBeat) onThread:hbThread withObject:nil waitUntilDone:NO];
                         [self performSelectorInBackground:@selector(sendHeartBeat) withObject:nil];
                     }break;
                     case DATA_ERROR:{
-                        PP_Error* errorPack = (PP_Error*)content;
-                        switch (errorPack->errorType) {
-                            case LOGIN_ERROR:{
-                                NSString* alertStr;
-                                switch (errorPack->errorId) {
-                                    case LOGIN_FAILED:
-                                        alertStr = @"帐号或密码不正确！";
-                                        break;
-                                    case USER_NOT_EXIST:
-                                        alertStr = @"用户不存在！";
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                NSArray* args = [NSArray arrayWithObjects:[NSNumber numberWithInt:LOGIN_ERROR], [NSNumber numberWithInt:errorPack->errorId], alertStr, nil];
-                                [self performSelectorOnMainThread:@selector(showErrorAlert:) withObject:args waitUntilDone:NO];
-                                }break;
-                            case REGIST_ERROR:{
-                                NSString* alertStr;
-                                switch (errorPack->errorId) {
-                                    case INVALID_ACC:{
-                                        alertStr = @"帐号不符合要求！";
-                                    }break;
-                                    case INVALID_NICK:{
-                                        alertStr = @"昵称不符合要求！";
-                                    }break;
-                                    case INVALID_NICK_LEN:{
-                                        alertStr = @"昵称长度不正确!";
-                                    }break;
-                                    case INVALID_PASS_LEN:{
-                                        alertStr = @"密码长度不正确!";
-                                    }break;
-                                    case DUP_ACC:{
-                                        alertStr = @"该帐号已经存在!";
-                                    }break;
-                                    case DUP_NICK:{
-                                        alertStr = @"该昵称已经存在!";
-                                    }break;
-                                    case INSERT_FAILED:{
-                                        alertStr = [NSString stringWithFormat:@"注册失败！错误:%d", INSERT_FAILED];
-                                    }break;
-                                    default:
-                                        break;
-                                }
-                                NSArray* args = [NSArray arrayWithObjects:[NSNumber numberWithInt:REGIST_ERROR], [NSNumber numberWithInt:errorPack->errorId], alertStr, nil];
-                                [self performSelectorOnMainThread:@selector(showErrorAlert:) withObject:args waitUntilDone:NO];
-                            }break;
-                            default:
-                                break;
-                        }
+                        PP_Error* errorPack = [PP_Error parseFromData:[NSData dataWithBytes:content length:sizeof(content)]];
+                        [self performSelectorOnMainThread:@selector(showErrorAlert:) withObject:errorPack waitUntilDone:NO];
+                    }break;
+                    case BATTLE:{
+                        NSLog(@"on battle");
+                        PP_BattleInfo* battleInfo = [PP_BattleInfo parseFromData:[NSData dataWithBytes:content length:sizeof(content)]];
+                        [self performSelectorOnMainThread:@selector(onBattle:) withObject:battleInfo waitUntilDone:NO];
+                    }break;
+                    case BATTLE_ATTACK_RESULT:{
+                        NSLog(@"battle attack result");
+                        PP_AttackResult* attackResult = [PP_AttackResult parseFromData:[NSData dataWithBytes:content length:sizeof(content)]];
+                        [self performSelectorOnMainThread:@selector(onAttackResult:) withObject:attackResult waitUntilDone:NO];
                     }break;
                     default:
                         break;
@@ -217,6 +136,11 @@
     [pool release];
 }*/
 
+-(void)onBattle:(PP_BattleInfo*)battleInfo
+{
+    [[[Global sharedGlobal] gameLayer] onBattleWithBattleInfo:battleInfo];
+}
+
 - (void)loginSuccess:(NSString*)isLast
 {
     if([isLast isEqualToString:@"YES"]){
@@ -235,69 +159,90 @@
 -(void)doRegist:(NSString *)avatarURL nickname:(NSString *)nickname username:(NSString *)username password:(NSString *)password
 {
     PP_Package package;
-    PP_RegistPack registPack;
-    if(avatarURL) strcpy(registPack.avatar_img, [avatarURL UTF8String]);
-    strcpy(registPack.nickname, [nickname UTF8String]);
-    strcpy(registPack.account.username, [username UTF8String]);
-    strcpy(registPack.account.password, [[Global md5:password] UTF8String]);
+    PP_RegistPack* registPack;
+    PP_RegistPack_Builder* registPackBuilder = [PP_RegistPack builder];
+    [registPackBuilder setAccount:[[[[[registPackBuilder account] builder] setUsername:username] setPassword:password] build]];
+    [registPackBuilder setNickname:nickname];
+    if(avatarURL) [registPackBuilder setAvatarImg:avatarURL];
+    registPack = [registPackBuilder build];
     package.head.type = REGIST;
-    package.head.length = sizeof(registPack);
-    memcpy(package.content, &registPack, sizeof(registPack));
-    send(sockfd, &package, sizeof(registPack) + sizeof(package.head), 0);
+    package.head.length = registPack.serializedSize;
+    NSLog(@"注册发出数据量:%d", registPack.serializedSize);
+    memcpy(package.content, &registPack, package.head.length);
+    send(sockfd, &package, package.head.length + sizeof(package.head), 0);
 }
 
 -(void)sendHeartBeat
 {
     PP_Package package;
-    PP_UserState hb;
-    hb.uid = 1;
-    hb.state = FOREGROUND;
+    PP_UserState* hb = [[[[PP_UserState builder] setUid:1] setState:FOREGROUND] build];
     
     package.head.type = HEART_BEAT;
-    package.head.length = sizeof(hb);
-    memcpy(package.content, &hb, sizeof(hb));
-    send(sockfd, &package, sizeof(package.head) + sizeof(hb), 0);
+    package.head.length = hb.serializedSize;
+    NSLog(@"心跳包发出数据量:%d", hb.serializedSize);
+    memcpy(package.content, hb.data.bytes, package.head.length);
+    send(sockfd, &package, sizeof(package.head) + package.head.length, 0);
 }
 
 -(void)doLogin:(NSString *)username pass:(NSString *)password
 {
     PP_Package package;
-    PP_LoginPack loginPack;
-    strcpy(loginPack.account.username, [username UTF8String]);
-    strcpy(loginPack.account.password, [[Global md5:password] UTF8String]);
-    loginPack.login_mode = PP_LOGIN;
-    //loginPack.version = [[Global sharedGlobal] userDataVersion];
-    loginPack.version = 100;
+    PP_Account* acc = [[[[PP_Account builder] setUsername:username] setPassword:[Global md5:password]] build];
+    PP_LoginPack* loginPack = [[[[[PP_LoginPack builder] setAccount:acc] setLoginMode:PP_LOGIN] setVersion:100] build];
     package.head.type = LOGIN;
-    memcpy(package.content, &loginPack, sizeof(loginPack));
-    package.head.length = sizeof(loginPack);
-    send(sockfd, &package, sizeof(loginPack) + sizeof(package.head), 0);
+    package.head.length = loginPack.serializedSize;
+    NSLog(@"登录发出数据量:%d", loginPack.serializedSize);
+    
+    memcpy(package.content, [[loginPack data] bytes], package.head.length);
+    send(sockfd, &package, package.head.length + sizeof(package.head), 0);
 }
 
 -(void)enterBackground
 {
     PP_Package package;
-    PP_UserState userState;
-    userState.uid = 1;
-    userState.state = BACKGROUND_STATE;
+    PP_UserState* userState = [[[[PP_UserState builder] setUid:1] setState:BACKGROUND_STATE] build];
     
     package.head.type = BACKGROUND;
-    package.head.length = sizeof(userState);
-    memcpy(package.content, &userState, sizeof(userState));
-    send(sockfd, &package, sizeof(userState) + sizeof(package.head), 0);
+    package.head.length = userState.serializedSize;
+    memcpy(package.content, &userState, package.head.length);
+    send(sockfd, &package, package.head.length + sizeof(package.head), 0);
 }
 
 -(void)enterForeground
 {
     PP_Package package;
-    PP_UserState userState;
-    userState.uid = 1;
-    userState.state = FOREGROUND_STATE;
+    PP_UserState* userState = [[[[PP_UserState builder] setUid:1] setState:FOREGROUND_STATE] build];
     
     package.head.type = FOREGROUND;
-    package.head.length = sizeof(userState);
-    memcpy(package.content, &userState, sizeof(userState));
-    send(sockfd, &package, sizeof(userState) + sizeof(package.head), 0);
+    package.head.length = userState.serializedSize;
+    memcpy(package.content, &userState, package.head.length);
+    send(sockfd, &package, package.head.length + sizeof(package.head), 0);
+    [[userState builder] clear];
+}
+
+-(void)attackStartWithNSArray:(NSArray *)array
+{
+    PP_Package package;
+    PP_Attack_Builder* attackBuilder = [PP_Attack builder];
+    for (BattlePetSpriteController* battlePetController in array) {
+        PP_Pet* pet = (PP_Pet*)[battlePetController data];
+        PP_BattlePet* battlePet = (PP_BattlePet*)[battlePetController targetData];
+        PP_GameControl* gameControl = [[[[[PP_GameControl builder] setPetId:[pet petId]] setSkillId:1] setTargetId:[battlePet mid]] build];
+        [attackBuilder addGameControl:gameControl];
+    }
+    PP_Attack* attack = [attackBuilder build];
+    package.head.type = BATTLE_ATTACK;
+    package.head.length = attack.serializedSize;
+    NSLog(@"攻击包数据:%d", attack.serializedSize);
+    memcpy(package.content, [[attack data] bytes], package.head.length);
+    send(sockfd, &package, package.head.length + sizeof(package.head), 0);
+    //[[attack builder] clearGameControl];
+    //[[attack builder] clear];
+}
+
+-(void)onAttackResult:(PP_AttackResult*)attackResult
+{
+    [[[Global sharedGlobal] battleField] attackResultWithPPAttackResult:attackResult];
 }
 
 -(void)callMain:(NSString *)str
@@ -305,14 +250,51 @@
     NSLog(@"%@", str);
 }
 
--(void)showErrorAlert:(NSArray *)args
+-(void)showErrorAlert:(PP_Error*)errorPack
 {
-    switch ([[args objectAtIndex:0] integerValue]) {
+    switch ([errorPack errorType]) {
         case LOGIN_ERROR:{
-            [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"登录失败!" info:[args objectAtIndex: 2]];
+            NSString* alertStr;
+            switch ([errorPack errorId]) {
+                case LOGIN_FAILED:
+                    alertStr = @"帐号或密码不正确！";
+                    break;
+                case USER_NOT_EXIST:
+                    alertStr = @"用户不存在！";
+                    break;
+                default:
+                    break;
+            }
+            [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"登录失败!" info:alertStr];
         }break;
         case REGIST_ERROR:{
-            [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"注册失败!" info:[args objectAtIndex: 2]];
+            NSString* alertStr;
+            switch ([errorPack errorId]) {
+                case INVALID_ACC:{
+                    alertStr = @"帐号不符合要求！";
+                }break;
+                case INVALID_NICK:{
+                    alertStr = @"昵称不符合要求！";
+                }break;
+                case INVALID_NICK_LEN:{
+                    alertStr = @"昵称长度不正确!";
+                }break;
+                case INVALID_PASS_LEN:{
+                    alertStr = @"密码长度不正确!";
+                }break;
+                case DUP_ACC:{
+                    alertStr = @"该帐号已经存在!";
+                }break;
+                case DUP_NICK:{
+                    alertStr = @"该昵称已经存在!";
+                }break;
+                case INSERT_FAILED:{
+                    alertStr = [NSString stringWithFormat:@"注册失败！错误:%d", INSERT_FAILED];
+                }break;
+                default:
+                    break;
+            }
+            [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"注册失败!" info:alertStr];
         }break;
         default:
             break;

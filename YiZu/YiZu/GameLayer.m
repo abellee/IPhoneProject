@@ -67,8 +67,6 @@
         
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:10];
         
-        //[self addChild:[BattleFieldLayer scene]];
-        
 //        self.isTouchEnabled = YES;
 	}
 	return self;
@@ -82,6 +80,12 @@
     
     mainLayer = [[MainLayerViewController alloc] init];
     [[[CCDirector sharedDirector] openGLView] insertSubview:mainLayer.view atIndex:0];
+}
+
+-(void)onBattleWithBattleInfo:(PP_BattleInfo *)battleInfo
+{
+    [[mainLayer view] setHidden:YES];
+    [self addChild:[BattleFieldLayer sceneWithBattleInfo:battleInfo]];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

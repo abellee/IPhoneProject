@@ -11,6 +11,7 @@
 #import "PlayerData.h"
 #import "cocos2d.h"
 #import "UIImage+Overlay.h"
+#import "PPCCSprite.h"
 
 @implementation Global
 
@@ -78,7 +79,11 @@ static Global *instance;
     UIImage* tempImg = [UIImage imageWithData:[renderer getUIImageAsDataFromBuffer:kCCImageFormatPNG]];
     tempImg = [tempImg imageWithOverlayColor:color];
     CCTexture2D* texture = [[CCTexture2D alloc] initWithImage:tempImg];
-    sprite = [CCSprite spriteWithTexture:texture];
+    if([sprite isKindOfClass:[PPCCSprite class]]){
+        sprite = [PPCCSprite spriteWithTexture:texture];
+    }else{
+        sprite = [CCSprite spriteWithTexture:texture];
+    }
     [texture release];
     return sprite;
 }
