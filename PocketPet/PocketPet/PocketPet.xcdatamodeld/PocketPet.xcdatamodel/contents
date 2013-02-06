@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="PocketPet" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DBPP_ActionIDs" representedClassName="DBPP_ActionIDs" syncable="YES">
+        <attribute name="action_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="action_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Bag" representedClassName="DBPP_Bag" syncable="YES">
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="user_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_UserData_Version" inverseName="bag" inverseEntity="DBPP_UserData_Version" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Equipment" representedClassName="DBPP_Equipment" syncable="YES">
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="equip_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="equip_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pet_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="pet_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_User_Pet" inverseName="equipment" inverseEntity="DBPP_User_Pet" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Formula" representedClassName="DBPP_Formula" syncable="YES">
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="skill_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="user_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_UserData_Version" inverseName="formula" inverseEntity="DBPP_UserData_Version" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Instance" representedClassName="DBPP_Instance" syncable="YES">
+        <attribute name="instance_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="require_element" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="require_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="require_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="require_task" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="instance_data" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_InstanceData" inverseName="instance" inverseEntity="DBPP_InstanceData" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_InstanceData" representedClassName="DBPP_InstanceData" syncable="YES">
+        <attribute name="gate_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="instance_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="monster_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="monster_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="monster_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="total_gate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="instance" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_Instance" inverseName="instance_data" inverseEntity="DBPP_Instance" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Item_Template" representedClassName="DBPP_Item_Template" syncable="YES">
+        <attribute name="can_composition" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="can_sell" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="can_trade" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="can_upgrade" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="coin_price" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="is_shop" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_agile" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_attack" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_attack_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_defense" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_defense_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_element" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_endur" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_exp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_feel" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_hp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_intelligence" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_invalid_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_life" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_magic" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_magic_defense" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_magic_defense_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_magic_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_mp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_power" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_req_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_variation_rate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_vigour" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="max_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="parent_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="token_price" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_ItemType" representedClassName="DBPP_ItemType" syncable="YES">
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Live_ChildSkill" representedClassName="DBPP_Live_ChildSkill" syncable="YES">
+        <attribute name="live_skill_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="req_formula" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="req_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="req_practise" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="skill_des" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="skill_icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="skill_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="skill_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="target_item_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="live_skill" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_Live_Skill" inverseName="child_skill" inverseEntity="DBPP_Live_Skill" syncable="YES"/>
+        <relationship name="skill_data" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_Live_ChildSkillData" inverseName="child_skill" inverseEntity="DBPP_Live_ChildSkillData" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Live_ChildSkillData" representedClassName="DBPP_Live_ChildSkillData" syncable="YES">
+        <attribute name="data_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="skill_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="child_skill" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_Live_ChildSkill" inverseName="skill_data" inverseEntity="DBPP_Live_ChildSkill" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Live_Skill" representedClassName="DBPP_Live_Skill" syncable="YES">
+        <attribute name="req_element" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="req_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="req_sex" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="req_task" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="skill_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="skill_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="child_skill" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_Live_ChildSkill" inverseName="live_skill" inverseEntity="DBPP_Live_ChildSkill" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Maps" representedClassName="DBPP_Maps" syncable="YES">
+        <attribute name="lt_latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lt_longtide" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="map_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="map_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="map_nation_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="map_real_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rb_latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rb_longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Nations" representedClassName="DBPP_Nations" syncable="YES">
+        <attribute name="nation_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="nation_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Pet_Template" representedClassName="DBPP_Pet_Template" syncable="YES">
+        <attribute name="agile" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="attack" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="attack_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="defense" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="defense_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="endur" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="feel" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="grow" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="hp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="intelligence" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="is_boss" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="is_npc" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isVariation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="life" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="magic_damage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="magic_defense" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="magic_defense_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="magic_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="map_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pet_element" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pet_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="power" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="variation_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="vigour" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_PetSkill" representedClassName="DBPP_PetSkill" syncable="YES">
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pet_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="skill_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="skill_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="pet_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_User_Pet" inverseName="skill" inverseEntity="DBPP_User_Pet" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Relationship" representedClassName="DBPP_Relationship" syncable="YES">
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="relationship_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="target_uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="user_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_UserData_Version" inverseName="relationship" inverseEntity="DBPP_UserData_Version" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_ResPoint" representedClassName="DBPP_ResPoint" syncable="YES">
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="map_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="parent_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="resource_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="resource_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="resource_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="user_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_UserData_Version" inverseName="res_point" inverseEntity="DBPP_UserData_Version" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_ResPoint_Template" representedClassName="DBPP_ResPoint_Template" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="map_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="monster_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="monster_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="per_hour" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="resource_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="resource_img" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resource_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resource_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_ResType" representedClassName="DBPP_ResType" syncable="YES">
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Storage" representedClassName="DBPP_Storage" syncable="YES">
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="user_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_UserData_Version" inverseName="storage" inverseEntity="DBPP_UserData_Version" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Task_Template" representedClassName="DBPP_Task_Template" syncable="YES">
+        <attribute name="action_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="invalid_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="monster_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="monster_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="next_task_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="npc_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="req_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="req_player_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="res_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="res_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="task_des" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="task_img" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="task_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="task_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="award" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_TaskAward" inverseName="task" inverseEntity="DBPP_TaskAward" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_TaskAward" representedClassName="DBPP_TaskAward" syncable="YES">
+        <attribute name="item_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="item_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="parent_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="task_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="task" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_Task_Template" inverseName="award" inverseEntity="DBPP_Task_Template" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_User_Pet" representedClassName="DBPP_User_Pet" syncable="YES">
+        <attribute name="agile" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="attack" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="attack_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="cur_exp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="cur_hp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="cur_mp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="defense" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="defense_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="endur" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="feel" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="grow" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="intelligence" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isVariation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="last_equip_version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="last_skill_version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="life" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="magic_damage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="magic_defense" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="magic_defense_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="magic_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pet_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pet_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="power" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="total_exp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="total_hp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="total_mp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="veriation_level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="vigour" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_Equipment" inverseName="pet_data" inverseEntity="DBPP_Equipment" syncable="YES"/>
+        <relationship name="skill" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_PetSkill" inverseName="pet_data" inverseEntity="DBPP_PetSkill" syncable="YES"/>
+        <relationship name="user_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_UserData_Version" inverseName="pets" inverseEntity="DBPP_UserData_Version" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_User_Task" representedClassName="DBPP_User_Task" syncable="YES">
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="task_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="user_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DBPP_UserData_Version" inverseName="tasks" inverseEntity="DBPP_UserData_Version" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_UserData_Version" representedClassName="DBPP_UserData_Version" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="avatar_img" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bag_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="birthday" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="blood_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="coin" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="constellation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="create_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="duid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hobby" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="home_latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="home_longitude" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="job" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="nation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pet_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="province" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="qq_access" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="qq_token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="renren_access" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="renren_token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resource_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="signature" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sina_access" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sina_token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storage_num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="telephone" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="token" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="bag" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_Bag" inverseName="user_data" inverseEntity="DBPP_Bag" syncable="YES"/>
+        <relationship name="formula" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_Formula" inverseName="user_data" inverseEntity="DBPP_Formula" syncable="YES"/>
+        <relationship name="pets" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_User_Pet" inverseName="user_data" inverseEntity="DBPP_User_Pet" syncable="YES"/>
+        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_Relationship" inverseName="user_data" inverseEntity="DBPP_Relationship" syncable="YES"/>
+        <relationship name="res_point" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_ResPoint" inverseName="user_data" inverseEntity="DBPP_ResPoint" syncable="YES"/>
+        <relationship name="storage" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_Storage" inverseName="user_data" inverseEntity="DBPP_Storage" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBPP_User_Task" inverseName="user_data" inverseEntity="DBPP_User_Task" syncable="YES"/>
+    </entity>
+    <entity name="DBPP_Version" representedClassName="DBPP_Version" syncable="YES">
+        <attribute name="item_last_version" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pet_last_version" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="res_last_version" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="task_last_version" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DBPP_ActionIDs" positionX="-17498" positionY="-2529" width="128" height="88"/>
+        <element name="DBPP_Bag" positionX="-17343" positionY="-2389" width="128" height="133"/>
+        <element name="DBPP_Equipment" positionX="-16859" positionY="-2529" width="128" height="148"/>
+        <element name="DBPP_Formula" positionX="-17343" positionY="-2529" width="128" height="118"/>
+        <element name="DBPP_Instance" positionX="-17786" positionY="-2214" width="128" height="133"/>
+        <element name="DBPP_InstanceData" positionX="-17928" positionY="-2214" width="128" height="148"/>
+        <element name="DBPP_Item_Template" positionX="-17498" positionY="-2277" width="128" height="568"/>
+        <element name="DBPP_ItemType" positionX="-17642" positionY="-2529" width="128" height="88"/>
+        <element name="DBPP_Live_ChildSkill" positionX="-18072" positionY="-2548" width="128" height="208"/>
+        <element name="DBPP_Live_ChildSkillData" positionX="-18072" positionY="-2326" width="128" height="118"/>
+        <element name="DBPP_Live_Skill" positionX="-17928" positionY="-2529" width="128" height="148"/>
+        <element name="DBPP_Maps" positionX="-17640" positionY="-2412" width="128" height="163"/>
+        <element name="DBPP_Nations" positionX="-18072" positionY="-2196" width="128" height="73"/>
+        <element name="DBPP_Pet_Template" positionX="-17640" positionY="-2223" width="128" height="448"/>
+        <element name="DBPP_PetSkill" positionX="-16859" positionY="-2362" width="128" height="148"/>
+        <element name="DBPP_Relationship" positionX="-17343" positionY="-2068" width="128" height="133"/>
+        <element name="DBPP_ResPoint" positionX="-17010" positionY="-1933" width="128" height="178"/>
+        <element name="DBPP_ResPoint_Template" positionX="-17786" positionY="-2529" width="128" height="193"/>
+        <element name="DBPP_ResType" positionX="-17786" positionY="-2313" width="128" height="73"/>
+        <element name="DBPP_Storage" positionX="-17343" positionY="-1912" width="128" height="148"/>
+        <element name="DBPP_Task_Template" positionX="-17784" positionY="-2034" width="128" height="328"/>
+        <element name="DBPP_TaskAward" positionX="-17928" positionY="-2034" width="128" height="133"/>
+        <element name="DBPP_User_Pet" positionX="-17012" positionY="-2529" width="128" height="568"/>
+        <element name="DBPP_User_Task" positionX="-17343" positionY="-2232" width="128" height="133"/>
+        <element name="DBPP_UserData_Version" positionX="-17190" positionY="-2527" width="128" height="673"/>
+        <element name="DBPP_Version" positionX="-17498" positionY="-2412" width="128" height="103"/>
+    </elements>
+</model>

@@ -1,0 +1,362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C45A03C167DA95B00C6C347 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C45A028167DA95B00C6C347 /* ASIAuthenticationDialog.m */; };
+		0C45A03D167DA95B00C6C347 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C45A02B167DA95B00C6C347 /* ASIDataCompressor.m */; };
+		0C45A03E167DA95B00C6C347 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C45A02D167DA95B00C6C347 /* ASIDataDecompressor.m */; };
+		0C45A03F167DA95B00C6C347 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C45A02F167DA95B00C6C347 /* ASIDownloadCache.m */; };
+		0C45A040167DA95B00C6C347 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C45A031167DA95B00C6C347 /* ASIFormDataRequest.m */; };
+		0C45A041167DA95B00C6C347 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C45A033167DA95B00C6C347 /* ASIHTTPRequest.m */; };
+		0C45A042167DA95B00C6C347 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C45A037167DA95B00C6C347 /* ASIInputStream.m */; };
+		0C45A043167DA95B00C6C347 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C45A039167DA95B00C6C347 /* ASINetworkQueue.m */; };
+		0CE7C06C167B3FEC005A5C16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE7C06B167B3FEC005A5C16 /* UIKit.framework */; };
+		0CE7C06E167B3FEC005A5C16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE7C06D167B3FEC005A5C16 /* Foundation.framework */; };
+		0CE7C070167B3FEC005A5C16 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE7C06F167B3FEC005A5C16 /* CoreGraphics.framework */; };
+		0CE7C076167B3FEC005A5C16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CE7C074167B3FEC005A5C16 /* InfoPlist.strings */; };
+		0CE7C078167B3FEC005A5C16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7C077167B3FEC005A5C16 /* main.m */; };
+		0CE7C07C167B3FEC005A5C16 /* AbelAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7C07B167B3FEC005A5C16 /* AbelAppDelegate.m */; };
+		0CE7C07F167B3FEC005A5C16 /* AbelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7C07E167B3FEC005A5C16 /* AbelViewController.m */; };
+		0CE7C082167B3FEC005A5C16 /* AbelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CE7C080167B3FEC005A5C16 /* AbelViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0C45A027167DA95B00C6C347 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
+		0C45A028167DA95B00C6C347 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
+		0C45A029167DA95B00C6C347 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
+		0C45A02A167DA95B00C6C347 /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
+		0C45A02B167DA95B00C6C347 /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataCompressor.m; sourceTree = "<group>"; };
+		0C45A02C167DA95B00C6C347 /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataDecompressor.h; sourceTree = "<group>"; };
+		0C45A02D167DA95B00C6C347 /* ASIDataDecompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataDecompressor.m; sourceTree = "<group>"; };
+		0C45A02E167DA95B00C6C347 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
+		0C45A02F167DA95B00C6C347 /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDownloadCache.m; sourceTree = "<group>"; };
+		0C45A030167DA95B00C6C347 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
+		0C45A031167DA95B00C6C347 /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIFormDataRequest.m; sourceTree = "<group>"; };
+		0C45A032167DA95B00C6C347 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
+		0C45A033167DA95B00C6C347 /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIHTTPRequest.m; sourceTree = "<group>"; };
+		0C45A034167DA95B00C6C347 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
+		0C45A035167DA95B00C6C347 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
+		0C45A036167DA95B00C6C347 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
+		0C45A037167DA95B00C6C347 /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIInputStream.m; sourceTree = "<group>"; };
+		0C45A038167DA95B00C6C347 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
+		0C45A039167DA95B00C6C347 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
+		0C45A03A167DA95B00C6C347 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		0CE7C067167B3FEC005A5C16 /* Photygraphy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photygraphy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CE7C06B167B3FEC005A5C16 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0CE7C06D167B3FEC005A5C16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0CE7C06F167B3FEC005A5C16 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0CE7C073167B3FEC005A5C16 /* Photygraphy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Photygraphy-Info.plist"; sourceTree = "<group>"; };
+		0CE7C075167B3FEC005A5C16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0CE7C077167B3FEC005A5C16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0CE7C079167B3FEC005A5C16 /* Photygraphy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Photygraphy-Prefix.pch"; sourceTree = "<group>"; };
+		0CE7C07A167B3FEC005A5C16 /* AbelAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbelAppDelegate.h; sourceTree = "<group>"; };
+		0CE7C07B167B3FEC005A5C16 /* AbelAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AbelAppDelegate.m; sourceTree = "<group>"; };
+		0CE7C07D167B3FEC005A5C16 /* AbelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbelViewController.h; sourceTree = "<group>"; };
+		0CE7C07E167B3FEC005A5C16 /* AbelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AbelViewController.m; sourceTree = "<group>"; };
+		0CE7C081167B3FEC005A5C16 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AbelViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0CE7C064167B3FEC005A5C16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CE7C06C167B3FEC005A5C16 /* UIKit.framework in Frameworks */,
+				0CE7C06E167B3FEC005A5C16 /* Foundation.framework in Frameworks */,
+				0CE7C070167B3FEC005A5C16 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C45A03B167DA95B00C6C347 /* ASIWebPageRequest */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ASIWebPageRequest;
+			sourceTree = "<group>";
+		};
+		0CE7C05C167B3FEC005A5C16 = {
+			isa = PBXGroup;
+			children = (
+				0CE7C071167B3FEC005A5C16 /* Photygraphy */,
+				0CE7C06A167B3FEC005A5C16 /* Frameworks */,
+				0CE7C068167B3FEC005A5C16 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0CE7C068167B3FEC005A5C16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0CE7C067167B3FEC005A5C16 /* Photygraphy.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0CE7C06A167B3FEC005A5C16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0CE7C06B167B3FEC005A5C16 /* UIKit.framework */,
+				0CE7C06D167B3FEC005A5C16 /* Foundation.framework */,
+				0CE7C06F167B3FEC005A5C16 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0CE7C071167B3FEC005A5C16 /* Photygraphy */ = {
+			isa = PBXGroup;
+			children = (
+				0C45A027167DA95B00C6C347 /* ASIAuthenticationDialog.h */,
+				0C45A028167DA95B00C6C347 /* ASIAuthenticationDialog.m */,
+				0C45A029167DA95B00C6C347 /* ASICacheDelegate.h */,
+				0C45A02A167DA95B00C6C347 /* ASIDataCompressor.h */,
+				0C45A02B167DA95B00C6C347 /* ASIDataCompressor.m */,
+				0C45A02C167DA95B00C6C347 /* ASIDataDecompressor.h */,
+				0C45A02D167DA95B00C6C347 /* ASIDataDecompressor.m */,
+				0C45A02E167DA95B00C6C347 /* ASIDownloadCache.h */,
+				0C45A02F167DA95B00C6C347 /* ASIDownloadCache.m */,
+				0C45A030167DA95B00C6C347 /* ASIFormDataRequest.h */,
+				0C45A031167DA95B00C6C347 /* ASIFormDataRequest.m */,
+				0C45A032167DA95B00C6C347 /* ASIHTTPRequest.h */,
+				0C45A033167DA95B00C6C347 /* ASIHTTPRequest.m */,
+				0C45A034167DA95B00C6C347 /* ASIHTTPRequestConfig.h */,
+				0C45A035167DA95B00C6C347 /* ASIHTTPRequestDelegate.h */,
+				0C45A036167DA95B00C6C347 /* ASIInputStream.h */,
+				0C45A037167DA95B00C6C347 /* ASIInputStream.m */,
+				0C45A038167DA95B00C6C347 /* ASINetworkQueue.h */,
+				0C45A039167DA95B00C6C347 /* ASINetworkQueue.m */,
+				0C45A03A167DA95B00C6C347 /* ASIProgressDelegate.h */,
+				0C45A03B167DA95B00C6C347 /* ASIWebPageRequest */,
+				0CE7C07A167B3FEC005A5C16 /* AbelAppDelegate.h */,
+				0CE7C07B167B3FEC005A5C16 /* AbelAppDelegate.m */,
+				0CE7C07D167B3FEC005A5C16 /* AbelViewController.h */,
+				0CE7C07E167B3FEC005A5C16 /* AbelViewController.m */,
+				0CE7C080167B3FEC005A5C16 /* AbelViewController.xib */,
+				0CE7C072167B3FEC005A5C16 /* Supporting Files */,
+			);
+			path = Photygraphy;
+			sourceTree = "<group>";
+		};
+		0CE7C072167B3FEC005A5C16 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0CE7C073167B3FEC005A5C16 /* Photygraphy-Info.plist */,
+				0CE7C074167B3FEC005A5C16 /* InfoPlist.strings */,
+				0CE7C077167B3FEC005A5C16 /* main.m */,
+				0CE7C079167B3FEC005A5C16 /* Photygraphy-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0CE7C066167B3FEC005A5C16 /* Photygraphy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0CE7C085167B3FEC005A5C16 /* Build configuration list for PBXNativeTarget "Photygraphy" */;
+			buildPhases = (
+				0CE7C063167B3FEC005A5C16 /* Sources */,
+				0CE7C064167B3FEC005A5C16 /* Frameworks */,
+				0CE7C065167B3FEC005A5C16 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Photygraphy;
+			productName = Photygraphy;
+			productReference = 0CE7C067167B3FEC005A5C16 /* Photygraphy.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0CE7C05E167B3FEC005A5C16 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Abel;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Lee Abel";
+			};
+			buildConfigurationList = 0CE7C061167B3FEC005A5C16 /* Build configuration list for PBXProject "Photygraphy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0CE7C05C167B3FEC005A5C16;
+			productRefGroup = 0CE7C068167B3FEC005A5C16 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0CE7C066167B3FEC005A5C16 /* Photygraphy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0CE7C065167B3FEC005A5C16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CE7C076167B3FEC005A5C16 /* InfoPlist.strings in Resources */,
+				0CE7C082167B3FEC005A5C16 /* AbelViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0CE7C063167B3FEC005A5C16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CE7C078167B3FEC005A5C16 /* main.m in Sources */,
+				0CE7C07C167B3FEC005A5C16 /* AbelAppDelegate.m in Sources */,
+				0CE7C07F167B3FEC005A5C16 /* AbelViewController.m in Sources */,
+				0C45A03C167DA95B00C6C347 /* ASIAuthenticationDialog.m in Sources */,
+				0C45A03D167DA95B00C6C347 /* ASIDataCompressor.m in Sources */,
+				0C45A03E167DA95B00C6C347 /* ASIDataDecompressor.m in Sources */,
+				0C45A03F167DA95B00C6C347 /* ASIDownloadCache.m in Sources */,
+				0C45A040167DA95B00C6C347 /* ASIFormDataRequest.m in Sources */,
+				0C45A041167DA95B00C6C347 /* ASIHTTPRequest.m in Sources */,
+				0C45A042167DA95B00C6C347 /* ASIInputStream.m in Sources */,
+				0C45A043167DA95B00C6C347 /* ASINetworkQueue.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0CE7C074167B3FEC005A5C16 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0CE7C075167B3FEC005A5C16 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0CE7C080167B3FEC005A5C16 /* AbelViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0CE7C081167B3FEC005A5C16 /* en */,
+			);
+			name = AbelViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0CE7C083167B3FEC005A5C16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PROVISIONING_PROFILE = "9A86ABB9-3011-49BF-A8C5-94DDAE4BBB6B";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0CE7C084167B3FEC005A5C16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "9A86ABB9-3011-49BF-A8C5-94DDAE4BBB6B";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0CE7C086167B3FEC005A5C16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Photygraphy/Photygraphy-Prefix.pch";
+				INFOPLIST_FILE = "Photygraphy/Photygraphy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0CE7C087167B3FEC005A5C16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Photygraphy/Photygraphy-Prefix.pch";
+				INFOPLIST_FILE = "Photygraphy/Photygraphy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0CE7C061167B3FEC005A5C16 /* Build configuration list for PBXProject "Photygraphy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CE7C083167B3FEC005A5C16 /* Debug */,
+				0CE7C084167B3FEC005A5C16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0CE7C085167B3FEC005A5C16 /* Build configuration list for PBXNativeTarget "Photygraphy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CE7C086167B3FEC005A5C16 /* Debug */,
+				0CE7C087167B3FEC005A5C16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0CE7C05E167B3FEC005A5C16 /* Project object */;
+}
