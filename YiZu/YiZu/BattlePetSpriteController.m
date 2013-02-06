@@ -29,7 +29,6 @@
     
     [view release];
     [data release];
-    [targetData release];
     
     [super dealloc];
 }

@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CameraOverlayViewController : UIViewController
+@interface CameraOverlayViewController : UIViewController{
+    UIToolbar* toolbar;
+    NSMutableArray* imageList;
+}
+
+- (void)setViewFrame:(CGRect)rect;
 
 @end

@@ -22,14 +22,14 @@
 - (id)init
 {
     if (self = [super init]) {
-        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
         view.backgroundColor = [UIColor whiteColor];
         [self setView:view];
         [view release];
         view = nil;
         
         index = 0;
-        tipText = [[UITextField alloc] initWithFrame:CGRectMake((TOTLE_WIDTH - 400) / 2, TOTLE_HEIGHT - 100, 400, 40)];
+        tipText = [[UITextField alloc] initWithFrame:CGRectMake(([[Global sharedGlobal] totalWidth] - 400) / 2, [[Global sharedGlobal] totalHeight] - 100, 400, 40)];
         tipText.textAlignment = UITextAlignmentCenter;
         tipText.text = @"获取服务器信息...";
         [self.view addSubview:tipText];

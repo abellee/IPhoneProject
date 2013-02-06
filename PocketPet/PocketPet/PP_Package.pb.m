@@ -12,7 +12,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
   if (self == [PpPackageRoot class]) {
     PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
     [self registerAllExtensions:registry];
-    [PpHeadRoot registerAllExtensions:registry];
     [PpBodyRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
@@ -22,19 +21,19 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @end
 
 @interface PP_Package ()
-@property (retain) PP_Head* head;
+@property uint32_t length;
 @property (retain) PP_Body* body;
 @end
 
 @implementation PP_Package
 
-- (BOOL) hasHead {
-  return !!hasHead_;
+- (BOOL) hasLength {
+  return !!hasLength_;
 }
-- (void) setHasHead:(BOOL) value_ {
-  hasHead_ = !!value_;
+- (void) setHasLength:(BOOL) value_ {
+  hasLength_ = !!value_;
 }
-@synthesize head;
+@synthesize length;
 - (BOOL) hasBody {
   return !!hasBody_;
 }
@@ -43,13 +42,12 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @synthesize body;
 - (void) dealloc {
-  self.head = nil;
   self.body = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.head = [PP_Head defaultInstance];
+    self.length = 0;
     self.body = [PP_Body defaultInstance];
   }
   return self;
@@ -70,8 +68,8 @@ static PP_Package* defaultPP_PackageInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasHead) {
-    [output writeMessage:1 value:self.head];
+  if (self.hasLength) {
+    [output writeFixed32:1 value:self.length];
   }
   if (self.hasBody) {
     [output writeMessage:2 value:self.body];
@@ -85,8 +83,8 @@ static PP_Package* defaultPP_PackageInstance = nil;
   }
 
   size_ = 0;
-  if (self.hasHead) {
-    size_ += computeMessageSize(1, self.head);
+  if (self.hasLength) {
+    size_ += computeFixed32Size(1, self.length);
   }
   if (self.hasBody) {
     size_ += computeMessageSize(2, self.body);
@@ -126,11 +124,8 @@ static PP_Package* defaultPP_PackageInstance = nil;
   return [PP_Package builderWithPrototype:self];
 }
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
-  if (self.hasHead) {
-    [output appendFormat:@"%@%@ {\n", indent, @"head"];
-    [self.head writeDescriptionTo:output
-                         withIndent:[NSString stringWithFormat:@"%@  ", indent]];
-    [output appendFormat:@"%@}\n", indent];
+  if (self.hasLength) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"length", [NSNumber numberWithInt:self.length]];
   }
   if (self.hasBody) {
     [output appendFormat:@"%@%@ {\n", indent, @"body"];
@@ -149,16 +144,16 @@ static PP_Package* defaultPP_PackageInstance = nil;
   }
   PP_Package *otherMessage = other;
   return
-      self.hasHead == otherMessage.hasHead &&
-      (!self.hasHead || [self.head isEqual:otherMessage.head]) &&
+      self.hasLength == otherMessage.hasLength &&
+      (!self.hasLength || self.length == otherMessage.length) &&
       self.hasBody == otherMessage.hasBody &&
       (!self.hasBody || [self.body isEqual:otherMessage.body]) &&
       (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
 }
 - (NSUInteger) hash {
   NSUInteger hashCode = 7;
-  if (self.hasHead) {
-    hashCode = hashCode * 31 + [self.head hash];
+  if (self.hasLength) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.length] hash];
   }
   if (self.hasBody) {
     hashCode = hashCode * 31 + [self.body hash];
@@ -210,8 +205,8 @@ static PP_Package* defaultPP_PackageInstance = nil;
   if (other == [PP_Package defaultInstance]) {
     return self;
   }
-  if (other.hasHead) {
-    [self mergeHead:other.head];
+  if (other.hasLength) {
+    [self setLength:other.length];
   }
   if (other.hasBody) {
     [self mergeBody:other.body];
@@ -237,13 +232,8 @@ static PP_Package* defaultPP_PackageInstance = nil;
         }
         break;
       }
-      case 10: {
-        PP_Head_Builder* subBuilder = [PP_Head builder];
-        if (self.hasHead) {
-          [subBuilder mergeFrom:self.head];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setHead:[subBuilder buildPartial]];
+      case 13: {
+        [self setLength:[input readFixed32]];
         break;
       }
       case 18: {
@@ -258,34 +248,20 @@ static PP_Package* defaultPP_PackageInstance = nil;
     }
   }
 }
-- (BOOL) hasHead {
-  return result.hasHead;
+- (BOOL) hasLength {
+  return result.hasLength;
 }
-- (PP_Head*) head {
-  return result.head;
+- (uint32_t) length {
+  return result.length;
 }
-- (PP_Package_Builder*) setHead:(PP_Head*) value {
-  result.hasHead = YES;
-  result.head = value;
+- (PP_Package_Builder*) setLength:(uint32_t) value {
+  result.hasLength = YES;
+  result.length = value;
   return self;
 }
-- (PP_Package_Builder*) setHeadBuilder:(PP_Head_Builder*) builderForValue {
-  return [self setHead:[builderForValue build]];
-}
-- (PP_Package_Builder*) mergeHead:(PP_Head*) value {
-  if (result.hasHead &&
-      result.head != [PP_Head defaultInstance]) {
-    result.head =
-      [[[PP_Head builderWithPrototype:result.head] mergeFrom:value] buildPartial];
-  } else {
-    result.head = value;
-  }
-  result.hasHead = YES;
-  return self;
-}
-- (PP_Package_Builder*) clearHead {
-  result.hasHead = NO;
-  result.head = [PP_Head defaultInstance];
+- (PP_Package_Builder*) clearLength {
+  result.hasLength = NO;
+  result.length = 0;
   return self;
 }
 - (BOOL) hasBody {

@@ -29,22 +29,10 @@
 
 @interface PP_AttackRes : PBGeneratedMessage {
 @private
-  BOOL hasSuccess_:1;
-  BOOL hasHp_:1;
-  BOOL hasDead_:1;
   BOOL hasGameControl_:1;
-  int32_t success;
-  int32_t hp;
-  int32_t dead;
   PP_GameControl* gameControl;
 }
-- (BOOL) hasSuccess;
-- (BOOL) hasHp;
-- (BOOL) hasDead;
 - (BOOL) hasGameControl;
-@property (readonly) int32_t success;
-@property (readonly) int32_t hp;
-@property (readonly) int32_t dead;
 @property (readonly, retain) PP_GameControl* gameControl;
 
 + (PP_AttackRes*) defaultInstance;
@@ -81,21 +69,6 @@
 - (PP_AttackRes_Builder*) mergeFrom:(PP_AttackRes*) other;
 - (PP_AttackRes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PP_AttackRes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasSuccess;
-- (int32_t) success;
-- (PP_AttackRes_Builder*) setSuccess:(int32_t) value;
-- (PP_AttackRes_Builder*) clearSuccess;
-
-- (BOOL) hasHp;
-- (int32_t) hp;
-- (PP_AttackRes_Builder*) setHp:(int32_t) value;
-- (PP_AttackRes_Builder*) clearHp;
-
-- (BOOL) hasDead;
-- (int32_t) dead;
-- (PP_AttackRes_Builder*) setDead:(int32_t) value;
-- (PP_AttackRes_Builder*) clearDead;
 
 - (BOOL) hasGameControl;
 - (PP_GameControl*) gameControl;

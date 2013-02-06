@@ -20,6 +20,7 @@
     NSMutableArray* petList;
     NSTimer* timer;
     CCLabelTTF* readyCount;
+    CCLabelTTF* loseBlood;
     int curPet;
     int totalCount;
 }

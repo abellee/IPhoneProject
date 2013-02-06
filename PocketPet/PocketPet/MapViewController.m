@@ -7,7 +7,7 @@
 //
 
 #import "MapViewController.h"
-#import "SystemConfig.h"
+#import "Global.h"
 
 @implementation MapViewController
 
@@ -17,7 +17,7 @@
 -(id)init
 {
     if(self = [super init]){
-        map = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, HEIGHT_IN_NAVIGATION)];
+        map = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] heightInNavigator])];
         map.delegate = self;
         [self.view addSubview:map];
     }

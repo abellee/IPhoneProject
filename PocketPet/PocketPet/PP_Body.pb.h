@@ -25,14 +25,14 @@
 
 @interface PP_Body : PBGeneratedMessage {
 @private
-  BOOL hasFuncName_:1;
+  BOOL hasType_:1;
   BOOL hasContent_:1;
-  NSString* funcName;
+  int32_t type;
   NSData* content;
 }
-- (BOOL) hasFuncName;
+- (BOOL) hasType;
 - (BOOL) hasContent;
-@property (readonly, retain) NSString* funcName;
+@property (readonly) int32_t type;
 @property (readonly, retain) NSData* content;
 
 + (PP_Body*) defaultInstance;
@@ -70,10 +70,10 @@
 - (PP_Body_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PP_Body_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasFuncName;
-- (NSString*) funcName;
-- (PP_Body_Builder*) setFuncName:(NSString*) value;
-- (PP_Body_Builder*) clearFuncName;
+- (BOOL) hasType;
+- (int32_t) type;
+- (PP_Body_Builder*) setType:(int32_t) value;
+- (PP_Body_Builder*) clearType;
 
 - (BOOL) hasContent;
 - (NSData*) content;

@@ -16,6 +16,7 @@
 #import "PopUpLayer.h"
 #import "PlayerData.h"
 #import "GameLayer.h"
+#import "SocketManager.h"
 
 @implementation LoginViewController
 
@@ -41,7 +42,7 @@
         platformList = [NSArray arrayWithObjects:@"新浪微博", @"腾讯微博", @"网易微博", @"人人网", nil];
         [platformList retain];
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
         [view setBackgroundColor:[UIColor whiteColor]];
         [self setView:view];
         [view release];
@@ -126,7 +127,7 @@
 - (void)weiboButtonClick:(id)sender
 {
     if(navigationController) return;
-    UIWebView *web = [[UIWebView alloc] initWithFrame:CGRectMake(0, TOTLE_HEIGHT, TOTLE_WIDTH, HEIGHT_IN_NAVIGATION)];
+    UIWebView *web = [[UIWebView alloc] initWithFrame:CGRectMake(0, [[Global sharedGlobal] totalHeight], [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] heightInNavigator])];
     web.delegate = self;
     [web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=1244863350&response_type=token&redirect_uri=http%3A%2F%2Fwww%2Eiabel%2Ecom&display=mobile"]]];
     UIViewController *webViewController = [[UIViewController alloc] init];

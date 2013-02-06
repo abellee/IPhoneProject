@@ -7,7 +7,7 @@
 //
 
 #import "SocialShareViewController.h"
-#import "SystemConfig.h"
+#import "Global.h"
 #import "Utils.h"
 
 @implementation SocialShareViewController
@@ -15,11 +15,11 @@
 - (id)initWithBackgroundImage:(UIImage *)image text:(NSString *)content
 {
     if (self = [super init]) {
-        alphaBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
+        alphaBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
         alphaBackground.backgroundColor = [UIColor blackColor];
         alphaBackground.alpha = 0.5;
         
-        container = [[UIView alloc] initWithFrame:CGRectMake((TOTLE_WIDTH - image.size.width) / 2, TOTLE_HEIGHT, image.size.width, image.size.height)];
+        container = [[UIView alloc] initWithFrame:CGRectMake(([[Global sharedGlobal] totalWidth] - image.size.width) / 2, [[Global sharedGlobal] totalHeight], image.size.width, image.size.height)];
         
         backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
         [backgroundImage setImage:image];
@@ -49,7 +49,7 @@
         
         [UIView beginAnimations:@"Curl" context:nil];
         [UIView setAnimationDuration:0.5];
-        container.frame = CGRectMake((TOTLE_WIDTH - image.size.width) / 2, (TOTLE_HEIGHT - image.size.height) / 2, image.size.width, image.size.height);
+        container.frame = CGRectMake(([[Global sharedGlobal] totalWidth] - image.size.width) / 2, ([[Global sharedGlobal] totalHeight] - image.size.height) / 2, image.size.width, image.size.height);
         [UIView commitAnimations];
     }
     return self;
@@ -64,7 +64,7 @@
 {
     [UIView beginAnimations:@"Curl" context:nil];
     [UIView setAnimationDuration:0.5];
-    container.frame = CGRectMake((TOTLE_WIDTH - backgroundImage.frame.size.width) / 2, TOTLE_HEIGHT, backgroundImage.frame.size.width, backgroundImage.frame.size.height);
+    container.frame = CGRectMake(([[Global sharedGlobal] totalWidth] - backgroundImage.frame.size.width) / 2, [[Global sharedGlobal] totalHeight], backgroundImage.frame.size.width, backgroundImage.frame.size.height);
     [UIView commitAnimations];
 }
 

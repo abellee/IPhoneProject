@@ -15,7 +15,7 @@
 #import "ResourceViewController.h"
 #import "PetHouseViewController.h"
 #import "MapViewController.h"
-#import "SystemConfig.h"
+#import "Global.h"
 
 @implementation MainLayerViewController
 
@@ -41,7 +41,7 @@
 -(void)profileButtonClicked:(id)sender
 {
     if(!profile) profile = [[ProfileLayer alloc] init];
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
     view.backgroundColor = [UIColor grayColor];
     [profile setView:view];
     [navigationController pushViewController:profile animated:YES];
@@ -50,7 +50,7 @@
 -(void)systemSettingButtonClicked:(id)sender
 {
     if(!systemSetting) systemSetting = [[SystemSettingLayer alloc] init];
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
     view.backgroundColor = [UIColor blueColor];
     [systemSetting setView:view];
     [navigationController pushViewController:systemSetting animated:YES];
@@ -64,7 +64,7 @@
 -(void)resourceButtonClicked
 {
     if(!resource) resource = [[ResourceViewController alloc] init];
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
     view.backgroundColor = [UIColor yellowColor];
     [resource setView:view];
     [navigationController pushViewController:resource animated:YES];
@@ -73,7 +73,7 @@
 -(void)storehouseButtonClicked
 {
     if(!storehouse) storehouse = [[StoreHouseViewController alloc] init];
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
     view.backgroundColor = [UIColor whiteColor];
     [storehouse setView:view];
     [navigationController pushViewController:storehouse animated:YES];
@@ -88,7 +88,7 @@
 -(void)pethouseButtonClicked
 {
     if(!pethouse) pethouse = [[PetHouseViewController alloc] init];
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
     view.backgroundColor = [UIColor redColor];
     [pethouse setView:view];
     [navigationController pushViewController:pethouse animated:YES];

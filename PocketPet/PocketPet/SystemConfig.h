@@ -19,10 +19,6 @@
 #define UPDATE_CHECK    @"update_check.php"
 #define GET_RES_LIST    @"getResList.php"
 
-#define TOTLE_HEIGHT    480
-#define TOTLE_WIDTH     320
-#define HEIGHT_IN_NAVIGATION    436
-
 #define UNZIP_PASSWORD  @"pocket-pet-resource"
 #define ITUNES_URL      @"http://itunes.apple.com/lookup?id="
 #define UPDATE_CHECK_DALEY 24

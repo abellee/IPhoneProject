@@ -8,11 +8,11 @@
 
 #import "RegistLayer.h"
 #import "SocketManager.h"
-#import "SystemConfig.h"
 #import "EditableUITableViewController.h"
 #import "ASIFormDataRequest.h"
 #import "PopUpLayer.h"
 #import "Global.h"
+#import "SystemConfig.h"
 
 @implementation RegistLayer
 
@@ -22,7 +22,7 @@
 -(id)init
 {
     if(self = [super init]){
-        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, HEIGHT_IN_NAVIGATION)];
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] heightInNavigator])];
         view.backgroundColor = [UIColor whiteColor];
         [self setView:view];
         [view release];
@@ -94,7 +94,7 @@
         NSArray* arrData = [[NSArray alloc] initWithObjects:dict, nil];
         EditableUITableViewData* tableViewData = [[EditableUITableViewData alloc] init];
         [tableViewData setData: arrData];
-        registForm = [[EditableUITableViewController alloc] initTableViewWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, HEIGHT_IN_NAVIGATION) scrollEnabled:YES];
+        registForm = [[EditableUITableViewController alloc] initTableViewWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] heightInNavigator]) scrollEnabled:YES];
         [registForm setData:tableViewData];
         [self.view addSubview:registForm.view];
         

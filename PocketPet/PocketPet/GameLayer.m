@@ -49,7 +49,7 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         PopUpLayer *popUpLayer = [[PopUpLayer alloc] init];
-        UIView *popUpLayerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
+        UIView *popUpLayerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
         popUpLayerView.multipleTouchEnabled = NO;
         popUpLayerView.userInteractionEnabled = NO;
         [popUpLayer setView:popUpLayerView];

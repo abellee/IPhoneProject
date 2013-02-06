@@ -2,13 +2,10 @@
 
 #import <ProtocolBuffers/ProtocolBuffers.h>
 
-#import "PP_Head.pb.h"
 #import "PP_Body.pb.h"
 
 @class PP_Body;
 @class PP_Body_Builder;
-@class PP_Head;
-@class PP_Head_Builder;
 @class PP_Package;
 @class PP_Package_Builder;
 #ifndef __has_feature
@@ -32,14 +29,14 @@
 
 @interface PP_Package : PBGeneratedMessage {
 @private
-  BOOL hasHead_:1;
+  BOOL hasLength_:1;
   BOOL hasBody_:1;
-  PP_Head* head;
+  uint32_t length;
   PP_Body* body;
 }
-- (BOOL) hasHead;
+- (BOOL) hasLength;
 - (BOOL) hasBody;
-@property (readonly, retain) PP_Head* head;
+@property (readonly) uint32_t length;
 @property (readonly, retain) PP_Body* body;
 
 + (PP_Package*) defaultInstance;
@@ -77,12 +74,10 @@
 - (PP_Package_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PP_Package_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasHead;
-- (PP_Head*) head;
-- (PP_Package_Builder*) setHead:(PP_Head*) value;
-- (PP_Package_Builder*) setHeadBuilder:(PP_Head_Builder*) builderForValue;
-- (PP_Package_Builder*) mergeHead:(PP_Head*) value;
-- (PP_Package_Builder*) clearHead;
+- (BOOL) hasLength;
+- (uint32_t) length;
+- (PP_Package_Builder*) setLength:(uint32_t) value;
+- (PP_Package_Builder*) clearLength;
 
 - (BOOL) hasBody;
 - (PP_Body*) body;

@@ -12,14 +12,10 @@
 
 -(void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents priority:(int)priority
 {
-    if(!isTouchEnabled){
-        [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:priority swallowsTouches:YES];
-    }else{
-        if(cur_priority != priority){
-            [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
-            [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:priority swallowsTouches:YES];
-        }
+    if(cur_priority != priority){
+        [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
     }
+    [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:priority swallowsTouches:YES];
     cur_priority = priority;
     switch (controlEvents) {
         case UIControlEventTouchUpInside:
@@ -52,7 +48,6 @@
             break;
         case UIControlEventAllEvents:
             [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
-            isTouchEnabled = NO;
             touchBeganObject = nil;
             touchCancelledObject = nil;
             touchEndedObject = nil;
@@ -67,6 +62,16 @@
         default:
             break;
     }
+}
+
+-(void)isTouchable:(BOOL)touchable
+{
+    isTouchable = touchable;
+}
+
+-(BOOL)isTouchable
+{
+    return isTouchable;
 }
 
 -(CGRect)rect
@@ -87,7 +92,7 @@
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if(touchBeganObject && touchBeganSelector && [touchBeganObject respondsToSelector:touchBeganSelector] && [self underTouched:touch]){
+    if(touchBeganObject && touchBeganSelector && [touchBeganObject respondsToSelector:touchBeganSelector] && [self underTouched:touch] && isTouchable){
         [touchBeganObject performSelector:touchBeganSelector withObject:self];
         return YES;
     }
@@ -96,21 +101,21 @@
 
 -(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if(touchMovedObject && touchMovedSelector && [touchMovedObject respondsToSelector:touchMovedSelector]){
+    if(touchMovedObject && touchMovedSelector && [touchMovedObject respondsToSelector:touchMovedSelector] && isTouchable){
         [touchMovedObject performSelector:touchMovedSelector withObject:self];
     }
 }
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if(touchEndedObject && [touchEndedObject respondsToSelector:touchEndedSelector]){
+    if(touchEndedObject && [touchEndedObject respondsToSelector:touchEndedSelector] && isTouchable){
         [touchEndedObject performSelector:touchEndedSelector withObject:self];
     }
 }
 
 -(void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if(touchCancelledObject && [touchCancelledObject respondsToSelector:touchCancelledSelector]){
+    if(touchCancelledObject && [touchCancelledObject respondsToSelector:touchCancelledSelector] && isTouchable){
         [touchCancelledObject performSelector:touchCancelledSelector withObject:self];
     }
 }

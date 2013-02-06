@@ -23,6 +23,9 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property int32_t targetId;
 @property int32_t skillId;
 @property int32_t petId;
+@property int32_t hp;
+@property int32_t dead;
+@property int32_t success;
 @end
 
 @implementation PP_GameControl
@@ -48,6 +51,27 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasPetId_ = !!value_;
 }
 @synthesize petId;
+- (BOOL) hasHp {
+  return !!hasHp_;
+}
+- (void) setHasHp:(BOOL) value_ {
+  hasHp_ = !!value_;
+}
+@synthesize hp;
+- (BOOL) hasDead {
+  return !!hasDead_;
+}
+- (void) setHasDead:(BOOL) value_ {
+  hasDead_ = !!value_;
+}
+@synthesize dead;
+- (BOOL) hasSuccess {
+  return !!hasSuccess_;
+}
+- (void) setHasSuccess:(BOOL) value_ {
+  hasSuccess_ = !!value_;
+}
+@synthesize success;
 - (void) dealloc {
   [super dealloc];
 }
@@ -56,6 +80,9 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.targetId = 0;
     self.skillId = 0;
     self.petId = 0;
+    self.hp = 0;
+    self.dead = 0;
+    self.success = 0;
   }
   return self;
 }
@@ -84,6 +111,15 @@ static PP_GameControl* defaultPP_GameControlInstance = nil;
   if (self.hasPetId) {
     [output writeInt32:3 value:self.petId];
   }
+  if (self.hasHp) {
+    [output writeInt32:4 value:self.hp];
+  }
+  if (self.hasDead) {
+    [output writeInt32:5 value:self.dead];
+  }
+  if (self.hasSuccess) {
+    [output writeInt32:6 value:self.success];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -101,6 +137,15 @@ static PP_GameControl* defaultPP_GameControlInstance = nil;
   }
   if (self.hasPetId) {
     size_ += computeInt32Size(3, self.petId);
+  }
+  if (self.hasHp) {
+    size_ += computeInt32Size(4, self.hp);
+  }
+  if (self.hasDead) {
+    size_ += computeInt32Size(5, self.dead);
+  }
+  if (self.hasSuccess) {
+    size_ += computeInt32Size(6, self.success);
   }
   size_ += self.unknownFields.serializedSize;
   memoizedSerializedSize = size_;
@@ -146,6 +191,15 @@ static PP_GameControl* defaultPP_GameControlInstance = nil;
   if (self.hasPetId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"petId", [NSNumber numberWithInt:self.petId]];
   }
+  if (self.hasHp) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"hp", [NSNumber numberWithInt:self.hp]];
+  }
+  if (self.hasDead) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"dead", [NSNumber numberWithInt:self.dead]];
+  }
+  if (self.hasSuccess) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"success", [NSNumber numberWithInt:self.success]];
+  }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
 - (BOOL) isEqual:(id)other {
@@ -163,6 +217,12 @@ static PP_GameControl* defaultPP_GameControlInstance = nil;
       (!self.hasSkillId || self.skillId == otherMessage.skillId) &&
       self.hasPetId == otherMessage.hasPetId &&
       (!self.hasPetId || self.petId == otherMessage.petId) &&
+      self.hasHp == otherMessage.hasHp &&
+      (!self.hasHp || self.hp == otherMessage.hp) &&
+      self.hasDead == otherMessage.hasDead &&
+      (!self.hasDead || self.dead == otherMessage.dead) &&
+      self.hasSuccess == otherMessage.hasSuccess &&
+      (!self.hasSuccess || self.success == otherMessage.success) &&
       (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
 }
 - (NSUInteger) hash {
@@ -175,6 +235,15 @@ static PP_GameControl* defaultPP_GameControlInstance = nil;
   }
   if (self.hasPetId) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.petId] hash];
+  }
+  if (self.hasHp) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.hp] hash];
+  }
+  if (self.hasDead) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.dead] hash];
+  }
+  if (self.hasSuccess) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.success] hash];
   }
   hashCode = hashCode * 31 + [self.unknownFields hash];
   return hashCode;
@@ -232,6 +301,15 @@ static PP_GameControl* defaultPP_GameControlInstance = nil;
   if (other.hasPetId) {
     [self setPetId:other.petId];
   }
+  if (other.hasHp) {
+    [self setHp:other.hp];
+  }
+  if (other.hasDead) {
+    [self setDead:other.dead];
+  }
+  if (other.hasSuccess) {
+    [self setSuccess:other.success];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -263,6 +341,18 @@ static PP_GameControl* defaultPP_GameControlInstance = nil;
       }
       case 24: {
         [self setPetId:[input readInt32]];
+        break;
+      }
+      case 32: {
+        [self setHp:[input readInt32]];
+        break;
+      }
+      case 40: {
+        [self setDead:[input readInt32]];
+        break;
+      }
+      case 48: {
+        [self setSuccess:[input readInt32]];
         break;
       }
     }
@@ -314,6 +404,54 @@ static PP_GameControl* defaultPP_GameControlInstance = nil;
 - (PP_GameControl_Builder*) clearPetId {
   result.hasPetId = NO;
   result.petId = 0;
+  return self;
+}
+- (BOOL) hasHp {
+  return result.hasHp;
+}
+- (int32_t) hp {
+  return result.hp;
+}
+- (PP_GameControl_Builder*) setHp:(int32_t) value {
+  result.hasHp = YES;
+  result.hp = value;
+  return self;
+}
+- (PP_GameControl_Builder*) clearHp {
+  result.hasHp = NO;
+  result.hp = 0;
+  return self;
+}
+- (BOOL) hasDead {
+  return result.hasDead;
+}
+- (int32_t) dead {
+  return result.dead;
+}
+- (PP_GameControl_Builder*) setDead:(int32_t) value {
+  result.hasDead = YES;
+  result.dead = value;
+  return self;
+}
+- (PP_GameControl_Builder*) clearDead {
+  result.hasDead = NO;
+  result.dead = 0;
+  return self;
+}
+- (BOOL) hasSuccess {
+  return result.hasSuccess;
+}
+- (int32_t) success {
+  return result.success;
+}
+- (PP_GameControl_Builder*) setSuccess:(int32_t) value {
+  result.hasSuccess = YES;
+  result.success = value;
+  return self;
+}
+- (PP_GameControl_Builder*) clearSuccess {
+  result.hasSuccess = NO;
+  result.success = 0;
   return self;
 }
 @end

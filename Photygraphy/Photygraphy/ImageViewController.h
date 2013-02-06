@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImageViewController : UIViewController
+@class AbelViewController;
+@interface ImageViewController : UIViewController<UIAlertViewDelegate>{
+    UIButton* deleteButton;
+    UIImage* originalImage;
+    AbelViewController* parentController;
+}
+
+-(void)addPicture:(UIImage*)image parent:(AbelViewController*)parent;
 
 @end

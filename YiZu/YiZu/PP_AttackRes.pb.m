@@ -21,35 +21,11 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @end
 
 @interface PP_AttackRes ()
-@property int32_t success;
-@property int32_t hp;
-@property int32_t dead;
 @property (retain) PP_GameControl* gameControl;
 @end
 
 @implementation PP_AttackRes
 
-- (BOOL) hasSuccess {
-  return !!hasSuccess_;
-}
-- (void) setHasSuccess:(BOOL) value_ {
-  hasSuccess_ = !!value_;
-}
-@synthesize success;
-- (BOOL) hasHp {
-  return !!hasHp_;
-}
-- (void) setHasHp:(BOOL) value_ {
-  hasHp_ = !!value_;
-}
-@synthesize hp;
-- (BOOL) hasDead {
-  return !!hasDead_;
-}
-- (void) setHasDead:(BOOL) value_ {
-  hasDead_ = !!value_;
-}
-@synthesize dead;
 - (BOOL) hasGameControl {
   return !!hasGameControl_;
 }
@@ -63,9 +39,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.success = 0;
-    self.hp = 0;
-    self.dead = 0;
     self.gameControl = [PP_GameControl defaultInstance];
   }
   return self;
@@ -86,15 +59,6 @@ static PP_AttackRes* defaultPP_AttackResInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasSuccess) {
-    [output writeInt32:1 value:self.success];
-  }
-  if (self.hasHp) {
-    [output writeInt32:2 value:self.hp];
-  }
-  if (self.hasDead) {
-    [output writeInt32:3 value:self.dead];
-  }
   if (self.hasGameControl) {
     [output writeMessage:4 value:self.gameControl];
   }
@@ -107,15 +71,6 @@ static PP_AttackRes* defaultPP_AttackResInstance = nil;
   }
 
   size_ = 0;
-  if (self.hasSuccess) {
-    size_ += computeInt32Size(1, self.success);
-  }
-  if (self.hasHp) {
-    size_ += computeInt32Size(2, self.hp);
-  }
-  if (self.hasDead) {
-    size_ += computeInt32Size(3, self.dead);
-  }
   if (self.hasGameControl) {
     size_ += computeMessageSize(4, self.gameControl);
   }
@@ -154,15 +109,6 @@ static PP_AttackRes* defaultPP_AttackResInstance = nil;
   return [PP_AttackRes builderWithPrototype:self];
 }
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
-  if (self.hasSuccess) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"success", [NSNumber numberWithInt:self.success]];
-  }
-  if (self.hasHp) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"hp", [NSNumber numberWithInt:self.hp]];
-  }
-  if (self.hasDead) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"dead", [NSNumber numberWithInt:self.dead]];
-  }
   if (self.hasGameControl) {
     [output appendFormat:@"%@%@ {\n", indent, @"gameControl"];
     [self.gameControl writeDescriptionTo:output
@@ -180,27 +126,12 @@ static PP_AttackRes* defaultPP_AttackResInstance = nil;
   }
   PP_AttackRes *otherMessage = other;
   return
-      self.hasSuccess == otherMessage.hasSuccess &&
-      (!self.hasSuccess || self.success == otherMessage.success) &&
-      self.hasHp == otherMessage.hasHp &&
-      (!self.hasHp || self.hp == otherMessage.hp) &&
-      self.hasDead == otherMessage.hasDead &&
-      (!self.hasDead || self.dead == otherMessage.dead) &&
       self.hasGameControl == otherMessage.hasGameControl &&
       (!self.hasGameControl || [self.gameControl isEqual:otherMessage.gameControl]) &&
       (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
 }
 - (NSUInteger) hash {
   NSUInteger hashCode = 7;
-  if (self.hasSuccess) {
-    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.success] hash];
-  }
-  if (self.hasHp) {
-    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.hp] hash];
-  }
-  if (self.hasDead) {
-    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.dead] hash];
-  }
   if (self.hasGameControl) {
     hashCode = hashCode * 31 + [self.gameControl hash];
   }
@@ -251,15 +182,6 @@ static PP_AttackRes* defaultPP_AttackResInstance = nil;
   if (other == [PP_AttackRes defaultInstance]) {
     return self;
   }
-  if (other.hasSuccess) {
-    [self setSuccess:other.success];
-  }
-  if (other.hasHp) {
-    [self setHp:other.hp];
-  }
-  if (other.hasDead) {
-    [self setDead:other.dead];
-  }
   if (other.hasGameControl) {
     [self mergeGameControl:other.gameControl];
   }
@@ -284,18 +206,6 @@ static PP_AttackRes* defaultPP_AttackResInstance = nil;
         }
         break;
       }
-      case 8: {
-        [self setSuccess:[input readInt32]];
-        break;
-      }
-      case 16: {
-        [self setHp:[input readInt32]];
-        break;
-      }
-      case 24: {
-        [self setDead:[input readInt32]];
-        break;
-      }
       case 34: {
         PP_GameControl_Builder* subBuilder = [PP_GameControl builder];
         if (self.hasGameControl) {
@@ -307,54 +217,6 @@ static PP_AttackRes* defaultPP_AttackResInstance = nil;
       }
     }
   }
-}
-- (BOOL) hasSuccess {
-  return result.hasSuccess;
-}
-- (int32_t) success {
-  return result.success;
-}
-- (PP_AttackRes_Builder*) setSuccess:(int32_t) value {
-  result.hasSuccess = YES;
-  result.success = value;
-  return self;
-}
-- (PP_AttackRes_Builder*) clearSuccess {
-  result.hasSuccess = NO;
-  result.success = 0;
-  return self;
-}
-- (BOOL) hasHp {
-  return result.hasHp;
-}
-- (int32_t) hp {
-  return result.hp;
-}
-- (PP_AttackRes_Builder*) setHp:(int32_t) value {
-  result.hasHp = YES;
-  result.hp = value;
-  return self;
-}
-- (PP_AttackRes_Builder*) clearHp {
-  result.hasHp = NO;
-  result.hp = 0;
-  return self;
-}
-- (BOOL) hasDead {
-  return result.hasDead;
-}
-- (int32_t) dead {
-  return result.dead;
-}
-- (PP_AttackRes_Builder*) setDead:(int32_t) value {
-  result.hasDead = YES;
-  result.dead = value;
-  return self;
-}
-- (PP_AttackRes_Builder*) clearDead {
-  result.hasDead = NO;
-  result.dead = 0;
-  return self;
 }
 - (BOOL) hasGameControl {
   return result.hasGameControl;

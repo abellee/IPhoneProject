@@ -147,6 +147,7 @@
             monster = (PPCCSprite*)[Global overlayCCSprite:monster color:color];
         }
         [monster addTarget:self action:@selector(monsterTouched:) forControlEvents:UIControlEventTouchUpInside priority:1];
+        [monster isTouchable:YES];
         [self addChild:monster z:1];
         
         BattlePetSpriteController* monsterController = [[BattlePetSpriteController alloc] initWithCCSprite:monster viewData:battleMonster];
@@ -239,7 +240,7 @@
     if(totalCount <= 0){
         NSLog(@"time is up!");
         [timer invalidate];
-        [readyCount setVisible:NO];
+        if([readyCount visible]) [readyCount setVisible:NO];
         return;
     }
     [readyCount setString:[NSString stringWithFormat:@"%d", totalCount]];
@@ -251,23 +252,108 @@
         if([controller.view isEqual:target]){
             [[petList objectAtIndex:curPet] targetData:controller.data];
             curPet++;
+            NSLog(@"%d-----%d", curPet, petList.count);
             if(curPet >= petList.count){
-                curPet = 0;
-                [timer invalidate];
-                [readyCount setVisible:NO];
-                [readyCount setString:[NSString stringWithFormat:@"%d", 30]];
-                totalCount = 30;
-                [[[Global sharedGlobal] socketManager] attackStartWithNSArray:petList];
+                [self targetMonsterSelected];
             }
         }
+    }
+}
+
+-(void)randomChoose
+{
+    curPet = 0;
+    for (BattlePetSpriteController* petController in petList) {
+        if (petController.targetData == nil) {
+            int i = arc4random() % [monsterList count];
+            BattlePetSpriteController* monsterController = (BattlePetSpriteController*)[monsterList objectAtIndex:i];
+            if(monsterController){
+                [petController targetData: monsterController.data];
+            }
+        }
+    }
+    [self targetMonsterSelected];
+}
+
+-(void)targetMonsterSelected
+{
+    curPet = 0;
+    [timer invalidate];
+    [readyCount setVisible:NO];
+    [readyCount setString:[NSString stringWithFormat:@"%d", 30]];
+    totalCount = 30;
+    [self untouchableMonsterAndPet];
+    [[[Global sharedGlobal] socketManager] attackStartWithNSArray:petList];
+}
+
+-(void)untouchableMonsterAndPet
+{
+    for (BattlePetSpriteController* petController in petList) {
+        PPCCSprite* petView = (PPCCSprite*)petController.view;
+        if (petView) {
+            [petView isTouchable:NO];
+        }
+    }
+    
+    for (BattlePetSpriteController* monsterController in monsterList) {
+        PPCCSprite* monsterView = (PPCCSprite*)monsterController.view;
+        if (monsterView) {
+            [monsterView isTouchable:NO];
+        }
+    }
+}
+
+-(void)retouchableMonsterAndPet
+{
+    for (BattlePetSpriteController* petController in petList) {
+        PPCCSprite* petView = (PPCCSprite*)petController.view;
+        if (petView) {
+            [petView isTouchable:YES];
+        }
+    }
+    
+    for (BattlePetSpriteController* monsterController in monsterList) {
+        PPCCSprite* monsterView = (PPCCSprite*)monsterController.view;
+        if (monsterView) {
+            [monsterView isTouchable:YES];
+        }
+    }
+}
+
+-(void)clearPetTargetData
+{
+    for (BattlePetSpriteController* petController in petList) {
+        [petController targetData:nil];
     }
 }
 
 -(void)attackResultWithPPAttackResult:(PP_AttackResult *)attackResult
 {
     for (PP_AttackRes* attackRes in [attackResult attackRes]) {
-        NSLog(@"攻击成功与否:%d 怪物ID:%d 受到%d点伤害 伤害它的宠物ID是%d", [attackRes success], [[attackRes gameControl] targetId], [attackRes hp], [[attackRes gameControl] petId]);
+        for (int i=0; i<monsterList.count; i++) {
+            BattlePetSpriteController* monsterController = [monsterList objectAtIndex:i];
+            PP_BattlePet* battleMonster = (PP_BattlePet*)monsterController.data;
+            if(battleMonster.mid == [[attackRes gameControl] targetId] && [[attackRes gameControl] dead] == 2){
+                [self removeChild:monsterController.view cleanup:YES];
+                [monsterList removeObject:monsterController];
+                --i;
+            }else{
+                if(loseBlood == nil){
+                    loseBlood = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"-%d", [[attackRes gameControl] hp]] dimensions:CGSizeMake(100, 30) alignment:UITextAlignmentCenter fontName:@"Heiti SC" fontSize:30];
+                }
+                [loseBlood setString:[NSString stringWithFormat:@"-%d", [[attackRes gameControl] hp]]];
+                if([loseBlood parent] == nil){
+                    [self addChild:loseBlood];
+                }
+                loseBlood.position = ccp(monsterController.view.position.x, monsterController.view.position.y);
+            }
+        }
+        NSLog(@"攻击成功与否:%d 怪物ID:%d 受到%d点伤害 伤害它的宠物ID是%d 死没死%d", [[attackRes gameControl] success], [[attackRes gameControl] targetId], [[attackRes gameControl] hp], [[attackRes gameControl] petId], [[attackRes gameControl] dead]);
     }
+    [self clearPetTargetData];
+    [self retouchableMonsterAndPet];
+    [readyCount setVisible:YES];
+    [self startTime];
 }
 
 // on "dealloc" you need to release all your retained objects

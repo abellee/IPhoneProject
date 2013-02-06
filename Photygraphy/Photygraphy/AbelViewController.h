@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequestDelegate.h"
+#import "ASIProgressDelegate.h"
 
-@interface AbelViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
+@interface AbelViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ASIHTTPRequestDelegate, UIAlertViewDelegate, ASIProgressDelegate, UITableViewDataSource, UITableViewDelegate, UIPopoverControllerDelegate>{
     UIPickerView* picker;
+    UIToolbar* pickerToolBar;
     UITextField* orderNumber;
     UIImageView* image;
     UIButton* btn;
@@ -23,6 +26,35 @@
     UITextField* orderTextField;
     
     UIActionSheet* actionSheet;
+    
+    UIButton* submit;
+    NSString* server;
+    
+    UIAlertView* alert;
+    UITextField* serverURLTextField;
+    UIButton* serverURLCommit;
+    BOOL isUploading;
+    NSArray* parentCateArray;
+    NSArray* photoCateArray;
+    NSArray* curPhotoCateArray;
+    UIProgressView* progressView;
+    
+    NSMutableArray* imageList;
+    NSMutableArray* failedImageList;
+    NSMutableArray* imageControllerList;
+    
+    UIToolbar* toolbar;
+    CGRect rect;
+    UIImagePickerController* camera;
+    UIScrollView* imageView;
+    UIPopoverController* popOver;
+    
+    NSMutableArray* tempImageList;
+    
+    NSMutableString* strCache;
 }
+
+- (void)setImageList:(NSMutableArray*)images;
+- (void)deleteImage:(UIImage*)image;
 
 @end

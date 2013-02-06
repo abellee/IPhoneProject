@@ -26,6 +26,11 @@
 @synthesize imageSuffix;
 @synthesize battleField;
 @synthesize serverInfo;
+@synthesize totalDataUse;
+@synthesize totalHeight;
+@synthesize totalWidth;
+@synthesize heightInNavigator;
+@synthesize isConnected;
 
 static Global *instance;
 
@@ -103,6 +108,30 @@ static Global *instance;
     appId = idStr;
     [[NSUserDefaults standardUserDefaults] setValue:idStr forKey:@"appId"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (int)totalHeight
+{
+    if (totalHeight <= 0) {
+        totalHeight = [[UIScreen mainScreen] bounds].size.height;
+    }
+    return totalHeight;
+}
+
+- (int)totalWidth
+{
+    if (totalWidth <= 0) {
+        totalWidth = [[UIScreen mainScreen] bounds].size.width;
+    }
+    return totalWidth;
+}
+
+- (int)heightInNavigator
+{
+    if (heightInNavigator <= 0) {
+        heightInNavigator = [[UIScreen mainScreen] bounds].size.height - 44;
+    }
+    return heightInNavigator;
 }
 
 - (NSString*)getAppId

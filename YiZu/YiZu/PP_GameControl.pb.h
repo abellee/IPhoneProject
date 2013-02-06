@@ -28,16 +28,28 @@
   BOOL hasTargetId_:1;
   BOOL hasSkillId_:1;
   BOOL hasPetId_:1;
+  BOOL hasHp_:1;
+  BOOL hasDead_:1;
+  BOOL hasSuccess_:1;
   int32_t targetId;
   int32_t skillId;
   int32_t petId;
+  int32_t hp;
+  int32_t dead;
+  int32_t success;
 }
 - (BOOL) hasTargetId;
 - (BOOL) hasSkillId;
 - (BOOL) hasPetId;
+- (BOOL) hasHp;
+- (BOOL) hasDead;
+- (BOOL) hasSuccess;
 @property (readonly) int32_t targetId;
 @property (readonly) int32_t skillId;
 @property (readonly) int32_t petId;
+@property (readonly) int32_t hp;
+@property (readonly) int32_t dead;
+@property (readonly) int32_t success;
 
 + (PP_GameControl*) defaultInstance;
 - (PP_GameControl*) defaultInstance;
@@ -88,5 +100,20 @@
 - (int32_t) petId;
 - (PP_GameControl_Builder*) setPetId:(int32_t) value;
 - (PP_GameControl_Builder*) clearPetId;
+
+- (BOOL) hasHp;
+- (int32_t) hp;
+- (PP_GameControl_Builder*) setHp:(int32_t) value;
+- (PP_GameControl_Builder*) clearHp;
+
+- (BOOL) hasDead;
+- (int32_t) dead;
+- (PP_GameControl_Builder*) setDead:(int32_t) value;
+- (PP_GameControl_Builder*) clearDead;
+
+- (BOOL) hasSuccess;
+- (int32_t) success;
+- (PP_GameControl_Builder*) setSuccess:(int32_t) value;
+- (PP_GameControl_Builder*) clearSuccess;
 @end
 

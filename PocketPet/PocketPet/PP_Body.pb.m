@@ -20,19 +20,19 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @end
 
 @interface PP_Body ()
-@property (retain) NSString* funcName;
+@property int32_t type;
 @property (retain) NSData* content;
 @end
 
 @implementation PP_Body
 
-- (BOOL) hasFuncName {
-  return !!hasFuncName_;
+- (BOOL) hasType {
+  return !!hasType_;
 }
-- (void) setHasFuncName:(BOOL) value_ {
-  hasFuncName_ = !!value_;
+- (void) setHasType:(BOOL) value_ {
+  hasType_ = !!value_;
 }
-@synthesize funcName;
+@synthesize type;
 - (BOOL) hasContent {
   return !!hasContent_;
 }
@@ -41,13 +41,12 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @synthesize content;
 - (void) dealloc {
-  self.funcName = nil;
   self.content = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.funcName = @"";
+    self.type = 0;
     self.content = [NSData data];
   }
   return self;
@@ -68,8 +67,8 @@ static PP_Body* defaultPP_BodyInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasFuncName) {
-    [output writeString:1 value:self.funcName];
+  if (self.hasType) {
+    [output writeInt32:1 value:self.type];
   }
   if (self.hasContent) {
     [output writeData:2 value:self.content];
@@ -83,8 +82,8 @@ static PP_Body* defaultPP_BodyInstance = nil;
   }
 
   size_ = 0;
-  if (self.hasFuncName) {
-    size_ += computeStringSize(1, self.funcName);
+  if (self.hasType) {
+    size_ += computeInt32Size(1, self.type);
   }
   if (self.hasContent) {
     size_ += computeDataSize(2, self.content);
@@ -124,8 +123,8 @@ static PP_Body* defaultPP_BodyInstance = nil;
   return [PP_Body builderWithPrototype:self];
 }
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
-  if (self.hasFuncName) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"funcName", self.funcName];
+  if (self.hasType) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"type", [NSNumber numberWithInt:self.type]];
   }
   if (self.hasContent) {
     [output appendFormat:@"%@%@: %@\n", indent, @"content", self.content];
@@ -141,16 +140,16 @@ static PP_Body* defaultPP_BodyInstance = nil;
   }
   PP_Body *otherMessage = other;
   return
-      self.hasFuncName == otherMessage.hasFuncName &&
-      (!self.hasFuncName || [self.funcName isEqual:otherMessage.funcName]) &&
+      self.hasType == otherMessage.hasType &&
+      (!self.hasType || self.type == otherMessage.type) &&
       self.hasContent == otherMessage.hasContent &&
       (!self.hasContent || [self.content isEqual:otherMessage.content]) &&
       (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
 }
 - (NSUInteger) hash {
   NSUInteger hashCode = 7;
-  if (self.hasFuncName) {
-    hashCode = hashCode * 31 + [self.funcName hash];
+  if (self.hasType) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.type] hash];
   }
   if (self.hasContent) {
     hashCode = hashCode * 31 + [self.content hash];
@@ -202,8 +201,8 @@ static PP_Body* defaultPP_BodyInstance = nil;
   if (other == [PP_Body defaultInstance]) {
     return self;
   }
-  if (other.hasFuncName) {
-    [self setFuncName:other.funcName];
+  if (other.hasType) {
+    [self setType:other.type];
   }
   if (other.hasContent) {
     [self setContent:other.content];
@@ -229,8 +228,8 @@ static PP_Body* defaultPP_BodyInstance = nil;
         }
         break;
       }
-      case 10: {
-        [self setFuncName:[input readString]];
+      case 8: {
+        [self setType:[input readInt32]];
         break;
       }
       case 18: {
@@ -240,20 +239,20 @@ static PP_Body* defaultPP_BodyInstance = nil;
     }
   }
 }
-- (BOOL) hasFuncName {
-  return result.hasFuncName;
+- (BOOL) hasType {
+  return result.hasType;
 }
-- (NSString*) funcName {
-  return result.funcName;
+- (int32_t) type {
+  return result.type;
 }
-- (PP_Body_Builder*) setFuncName:(NSString*) value {
-  result.hasFuncName = YES;
-  result.funcName = value;
+- (PP_Body_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
   return self;
 }
-- (PP_Body_Builder*) clearFuncName {
-  result.hasFuncName = NO;
-  result.funcName = @"";
+- (PP_Body_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
   return self;
 }
 - (BOOL) hasContent {

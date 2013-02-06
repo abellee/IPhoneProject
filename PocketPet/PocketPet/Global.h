@@ -31,6 +31,11 @@
     NSString* appId;
     NSUInteger lastVersionCheck;
     VersionChecker* versionChecker;
+    int totalDataUse;
+    BOOL isConnected;
+    int totalHeight;
+    int totalWidth;
+    int heightInNavigator;
 }
 
 @property (nonatomic, retain, getter = popUpLayer, setter = popUpLayer:) PopUpLayer *popUpLayer;
@@ -44,6 +49,11 @@
 @property (nonatomic, retain, getter = getAppId, setter = setAppId:) NSString* appId;
 @property (nonatomic, getter = getLastVersionCheck, setter = setLastVersionCheck:) NSUInteger lastVersionCheck;
 @property (nonatomic, retain, getter = serverInfo, setter = serverInfo:) ServerInfo *serverInfo;
+@property (nonatomic, assign, getter = totalDataUse, setter = totalDataUse:) int totalDataUse;
+@property (nonatomic, assign, getter = isConnected, setter = isConnected:) BOOL isConnected;
+@property (nonatomic, assign, getter = totalHeight, setter = totalHeight:) int totalHeight;
+@property (nonatomic, assign, getter = totalWidth, setter = totalWidth:) int totalWidth;
+@property (nonatomic, assign, getter = heightInNavigator, setter = heightInNavigator:) int heightInNavigator;
 
 +(id)sharedGlobal;
 + (NSString *)md5:(NSString *)str;

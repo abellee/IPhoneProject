@@ -292,6 +292,7 @@
 		0CB901A116B6502400E1A4FF /* PP_UserResPoint.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB9017A16B6502400E1A4FF /* PP_UserResPoint.pb.m */; };
 		0CB901A216B6502400E1A4FF /* PP_UserState.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB9017C16B6502400E1A4FF /* PP_UserState.pb.m */; };
 		0CE7352B16C1874300D5DB11 /* PP_Package.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7352A16C1874300D5DB11 /* PP_Package.pb.m */; };
+		0CE7353316C1D3F800D5DB11 /* PP_Body.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7353016C1D3F800D5DB11 /* PP_Body.pb.m */; };
 		0CED3C0216A556A400342973 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 0CED3BF816A556A400342973 /* ioapi.c */; };
 		0CED3C0316A556A400342973 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 0CED3BFA16A556A400342973 /* mztools.c */; };
 		0CED3C0416A556A400342973 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 0CED3BFC16A556A400342973 /* unzip.c */; };
@@ -884,6 +885,8 @@
 		0CB9017C16B6502400E1A4FF /* PP_UserState.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PP_UserState.pb.m; sourceTree = "<group>"; };
 		0CE7352916C1874300D5DB11 /* PP_Package.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PP_Package.pb.h; sourceTree = "<group>"; };
 		0CE7352A16C1874300D5DB11 /* PP_Package.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PP_Package.pb.m; sourceTree = "<group>"; };
+		0CE7352F16C1D3F800D5DB11 /* PP_Body.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PP_Body.pb.h; sourceTree = "<group>"; };
+		0CE7353016C1D3F800D5DB11 /* PP_Body.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PP_Body.pb.m; sourceTree = "<group>"; };
 		0CED3BF716A556A400342973 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		0CED3BF816A556A400342973 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		0CED3BF916A556A400342973 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -1370,6 +1373,8 @@
 		0C4F992B168DD80F008AE70A /* PBs */ = {
 			isa = PBXGroup;
 			children = (
+				0CE7352F16C1D3F800D5DB11 /* PP_Body.pb.h */,
+				0CE7353016C1D3F800D5DB11 /* PP_Body.pb.m */,
 				0CE7352916C1874300D5DB11 /* PP_Package.pb.h */,
 				0CE7352A16C1874300D5DB11 /* PP_Package.pb.m */,
 				0CB9013116B6502400E1A4FF /* PP_Account.pb.h */,
@@ -2117,6 +2122,7 @@
 				0CB901A116B6502400E1A4FF /* PP_UserResPoint.pb.m in Sources */,
 				0CB901A216B6502400E1A4FF /* PP_UserState.pb.m in Sources */,
 				0CE7352B16C1874300D5DB11 /* PP_Package.pb.m in Sources */,
+				0CE7353316C1D3F800D5DB11 /* PP_Body.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,9 +20,11 @@
     SEL touchEndedSelector;
     SEL touchCancelledSelector;
     
-    BOOL isTouchEnabled;
+    BOOL isTouchable;
     int cur_priority;
 }
+
+@property (nonatomic, assign, getter = isTouchable, setter = isTouchable:) BOOL isTouchable;
 
 -(void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents priority:(int)priority;
 -(void)removeTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;

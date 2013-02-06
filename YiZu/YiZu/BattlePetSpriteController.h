@@ -19,7 +19,7 @@
 
 @property (nonatomic, retain, getter = view, setter = view:) CCSprite* view;
 @property (nonatomic, retain, getter = data, setter = data:) NSObject* data;
-@property (nonatomic, retain, getter = targetData, setter = targetData:) NSObject* targetData;
+@property (nonatomic, assign, getter = targetData, setter = targetData:) NSObject* targetData;
 
 -(id)initWithCCSprite:(CCSprite*)petView viewData:(NSObject*)petData;
 

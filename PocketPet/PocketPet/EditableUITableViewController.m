@@ -54,7 +54,7 @@
 		}else if(cellData.cellType == kNormal){
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-		}else if(cellData.cellType == kCheck && cellData.value == @"YES"){
+		}else if(cellData.cellType == kCheck && [cellData.value isEqualToString:@"YES"]){
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 		}
@@ -84,7 +84,7 @@
 - (UISwitch *)getSwitch:(EditableUITableViewCellData *)cellData
 {
 	UISwitch* switcher = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, cellData.width, cellData.height)];
-	[switcher setOn:cellData.value == @"YES" ? YES : NO];
+	[switcher setOn:[cellData.value isEqualToString:@"YES"] ? YES : NO];
 	[switcher addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
 	return [switcher autorelease];
 }
@@ -156,6 +156,23 @@
 	}
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    int screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    if (screenHeight < 568 && [[textField superview] frame].origin.y > screenHeight / 2 - 120) {
+        [tableViewController.tableView setContentOffset:CGPointMake(0, 80) animated:YES];
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    int screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    if (screenHeight < 568 && [[textField superview] frame].origin.y > screenHeight / 2 - 120) {
+        [tableViewController.tableView setContentOffset:CGPointMake(0, 80) animated:YES];
+    }
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 	[textField resignFirstResponder];
@@ -165,6 +182,7 @@
 		[tf becomeFirstResponder];
 		return NO;
 	}else{
+        [tableViewController.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 		return YES;
 	}
 	return YES;

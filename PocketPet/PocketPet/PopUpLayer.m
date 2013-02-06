@@ -7,7 +7,7 @@
 //
 
 #import "PopUpLayer.h"
-#import "SystemConfig.h"
+#import "Global.h"
 
 @implementation PopUpLayer
 
@@ -16,7 +16,7 @@
     self = [super init];
     if(self){
         activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        masker = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOTLE_WIDTH, TOTLE_HEIGHT)];
+        masker = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
         masker.backgroundColor = [UIColor blackColor];
         masker.alpha = 0.3;
     }

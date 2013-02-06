@@ -34,6 +34,7 @@
 #import "PP_Attack.pb.h"
 #import "PP_Message.pb.h"
 #import "PP_Package.pb.h"
+#import "PP_Body.pb.h"
 
 #import "BattlePetSpriteController.h"
 #import "BattleFieldLayer.h"
@@ -55,8 +56,9 @@
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1){
-        NSLog(@"error");
-        exit(1);
+        [[Global sharedGlobal] isConnected:NO];
+        [self performSelectorOnMainThread:@selector(showConnectErrorTip:) withObject:@"创建连接失败!" waitUntilDone:YES];
+        return;
     }
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = inet_addr([[[[Global sharedGlobal] serverInfo] ip] UTF8String]);
@@ -64,38 +66,71 @@
     bzero(addr.sin_zero, 8);
     int conn = connect(sockfd, (struct sockaddr *)&addr, sizeof(struct sockaddr));
     if(conn != -1){
-        int bufferSize = 1024;
+        [[Global sharedGlobal] isConnected:YES];
+        int bufferSize = 7;
         char readBuffer[bufferSize];
         memset(&readBuffer, 0, bufferSize);
-        while (recv(sockfd, readBuffer, sizeof(readBuffer), 0)) {
-            PP_Package* b = [PP_Package parseFromData:[NSData dataWithBytes:readBuffer length:bufferSize]];
-            //char content[b->head.length];
-            //memset(&content, 0, sizeof(content));
-            //recv(sockfd, content, sizeof(content), 0);
-            switch ([b type]) {
-                case REGIST:{
-                    [self performSelectorOnMainThread:@selector(registSuccess) withObject:nil waitUntilDone:NO];
-                }break;
-                case IS_LAST_USER_DATA:{
-                    [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:@"YES" waitUntilDone:NO];
-                }break;
-                case LOGIN:{
-                    PP_CLUser* userData = [PP_CLUser parseFromData:[b content]];
-                    [[Global sharedGlobal] player:userData];
+        while (1) {
+            int bytes = recv(sockfd, readBuffer, bufferSize, 0);
+            if (bytes == 0) {
+                [[Global sharedGlobal] isConnected:NO];
+                [self performSelectorOnMainThread:@selector(showConnectErrorTip:) withObject:@"服务器已经关闭！" waitUntilDone:YES];
+                return;
+            }else{
+                @try {
+                    PP_Package* b = [PP_Package parseFromData:[NSData dataWithBytes:readBuffer length:bufferSize]];
+                    int contentSize = [b length];
+                    char content[contentSize];
+                    recv(sockfd, content, contentSize, 0);
                     
-                    [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:@"NO" waitUntilDone:NO];
+                    [self increaseDataUse: bufferSize + contentSize];
                     
-                }break;
-                
-                default:
-                    break;
+                    PP_Body* body = [PP_Body parseFromData:[NSData dataWithBytes:content length:contentSize]];
+                    switch ([body type]) {
+                        case REGIST:{
+                            PP_CLUser* userData = [PP_CLUser parseFromData:[body content]];
+                            [[Global sharedGlobal] player:userData];
+                            [self performSelectorOnMainThread:@selector(registSuccess) withObject:nil waitUntilDone:YES];
+                        }break;
+                        case IS_LAST_USER_DATA:{
+                            [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:@"YES" waitUntilDone:YES];
+                        }break;
+                        case LOGIN:{
+                            PP_CLUser* userData = [PP_CLUser parseFromData:[body content]];
+                            [[Global sharedGlobal] player:userData];
+                            [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:@"NO" waitUntilDone:YES];
+                        }break;
+                        case CHAT:{
+                            PP_Message* message = [PP_Message parseFromData:[body content]];
+                            NSLog(@"%@", [message content]);
+                        }break;
+                        case DATA_ERROR:{
+                            PP_Error* error = [PP_Error parseFromData:[body content]];
+                            [self performSelectorOnMainThread:@selector(showErrorAlert:) withObject:error waitUntilDone:YES];
+                        }break;
+                            
+                        default:
+                            break;
+                    }
+                }
+                @catch (NSException *exception) {
+                    NSLog(@"data is error");
+                }
+                @finally {
+                    
+                }
             }
         }
-        NSLog(@"server close");
     }else{
-       [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"连接失败!" info:@"连接服务器失败!"];
+        [self performSelectorOnMainThread:@selector(showConnectErrorTip:) withObject:@"连接服务失败!" waitUntilDone:YES];
+        [[Global sharedGlobal] isConnected:NO];
     }
     [pool release];
+}
+
+-(void)showConnectErrorTip:(NSString*)info
+{
+    [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"连接失败!" info:info];
 }
 
 /*-(void)test
@@ -127,10 +162,13 @@
     if([isLast isEqualToString:@"YES"]){
         
     }
-//    if([[[Global sharedGlobal] gameLayer] loginLayer]){
-//        [[[[Global sharedGlobal] gameLayer] loginLayer] performSelector:@selector(loginSuccess)];
-//        
-//        PP_Package package;
+    if([[[Global sharedGlobal] gameLayer] loginLayer]){
+        [[[[Global sharedGlobal] gameLayer] loginLayer] performSelector:@selector(loginSuccess)];
+        
+//        PP_Package* package;
+//        PP_Package_Builder* packageBuilder = [PP_Package builder];
+//        PP_Body* body;
+//        PP_Body_Builder* bodyBuilder = [PP_Body builder];
 //        PP_Message* message;
 //        PP_Message_Builder* messageBuilder = [PP_Message builder];
 //        [messageBuilder setUid:[[[Global sharedGlobal] player] uid]];
@@ -143,12 +181,16 @@
 //        }
 //        [messageBuilder setContent:@"你好大白痴！"];
 //        message = [messageBuilder build];
-//        package.head.type = CHAT;
-//        package.head.length = message.serializedSize;
-//        strcpy(package.content, message.data.bytes);
-//        send(sockfd, &package, package.head.length + sizeof(package.head), 0);
+//        [bodyBuilder setType:CHAT];
+//        [bodyBuilder setContent:[message data]];
+//        body = [bodyBuilder build];
+//        [packageBuilder setLength:[body serializedSize]];
+//        [packageBuilder setBody:body];
+//        package = [packageBuilder build];
+//        
+//        [self sendData:package];
 //        NSLog(@"chat message sent");
-//    }
+    }
 }
 
 -(void)registSuccess
@@ -158,75 +200,134 @@
 
 -(void)doRegist:(NSString *)avatarURL nickname:(NSString *)nickname username:(NSString *)username password:(NSString *)password
 {
-//    PP_Package package;
-//    PP_RegistPack* registPack;
-//    PP_RegistPack_Builder* registPackBuilder = [PP_RegistPack builder];
-//    [registPackBuilder setAccount:[[[[[registPackBuilder account] builder] setUsername:username] setPassword:[Global md5:password]] build]];
-//    [registPackBuilder setNickname:nickname];
-//    [registPackBuilder setDuid:[Utils genUDID]];
-//    if(avatarURL) [registPackBuilder setAvatarImg:avatarURL];
-//    registPack = [registPackBuilder build];
-//    package.head.type = REGIST;
-//    package.head.length = registPack.serializedSize;
-//    NSLog(@"注册发出数据量:%d", registPack.serializedSize);
-//    memcpy(package.content, registPack.data.bytes, package.head.length);
-//    send(sockfd, &package, package.head.length + sizeof(package.head), 0);
+    PP_Package* package;
+    PP_Package_Builder* packageBuilder = [PP_Package builder];
+    PP_Body* body;
+    PP_Body_Builder* bodyBuider = [PP_Body builder];
+    
+    PP_RegistPack* registPack;
+    PP_RegistPack_Builder* registPackBuilder = [PP_RegistPack builder];
+    [registPackBuilder setAccount:[[[[[registPackBuilder account] builder] setUsername:username] setPassword:[Global md5:password]] build]];
+    [registPackBuilder setNickname:nickname];
+    [registPackBuilder setDuid:[Utils genUDID]];
+    if(avatarURL) [registPackBuilder setAvatarImg:avatarURL];
+    registPack = [registPackBuilder build];
+    
+    [bodyBuider setType:REGIST];
+    [bodyBuider setContent:[registPack data]];
+    body = [bodyBuider build];
+    
+    [packageBuilder setLength:[body serializedSize]];
+    [packageBuilder setBody:body];
+    package = [packageBuilder build];
+    
+    [self sendData:package];
+    
+    [bodyBuider clear];
+    [registPackBuilder clear];
+    [packageBuilder clear];
 }
 
 -(void)sendHeartBeat
 {
-//    PP_Package package;
-//    PP_UserState* hb = [[[[PP_UserState builder] setUid:[[[Global sharedGlobal] player] uid]] setState:FOREGROUND] build];
-//    
-//    package.head.type = HEART_BEAT;
-//    package.head.length = hb.serializedSize;
-//    NSLog(@"心跳包发出数据量:%d", hb.serializedSize);
-//    memcpy(package.content, hb.data.bytes, package.head.length);
-//    send(sockfd, &package, sizeof(package.head) + package.head.length, 0);
+    PP_Package* package;
+    PP_Package_Builder* packageBuilder = [PP_Package builder];
+    PP_Body* body;
+    PP_Body_Builder* bodyBuilder = [PP_Body builder];
+    
+    PP_UserState* hb = [[[[PP_UserState builder] setUid:[[[Global sharedGlobal] player] uid]] setState:FOREGROUND] build];
+    
+    [bodyBuilder setType:HEART_BEAT];
+    [bodyBuilder setContent:[hb data]];
+    body = [bodyBuilder build];
+    
+    [packageBuilder setLength:[body serializedSize]];
+    [packageBuilder setBody:body];
+    package = [packageBuilder build];
+    
+    [self sendData:package];
+    
+    [bodyBuilder clear];
+    [[hb builder] clear];
+    [packageBuilder clear];
 }
 
 -(void)doLogin:(NSString *)username pass:(NSString *)password
 {
+    PP_Body* body;
+    PP_Body_Builder* bodyBuilder = [[PP_Body builder] setType:LOGIN];
     PP_Package* package;
-    PP_Package_Builder* packageBuilder = [[[[PP_Package builder] setType:100890] setLength:100001] setMore:1];
+    PP_Package_Builder* packageBuilder = [PP_Package builder];
     PP_Account* acc = [[[[PP_Account builder] setUsername:username] setPassword:[Global md5:password]] build];
     PP_LoginPack* loginPack = [[[[[[PP_LoginPack builder] setAccount:acc] setLoginMode:PP_LOGIN] setVersion:1] setDuid:[Utils genUDID]] build];
-//    package.head.type = LOGIN;
-//    package.head.length = loginPack.serializedSize;
-    NSString* str = [NSString stringWithCString:[[loginPack data] bytes] encoding:[NSString defaultCStringEncoding]];
-    NSLog(@"%@", str);
-    [packageBuilder setContent:[loginPack data]];
+    [bodyBuilder setContent:[loginPack data]];
+    body = [bodyBuilder build];
+    [packageBuilder setLength:body.serializedSize];
+    [packageBuilder setBody:body];
     package = [packageBuilder build];
-    NSLog(@"登录发出数据量:%d", package.serializedSize);
-    NSLog(@"loginMode:%d", [loginPack loginMode]);
-    NSLog(@"%s", [[loginPack data] bytes]);
     
-    //memcpy(package.content, [[loginPack data] bytes], package.head.length);
-    ssize_t t = send(sockfd, [[package data] bytes], package.serializedSize, 0);
-    NSLog(@"%zd", t);
+    [self sendData:package];
+    
+    [bodyBuilder clear];
+    [[acc builder] clear];
+    [[loginPack builder] clear];
+    [packageBuilder clear];
+}
+
+- (void)sendData:(PP_Package*)package
+{
+    if ([[Global sharedGlobal] isConnected]) {
+        ssize_t t = send(sockfd, [[package data] bytes], package.serializedSize, 0);
+        [self increaseDataUse:t];
+    }
+}
+
+- (void)increaseDataUse:(int)num
+{
+    int nowSize = [[Global sharedGlobal] totalDataUse];
+    [[Global sharedGlobal] totalDataUse:nowSize + num];
 }
 
 -(void)enterBackground
 {
-//    PP_Package package;
-//    PP_UserState* userState = [[[[PP_UserState builder] setUid:1] setState:BACKGROUND_STATE] build];
-//    
-//    package.head.type = BACKGROUND;
-//    package.head.length = userState.serializedSize;
-//    memcpy(package.content, &userState, package.head.length);
-//    send(sockfd, &package, package.head.length + sizeof(package.head), 0);
+    PP_Package* package;
+    PP_Package_Builder* packageBuilder = [PP_Package builder];
+    PP_Body* body;
+    PP_Body_Builder* bodyBuilder = [PP_Body builder];
+    PP_UserState* userState = [[[[PP_UserState builder] setUid:1] setState:BACKGROUND_STATE] build];
+    
+    [bodyBuilder setType:BACKGROUND];
+    [bodyBuilder setContent:[userState data]];
+    body = [bodyBuilder build];
+    
+    [packageBuilder setLength:[body serializedSize]];
+    [packageBuilder setBody:body];
+    package = [packageBuilder build];
+    
+    [self sendData:package];
+    [bodyBuilder clear];
+    [[userState builder] clear];
+    [packageBuilder clear];
 }
 
 -(void)enterForeground
 {
-//    PP_Package package;
-//    PP_UserState* userState = [[[[PP_UserState builder] setUid:1] setState:FOREGROUND_STATE] build];
-//    
-//    package.head.type = FOREGROUND;
-//    package.head.length = userState.serializedSize;
-//    memcpy(package.content, &userState, package.head.length);
-//    send(sockfd, &package, package.head.length + sizeof(package.head), 0);
-//    [[userState builder] clear];
+    PP_Package* package;
+    PP_Body* body;
+    PP_Package_Builder* packageBuilder = [PP_Package builder];
+    PP_Body_Builder* bodyBuilder = [PP_Body builder];
+    PP_UserState* userState = [[[[PP_UserState builder] setUid:10001] setState:FOREGROUND_STATE] build];
+    
+    [bodyBuilder setType:FOREGROUND];
+    [bodyBuilder setContent:[userState data]];
+    body = [bodyBuilder build];
+    [packageBuilder setLength:[body serializedSize]];
+    package = [packageBuilder build];
+    
+    [self sendData:package];
+    [[userState builder] clear];
+    [bodyBuilder clear];
+    [packageBuilder clear];
 }
 
 -(void)attackStartWithNSArray:(NSArray *)array
@@ -274,7 +375,10 @@
                     alertStr = @"帐号或密码不正确！";
                     break;
                 case USER_NOT_EXIST:
-                    alertStr = @"用户不存在！";
+                    alertStr = @"该帐号不存在！";
+                    break;
+                case USER_ALREADY_ONLINE:
+                    alertStr = @"玩家已经在线！";
                     break;
                 default:
                     break;
@@ -309,6 +413,21 @@
                     break;
             }
             [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"注册失败!" info:alertStr];
+        }break;
+        case CHAT_ERROR:{
+            NSString* alertStr;
+            switch ([errorPack errorId]) {
+                case USER_NOT_EXIST:
+                    alertStr = @"不存在该玩家!";
+                    break;
+                case USER_IS_NOT_ONLINE:
+                    alertStr = @"该玩家当前不在线!";
+                    break;
+                    
+                default:
+                    break;
+            }
+            [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"消息发送失败!" info:alertStr];
         }break;
         default:
             break;
