@@ -1,0 +1,317 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		403291E916CB735A00EB7F51 /* ShadowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 403291E816CB735A00EB7F51 /* ShadowViewController.m */; };
+		403291EC16CB8FF400EB7F51 /* ImageWallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 403291EB16CB8FF400EB7F51 /* ImageWallViewController.m */; };
+		4050646916C7354000658929 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4050646816C7354000658929 /* UIKit.framework */; };
+		4050646B16C7354000658929 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4050646A16C7354000658929 /* Foundation.framework */; };
+		4050646D16C7354000658929 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4050646C16C7354000658929 /* CoreGraphics.framework */; };
+		4050647316C7354000658929 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4050647116C7354000658929 /* InfoPlist.strings */; };
+		4050647516C7354000658929 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050647416C7354000658929 /* main.m */; };
+		4050647916C7354000658929 /* HanloonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050647816C7354000658929 /* HanloonAppDelegate.m */; };
+		4050647B16C7354000658929 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4050647A16C7354000658929 /* Default.png */; };
+		4050647D16C7354000658929 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4050647C16C7354000658929 /* Default@2x.png */; };
+		4050647F16C7354000658929 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4050647E16C7354000658929 /* Default-568h@2x.png */; };
+		40A1891916C9AAF800B2912A /* HanloonViewerMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A1891816C9AAF800B2912A /* HanloonViewerMainViewController.m */; };
+		40A1891B16C9DF5200B2912A /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40A1891A16C9DF5200B2912A /* 1.jpg */; };
+		40A1891D16C9E0B700B2912A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A1891C16C9E0B700B2912A /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		403291E716CB735A00EB7F51 /* ShadowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowViewController.h; sourceTree = "<group>"; };
+		403291E816CB735A00EB7F51 /* ShadowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowViewController.m; sourceTree = "<group>"; };
+		403291EA16CB8FF400EB7F51 /* ImageWallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWallViewController.h; sourceTree = "<group>"; };
+		403291EB16CB8FF400EB7F51 /* ImageWallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageWallViewController.m; sourceTree = "<group>"; };
+		4050646516C7354000658929 /* HanloonViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HanloonViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4050646816C7354000658929 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4050646A16C7354000658929 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4050646C16C7354000658929 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4050647016C7354000658929 /* HanloonViewer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HanloonViewer-Info.plist"; sourceTree = "<group>"; };
+		4050647216C7354000658929 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4050647416C7354000658929 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4050647616C7354000658929 /* HanloonViewer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HanloonViewer-Prefix.pch"; sourceTree = "<group>"; };
+		4050647716C7354000658929 /* HanloonAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HanloonAppDelegate.h; sourceTree = "<group>"; };
+		4050647816C7354000658929 /* HanloonAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HanloonAppDelegate.m; sourceTree = "<group>"; };
+		4050647A16C7354000658929 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		4050647C16C7354000658929 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		4050647E16C7354000658929 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		40A1891716C9AAF800B2912A /* HanloonViewerMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HanloonViewerMainViewController.h; sourceTree = "<group>"; };
+		40A1891816C9AAF800B2912A /* HanloonViewerMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HanloonViewerMainViewController.m; sourceTree = "<group>"; };
+		40A1891A16C9DF5200B2912A /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		40A1891C16C9E0B700B2912A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4050646216C7354000658929 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40A1891D16C9E0B700B2912A /* QuartzCore.framework in Frameworks */,
+				4050646916C7354000658929 /* UIKit.framework in Frameworks */,
+				4050646B16C7354000658929 /* Foundation.framework in Frameworks */,
+				4050646D16C7354000658929 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4050645C16C7354000658929 = {
+			isa = PBXGroup;
+			children = (
+				4050646E16C7354000658929 /* HanloonViewer */,
+				4050646716C7354000658929 /* Frameworks */,
+				4050646616C7354000658929 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4050646616C7354000658929 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4050646516C7354000658929 /* HanloonViewer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4050646716C7354000658929 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				40A1891C16C9E0B700B2912A /* QuartzCore.framework */,
+				4050646816C7354000658929 /* UIKit.framework */,
+				4050646A16C7354000658929 /* Foundation.framework */,
+				4050646C16C7354000658929 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4050646E16C7354000658929 /* HanloonViewer */ = {
+			isa = PBXGroup;
+			children = (
+				40A1891A16C9DF5200B2912A /* 1.jpg */,
+				4050647716C7354000658929 /* HanloonAppDelegate.h */,
+				4050647816C7354000658929 /* HanloonAppDelegate.m */,
+				40A1891716C9AAF800B2912A /* HanloonViewerMainViewController.h */,
+				40A1891816C9AAF800B2912A /* HanloonViewerMainViewController.m */,
+				4050646F16C7354000658929 /* Supporting Files */,
+				403291E716CB735A00EB7F51 /* ShadowViewController.h */,
+				403291E816CB735A00EB7F51 /* ShadowViewController.m */,
+				403291EA16CB8FF400EB7F51 /* ImageWallViewController.h */,
+				403291EB16CB8FF400EB7F51 /* ImageWallViewController.m */,
+			);
+			path = HanloonViewer;
+			sourceTree = "<group>";
+		};
+		4050646F16C7354000658929 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4050647016C7354000658929 /* HanloonViewer-Info.plist */,
+				4050647116C7354000658929 /* InfoPlist.strings */,
+				4050647416C7354000658929 /* main.m */,
+				4050647616C7354000658929 /* HanloonViewer-Prefix.pch */,
+				4050647A16C7354000658929 /* Default.png */,
+				4050647C16C7354000658929 /* Default@2x.png */,
+				4050647E16C7354000658929 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4050646416C7354000658929 /* HanloonViewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4050648216C7354000658929 /* Build configuration list for PBXNativeTarget "HanloonViewer" */;
+			buildPhases = (
+				4050646116C7354000658929 /* Sources */,
+				4050646216C7354000658929 /* Frameworks */,
+				4050646316C7354000658929 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HanloonViewer;
+			productName = HanloonViewer;
+			productReference = 4050646516C7354000658929 /* HanloonViewer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4050645D16C7354000658929 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Hanloon;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Abel Lee";
+			};
+			buildConfigurationList = 4050646016C7354000658929 /* Build configuration list for PBXProject "HanloonViewer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4050645C16C7354000658929;
+			productRefGroup = 4050646616C7354000658929 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4050646416C7354000658929 /* HanloonViewer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4050646316C7354000658929 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4050647316C7354000658929 /* InfoPlist.strings in Resources */,
+				4050647B16C7354000658929 /* Default.png in Resources */,
+				4050647D16C7354000658929 /* Default@2x.png in Resources */,
+				4050647F16C7354000658929 /* Default-568h@2x.png in Resources */,
+				40A1891B16C9DF5200B2912A /* 1.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4050646116C7354000658929 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4050647516C7354000658929 /* main.m in Sources */,
+				4050647916C7354000658929 /* HanloonAppDelegate.m in Sources */,
+				40A1891916C9AAF800B2912A /* HanloonViewerMainViewController.m in Sources */,
+				403291E916CB735A00EB7F51 /* ShadowViewController.m in Sources */,
+				403291EC16CB8FF400EB7F51 /* ImageWallViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4050647116C7354000658929 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4050647216C7354000658929 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4050648016C7354000658929 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		4050648116C7354000658929 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4050648316C7354000658929 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HanloonViewer/HanloonViewer-Prefix.pch";
+				INFOPLIST_FILE = "HanloonViewer/HanloonViewer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4050648416C7354000658929 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HanloonViewer/HanloonViewer-Prefix.pch";
+				INFOPLIST_FILE = "HanloonViewer/HanloonViewer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4050646016C7354000658929 /* Build configuration list for PBXProject "HanloonViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4050648016C7354000658929 /* Debug */,
+				4050648116C7354000658929 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4050648216C7354000658929 /* Build configuration list for PBXNativeTarget "HanloonViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4050648316C7354000658929 /* Debug */,
+				4050648416C7354000658929 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4050645D16C7354000658929 /* Project object */;
+}
