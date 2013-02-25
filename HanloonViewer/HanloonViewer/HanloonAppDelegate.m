@@ -23,14 +23,15 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
     
     mainViewController = [[HanloonViewerMainViewController alloc] init];
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height)];
-    view.backgroundColor = [UIColor clearColor];
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width)];
+    view.backgroundColor = [UIColor blackColor];
     [mainViewController setView:view];
-    [self.window addSubview:mainViewController.view];
+    self.window.rootViewController = mainViewController;
     [view release];
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

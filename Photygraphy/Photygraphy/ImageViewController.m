@@ -9,6 +9,7 @@
 #import "ImageViewController.h"
 
 #import "AbelViewController.h"
+#import "UIImage+ImageScale.h"
 
 @interface ImageViewController ()
 
@@ -24,16 +25,24 @@
     return self;
 }
 
+- (void)dealloc
+{
+    NSLog(@"************** ImageViewController dealloc ******************");
+    [super dealloc];
+}
+
 -(void)addPicture:(UIImage *)image parent:(AbelViewController *)parent
 {
     originalImage = image;
     parentController = parent;
-    UIImageView* img = [[UIImageView alloc] initWithImage:image];
+    showingImage = [image scaleToSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width - 20, 660)];
+    UIImageView* img = [[UIImageView alloc] initWithImage:showingImage];
+    img.contentMode = UIViewContentModeCenter;
     [self.view addSubview:img];
     [img release];
     
     deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [deleteButton setFrame:CGRectMake((image.size.width - 100) / 2, image.size.height + 10, 100, 30)];
+    [deleteButton setFrame:CGRectMake((showingImage.size.width - 100) / 2, 670, 100, 30)];
     [deleteButton setTitle:@"删除" forState:UIControlStateNormal];
     [self.view addSubview:deleteButton];
     [deleteButton addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];

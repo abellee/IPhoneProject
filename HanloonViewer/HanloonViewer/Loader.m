@@ -15,15 +15,16 @@
 @synthesize conn;
 @synthesize isDownloading;
 
--(id)init
-{
-    if(self = [super init]){
-        count = 0;
+static Loader* instance;
+
++ (id)sharedLoader{
+    if (instance == nil) {
+        instance = [[self alloc] init];
     }
-    return self;
+    return instance;
 }
 
--(void)load
+-(void)startLoad
 {
     if(isDownloading){
         return;
@@ -31,11 +32,12 @@
     if(conn != nil){
         [conn release];
     }
-    if(data != nil){
-        [data release];
-        data = nil;
-    }
     [self isDownloading:YES];
+    [self performSelectorInBackground:@selector(startLoadImage) withObject:nil];
+}
+
+- (void)startLoadImage
+{
     ImageDownloadData* imageDownloadData = [imageList objectAtIndex:count];
     NSURL* url = [imageDownloadData url];
     NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
@@ -43,6 +45,7 @@
     if(conn){
         [conn start];
     }
+    CFRunLoopRun();
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)rd
@@ -57,16 +60,21 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    CFRunLoopStop(CFRunLoopGetCurrent());
     ImageDownloadData* imageDownloadData = (ImageDownloadData*)[imageList objectAtIndex:count];
     id<ImageDownloadDelegate> delegate = [imageDownloadData delegate];
     UIImage* img = [UIImage imageWithData:data];
-    if (delegate && [delegate respondsToSelector:@selector(downloadComplete:image:)]) {
-        [delegate downloadComplete:imageDownloadData image:img];
+    [imageDownloadData image:img];
+    if (delegate && [delegate respondsToSelector:@selector(downloadComplete:)]) {
+        [delegate downloadComplete:imageDownloadData];
     }
     if([imageList count] - 1 > count){
         count++;
+        [data setLength:0];
         [self isDownloading:NO];
-        [self load];
+        [self startLoad];
+    }else{
+        [self reset];
     }
 }
 
@@ -77,19 +85,29 @@
 
 -(void)addImage:(ImageDownloadData *)downloadData
 {
-    if(!imageList){
+    if(imageList == nil){
         imageList = [[NSMutableArray arrayWithCapacity:0] retain];
     }
     [imageList addObject:downloadData];
+}
+
+- (void)stopLoad
+{
+    [conn cancel];
+    [self reset];
 }
 
 -(void)reset
 {
     count = 0;
     [self isDownloading:NO];
-    [imageList removeAllObjects];
-    [data release];
-    [conn release];
+    if(imageList != nil)
+    {
+        [imageList removeAllObjects];
+        [imageList release];
+    }
+    if(data != nil) [data release];
+    if(conn != nil) [conn release];
     
     imageList = nil;
     data = nil;
@@ -103,7 +121,7 @@
     [conn release];
     [imageList removeAllObjects];
     [imageList release];
-    [data release];
+    if(data != nil) [data release];
     
     [super dealloc];
 }

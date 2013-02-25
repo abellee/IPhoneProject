@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+@class ImageDownloadData;
 @interface ShadowViewController : UIViewController{
     UIColor* borderColor_;
     UIColor* shadowColor_;
@@ -18,6 +19,8 @@
     float shadowRadius_;
     float shadowOpacity_;
     id contents_;
+    CALayer* contentLayer;
+    ImageDownloadData* imageData;
 }
 
 @property (nonatomic, assign, getter = borderColor, setter = borderColor:) UIColor* borderColor;
@@ -28,5 +31,6 @@
 @property (nonatomic, assign, getter = shadowOpacity, setter = shadowOpacity:) float shadowOpacity;
 @property (nonatomic, retain, getter = contents, setter = contents:) id contents;
 @property (nonatomic, assign, getter = contentsGravity, setter = contentsGravity:) NSString* contentsGravity;
+@property (nonatomic, retain, getter = imageData, setter = imageData:) ImageDownloadData* imageData;
 
 @end

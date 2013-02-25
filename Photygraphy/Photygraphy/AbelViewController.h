@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "ASIHTTPRequestDelegate.h"
 #import "ASIProgressDelegate.h"
 
-@interface AbelViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ASIHTTPRequestDelegate, UIAlertViewDelegate, ASIProgressDelegate, UITableViewDataSource, UITableViewDelegate, UIPopoverControllerDelegate>{
+@interface AbelViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ASIHTTPRequestDelegate, UIAlertViewDelegate, ASIProgressDelegate, UITableViewDataSource, UITableViewDelegate, UIPopoverControllerDelegate, NSURLConnectionDelegate>{
     UIPickerView* picker;
     UIToolbar* pickerToolBar;
     UITextField* orderNumber;
@@ -52,6 +53,15 @@
     NSMutableArray* tempImageList;
     
     NSMutableString* strCache;
+    UIButton* ressetButton;
+    
+    ALAssetsLibrary* assetsLib;
+    
+    UITableViewController* cateList;
+    UIButton* cateButton;
+    NSArray* cateArray;
+    NSURLConnection* conn;
+    int curCateIndex;
 }
 
 - (void)setImageList:(NSMutableArray*)images;

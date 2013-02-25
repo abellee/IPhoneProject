@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageDownloadDelegate.h"
 
-@interface ImageWallViewController : UIViewController{
-    UITableViewController* tableViewController;
+@interface ImageWallViewController : UIViewController<UIScrollViewDelegate, ImageDownloadDelegate>{
+    UIScrollView* scrollView;
     NSMutableArray* imageList;
-    NSString* footTitle;
+    UILabel* footLabel;
+    
+    float preDis;
 }
 
-@property (nonatomic, assign) NSString* footTitle;
+- (void)showImages;
+- (void)addImages:(int)num;
+- (void)showImagesUnadded:(ImageDownloadData*)data;
 
 @end

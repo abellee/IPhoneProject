@@ -23,6 +23,8 @@
 		0C495026167F372A0072F556 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C495025167F372A0072F556 /* JSONKit.m */; };
 		0CA35741168C3E5600CDD41E /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA3573F168C3E5600CDD41E /* 72.png */; };
 		0CA35742168C3E5600CDD41E /* 144.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA35740168C3E5600CDD41E /* 144.png */; };
+		0CA8EAED16D4CC08000C18CC /* UIImage+ImageScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA8EAEC16D4CC08000C18CC /* UIImage+ImageScale.m */; };
+		0CA8EAEF16D4DD1C000C18CC /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA8EAEE16D4DD1C000C18CC /* AssetsLibrary.framework */; };
 		0CE7C06C167B3FEC005A5C16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE7C06B167B3FEC005A5C16 /* UIKit.framework */; };
 		0CE7C06E167B3FEC005A5C16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE7C06D167B3FEC005A5C16 /* Foundation.framework */; };
 		0CE7C070167B3FEC005A5C16 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE7C06F167B3FEC005A5C16 /* CoreGraphics.framework */; };
@@ -66,6 +68,9 @@
 		0C495025167F372A0072F556 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		0CA3573F168C3E5600CDD41E /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
 		0CA35740168C3E5600CDD41E /* 144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 144.png; sourceTree = "<group>"; };
+		0CA8EAEB16D4CC08000C18CC /* UIImage+ImageScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageScale.h"; sourceTree = "<group>"; };
+		0CA8EAEC16D4CC08000C18CC /* UIImage+ImageScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageScale.m"; sourceTree = "<group>"; };
+		0CA8EAEE16D4DD1C000C18CC /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		0CE7C067167B3FEC005A5C16 /* Photygraphy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photygraphy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE7C06B167B3FEC005A5C16 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0CE7C06D167B3FEC005A5C16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -90,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CA8EAEF16D4DD1C000C18CC /* AssetsLibrary.framework in Frameworks */,
 				0C45A076167DB5A800C6C347 /* libz.1.2.5.dylib in Frameworks */,
 				0CE7C070167B3FEC005A5C16 /* CoreGraphics.framework in Frameworks */,
 				0C45A074167DB59600C6C347 /* MobileCoreServices.framework in Frameworks */,
@@ -153,6 +159,7 @@
 		0CE7C06A167B3FEC005A5C16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0CA8EAEE16D4DD1C000C18CC /* AssetsLibrary.framework */,
 				0C45A075167DB5A800C6C347 /* libz.1.2.5.dylib */,
 				0C45A073167DB59600C6C347 /* MobileCoreServices.framework */,
 				0C45A071167DB58F00C6C347 /* SystemConfiguration.framework */,
@@ -203,6 +210,8 @@
 				0CEB898A168AEA6E001FEB41 /* ImageViewController.h */,
 				0CEB898B168AEA6E001FEB41 /* ImageViewController.m */,
 				0CE7C072167B3FEC005A5C16 /* Supporting Files */,
+				0CA8EAEB16D4CC08000C18CC /* UIImage+ImageScale.h */,
+				0CA8EAEC16D4CC08000C18CC /* UIImage+ImageScale.m */,
 			);
 			path = Photygraphy;
 			sourceTree = "<group>";
@@ -301,6 +310,7 @@
 				0C495026167F372A0072F556 /* JSONKit.m in Sources */,
 				0CEB8984168ABB8A001FEB41 /* CameraOverlayViewController.m in Sources */,
 				0CEB898C168AEA6E001FEB41 /* ImageViewController.m in Sources */,
+				0CA8EAED16D4CC08000C18CC /* UIImage+ImageScale.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

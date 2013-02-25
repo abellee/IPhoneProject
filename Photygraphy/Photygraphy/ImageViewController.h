@@ -13,6 +13,7 @@
     UIButton* deleteButton;
     UIImage* originalImage;
     AbelViewController* parentController;
+    UIImage* showingImage;
 }
 
 -(void)addPicture:(UIImage*)image parent:(AbelViewController*)parent;

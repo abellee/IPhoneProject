@@ -7,13 +7,25 @@
 //
 
 #import "ShadowViewController.h"
+#import "Global.h"
+#import "HanloonViewerMainViewController.h"
 
 @implementation ShadowViewController
+
+@synthesize imageData;
+
+- (id)init
+{
+    if (self = [super init]) {
+        contentLayer = [[CALayer alloc] init];
+    }
+    return self;
+}
 
 - (void)contentsGravity:(NSString *)contentsGravity
 {
     contentsGravity_ = contentsGravity;
-    self.view.layer.contentsGravity = contentsGravity_;
+    contentLayer.contentsGravity = contentsGravity_;
 }
 
 - (NSString *)contentsGravity
@@ -28,7 +40,11 @@
         contents_ = nil;
     }
     contents_ = [contents retain];
-    self.view.layer.contents = contents_;
+    contentLayer.contents = contents_;
+    
+    contentLayer.masksToBounds = YES;
+    [contentLayer setFrame:CGRectMake(5, 5, self.view.frame.size.width - 10, self.view.frame.size.height - 10)];
+    [self.view.layer addSublayer:contentLayer];
 }
 
 - (UIView*)contents
@@ -39,7 +55,7 @@
 - (void)borderWidth:(float)borderWidth
 {
     borderWidth_ = borderWidth;
-    self.view.layer.borderWidth = borderWidth_;
+    //self.view.layer.borderWidth = borderWidth_;
 }
 
 - (float)borderWidth
@@ -50,7 +66,7 @@
 - (void)borderColor:(UIColor*)borderColor
 {
     borderColor_ = borderColor;
-    self.view.layer.borderColor = borderColor_.CGColor;
+    //self.view.layer.borderColor = borderColor_.CGColor;
 }
 
 - (UIColor*)borderColor
@@ -61,7 +77,7 @@
 - (void)shadowColor:(UIColor*)shadowColor
 {
     shadowColor_ = shadowColor;
-    self.view.layer.shadowColor = shadowColor_.CGColor;
+    //self.view.layer.shadowColor = shadowColor_.CGColor;
 }
 
 - (UIColor*)shadowColor
@@ -72,7 +88,7 @@
 - (void)shadowOffset:(CGSize)shadowOffset
 {
     shadowOffset_ = shadowOffset;
-    self.view.layer.shadowOffset = shadowOffset_;
+    //self.view.layer.shadowOffset = shadowOffset_;
 }
 
 - (CGSize)shadowOffset
@@ -83,7 +99,7 @@
 - (void)shadowRadius:(float)shadowRadius
 {
     shadowRadius_ = shadowRadius;
-    self.view.layer.shadowRadius = shadowRadius_;
+    //self.view.layer.shadowRadius = shadowRadius_;
 }
 
 - (float)shadowOpacity
@@ -94,7 +110,12 @@
 - (void)shadowOpacity:(float)shadowOpacity
 {
     shadowOpacity_ = shadowOpacity;
-    self.view.layer.shadowOpacity = shadowOpacity_;
+    //self.view.layer.shadowOpacity = shadowOpacity_;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[[Global sharedGlobal] app] imageViewInterface:imageData];
 }
 
 /*
@@ -108,8 +129,15 @@
 
 - (void)dealloc
 {
+    NSLog(@"*************** ShadowViewController dealloc **************");
     if (contents_ != nil) {
         [contents_ release];
+    }
+    if (contentLayer != nil) {
+        [contentLayer release];
+    }
+    if (imageData != nil) {
+        [imageData release];
     }
     [super dealloc];
 }
