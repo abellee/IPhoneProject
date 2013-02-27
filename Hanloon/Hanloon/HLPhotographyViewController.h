@@ -7,19 +7,53 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AVCaptureDelegate.h"
+#import "DeletableImageDelegate.h"
+#import "ASIHTTPRequestDelegate.h"
+#import "ASIProgressDelegate.h"
 
-@interface HLPhotographyViewController : UIViewController{
+@class AVCaptureCameraViewController;
+@interface HLPhotographyViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureDelegate, DeletableImageDelegate, ASIHTTPRequestDelegate, UIAlertViewDelegate, ASIProgressDelegate, UITableViewDataSource, UITableViewDelegate, UIPopoverControllerDelegate, NSURLConnectionDelegate>{
     UIImageView* background;
     
     UILabel* photoCateLabel;
-    UIButton* cateButton;
+    UITextField* cateButton;
     UILabel* orderLabel;
     UIButton* orderChooseButton;
-    UIButton* orderButton;
+    UITextField* orderTextField;
     
     UIButton* cameraButton;
     UIButton* submitButton;
     UIButton* resetButton;
+    UIButton* backwardButton;
+    
+    UIButton* addButton;
+    UIScrollView* imageScrollView;
+    
+    NSMutableArray* tempArray;
+    NSMutableArray* imageArray;
+    NSMutableArray* deleteableImages;
+    NSArray* parentCateArray;
+    NSArray* photoCateArray;
+    NSArray* curPhotoCateArray;
+    
+    UIPopoverController* popOver;
+    UIToolbar* pickerToolBar;
+    
+    UIActionSheet* actionSheet;
+    UIAlertView* alert;
+    UIProgressView* progressView;
+    NSString* server;
+    NSArray* cateArray;
+    UIPickerView* picker;
+    UITableViewController* cateList;
+    
+    AVCaptureCameraViewController* camera;
+    
+    BOOL isUploading;
+    int curCateIndex;
+    int curParentIndex;
+    int curChildIndex;
 }
 
 @end

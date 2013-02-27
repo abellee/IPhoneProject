@@ -25,7 +25,7 @@
     [imageView release];
     [imageScrollView release];
     [originImageData release];
-    if (conn) {
+    if (conn != nil) {
         if (isLoading) {
             [conn cancel];
         }
@@ -158,7 +158,7 @@
         [parentController exitGroupView];
     }else{
         imageScrollView.maximumZoomScale = 2.0;
-        imageScrollView.minimumZoomScale = 1.0;
+        imageScrollView.minimumZoomScale = 0.5;
         imageScrollView.zoomScale = 1.0;
         [imageScrollView setFrame:CGRectMake(0, 0, FULL_WIDTH, FULL_HEIGHT)];
         
@@ -170,6 +170,16 @@
         imageView.center = CGPointMake(xcenter, ycenter);
         [parentController fullGroupView];
     }
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
+{
+    CGFloat xcenter = imageScrollView.frame.size.width / 2, ycenter = imageScrollView.frame.size.height / 2;
+    
+    xcenter = imageScrollView.contentSize.width > imageScrollView.frame.size.width ? imageScrollView.contentSize.width / 2 : xcenter;
+    ycenter = imageScrollView.contentSize.height > imageScrollView.frame.size.height ? imageScrollView.contentSize.height / 2 : ycenter;
+    
+    [imageView setCenter:CGPointMake(xcenter, ycenter)];
 }
 
 - (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView

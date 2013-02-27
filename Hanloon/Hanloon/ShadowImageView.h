@@ -24,6 +24,6 @@
 }
 
 @property (nonatomic, retain, getter = imageData, setter = imageData:) ImageData* imageData;
-@property (nonatomic, retain, getter = parentController, setter = parentController:) HLPhotoViewerViewController* parentController;
+@property (nonatomic, assign, getter = parentController, setter = parentController:) HLPhotoViewerViewController* parentController;
 
 @end

@@ -77,7 +77,7 @@
     rightDock.alpha = 0.5;
     [self.view addSubview:rightDock];
     
-    thumbImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(rightDock.frame.origin.x + 8, 100, 200, FULL_HEIGHT - 200)];
+    thumbImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(rightDock.frame.origin.x + 8, 10, 200, FULL_HEIGHT - 40)];
     thumbImageScrollView.showsVerticalScrollIndicator = NO;
     thumbImageScrollView.showsHorizontalScrollIndicator = NO;
     thumbImageScrollView.tag = 1;
@@ -104,7 +104,7 @@
             [parentController loadNextPage];
         }
     }else if(scrollView.tag == 1){
-        if ([scrollView contentOffset].y + FULL_HEIGHT - 200 >= scrollView.contentSize.height) {
+        if ([scrollView contentOffset].y + FULL_HEIGHT - 40 >= scrollView.contentSize.height) {
             [parentController loadNextPage];
         }
     }

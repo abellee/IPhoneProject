@@ -27,6 +27,7 @@
     [hanloonLogo release];
     [shadowImageList removeAllObjects];
     [shadowImageList release];
+    shadowImageList = nil;
     [scrollView release];
     [totalNumLabel release];
     parentController = nil;
@@ -51,10 +52,6 @@
 
 - (void)initView
 {
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.view.layer.shadowOpacity = 0.8;
-    self.view.layer.shadowRadius = 8;
-    
     background = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"background" ofType:@"png"]]];
     background.userInteractionEnabled = NO;
     [self.view addSubview:background];
@@ -80,6 +77,11 @@
 
 - (void)imageWallPanGesture:(UIPanGestureRecognizer*)pan
 {
+    if (self.view.layer.shadowRadius != 8) {
+        self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.view.layer.shadowOpacity = 0.8;
+        self.view.layer.shadowRadius = 8;
+    }
     CGPoint p = [pan translationInView:self.view];
     if (pan.state == UIGestureRecognizerStateEnded) {
         preDis = 0;
@@ -122,7 +124,6 @@
     if (shadowImageList != nil && [shadowImageList count] > 0) {
         for (ShadowImageView* v in shadowImageList) {
             [v removeFromSuperview];
-            [v release];
         }
         [shadowImageList removeAllObjects];
     }
@@ -140,6 +141,7 @@
         [scrollView addSubview:shadowImageView];
         scrollView.tag = num;
         [shadowImageList addObject:shadowImageView];
+        [shadowImageView release];
     }
     if (totalHeight == 0) {
         totalHeight = 60;
@@ -191,6 +193,7 @@
         [scrollView addSubview:shadowImageView];
         scrollView.tag = num;
         [shadowImageList addObject:shadowImageView];
+        [shadowImageView release];
     }
     totalHeight = totalHeight + cellHeight + 60;
     [scrollView setContentSize:CGSizeMake(FULL_WIDTH, totalHeight)];

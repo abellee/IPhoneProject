@@ -11,5 +11,6 @@
 @interface UIImage (ImageScale)
 
 -(UIImage*)scaleToSize:(CGSize)size;
+-(UIImage *)fixOrientation;
 
 @end

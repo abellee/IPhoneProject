@@ -29,6 +29,11 @@
     [self initView];
 }
 
+-(BOOL) respondsToSelector:(SEL)aSelector {
+    printf("SELECTOR: %s\n", [NSStringFromSelector(aSelector) UTF8String]);
+    return [super respondsToSelector:aSelector];
+}
+
 - (void)initView
 {
     [[Global sharedInstance] app:self];
@@ -58,11 +63,11 @@
     viewButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [viewButton setFrame:CGRectMake((FULL_WIDTH / 2 - cameraImage.size.width) / 2, (FULL_HEIGHT - cameraImage.size.height) / 2 - 100, cameraImage.size.width, cameraImage.size.height)];
     [viewButton setBackgroundImage:cameraImage forState:UIControlStateNormal];
-    [viewButton setBackgroundImage:cameraImage forState:UIControlStateHighlighted];
+//    [viewButton setBackgroundImage:cameraImage forState:UIControlStateHighlighted];
     [viewButton setTitle:viewButtonStr forState:UIControlStateNormal];
-    [viewButton setTitle:viewButtonStr forState:UIControlStateHighlighted];
+//    [viewButton setTitle:viewButtonStr forState:UIControlStateHighlighted];
     [viewButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [viewButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+//    [viewButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     viewButton.contentHorizontalAlignment = UIControlContentVerticalAlignmentBottom;
     viewButton.contentEdgeInsets = UIEdgeInsetsMake(cameraImage.size.height + 20, (cameraImage.size.width - viewButtonLabelSize.width) / 2, -20, (cameraImage.size.width - viewButtonLabelSize.width) / 2);
     [viewButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
@@ -74,12 +79,11 @@
     photoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [photoButton setFrame:CGRectMake((FULL_WIDTH / 2 - photoImage.size.width) / 2 + FULL_WIDTH / 2, (FULL_HEIGHT - photoImage.size.height) / 2 - 100, photoImage.size.width, photoImage.size.height)];
     [photoButton setTitle:photoButtonStr forState:UIControlStateNormal];
-    [photoButton setTitle:photoButtonStr forState:UIControlStateNormal];
-    [photoButton setTitle:photoButtonStr forState:UIControlStateHighlighted];
+//    [photoButton setTitle:photoButtonStr forState:UIControlStateHighlighted];
     [photoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [photoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+//    [photoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [photoButton setBackgroundImage:photoImage forState:UIControlStateNormal];
-    [photoButton setBackgroundImage:photoImage forState:UIControlStateHighlighted];
+//    [photoButton setBackgroundImage:photoImage forState:UIControlStateHighlighted];
     photoButton.contentHorizontalAlignment = UIControlContentVerticalAlignmentBottom;
     photoButton.contentEdgeInsets = UIEdgeInsetsMake(photoImage.size.height + 20, (photoImage.size.width - photoButtonLabelSize.width) / 2, -20, (photoImage.size.width - photoButtonLabelSize.width) / 2);
     [photoButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
@@ -90,13 +94,13 @@
 - (void)backToMain
 {
     if (photoViewerViewController != nil) {
-        [photoViewerViewController.view removeFromSuperview];
+        [photoViewerViewController dismissModalViewControllerAnimated:YES];
         [photoViewerViewController release];
         photoViewerViewController = nil;
     }
     
     if (photographyViewController != nil) {
-        [photographyViewController.view removeFromSuperview];
+        [photographyViewController dismissModalViewControllerAnimated:YES];
         [photographyViewController release];
         photographyViewController = nil;
     }
@@ -109,11 +113,12 @@
     [self disabledAll];
     if (photographyViewController == nil) {
         photographyViewController = [[HLPhotographyViewController alloc] init];
-        photographyViewController.view.backgroundColor = [UIColor blackColor];
-        [photographyViewController.view setFrame:CGRectMake(FULL_WIDTH, 0, FULL_WIDTH, FULL_HEIGHT)];
-        //photographyViewController.view.transform = CGAffineTransformRotate(photographyViewController.view.transform, -M_PI / 2);
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FULL_WIDTH, FULL_HEIGHT)];
+        [photographyViewController setView:view];
+        [view release];
+//        [photographyViewController.view setFrame:CGRectMake(0, 0, FULL_WIDTH, FULL_HEIGHT)];
     }
-    [self.view addSubview:photographyViewController.view];
+    [self presentModalViewController:photographyViewController animated:YES];
 }
 
 //进入图片浏览系统
@@ -122,10 +127,9 @@
     [self disabledAll];
     if (photoViewerViewController == nil) {
         photoViewerViewController = [[HLPhotoViewerViewController alloc] init];
-        photoViewerViewController.view.backgroundColor = [UIColor blackColor];
         [photoViewerViewController.view setFrame:CGRectMake(0, 0, FULL_WIDTH, FULL_HEIGHT)];
     }
-    [self.view addSubview:photoViewerViewController.view];
+    [self presentModalViewController:photoViewerViewController animated:YES];
 }
 
 - (void)disabledAll
@@ -151,6 +155,16 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
 }
 
 @end

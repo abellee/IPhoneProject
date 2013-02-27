@@ -21,6 +21,8 @@
 		0C45A074167DB59600C6C347 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C45A073167DB59600C6C347 /* MobileCoreServices.framework */; };
 		0C45A076167DB5A800C6C347 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C45A075167DB5A800C6C347 /* libz.1.2.5.dylib */; };
 		0C495026167F372A0072F556 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C495025167F372A0072F556 /* JSONKit.m */; };
+		0C71EE0616DD30BC0029061E /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C71EE0516DD30BC0029061E /* Default-Landscape~ipad.png */; };
+		0C71EE0816DD30DA0029061E /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C71EE0716DD30DA0029061E /* Default-Landscape@2x~ipad.png */; };
 		0CA35741168C3E5600CDD41E /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA3573F168C3E5600CDD41E /* 72.png */; };
 		0CA35742168C3E5600CDD41E /* 144.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA35740168C3E5600CDD41E /* 144.png */; };
 		0CA8EAED16D4CC08000C18CC /* UIImage+ImageScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA8EAEC16D4CC08000C18CC /* UIImage+ImageScale.m */; };
@@ -66,6 +68,8 @@
 		0C45A075167DB5A800C6C347 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		0C495024167F372A0072F556 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		0C495025167F372A0072F556 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		0C71EE0516DD30BC0029061E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		0C71EE0716DD30DA0029061E /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		0CA3573F168C3E5600CDD41E /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
 		0CA35740168C3E5600CDD41E /* 144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 144.png; sourceTree = "<group>"; };
 		0CA8EAEB16D4CC08000C18CC /* UIImage+ImageScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageScale.h"; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 		0CE7C05C167B3FEC005A5C16 = {
 			isa = PBXGroup;
 			children = (
+				0C71EE0716DD30DA0029061E /* Default-Landscape@2x~ipad.png */,
+				0C71EE0516DD30BC0029061E /* Default-Landscape~ipad.png */,
 				0CE7C071167B3FEC005A5C16 /* Photygraphy */,
 				0CE7C06A167B3FEC005A5C16 /* Frameworks */,
 				0CE7C068167B3FEC005A5C16 /* Products */,
@@ -285,6 +291,8 @@
 				0CE7C082167B3FEC005A5C16 /* AbelViewController.xib in Resources */,
 				0CA35741168C3E5600CDD41E /* 72.png in Resources */,
 				0CA35742168C3E5600CDD41E /* 144.png in Resources */,
+				0C71EE0616DD30BC0029061E /* Default-Landscape~ipad.png in Resources */,
+				0C71EE0816DD30DA0029061E /* Default-Landscape@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

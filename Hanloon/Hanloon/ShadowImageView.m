@@ -119,7 +119,6 @@
 {
     NSLog(@"********************* ShadowImageView dealloc ***********************");
     
-    [parentController release];
     [imageData release];
     if (imgData != nil) {
         [imgData release];

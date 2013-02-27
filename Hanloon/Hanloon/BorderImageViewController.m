@@ -29,6 +29,14 @@
         [conn release];
     }
     
+    if (imageData != nil) {
+        [imageData release];
+    }
+    
+    if (mutableData != nil) {
+        [mutableData release];
+    }
+    
     [super dealloc];
 }
 
@@ -73,6 +81,7 @@
         UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTaped:)];
         [self.view addGestureRecognizer:tap];
         [tap release];
+        [imgView release];
     }else{
         [self showIndicator];
         [self performSelectorInBackground:@selector(loadImage) withObject:nil];

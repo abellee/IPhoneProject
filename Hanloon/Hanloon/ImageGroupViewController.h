@@ -31,7 +31,6 @@
     BorderImageViewController* preBorderImageView;
     
     OriginImageViewController* curView;
-    int curIndex;
 }
 
 - (void)showOriginImageByImageData:(ImageData*)imageData parent:(HLPhotoViewerViewController*)controller;
