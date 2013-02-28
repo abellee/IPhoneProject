@@ -219,11 +219,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C71EDEC16DD00B00029061E /* libz.1.2.5.dylib in Frameworks */,
 				0CF3578F16DD3F5F00740451 /* CoreVideo.framework in Frameworks */,
 				0CF3578D16DD3F5900740451 /* CoreMedia.framework in Frameworks */,
 				0CF3578A16DD375F00740451 /* ImageIO.framework in Frameworks */,
 				0C71EDEE16DD043C0029061E /* AVFoundation.framework in Frameworks */,
-				0C71EDEC16DD00B00029061E /* libz.1.2.5.dylib in Frameworks */,
 				0C71EDEA16DD00420029061E /* MobileCoreServices.framework in Frameworks */,
 				0C71EDE816DD003B0029061E /* SystemConfiguration.framework in Frameworks */,
 				0C71EDE616DD00330029061E /* CFNetwork.framework in Frameworks */,
@@ -579,7 +579,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -594,6 +595,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -610,7 +613,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -618,6 +622,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -627,15 +633,15 @@
 		0C4835AB16D619520007B040 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hanloon/Hanloon-Prefix.pch";
 				INFOPLIST_FILE = "Hanloon/Hanloon-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "恒龙图库";
-				PROVISIONING_PROFILE = "68260451-ADF3-4EC2-89C9-C1B1826E29EC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "68260451-ADF3-4EC2-89C9-C1B1826E29EC";
+				PROVISIONING_PROFILE = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -643,15 +649,15 @@
 		0C4835AC16D619520007B040 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hanloon/Hanloon-Prefix.pch";
 				INFOPLIST_FILE = "Hanloon/Hanloon-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "恒龙图库";
-				PROVISIONING_PROFILE = "68260451-ADF3-4EC2-89C9-C1B1826E29EC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "68260451-ADF3-4EC2-89C9-C1B1826E29EC";
+				PROVISIONING_PROFILE = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
