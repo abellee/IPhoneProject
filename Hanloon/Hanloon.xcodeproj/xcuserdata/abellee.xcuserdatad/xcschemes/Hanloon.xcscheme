@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0C48358616D619520007B040"
-               BuildableName = "Hanloon.app"
+               BuildableName = "&#24658;&#40857;&#22270;&#24211;.app"
                BlueprintName = "Hanloon"
                ReferencedContainer = "container:Hanloon.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0C48358616D619520007B040"
-            BuildableName = "Hanloon.app"
+            BuildableName = "&#24658;&#40857;&#22270;&#24211;.app"
             BlueprintName = "Hanloon"
             ReferencedContainer = "container:Hanloon.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0C48358616D619520007B040"
-            BuildableName = "Hanloon.app"
+            BuildableName = "&#24658;&#40857;&#22270;&#24211;.app"
             BlueprintName = "Hanloon"
             ReferencedContainer = "container:Hanloon.xcodeproj">
          </BuildableReference>
@@ -107,7 +107,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0C48358616D619520007B040"
-            BuildableName = "Hanloon.app"
+            BuildableName = "&#24658;&#40857;&#22270;&#24211;.app"
             BlueprintName = "Hanloon"
             ReferencedContainer = "container:Hanloon.xcodeproj">
          </BuildableReference>
