@@ -1660,6 +1660,8 @@
 		0C58C293168DF4900066073A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0C58C229168DF3F90066073A /* RegexKitLite.h */,
+				0C58C22A168DF3F90066073A /* RegexKitLite.m */,
 				0C58C205168DF3F90066073A /* Loader.h */,
 				0C58C206168DF3F90066073A /* Loader.m */,
 				0C58C203168DF3F90066073A /* JSONKit.h */,
@@ -1707,8 +1709,6 @@
 				0C58C212168DF3F90066073A /* NGNineGridSprite.m */,
 				0C58C221168DF3F90066073A /* PPCCSprite.h */,
 				0C58C222168DF3F90066073A /* PPCCSprite.m */,
-				0C58C229168DF3F90066073A /* RegexKitLite.h */,
-				0C58C22A168DF3F90066073A /* RegexKitLite.m */,
 			);
 			name = Components;
 			sourceTree = "<group>";
