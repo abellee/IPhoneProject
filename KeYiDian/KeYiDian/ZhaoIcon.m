@@ -7,7 +7,7 @@
 //
 
 #import "ZhaoIcon.h"
-#import "Utility.h"
+#import "UIImage+Extensions.h"
 
 @implementation ZhaoIcon
 
@@ -30,7 +30,7 @@
 
 - (void)initView
 {
-    UIImage* image = [[Utility sharedInstance] getImageWithPath:@"cai_zhao"];
+    UIImage* image = [UIImage getImageWithFileName:@"cai_zhao"];
     [self setImage:image];
     [self setClipsToBounds:YES];
     [self setFrame:CGRectMake(0, 0, image.size.width, image.size.height)];

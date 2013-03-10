@@ -10,4 +10,7 @@
 
 @implementation KYDUser
 
+@synthesize username;
+@synthesize password;
+
 @end

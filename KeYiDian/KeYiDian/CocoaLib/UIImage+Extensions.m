@@ -15,6 +15,15 @@
     return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:path ofType:@"png"]];
 }
 
++ (UIImage*)screenshot:(UIView *)view
+{
+    UIGraphicsBeginImageContext(view.bounds.size);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage* viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return viewImage;
+}
+
 -(UIImage*)scaleToSize:(CGSize)size
 {
     // 并把它设置成为当前正在使用的context

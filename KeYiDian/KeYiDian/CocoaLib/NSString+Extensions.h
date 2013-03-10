@@ -10,6 +10,4 @@
 
 @interface NSString (Extensions)
 
-+ (NSString*)getShopTypeStringWithIntType:(int)type;
-
 @end

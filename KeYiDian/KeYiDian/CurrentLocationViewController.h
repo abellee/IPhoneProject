@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UITouchableViewDelegate.h"
 
-@interface CurrentLocationViewController : UIViewController
+@class UITouchableLabel;
+@interface CurrentLocationViewController : UIViewController<UITouchableViewDelegate>{
+    UIImageView* locationIcon;
+    UIView* background;
+    UITouchableLabel* changeLocation;
+    UILabel* locationLabel;
+}
+
+- (void)setLocation:(NSString*)location;
 
 @end

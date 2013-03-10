@@ -32,6 +32,8 @@
     
     emptyStars = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, grayStar.size.width * 5, grayStar.size.height)];
     emptyStars.backgroundColor = [UIColor colorWithPatternImage:grayStar];
+    emptyStars.layer.opaque = NO;
+    emptyStars.opaque = NO;
     
     int starNum = 5;
     if (curStarNum > -1) {
@@ -40,6 +42,8 @@
     
     fullStars = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, yellowStar.size.width * starNum, yellowStar.size.height)];
     fullStars.backgroundColor = [UIColor colorWithPatternImage:yellowStar];
+    fullStars.layer.opaque = NO;
+    fullStars.opaque = NO;
     [self.view setFrame:fullStars.frame];
     [self.view addSubview:emptyStars];
     [self.view addSubview:fullStars];

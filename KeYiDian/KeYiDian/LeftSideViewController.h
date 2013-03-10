@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LeftSideViewController : UIViewController
+@class SimpleButton;
+@interface LeftSideViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+    UIButton* avatarBtn;
+    UIButton* logoffBtn;
+    SimpleButton* hurryButton;
+    
+    UILabel* usernameLabel;
+    UILabel* messageLabel;
+    
+    UITableViewController* functionList;
+    
+    NSArray* functions;
+}
 
 @end

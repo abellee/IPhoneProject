@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RightSideViewController : UIViewController
+@interface RightSideViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+    NSArray* functions;
+    
+    UITableViewController* functionList;
+    
+    UISearchBar* searchBar;
+}
 
 @end

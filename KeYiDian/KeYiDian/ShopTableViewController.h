@@ -8,22 +8,29 @@
 
 #import <UIKit/UIKit.h>
 #import "RefreshTableViewDelegate.h"
+#import "UITouchableViewDelegate.h"
 
 @class KilometerView;
 @class RefreshTableViewController;
-@interface ShopTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RefreshTableViewDelegate>{
+@class CurrentLocationViewController;
+@class UITouchableView;
+@interface ShopTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RefreshTableViewDelegate, UITouchableViewDelegate>{
     RefreshTableViewController* shopTableViewController;
+    CurrentLocationViewController* currentLocationViewController;
     UIButton* distanceButton;
     UIButton* tasteButton;
     UIButton* recommandButton;
     
     KilometerView* killometerView;
     
-    UIView* alphaBlack;
+    UITouchableView* alphaBlack;
     
     NSMutableArray* shopList;
+    
+    UIButton* currentButton;
 }
 
 - (void)scrollToTop;
+- (void)resetWidget;
 
 @end

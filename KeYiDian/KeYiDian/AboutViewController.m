@@ -14,19 +14,19 @@
 
 @implementation AboutViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)dealloc
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    NSLog(@"****************** %s dealloc!! **********************", object_getClassName(self));
+    
+    [super dealloc];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.navigationController.topViewController.title = @"关于可以点";
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AboutViewController : UIViewController
+@interface AboutViewController : UIViewController{
+    UIButton* logo;
+    UILabel* aboutText;
+}
 
 @end

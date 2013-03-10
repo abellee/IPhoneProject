@@ -12,6 +12,8 @@
 #import "Global.h"
 #import "Definitions.h"
 #import "RefreshTableViewController.h"
+#import "CurrentLocationViewController.h"
+#import "UITouchableView.h"
 
 #import "ShopInfo.h"
 #import "ImageURL.h"
@@ -32,6 +34,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     UIImage* normalImage = [UIImage getImageWithFileName:@"lvdaohang0"];
     UIImage* selectedImage = [UIImage getImageWithFileName:@"lvdaohang1"];
     distanceButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -85,14 +89,16 @@
     shopTableViewController.tableView.delegate = self;
     shopTableViewController.tableView.showsVerticalScrollIndicator = NO;
     shopTableViewController.refreshDelegate = self;
-    UIImageView* tableViewBackground = [[UIImageView alloc] initWithImage:[UIImage getImageWithFileName:@"di"]];
-    [shopTableViewController.tableView setBackgroundView:tableViewBackground];
-    [tableViewBackground release];
-    [shopTableViewController.tableView setFrame:CGRectMake(0, normalImage.size.height, FULL_WIDTH, FULL_HEIGHT - normalImage.size.height - 20)];
+    shopTableViewController.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage getImageWithFileName:@"shouyedi"]];
+    [shopTableViewController.tableView setFrame:CGRectMake(0, normalImage.size.height, FULL_WIDTH, FULL_HEIGHT - normalImage.size.height - 60)];
     [self.view addSubview:shopTableViewController.view];
     
     killometerView = [[KilometerView alloc] initWithFrame:CGRectMake(0, -125, FULL_WIDTH, 123)];
     [self.view addSubview:killometerView];
+    
+    currentLocationViewController = [[CurrentLocationViewController alloc] init];
+    [currentLocationViewController.view setFrame:CGRectMake(0, self.view.frame.size.height - 84, self.view.frame.size.width, 40)];
+    [self.view addSubview:currentLocationViewController.view];
     
     shopList = [[NSMutableArray alloc] initWithCapacity:0];
     for (int i = 0; i < 100; i++) {
@@ -108,9 +114,9 @@
         shopInfo.isDuo = NO;
         
         ImageURL* imageURL = [[ImageURL alloc] init];
-        [imageURL thumbImage:@"http://ww3.sinaimg.cn/bmiddle/8a356118gw1e28wre1bigj.jpg"];
-        [imageURL middleImage:@"http://192.168.3.108/ceshi.jpg"];
-        [imageURL originImage:@"http://192.168.3.108/ceshi.jpg"];
+        [imageURL thumbImage:@"http://ww2.sinaimg.cn/bmiddle/62eeaba5jw1e2ih6qvjvfj.jpg"];
+        [imageURL middleImage:@"http://ww2.sinaimg.cn/bmiddle/62eeaba5jw1e2ih6qvjvfj.jpg"];
+        [imageURL originImage:@"http://ww2.sinaimg.cn/bmiddle/62eeaba5jw1e2ih6qvjvfj.jpg"];
         
         [shopInfo imageURL:imageURL];
         [imageURL release];
@@ -120,11 +126,20 @@
     }
 }
 
+- (void)touchUpInside:(UIView*)view
+{
+    [self resetWidget];
+}
+
 - (void)addAlphaBlack
 {
     if (alphaBlack == nil) {
-        alphaBlack = [[UIView alloc] initWithFrame:shopTableViewController.view.frame];
+        alphaBlack = [[UITouchableView alloc] initWithFrame:shopTableViewController.view.frame];
+        alphaBlack.delegate = self;
         alphaBlack.backgroundColor = [UIColor blackColor];
+    }
+    if (alphaBlack.superview) {
+        return;
     }
     alphaBlack.alpha = 0;
     [self.view insertSubview:alphaBlack aboveSubview:shopTableViewController.view];
@@ -137,31 +152,75 @@
 
 - (void)recommandButtonPressed:(id)sender
 {
+    [self resetCategory:recommandButton];
     recommandButton.selected = !recommandButton.selected;
+    if (recommandButton.selected) {
+        if(alphaBlack) [alphaBlack removeFromSuperview];
+        currentButton = recommandButton;
+    }
 }
 
 - (void)tasteButtonPressed:(id)sender
 {
+    [self resetCategory:tasteButton];
     tasteButton.selected = !tasteButton.selected;
+    if (tasteButton.selected) {
+        [self addAlphaBlack];
+        currentButton = tasteButton;
+    }
 }
 
 - (void)distanceButtonPressed:(id)sender
 {
+    [self resetCategory:distanceButton];
     distanceButton.selected = !distanceButton.selected;
     if (distanceButton.selected) {
         [self addAlphaBlack];
+        currentButton = distanceButton;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.3];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
         [killometerView setFrame:CGRectMake(0, distanceButton.frame.size.height - 12, FULL_WIDTH, 123)];
         [UIView commitAnimations];
-    }else{
-        [alphaBlack removeFromSuperview];
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.3];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        [killometerView setFrame:CGRectMake(0, -125, FULL_WIDTH, 123)];
-        [UIView commitAnimations];
+    }
+}
+
+- (void)resetWidget
+{
+    if (currentButton) {
+        BOOL isRecommand = NO;
+        if (currentButton != recommandButton) {
+            currentButton.selected = NO;
+        }else{
+            isRecommand = YES;
+        }
+        [self resetCategory:currentButton];
+        if (isRecommand) {
+            currentButton = recommandButton;
+        }
+    }
+}
+
+- (void)resetCategory:(UIButton*)btn
+{
+    if (currentButton) {
+        if (currentButton == distanceButton) {
+            [UIView beginAnimations:nil context:nil];
+            [UIView setAnimationDuration:0.3];
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+            [killometerView setFrame:CGRectMake(0, -125, FULL_WIDTH, 123)];
+            [UIView commitAnimations];
+        }else if(currentButton == tasteButton){
+            
+        }else if(currentButton == recommandButton){
+            
+        }
+        if (btn != currentButton) {
+            currentButton.selected = NO;
+        }else{
+            if(alphaBlack) [alphaBlack removeFromSuperview];
+        }
+        currentButton = nil;
     }
 }
 
@@ -173,6 +232,16 @@
 - (void)dealloc
 {
     NSLog(@"****************** %s dealloc!! **********************", object_getClassName(self));
+    
+    [shopTableViewController release];
+    [killometerView release];
+    if (alphaBlack) {
+        [alphaBlack release];
+    }
+    if (shopList) {
+        [shopList removeAllObjects];
+        [shopList release];
+    }
     
     [super dealloc];
 }
@@ -202,12 +271,15 @@
     if (cell == nil) {
         cell = [[[ShopLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:shopCell info:[shopList objectAtIndex:indexPath.row]] autorelease];
     }
+
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%d>>>>>>", indexPath.row);
+    
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

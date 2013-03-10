@@ -7,6 +7,9 @@
 //
 
 #import "CurrentLocationViewController.h"
+#import "UIImage+Extensions.h"
+#import "Utility.h"
+#import "UITouchableLabel.h"
 
 @interface CurrentLocationViewController ()
 
@@ -14,19 +17,63 @@
 
 @implementation CurrentLocationViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)dealloc
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    NSLog(@"****************** %s dealloc!! **********************", object_getClassName(self));
+    
+    [background release];
+    [locationIcon release];
+    [locationLabel release];
+    
+    [super dealloc];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+    background.backgroundColor = [UIColor blackColor];
+    background.alpha = 0.7;
+    [self.view addSubview:background];
+    
+    UIImage* iconImage = [UIImage getImageWithFileName:@"dizhi"];
+    locationIcon = [[UIImageView alloc] initWithImage: iconImage];
+    [locationIcon setFrame:CGRectMake(10, (background.frame.size.height - iconImage.size.height) / 2, iconImage.size.width, iconImage.size.height)];
+    [self.view addSubview:locationIcon];
+    
+    locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(iconImage.size.width + 20, locationIcon.frame.origin.y, self.view.frame.size.width - iconImage.size.width - 200, iconImage.size.height)];
+    [locationLabel setText:@"正在获取位置信息..."];
+    [locationLabel setFont:[UIFont systemFontOfSize:14.0]];
+    [locationLabel setTextColor:[UIColor whiteColor]];
+    [locationLabel setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:locationLabel];
+    
+    NSString* changeStr = @"更改位置";
+    CGSize changeStrSize = [Utility getCGSizeWithFontSize:14.0 str:changeStr isBold:NO];
+    changeLocation = [[UITouchableLabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - changeStrSize.width - 10, (background.frame.size.height - changeStrSize.height) / 2, changeStrSize.width, changeStrSize.height)];
+    [changeLocation setText:changeStr];
+    [changeLocation setTextColor:[UIColor whiteColor]];
+    [changeLocation setBackgroundColor:[UIColor clearColor]];
+    [changeLocation setFont:[UIFont systemFontOfSize:14.0]];
+    changeLocation.delegate = self;
+    [self.view addSubview:changeLocation];
+}
+
+- (void)touchUpInside:(UIView*)view
+{
+    NSLog(@"touch");
+}
+
+- (void)changeLocationPressed:(id)sender
+{
+    NSLog(@"change location");
+}
+
+- (void)setLocation:(NSString *)location
+{
+    [locationLabel setText:location];
 }
 
 - (void)didReceiveMemoryWarning

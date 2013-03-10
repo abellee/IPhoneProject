@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PanViewController.h"
 
-@interface IndexViewController : UIViewController
+@class ShopTableViewController;
+@interface IndexViewController : PanViewController<UINavigationControllerDelegate>{
+    UINavigationController* navigator;
+    ShopTableViewController* shopTableViewController;
+}
 
 @end

@@ -9,7 +9,7 @@
 #import "ShopLikeTableViewCell.h"
 #import "ShadowImageViewController.h"
 #import "StarViewController.h"
-#import "NSString+Extensions.h"
+#import "Global.h"
 #import "ShopInfo.h"
 #import "ImageURL.h"
 
@@ -21,6 +21,7 @@
     if (self) {
         shopInfo = info;
         float selfHeight = 100;
+        
         shadowImage = [[ShadowImageViewController alloc] init];
         CGSize shadowImageSize = shadowImage.view.frame.size;
         float shadowImageYPos = (selfHeight - shadowImage.view.frame.size.height) / 2;
@@ -39,7 +40,7 @@
         CGPoint shopNamePoint = shopNameLabel.frame.origin;
         
         float shopTypeFontSize = 14.0;
-        NSString* shopTypeStr = [NSString getShopTypeStringWithIntType:shopInfo.shopType];
+        NSString* shopTypeStr = [Global getShopTypeStringWithIntType:shopInfo.shopType];
         CGSize shopTypeSize = [shopTypeStr sizeWithFont:[UIFont systemFontOfSize:shopTypeFontSize]];
         shopTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(shopNamePoint.x, shopNamePoint.y + shopNameSize.height + 2, shopTypeSize.width, shopTypeSize.height)];
         [shopTypeLabel setText:shopTypeStr];
@@ -85,9 +86,13 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:NO animated:animated];
-
-    // Configure the view for the selected state
+    [super setSelected:selected animated:animated];
+    
+    if (selected) {
+        self.backgroundColor = [UIColor colorWithRed:240.0 green:240.0 blue:240.0 alpha:1.0];
+    }else{
+        self.backgroundColor = [UIColor clearColor];
+    }
 }
 
 - (void)dealloc

@@ -7,8 +7,10 @@
 //
 
 #import "KYDAppDelegate.h"
-
 #import "KYDViewController.h"
+#import "KeyChainManager.h"
+#import "KYDUser.h"
+#import "Global.h"
 
 @implementation KYDAppDelegate
 
@@ -21,9 +23,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    KeyChainManager* keychainManager = [KeyChainManager sharedManager];
+    NSString* username = [keychainManager getStringWithAccount:@"username"];
+    NSString* password = [keychainManager getStringWithAccount:@"password"];
+    KYDUser* user = [[KYDUser alloc] init];
+    [user username:username];
+    [user password:password];
+    [[Global sharedInstance] kydUser:user];
+    [user release];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    self.viewController = [[[KYDViewController alloc] initWithNibName:@"KYDViewController" bundle:nil] autorelease];
+    self.viewController = [[[KYDViewController alloc] init] autorelease];
+    [self.viewController.view setFrame:CGRectMake(0, 20, self.window.frame.size.width, self.window.frame.size.height)];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

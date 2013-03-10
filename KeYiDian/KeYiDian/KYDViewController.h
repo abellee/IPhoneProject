@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PanViewControllerDelegate.h"
 
-@class ShopTableViewController;
-@interface KYDViewController : UIViewController<UINavigationControllerDelegate>{
-    UINavigationController* navigator;
-    ShopTableViewController* shopTableViewController;
+@class IndexViewController;
+@class LeftSideViewController;
+@class RightSideViewController;
+@interface KYDViewController : UIViewController<PanViewControllerDelegate>{
+    IndexViewController* indexViewController;
+    LeftSideViewController* leftSideViewController;
+    RightSideViewController* rightSideViewController;
 }
 
 @end
