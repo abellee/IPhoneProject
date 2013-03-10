@@ -242,10 +242,12 @@
     NSURLResponse* response;
     NSError* error;
     NSData* returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSString* returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    cateArray = [[returnString objectFromJSONString] retain];
-    [returnString release];
-    [self performSelectorOnMainThread:@selector(cateDataSuccess) withObject:nil waitUntilDone:YES];
+    if (error == nil) {
+        NSString* returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        cateArray = [[returnString objectFromJSONString] retain];
+        [returnString release];
+        [self performSelectorOnMainThread:@selector(cateDataSuccess) withObject:nil waitUntilDone:YES];
+    }
 }
 
 - (void)cateDataSuccess
@@ -331,9 +333,10 @@
 
 - (void)addButtonPressed:(id)sender
 {
-    [tempArray removeAllObjects];
-    [self presentModalViewController:camera animated:YES];
-    [camera startRunning];
+    if(tempArray && [tempArray count] > 0) [tempArray removeAllObjects];
+    [self cameraButtonPressed:sender];
+    //[self presentModalViewController:camera animated:YES];
+    //[camera startRunning];
 }
 
 - (void)cameraButtonPressed:(id)sender
@@ -689,19 +692,36 @@
             }
         }break;
         case 1:{
-            
+            UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            UIImagePickerController* imagePickr = [[UIImagePickerController alloc] init];
+            imagePickr.sourceType = sourceType;
+            imagePickr.delegate = self;
+            imagePickr.allowsEditing = YES;
+            imagePickr.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            [self popOverPicker:imagePickr];
         }break;
     }
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)popOverPicker:(UIImagePickerController*)pickerController
 {
-    NSLog(@"take photo");
+    if (popOver != nil) {
+        [popOver release];
+        popOver = nil;
+    }
+    popOver = [[UIPopoverController alloc] initWithContentViewController:pickerController];
+    popOver.delegate = self;
+    [popOver presentPopoverFromRect:cameraButton.bounds inView:cameraButton permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+- (void)imagePickerController:(UIImagePickerController *)pr didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSLog(@"cancel");
+    UIImage* img = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [self finishTakePicture:img];
+    if (pr.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        [popOver dismissPopoverAnimated:YES];
+        [self doneCapture];
+    }
 }
 
 - (void)didReceiveMemoryWarning

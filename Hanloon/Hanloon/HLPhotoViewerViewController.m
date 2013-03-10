@@ -320,7 +320,7 @@
     NSData* returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSString* returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     NSDictionary* dict = [returnString objectFromJSONString];
-    NSLog(@"%@>>>>>>%@", returnString, [url absoluteString]);
+//    NSLog(@"%@>>>>>>%@", returnString, [url absoluteString]);
     [returnString release];
     [self performSelectorOnMainThread:@selector(showImageWall:) withObject:dict waitUntilDone:YES];
 }

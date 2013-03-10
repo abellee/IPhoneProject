@@ -75,7 +75,6 @@
 		0C7D5F0616DA601A00DC5849 /* hanloonlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D5F0416DA601A00DC5849 /* hanloonlogo@2x.png */; };
 		0C7D5F0916DA626600DC5849 /* ImageWallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D5F0816DA626600DC5849 /* ImageWallViewController.m */; };
 		0C7D5F0B16DA64D500DC5849 /* category.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D5F0A16DA64D500DC5849 /* category.plist */; };
-		0C7D5F0E16DA78A900DC5849 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D5F0D16DA78A900DC5849 /* JSONKit.m */; };
 		0C7D5F1316DA79EF00DC5849 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D5F1216DA79EF00DC5849 /* LoadingView.m */; };
 		0C7D5F1616DA862600DC5849 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D5F1516DA862600DC5849 /* ImageData.m */; };
 		0C7D5F1916DA8D1800DC5849 /* ShadowImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D5F1816DA8D1800DC5849 /* ShadowImageView.m */; };
@@ -186,8 +185,6 @@
 		0C7D5F0716DA626600DC5849 /* ImageWallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWallViewController.h; sourceTree = "<group>"; };
 		0C7D5F0816DA626600DC5849 /* ImageWallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageWallViewController.m; sourceTree = "<group>"; };
 		0C7D5F0A16DA64D500DC5849 /* category.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = category.plist; sourceTree = "<group>"; };
-		0C7D5F0C16DA78A900DC5849 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		0C7D5F0D16DA78A900DC5849 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		0C7D5F1116DA79EF00DC5849 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		0C7D5F1216DA79EF00DC5849 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		0C7D5F1416DA862600DC5849 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
@@ -282,8 +279,6 @@
 				0C71EDE016DCFD2C0029061E /* Reachability */,
 				0C7D5F1116DA79EF00DC5849 /* LoadingView.h */,
 				0C7D5F1216DA79EF00DC5849 /* LoadingView.m */,
-				0C7D5F0C16DA78A900DC5849 /* JSONKit.h */,
-				0C7D5F0D16DA78A900DC5849 /* JSONKit.m */,
 				0C48359916D619520007B040 /* AbelAppDelegate.h */,
 				0C48359A16D619520007B040 /* AbelAppDelegate.m */,
 				0C4835A216D619520007B040 /* AbelViewController.h */,
@@ -523,7 +518,6 @@
 				0C4835BA16D632B00007B040 /* HLPhotoViewerViewController.m in Sources */,
 				0C05D25716DA39DE00498286 /* SwipeNoticeViewController.m in Sources */,
 				0C7D5F0916DA626600DC5849 /* ImageWallViewController.m in Sources */,
-				0C7D5F0E16DA78A900DC5849 /* JSONKit.m in Sources */,
 				0C7D5F1316DA79EF00DC5849 /* LoadingView.m in Sources */,
 				0C7D5F1616DA862600DC5849 /* ImageData.m in Sources */,
 				0C7D5F1916DA8D1800DC5849 /* ShadowImageView.m in Sources */,
@@ -633,15 +627,16 @@
 		0C4835AB16D619520007B040 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI";
+				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hanloon/Hanloon-Prefix.pch";
+				HEADER_SEARCH_PATHS = /Users/abellee/Documents/Git/JSONKit;
 				INFOPLIST_FILE = "Hanloon/Hanloon-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "恒龙图库";
-				PROVISIONING_PROFILE = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
+				PROVISIONING_PROFILE = "33C0BE3F-CD64-4971-958D-D3378B276EA5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "33C0BE3F-CD64-4971-958D-D3378B276EA5";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -653,6 +648,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hanloon/Hanloon-Prefix.pch";
+				HEADER_SEARCH_PATHS = /Users/abellee/Documents/Git/JSONKit;
 				INFOPLIST_FILE = "Hanloon/Hanloon-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "恒龙图库";
