@@ -7,7 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "PanViewControllerDelegate.h"
 
-@interface PanViewController : UIViewController
+@interface PanViewController : UIViewController{
+    UIView* masker;
+    
+    float preDis;
+    float openPos;
+    float isTwoSide;
+    float maskerAlpha;
+    float isMoving;
+    
+    BOOL isAnimating;
+    
+    id<PanViewControllerDelegate> delegate;
+}
+
+@property (nonatomic, assign, getter = delegate, setter = delegate:) id<PanViewControllerDelegate> delegate;
+
+- (id)initWithOpenedPosition:(float)xpos isTwoSide:(BOOL)twoSide withMaskerAlpha:(float)alpha;
+- (void)panLeftAuto:(BOOL)fromLeft;
+- (void)panRightAuto:(BOOL)fromLeft;
 
 @end

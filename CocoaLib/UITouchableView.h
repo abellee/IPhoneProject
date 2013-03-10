@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UITouchableViewDelegate.h"
 
-@interface UITouchableView : UIView
+@interface UITouchableView : UIView{
+    id<UITouchableViewDelegate> delegate;
+}
+
+@property (nonatomic, assign, getter = delegate, setter = delegate:) id<UITouchableViewDelegate> delegate;
 
 @end

@@ -10,4 +10,8 @@
 
 @protocol PanViewControllerDelegate <NSObject>
 
+@optional
+- (void)isPanning:(float)panDistance;
+- (void)autoPanWithData:(id)data;
+
 @end

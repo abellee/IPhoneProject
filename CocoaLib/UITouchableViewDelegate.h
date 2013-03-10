@@ -10,4 +10,7 @@
 
 @protocol UITouchableViewDelegate <NSObject>
 
+@optional
+- (void)touchUpInside:(UIView*)view;
+
 @end

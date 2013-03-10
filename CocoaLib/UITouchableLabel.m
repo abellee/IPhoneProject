@@ -10,13 +10,31 @@
 
 @implementation UITouchableLabel
 
+@synthesize delegate;
+
+- (void)dealloc
+{
+    NSLog(@"****************** %s dealloc!! **********************", object_getClassName(self));
+    
+    delegate = nil;
+    
+    [super dealloc];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.userInteractionEnabled = YES;
     }
     return self;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (delegate && [delegate respondsToSelector:@selector(touchUpInside:)]) {
+        [delegate touchUpInside:self];
+    }
 }
 
 /*
