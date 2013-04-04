@@ -26,4 +26,14 @@ typedef enum Tastes{
     MILK
 }Tastes;
 
+typedef enum CollectionType{
+    SHOP,
+    FOOD
+}CollectionType;
+
+typedef enum MessageStatus{
+    SUCCESS,
+    FAILED
+}MessageStatus;
+
 #endif

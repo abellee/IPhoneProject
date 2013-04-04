@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class PickrImage;
 @protocol AVCaptureDelegate <NSObject>
 
 @optional
-- (void)finishTakePicture:(UIImage*)image;
+- (void)finishTakePicture:(PickrImage*)image;
 - (void)cancelCapture;
 - (void)doneCapture;
 

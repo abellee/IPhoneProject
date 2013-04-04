@@ -81,6 +81,7 @@
         self.view.layer.shadowColor = [UIColor blackColor].CGColor;
         self.view.layer.shadowOpacity = 0.8;
         self.view.layer.shadowRadius = 8;
+        self.view.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.view.frame cornerRadius:0].CGPath;
     }
     CGPoint p = [pan translationInView:self.view];
     if (pan.state == UIGestureRecognizerStateEnded) {

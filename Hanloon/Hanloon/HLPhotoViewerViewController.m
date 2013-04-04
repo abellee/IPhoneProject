@@ -62,6 +62,13 @@
     [imageDataList release];
     [tableViewController release];
     
+    if (recivedData) {
+        [recivedData release];
+    }
+    
+    [orderNumTextField release];
+    [enterButton release];
+    
     [super dealloc];
 }
 
@@ -104,8 +111,8 @@
     UIImage* buttonImage0 = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"button" ofType:@"png"]];
     UIImage* buttonImage1 = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"button1" ofType:@"png"]];
     firstCateButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 55, 170, 45)];
-    [firstCateButton setTitle:@"点击选择图库" forState:UIControlStateNormal];
-    [firstCateButton setTitle:@"点击选择图库" forState:UIControlStateHighlighted];
+    [firstCateButton setTitle:@"点击选择分类" forState:UIControlStateNormal];
+    [firstCateButton setTitle:@"点击选择分类" forState:UIControlStateHighlighted];
     [firstCateButton setBackgroundImage:buttonImage0 forState:UIControlStateNormal];
     [firstCateButton setBackgroundImage:buttonImage1 forState:UIControlStateHighlighted];
     firstCateButton.tag = 0;
@@ -113,16 +120,16 @@
     [firstCateButton addTarget:self action:@selector(cateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     secondCateLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 120, 100, 30)];
-    [secondCateLabel setText:@"照片类型:"];
+    [secondCateLabel setText:@"第一级分类:"];
     [secondCateLabel setTextColor:[UIColor whiteColor]];
     secondCateLabel.backgroundColor = [UIColor clearColor];
     [secondCateLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
     [self.view addSubview:secondCateLabel];
     
     secondCateButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 155, 170, 45)];
-    [secondCateButton setTitle:@"点击选择类型" forState:UIControlStateNormal];
-    [secondCateButton setTitle:@"点击选择类型" forState:UIControlStateHighlighted];
-    [secondCateButton setTitle:@"点击选择类型" forState:UIControlStateDisabled];
+    [secondCateButton setTitle:@"点击选择分类" forState:UIControlStateNormal];
+    [secondCateButton setTitle:@"点击选择分类" forState:UIControlStateHighlighted];
+    [secondCateButton setTitle:@"点击选择分类" forState:UIControlStateDisabled];
     [secondCateButton setBackgroundImage:buttonImage0 forState:UIControlStateNormal];
     [secondCateButton setBackgroundImage:buttonImage1 forState:UIControlStateHighlighted];
     secondCateButton.tag = 1;
@@ -130,16 +137,16 @@
     [secondCateButton addTarget:self action:@selector(cateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     thirdCateLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 220, 100, 30)];
-    [thirdCateLabel setText:@"照片分类:"];
+    [thirdCateLabel setText:@"第二级分类:"];
     [thirdCateLabel setTextColor:[UIColor whiteColor]];
     thirdCateLabel.backgroundColor = [UIColor clearColor];
     [thirdCateLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
     [self.view addSubview:thirdCateLabel];
     
     thirdCateButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 255, 170, 45)];
-    [thirdCateButton setTitle:@"点击选择类型" forState:UIControlStateNormal];
-    [thirdCateButton setTitle:@"点击选择类型" forState:UIControlStateHighlighted];
-    [thirdCateButton setTitle:@"点击选择类型" forState:UIControlStateDisabled];
+    [thirdCateButton setTitle:@"点击选择分类" forState:UIControlStateNormal];
+    [thirdCateButton setTitle:@"点击选择分类" forState:UIControlStateHighlighted];
+    [thirdCateButton setTitle:@"点击选择分类" forState:UIControlStateDisabled];
     [thirdCateButton setBackgroundImage:buttonImage0 forState:UIControlStateNormal];
     [thirdCateButton setBackgroundImage:buttonImage1 forState:UIControlStateHighlighted];
     thirdCateButton.tag = 2;
@@ -147,16 +154,16 @@
     [thirdCateButton addTarget:self action:@selector(cateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     forthCateLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 320, 100, 30)];
-    [forthCateLabel setText:@"第四类:"];
+    [forthCateLabel setText:@"第三级分类:"];
     [forthCateLabel setTextColor:[UIColor whiteColor]];
     forthCateLabel.backgroundColor = [UIColor clearColor];
     [forthCateLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
     [self.view addSubview:forthCateLabel];
     
     forthCateButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 355, 170, 45)];
-    [forthCateButton setTitle:@"点击选择类型" forState:UIControlStateNormal];
-    [forthCateButton setTitle:@"点击选择类型" forState:UIControlStateHighlighted];
-    [forthCateButton setTitle:@"点击选择类型" forState:UIControlStateDisabled];
+    [forthCateButton setTitle:@"点击选择分类" forState:UIControlStateNormal];
+    [forthCateButton setTitle:@"点击选择分类" forState:UIControlStateHighlighted];
+    [forthCateButton setTitle:@"点击选择分类" forState:UIControlStateDisabled];
     [forthCateButton setBackgroundImage:buttonImage0 forState:UIControlStateNormal];
     [forthCateButton setBackgroundImage:buttonImage1 forState:UIControlStateHighlighted];
     forthCateButton.tag = 3;
@@ -164,16 +171,16 @@
     [forthCateButton addTarget:self action:@selector(cateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     fifthCateLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 420, 100, 30)];
-    [fifthCateLabel setText:@"第五类:"];
+    [fifthCateLabel setText:@"第四级分类:"];
     [fifthCateLabel setTextColor:[UIColor whiteColor]];
     fifthCateLabel.backgroundColor = [UIColor clearColor];
     [fifthCateLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
     [self.view addSubview:fifthCateLabel];
     
     fifthCateButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 455, 170, 45)];
-    [fifthCateButton setTitle:@"点击选择类型" forState:UIControlStateNormal];
-    [fifthCateButton setTitle:@"点击选择类型" forState:UIControlStateHighlighted];
-    [fifthCateButton setTitle:@"点击选择类型" forState:UIControlStateDisabled];
+    [fifthCateButton setTitle:@"点击选择分类" forState:UIControlStateNormal];
+    [fifthCateButton setTitle:@"点击选择分类" forState:UIControlStateHighlighted];
+    [fifthCateButton setTitle:@"点击选择分类" forState:UIControlStateDisabled];
     [fifthCateButton setBackgroundImage:buttonImage0 forState:UIControlStateNormal];
     [fifthCateButton setBackgroundImage:buttonImage1 forState:UIControlStateHighlighted];
     fifthCateButton.tag = 4;
@@ -189,40 +196,181 @@
     [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [self disabledAllButtons];
+    
+    orderNumTextField = [[UITextField alloc] initWithFrame:CGRectMake(15, thirdCateLabel.frame.origin.y, 170, 30)];
+    orderNumTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [orderNumTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    orderNumTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    orderNumTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    orderNumTextField.placeholder = @"输入本号";
+    orderNumTextField.delegate = self;
+    [self.view addSubview:orderNumTextField];
+    
+    enterButton = [[UIButton alloc] initWithFrame:CGRectMake(15, thirdCateLabel.frame.origin.y + 40, 170, 45)];
+    [enterButton setTitle:@"筛选" forState:UIControlStateNormal];
+    [enterButton setTitle:@"筛选" forState:UIControlStateHighlighted];
+    [enterButton setBackgroundImage:buttonImage0 forState:UIControlStateNormal];
+    [enterButton setBackgroundImage:buttonImage1 forState:UIControlStateHighlighted];
+    [self.view addSubview:enterButton];
+    [enterButton addTarget:self action:@selector(enterButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self hideTextField];
+}
+
+- (void)enterButtonPressed:(id)sender
+{
+    [orderNumTextField resignFirstResponder];
+    [self getData:[NSNumber numberWithInt:curTag]];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    return [self isPureInt:string];
+}
+
+- (BOOL)isPureInt:(NSString*)string{
+    NSCharacterSet *cs;
+    cs = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\n"] invertedSet];
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    BOOL basicTest = [string isEqualToString:filtered];
+    if(!basicTest)
+    {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)hideTwoButton
+{
+    forthCateLabel.hidden = YES;
+    forthCateButton.hidden = YES;
+    fifthCateLabel.hidden = YES;
+    fifthCateButton.hidden = YES;
+}
+
+- (void)showTwoButton
+{
+    forthCateLabel.hidden = NO;
+    forthCateButton.hidden = NO;
+    fifthCateLabel.hidden = NO;
+    fifthCateButton.hidden = NO;
+}
+
+- (void)hideTextField
+{
+    orderNumTextField.hidden = YES;
+    enterButton.hidden = YES;
+}
+
+- (void)showTextField
+{
+    orderNumTextField.hidden = NO;
+    enterButton.hidden = NO;
+}
+
+- (void)hideCateButton
+{
+    thirdCateLabel.hidden = YES;
+    thirdCateButton.hidden = YES;
+    forthCateLabel.hidden = YES;
+    forthCateButton.hidden = YES;
+    fifthCateLabel.hidden = YES;
+    fifthCateButton.hidden = YES;
+}
+
+- (void)showCateButton
+{
+    thirdCateLabel.hidden = NO;
+    thirdCateButton.hidden = NO;
+    forthCateLabel.hidden = NO;
+    forthCateButton.hidden = NO;
+    fifthCateLabel.hidden = NO;
+    fifthCateButton.hidden = NO;
 }
 
 - (void)getTPOCate:(int)tag
 {
     [self enabledNextButton:tag];
-    if (tag < 22 && tag != 7) {
+    if (tag <= 28 && tag != 7) {
         return;
     }
     [self showLoadingView];
+    isLoadingCate = YES;
     [self performSelectorInBackground:@selector(getTPOCateWithTag:) withObject:[NSNumber numberWithInt:tag]];
 }
 
 - (void)getTPOCateWithTag:(NSNumber*)tag
 {
+    curNumberTag = tag;
     int idNum = [tag intValue];
     int num = idNum;
     if (num == 7) {
         num = 0;
     }
+    if (recivedData == nil) {
+        recivedData = [[NSMutableData alloc] initWithCapacity:0];
+    }
+    [recivedData setLength:0];
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://oa.hanloon.com/photo/query-type-%d", num]];
-    NSURLRequest* request = [NSURLRequest requestWithURL:url];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
     NSURLResponse* response;
     NSError* error;
-    NSData* returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSString* returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    
-    if ([returnString isEqualToString:@"null"]) {
-        [self performSelectorOnMainThread:@selector(getData:) withObject:tag waitUntilDone:YES];
+    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    @try {
+        NSString* returnString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        if ([returnString isEqualToString:@"null"]) {
+            [self performSelectorOnMainThread:@selector(getData:) withObject:curNumberTag waitUntilDone:YES];
+            [returnString release];
+            return;
+        }
+        NSArray* array = [returnString objectFromJSONString];
         [returnString release];
-        return;
+        [self performSelectorOnMainThread:@selector(queryResult:) withObject:array waitUntilDone:YES];
     }
-    NSArray* array = [returnString objectFromJSONString];
-    [self performSelectorOnMainThread:@selector(queryResult:) withObject:array waitUntilDone:YES];
-    [returnString release];
+    @catch (NSException *exception) {
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"数据加载错误" message:[exception reason] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        [alertView release];
+        alertView = nil;
+    }
+    @finally {
+        
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [self performSelectorOnMainThread:@selector(timeout) withObject:nil waitUntilDone:YES];
+}
+
+- (void)timeout
+{
+    [self hideLoadingView];
+    [self disabledNextButton];
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"请求超时" message:@"请求超时，请确认是否正确连接VPN！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+    [alertView release];
+    alertView = nil;
+    [self finishLoading];
+}
+
+- (void)finishLoading
+{
+//    [conn cancel];
+//    [conn release];
+//    conn = nil;
+    [recivedData release];
+    recivedData = nil;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [recivedData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection*)connection
+{
+    
 }
 
 - (void)disabledNextButton
@@ -236,6 +384,7 @@
 
 - (void)getData:(NSNumber*)tag
 {
+    [self finishLoading];
     [self disabledNextButton];
     if (!loadingView.hidden) {
         [self showLoadingView];
@@ -243,11 +392,13 @@
     curPage = 0;
     isLoading = true;
     curTag = [tag intValue];
+    isLoadingCate = NO;
     [self performSelectorInBackground:@selector(getDataFromServer:) withObject:tag];
 }
 
 - (void)queryResult:(NSArray*)array
 {
+    [self finishLoading];
     [self hideLoadingView];
     int index = [buttonList indexOfObject:curButton];
     int tag = -1;
@@ -289,7 +440,27 @@
 {
     int index = [buttonList indexOfObject:curButton];
     if (secondCateButton.tag == 1 && index == 2) {
-        [self getData:[NSNumber numberWithInt:1]];
+        curTag = tag;
+        [self hideTwoButton];
+        
+        [orderNumTextField setFrame:CGRectMake(15, forthCateLabel.frame.origin.y, 170, 30)];
+        [enterButton setFrame:CGRectMake(15, forthCateLabel.frame.origin.y + 40, 170, 45)];
+        orderNumTextField.placeholder = @"输入单号";
+        orderNumTextField.text = @"";
+        [self showTextField];
+        //[self getData:[NSNumber numberWithInt:1]];
+        [self enterButtonPressed:enterButton];
+        return;
+    }else if(secondCateButton.tag == 9 && index == 1){
+        curTag = tag;
+        //[self getData:[NSNumber numberWithInt:tag]];
+        [self hideCateButton];
+        [orderNumTextField setFrame:CGRectMake(15, thirdCateLabel.frame.origin.y, 170, 30)];
+        [enterButton setFrame:CGRectMake(15, thirdCateLabel.frame.origin.y + 40, 170, 45)];
+        orderNumTextField.placeholder = @"输入本号";
+        orderNumTextField.text = @"";
+        [self showTextField];
+        [self enterButtonPressed:enterButton];
         return;
     }
     index++;
@@ -311,22 +482,37 @@
     curPage++;
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://oa.hanloon.com/photo/tpo-%d-%d", [tag intValue], curPage]];
     if (secondCateButton.tag == 1) {
-        url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://oa.hanloon.com/photo/photograph/%@/%@/%d", [secondCateButton titleForState:UIControlStateNormal], [thirdCateButton titleForState:UIControlStateNormal], curPage] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://oa.hanloon.com/photo/photograph/%@/%@/%d?orderNum=%@", [secondCateButton titleForState:UIControlStateNormal], [thirdCateButton titleForState:UIControlStateNormal], curPage, [orderNumTextField text] == nil ? @"" : [orderNumTextField text]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    }else if(secondCateButton.tag == 9){
+        url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://oa.hanloon.com/photo/ml-%d-%d?ben=%@", [tag intValue], curPage, [orderNumTextField text] == nil ? @"" : [orderNumTextField text]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
-//    url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.3.108/test.php?d=%d", 1213]];
-    NSURLRequest* request = [NSURLRequest requestWithURL:url];
+    NSLog(@"%@", [url absoluteString]);
+//    url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.3.104/test.php?d=%d", 1213]];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
     NSURLResponse* response;
     NSError* error;
-    NSData* returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSString* returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    NSDictionary* dict = [returnString objectFromJSONString];
-//    NSLog(@"%@>>>>>>%@", returnString, [url absoluteString]);
-    [returnString release];
-    [self performSelectorOnMainThread:@selector(showImageWall:) withObject:dict waitUntilDone:YES];
+    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    @try {
+        NSString* str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@>>>>>", str);
+        NSDictionary* dict = [str objectFromJSONString];
+        [str release];
+        [self performSelectorOnMainThread:@selector(showImageWall:) withObject:dict waitUntilDone:YES];
+    }
+    @catch (NSException *exception) {
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"数据加载错误" message:[exception reason] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        [alertView release];
+        alertView = nil;
+    }
+    @finally {
+        
+    }
 }
 
 - (void)showImageWall:(NSDictionary*)dict
 {
+    [self finishLoading];
     isLoading = false;
     [self hideLoadingView];
     if (![dict objectForKey:@"num"]) {
@@ -390,7 +576,7 @@
 
 - (void)loadNextPage
 {
-    if ([imageDataList count] >= totalNum) {
+    if ([imageDataList count] >= totalNum || isLoading) {
         return;
     }
     [self showLoadingView];
@@ -422,6 +608,7 @@
 
 - (void)cateButtonPressed:(id)sender
 {
+    [orderNumTextField resignFirstResponder];
     curButton = (UIButton*)sender;
     curList = [cateDict objectForKey:[NSString stringWithFormat:@"id%d", curButton.tag]];
     [tableViewController.tableView reloadData];
@@ -449,10 +636,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int cateId = [[[curList objectAtIndex:indexPath.row] objectForKey:@"cateId"] intValue];
-    [self getTPOCate:cateId];
     [curButton setTitle:[[curList objectAtIndex:indexPath.row] objectForKey:@"cateName"] forState:UIControlStateNormal];
     [curButton setTitle:[[curList objectAtIndex:indexPath.row] objectForKey:@"cateName"] forState:UIControlStateHighlighted];
     [popOver dismissPopoverAnimated:YES];
+    if (curButton == firstCateButton) {
+        [self hideTextField];
+        [self showCateButton];
+    }
+    if (curButton == fifthCateButton) {
+        [self getData:[NSNumber numberWithInt:cateId]];
+    }else{
+        [self getTPOCate:cateId];
+    }
 }
 
 - (void)disabledAllButtons

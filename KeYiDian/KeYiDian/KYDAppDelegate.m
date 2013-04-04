@@ -11,6 +11,7 @@
 #import "KeyChainManager.h"
 #import "KYDUser.h"
 #import "Global.h"
+#import "Definitions.h"
 
 @implementation KYDAppDelegate
 
@@ -31,6 +32,12 @@
     [user password:password];
     [[Global sharedInstance] kydUser:user];
     [user release];
+    
+    if (FULL_HEIGHT > 560 && [[UIDevice currentDevice] userInterfaceIdiom] == 0) {
+        [[Global sharedInstance] isIPhone5: YES];
+    }else{
+        [[Global sharedInstance] isIPhone5: NO];
+    }
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.

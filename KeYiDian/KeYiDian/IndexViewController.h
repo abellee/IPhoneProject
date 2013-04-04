@@ -15,4 +15,7 @@
     ShopTableViewController* shopTableViewController;
 }
 
+- (void)profileButtonPressed;
+- (void)moreButtonPressed;
+
 @end

@@ -6,8 +6,20 @@
 //  Copyright (c) 2013年 KYD. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "KYDBaseViewController.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : KYDBaseViewController
+{
+    UIButton* registButton;
+    UITextField* usernameTextField;
+    UILabel* usernameLabel;
+    UITextField* passwordTextField;
+    UILabel* passwordLabel;
+    UIButton* loginButton;
+    UILabel* thirdPartyLabel;
+    UIButton* sinaButton;
+    UIButton* qqButton;
+    UIButton* renrenButton;
+}
 
 @end

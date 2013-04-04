@@ -59,6 +59,7 @@
     parentController = controller;
     data = imageData;
     if (data.originImageData) {
+        conn = nil;
         if(originImageData == nil){
             originImageData = [[NSMutableData alloc] initWithCapacity:0];
         }
@@ -74,9 +75,10 @@
 {
     if (conn != nil) {
         [conn release];
+        conn = nil;
     }
     NSURL* url = [NSURL URLWithString: data.originImage];
-    NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
     conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (conn) {
         [conn start];
@@ -102,7 +104,7 @@
 - (void)loadComplete
 {
     UIImage* img = [UIImage imageWithData:originImageData];
-    [data originImageData:img];
+    //[data originImageData:img];
     
     if (imageScrollView == nil) {
         imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, FULL_WIDTH, FULL_HEIGHT - 100)];

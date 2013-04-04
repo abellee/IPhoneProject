@@ -88,10 +88,15 @@ static Utility* instance;
 + (CGSize)getCGSizeWithFontSize:(float)fontSize str:(NSString *)string isBold:(BOOL)bold
 {
     if (bold) {
-        return [string sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]];
+        return [self getCGSizeWithUIFont:[UIFont boldSystemFontOfSize:fontSize] str:string];
     }else{
-        return [string sizeWithFont:[UIFont systemFontOfSize:fontSize]];
+        return [self getCGSizeWithUIFont:[UIFont systemFontOfSize:fontSize] str:string];
     }
+}
+
++ (CGSize)getCGSizeWithUIFont:(UIFont*)font str:(NSString *)string
+{
+    return [string sizeWithFont:font];
 }
 
 + (CABasicAnimation*)animationProperty:(NSString *)property duration:(float)duration fromValue:(NSNumber *)fromValue toValue:(NSNumber *)toValue delegate:(id)delegate bounce:(BOOL)isBounce animationIdentifyKey:(NSString *)key animationIdentifyValue:(NSString *)value
@@ -111,6 +116,43 @@ static Utility* instance;
         animation.timingFunction = [CAMediaTimingFunction functionWithControlPoints:0.5 :1.5 :0.5 :1.0];
     }
     return animation;
+}
+
++ (UIImage*)drawCircle:(CGSize)size withColor:(UIColor *)color
+{
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, 0.0);
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextAddEllipseInRect(context, CGRectMake(0, 0, size.width, size.height));
+    
+    CGContextFillPath(context);
+    
+    UIImage* img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
+
++ (UIImage*)drawRect:(CGSize)size withColor:(UIColor *)color withAlpha:(float)alpha
+{
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, 0.0);
+    CGContextAddRect(context, CGRectMake(0, 0, size.width, size.height));
+    CGContextClosePath(context);
+    const CGFloat* colorComponent = CGColorGetComponents(color.CGColor);
+    CGContextSetRGBFillColor(context, colorComponent[0], colorComponent[1], colorComponent[2], alpha);
+    CGContextDrawPath(context, kCGPathFill);
+    UIImage* img = UIGraphicsGetImageFromCurrentImageContext();
+    return img;
+}
+
++ (CGFloat)getTextHeightWithString:(NSString *)content constrainedToSize:(CGSize)size fontSize:(float)fontSize withMinHeight:(float)minHeight
+{
+    CGSize finalSize = [content sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    return MAX(finalSize.height, minHeight);
 }
 
 @end

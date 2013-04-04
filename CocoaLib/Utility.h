@@ -25,6 +25,10 @@
 + (int)secTimeSince1970;
 + (int)milliTimeSince1970;
 + (CGSize)getCGSizeWithFontSize:(float)fontSize str:(NSString*)string isBold:(BOOL)bold;
++ (CGSize)getCGSizeWithUIFont:(UIFont*)font str:(NSString*)string;
 + (CABasicAnimation*)animationProperty:(NSString *)property duration:(float)duration fromValue:(NSNumber *)fromValue toValue:(NSNumber *)toValue delegate:(id)delegate bounce:(BOOL)isBounce animationIdentifyKey:(NSString *)key animationIdentifyValue:(NSString *)value;
++ (UIImage*)drawCircle:(CGSize)size withColor:(UIColor*)color;
++ (UIImage*)drawRect:(CGSize)size withColor:(UIColor*)color withAlpha:(float)alpha;
++ (CGFloat)getTextHeightWithString:(NSString*)content constrainedToSize:(CGSize)size fontSize:(float)fontSize withMinHeight:(float)minHeight;
 
 @end

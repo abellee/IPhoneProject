@@ -10,6 +10,10 @@
 #import "ShopTableViewController.h"
 #import "UIImage+Extensions.h"
 
+#import "OrderListViewController.h"
+#import "ShopInfo.h"
+#import "FoodInfo.h"
+
 @interface IndexViewController ()
 
 @end
@@ -37,10 +41,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage getImageWithFileName:@"shouyedi"]];
     
     shopTableViewController = [[ShopTableViewController alloc] init];
     [shopTableViewController.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64)];
+    [shopTableViewController parentController:self];
     
     navigator = [[UINavigationController alloc] initWithRootViewController: shopTableViewController];
     [navigator.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -54,35 +59,55 @@
         [topBackground release];
     }
     
-    UIButton* kydButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage* kydLogo = [UIImage getImageWithFileName:@"logo"];
-    [kydButton setFrame:CGRectMake(0, 0, kydLogo.size.width, kydLogo.size.height)];
-    [kydButton setImage:kydLogo forState:UIControlStateNormal];
-    [kydButton setImage:kydLogo forState:UIControlStateHighlighted];
-    kydButton.center = CGPointMake(navigator.navigationBar.frame.size.width / 2, navigator.navigationBar.frame.size.height / 2);
-    [navigator.navigationBar addSubview:kydButton];
-    [kydButton addTarget:self action:@selector(logoPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton* profileButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [profileButton setFrame:CGRectMake(0, 0, 30, 30)];
-    [profileButton setImage:[UIImage getImageWithFileName:@"geren0"] forState:UIControlStateNormal];
-    [profileButton setImage:[UIImage getImageWithFileName:@"geren1"] forState:UIControlStateHighlighted];
-    [navigator.navigationBar addSubview:profileButton];
-    profileButton.center = CGPointMake(25, navigator.navigationBar.frame.size.height / 2);
-    [profileButton addTarget:self action:@selector(profileButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton* moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [moreButton setFrame:CGRectMake(0, 0, 30, 30)];
-    [moreButton setImage:[UIImage getImageWithFileName:@"geduo0"] forState:UIControlStateNormal];
-    [moreButton setImage:[UIImage getImageWithFileName:@"geduo1"] forState:UIControlStateHighlighted];
-    moreButton.center = CGPointMake(navigator.navigationBar.frame.size.width - 25, navigator.navigationBar.frame.size.height / 2);
-    [navigator.navigationBar addSubview:moreButton];
-    [moreButton addTarget:self action:@selector(moreButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
     [self.view addSubview:navigator.view];
+    
+    ShopInfo* shopInfo = [[ShopInfo alloc] init];
+    shopInfo.shopName = @"测试名称";
+    shopInfo.isCollected = NO;
+    
+    NSMutableArray* foodList = [[NSMutableArray alloc] initWithCapacity:0];
+    FoodInfo* foodInfo0 = [[FoodInfo alloc] init];
+    [foodInfo0 foodName:@"大鸡腿饭饭"];
+    [foodInfo0 price:14.0];
+    [foodInfo0 foodNum:10.0];
+    [foodList addObject:foodInfo0];
+    
+    FoodInfo* foodInfo1 = [[FoodInfo alloc] init];
+    [foodInfo1 foodName:@"大鸡腿饭饭"];
+    [foodInfo1 price:13.0];
+    [foodInfo1 foodNum:5.0];
+    [foodList addObject:foodInfo1];
+    
+    FoodInfo* foodInfo2 = [[FoodInfo alloc] init];
+    [foodInfo2 foodName:@"大鸡腿饭饭"];
+    [foodInfo2 price:14.0];
+    [foodInfo2 foodNum:10.0];
+    [foodList addObject:foodInfo2];
+    
+    FoodInfo* foodInfo3 = [[FoodInfo alloc] init];
+    [foodInfo3 foodName:@"大鸡腿饭饭"];
+    [foodInfo3 price:13.0];
+    [foodInfo3 foodNum:5.0];
+    [foodList addObject:foodInfo3];
+    
+    FoodInfo* foodInfo4 = [[FoodInfo alloc] init];
+    [foodInfo4 foodName:@"大鸡腿饭饭"];
+    [foodInfo4 price:14.0];
+    [foodInfo4 foodNum:10.0];
+    [foodList addObject:foodInfo4];
+    
+    FoodInfo* foodInfo5 = [[FoodInfo alloc] init];
+    [foodInfo5 foodName:@"大鸡腿饭饭"];
+    [foodInfo5 price:13.0];
+    [foodInfo5 foodNum:5.0];
+    [foodList addObject:foodInfo5];
+    
+    OrderListViewController* aboutViewController = [[OrderListViewController alloc] initWithData:nil];
+    [aboutViewController.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [navigator pushViewController:aboutViewController animated:YES];
 }
 
-- (void)profileButtonPressed:(id)sender
+- (void)profileButtonPressed
 {
     [self panRightAuto:YES];
     if (delegate && [delegate respondsToSelector:@selector(autoPanWithData:)]) {
@@ -90,7 +115,7 @@
     }
 }
 
-- (void)moreButtonPressed:(id)sender
+- (void)moreButtonPressed
 {
     [self panLeftAuto:NO];
     if (delegate && [delegate respondsToSelector:@selector(autoPanWithData:)]) {

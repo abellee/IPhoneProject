@@ -26,6 +26,7 @@
     NSMutableArray* thumbImageList;
     
     UILabel* numLabel;
+    UILabel* nameLabel;
     
     HLPhotoViewerViewController* parentController;
     BorderImageViewController* preBorderImageView;

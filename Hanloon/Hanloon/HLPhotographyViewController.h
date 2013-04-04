@@ -13,6 +13,7 @@
 #import "ASIProgressDelegate.h"
 
 @class AVCaptureCameraViewController;
+@class LoadingView;
 @interface HLPhotographyViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureDelegate, DeletableImageDelegate, ASIHTTPRequestDelegate, UIAlertViewDelegate, ASIProgressDelegate, UITableViewDataSource, UITableViewDelegate, UIPopoverControllerDelegate, NSURLConnectionDelegate>{
     UIImageView* background;
     
@@ -49,6 +50,10 @@
     UITableViewController* cateList;
     
     AVCaptureCameraViewController* camera;
+    LoadingView* loadingView;
+    
+    NSURLConnection* conn;
+    NSMutableData* receviedData;
     
     BOOL isUploading;
     int curCateIndex;

@@ -15,10 +15,11 @@
 
 @implementation ShopLikeTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier info:(ShopInfo *)info
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier info:(ShopInfo *)info type:(CollectionType)type
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        curType = type;
         shopInfo = info;
         float selfHeight = 100;
         
@@ -58,6 +59,9 @@
         
         float commentFontSize = 14.0;
         NSString* commentStr = [NSString stringWithFormat:@"%d个评价", shopInfo.commentNum];
+        if (curType == FOOD) {
+            commentStr = [NSString stringWithFormat:@"月售%d份", shopInfo.commentNum];
+        }
         CGSize commentStrSize = [commentStr sizeWithFont:[UIFont systemFontOfSize:commentFontSize]];
         commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(starViewXPos + starViewSize.width + 10, starViewYPos + (starViewSize.height - commentStrSize.height) / 2, commentStrSize.width, commentStrSize.height)];
         [commentLabel setText:commentStr];
@@ -67,6 +71,9 @@
         
         float distanceFontSize = 16.0;
         NSString* distanceStr = [NSString stringWithFormat:@"%d%@", shopInfo.distance < 1000 ? shopInfo.distance : shopInfo.distance / 1000, shopInfo.distance < 1000 ? @"m" : @"km"];
+        if (curType == FOOD) {
+            distanceStr = [NSString stringWithFormat:@"%d元", shopInfo.distance];
+        }
         CGSize distanceStrSize = [distanceStr sizeWithFont:[UIFont systemFontOfSize:distanceFontSize]];
         distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width - distanceStrSize.width - 10, shopNamePoint.y, distanceStrSize.width, distanceStrSize.height)];
         [distanceLabel setText:distanceStr];
@@ -82,6 +89,28 @@
         [self addSubview:distanceLabel];
     }
     return self;
+}
+
+- (void)reuseByInfo:(ShopInfo *)info type:(CollectionType)type
+{
+//    curType = type;
+//    shopInfo = info;
+//    float commentFontSize = 14.0;
+//    NSString* commentStr = [NSString stringWithFormat:@"%d个评价", shopInfo.commentNum];
+//    if (curType == FOOD) {
+//        commentStr = [NSString stringWithFormat:@"月售%d份", shopInfo.commentNum];
+//    }
+//    CGSize commentStrSize = [commentStr sizeWithFont:[UIFont systemFontOfSize:commentFontSize]];
+//    [commentLabel setFrame:CGRectMake(starViewController.view.frame.origin.x + starViewController.view.frame.size.width + 10, starViewController.view.frame.origin.y + (starViewController.view.frame.size.height - commentStrSize.height) / 2, commentStrSize.width, commentStrSize.height)];
+//    [starViewController setStar:info.starNum];
+//    
+//    float distanceFontSize = 16.0;
+//    NSString* distanceStr = [NSString stringWithFormat:@"%d%@", shopInfo.distance < 1000 ? shopInfo.distance : shopInfo.distance / 1000, shopInfo.distance < 1000 ? @"m" : @"km"];
+//    if (curType == FOOD) {
+//        distanceStr = [NSString stringWithFormat:@"%d元", shopInfo.distance];
+//    }
+//    CGSize distanceStrSize = [distanceStr sizeWithFont:[UIFont systemFontOfSize:distanceFontSize]];
+//    [distanceLabel setFrame:CGRectMake(self.frame.size.width - distanceStrSize.width - 10, shopNamePoint.y, distanceStrSize.width, distanceStrSize.height)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

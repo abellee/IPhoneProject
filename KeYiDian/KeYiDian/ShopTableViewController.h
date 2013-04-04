@@ -14,6 +14,7 @@
 @class RefreshTableViewController;
 @class CurrentLocationViewController;
 @class UITouchableView;
+@class IndexViewController;
 @interface ShopTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RefreshTableViewDelegate, UITouchableViewDelegate>{
     RefreshTableViewController* shopTableViewController;
     CurrentLocationViewController* currentLocationViewController;
@@ -29,6 +30,8 @@
     
     UIButton* currentButton;
 }
+
+@property (nonatomic, assign, getter = parentController, setter = parentController:) IndexViewController* parentController;
 
 - (void)scrollToTop;
 - (void)resetWidget;

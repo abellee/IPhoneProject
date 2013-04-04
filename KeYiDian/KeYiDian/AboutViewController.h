@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KYDBaseViewController.h"
 
-@interface AboutViewController : UIViewController{
-    UIButton* logo;
-    UILabel* aboutText;
+@interface AboutViewController : KYDBaseViewController{
+    UIImageView* logo;
 }
 
 @end

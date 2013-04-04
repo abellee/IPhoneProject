@@ -19,6 +19,8 @@
 #import "ImageURL.h"
 #import "ShopLikeTableViewCell.h"
 
+#import "IndexViewController.h"
+
 @interface ShopTableViewController ()
 
 @end
@@ -35,6 +37,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIButton* profileButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [profileButton setFrame:CGRectMake(0, 0, 30, 30)];
+    [profileButton setImage:[UIImage getImageWithFileName:@"geren0"] forState:UIControlStateNormal];
+    [profileButton setImage:[UIImage getImageWithFileName:@"geren1"] forState:UIControlStateHighlighted];
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [view addSubview:profileButton];
+    UIBarButtonItem* leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+    self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+    [view release];
+    [profileButton addTarget:self action:@selector(profileButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [leftBarButtonItem release];
+    
+    UIButton* moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [moreButton setFrame:CGRectMake(0, 0, 30, 30)];
+    [moreButton setImage:[UIImage getImageWithFileName:@"geduo0"] forState:UIControlStateNormal];
+    [moreButton setImage:[UIImage getImageWithFileName:@"geduo1"] forState:UIControlStateHighlighted];
+    UIView* moreView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [moreView addSubview:moreButton];
+    UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:moreView];
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    [moreView release];
+    [moreButton addTarget:self action:@selector(moreButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [rightBarButtonItem release];
+    
+    UIButton* kydButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage* kydLogo = [UIImage getImageWithFileName:@"logo"];
+    [kydButton setFrame:CGRectMake(0, 0, kydLogo.size.width, kydLogo.size.height)];
+    [kydButton setImage:kydLogo forState:UIControlStateNormal];
+    [kydButton setImage:kydLogo forState:UIControlStateHighlighted];
+    self.navigationItem.titleView = kydButton;
+    [kydButton addTarget:self action:@selector(logoPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     UIImage* normalImage = [UIImage getImageWithFileName:@"lvdaohang0"];
     UIImage* selectedImage = [UIImage getImageWithFileName:@"lvdaohang1"];
@@ -89,7 +124,6 @@
     shopTableViewController.tableView.delegate = self;
     shopTableViewController.tableView.showsVerticalScrollIndicator = NO;
     shopTableViewController.refreshDelegate = self;
-    shopTableViewController.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage getImageWithFileName:@"shouyedi"]];
     [shopTableViewController.tableView setFrame:CGRectMake(0, normalImage.size.height, FULL_WIDTH, FULL_HEIGHT - normalImage.size.height - 60)];
     [self.view addSubview:shopTableViewController.view];
     
@@ -124,6 +158,25 @@
         
         [shopList addObject:shopInfo];
     }
+}
+
+- (void)profileButtonPressed:(id)sender
+{
+    if (_parentController && [_parentController respondsToSelector:@selector(profileButtonPressed)]) {
+        [_parentController profileButtonPressed];
+    }
+}
+
+- (void)moreButtonPressed:(id)sender
+{
+    if (_parentController && [_parentController respondsToSelector:@selector(moreButtonPressed)]) {
+        [_parentController moreButtonPressed];
+    }
+}
+
+- (void)logoPressed:(id)sender
+{
+    [self scrollToTop];
 }
 
 - (void)touchUpInside:(UIView*)view
@@ -243,6 +296,8 @@
         [shopList release];
     }
     
+    _parentController = nil;
+    
     [super dealloc];
 }
 
@@ -269,7 +324,7 @@
     
     ShopLikeTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:shopCell];
     if (cell == nil) {
-        cell = [[[ShopLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:shopCell info:[shopList objectAtIndex:indexPath.row]] autorelease];
+        cell = [[[ShopLikeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:shopCell info:[shopList objectAtIndex:indexPath.row] type:SHOP] autorelease];
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

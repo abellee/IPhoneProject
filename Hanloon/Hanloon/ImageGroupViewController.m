@@ -91,6 +91,13 @@
     numLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:numLabel];
     
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(300, 50, 400, 30)];
+    [nameLabel setText:@""];
+    [nameLabel setTextAlignment:NSTextAlignmentCenter];
+    [nameLabel setTextColor:[UIColor whiteColor]];
+    nameLabel.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:nameLabel];
+    
     thumbImageList = [[NSMutableArray alloc] initWithCapacity:0];
 }
 
@@ -145,6 +152,7 @@
     rightDock.hidden = YES;
     thumbImageScrollView.hidden = YES;
     numLabel.hidden = YES;
+    nameLabel.hidden = YES;
 }
 
 - (void)showDocks
@@ -154,6 +162,7 @@
     rightDock.hidden = NO;
     thumbImageScrollView.hidden = NO;
     numLabel.hidden = NO;
+    nameLabel.hidden = NO;
 }
 
 - (void)exitGroupView
@@ -170,6 +179,8 @@
 - (void)setNumLabel:(int)index
 {
     [numLabel setText:[NSString stringWithFormat:@"%d/%d", index + 1, [parentController totalNum]]];
+    NSLog(@"%@>>>", [[[parentController imageDataList] objectAtIndex:index] name]);
+    [nameLabel setText:[[[parentController imageDataList] objectAtIndex:index] name]];
     [self showThumbBorder:index];
 }
 
@@ -189,6 +200,9 @@
     float targetYPos = index * (134 + 10) + 10;
     if (targetYPos > thumbImageScrollView.contentSize.height - thumbImageScrollView.frame.size.height) {
         targetYPos = thumbImageScrollView.contentSize.height - thumbImageScrollView.frame.size.height;
+    }
+    if([thumbImageList count] < 5){
+        targetYPos = 0;
     }
     [thumbImageScrollView setContentOffset:CGPointMake(0, targetYPos) animated:YES];
 }

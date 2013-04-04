@@ -2,23 +2,59 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>id9</key>
+	<array>
+		<dict>
+			<key>cateName</key>
+			<string>西服面料</string>
+			<key>cateId</key>
+			<integer>27</integer>
+		</dict>
+		<dict>
+			<key>cateName</key>
+			<string>衬衫面料</string>
+			<key>cateId</key>
+			<integer>28</integer>
+		</dict>
+	</array>
+	<key>id8</key>
+	<array>
+		<dict>
+			<key>cateName</key>
+			<string>西服劈门卡</string>
+			<key>cateId</key>
+			<integer>25</integer>
+		</dict>
+		<dict>
+			<key>cateName</key>
+			<string>衬衫劈门卡</string>
+			<key>cateId</key>
+			<integer>26</integer>
+		</dict>
+	</array>
 	<key>id6</key>
 	<array>
 		<dict>
 			<key>cateName</key>
-			<string>退赔衣服照片</string>
+			<string>西服</string>
 			<key>cateId</key>
 			<integer>22</integer>
+		</dict>
+		<dict>
+			<key>cateName</key>
+			<string>衬衫</string>
+			<key>cateId</key>
+			<integer>23</integer>
+		</dict>
+		<dict>
+			<key>cateId</key>
+			<integer>24</integer>
+			<key>cateName</key>
+			<string>女装</string>
 		</dict>
 	</array>
 	<key>id5</key>
 	<array>
-		<dict>
-			<key>cateId</key>
-			<integer>20</integer>
-			<key>cateName</key>
-			<string>维修单上传</string>
-		</dict>
 		<dict>
 			<key>cateId</key>
 			<integer>21</integer>
@@ -79,12 +115,6 @@
 			<key>cateId</key>
 			<integer>14</integer>
 		</dict>
-		<dict>
-			<key>cateId</key>
-			<integer>15</integer>
-			<key>cateName</key>
-			<string>尺寸单上传</string>
-		</dict>
 	</array>
 	<key>id2</key>
 	<array>
@@ -127,12 +157,18 @@
 			<key>cateId</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>cateName</key>
+			<string>面料图库</string>
+			<key>cateId</key>
+			<string>9</string>
+		</dict>
 	</array>
 	<key>id1</key>
 	<array>
 		<dict>
 			<key>cateName</key>
-			<string>西装照片</string>
+			<string>西服照片</string>
 			<key>cateId</key>
 			<integer>2</integer>
 		</dict>
@@ -159,6 +195,12 @@
 			<integer>5</integer>
 			<key>cateName</key>
 			<string>维修照片</string>
+		</dict>
+		<dict>
+			<key>cateId</key>
+			<integer>8</integer>
+			<key>cateName</key>
+			<string>劈门卡</string>
 		</dict>
 	</array>
 </dict>

@@ -6,8 +6,17 @@
 //  Copyright (c) 2013年 KYD. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "KYDBaseViewController.h"
 
-@interface RegistViewController : UIViewController
+@interface RegistViewController : KYDBaseViewController<UITextFieldDelegate>
+{
+    UITextField* username;
+    UITextField* password;
+    UITextField* repassword;
+    UITextField* email;
+    
+    UIButton* registButton;
+    UIScrollView* scrollView;
+}
 
 @end

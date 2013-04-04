@@ -11,7 +11,7 @@
 
 @implementation ShopInfo
 
-@synthesize logo, shopName, shopType, starNum, commentNum, distance, isZhao, isXin, isTe, isDuo, imageURL, shopId;
+@synthesize logo, shopName, shopType, starNum, commentNum, distance, isZhao, isXin, isTe, isDuo, imageURL, shopId, isCollected, deliveryCost;
 
 - (void)dealloc
 {

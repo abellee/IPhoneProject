@@ -12,6 +12,7 @@
 #import <CoreMedia/CoreMedia.h>
 #import <ImageIO/ImageIO.h>
 #import "CameraOverlayViewController.h"
+#import "PickrImage.h"
 #import <Accelerate/Accelerate.h>
 
 @interface AVCaptureCameraViewController ()
@@ -160,7 +161,10 @@
         
         UIImage* finalImage = [[UIImage alloc] initWithCGImage:image.CGImage scale:1.0 orientation:AVCaptureVideoOrientationLandscapeRight];
         if (delegate && [delegate respondsToSelector:@selector(finishTakePicture:)]) {
-            [delegate finishTakePicture:finalImage];
+            PickrImage* pickrImage = [[[PickrImage alloc] init] autorelease];
+            [pickrImage image: finalImage];
+            [pickrImage isAlbum: NO];
+            [delegate finishTakePicture: pickrImage];
         }
         [image release];
         [finalImage release];

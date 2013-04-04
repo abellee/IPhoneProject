@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @class DeletableImageViewController;
+@class PickrImage;
 @protocol DeletableImageDelegate <NSObject>
 
 @required
-- (void)deleteImage:(UIImage*)image controller:(DeletableImageViewController*)imageViewController;
+- (void)deleteImage:(PickrImage*)image controller:(DeletableImageViewController*)imageViewController;
 
 @end

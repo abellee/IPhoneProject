@@ -10,7 +10,8 @@
 
 @interface UIImage (ImageScale)
 
--(UIImage*)scaleToSize:(CGSize)size;
--(UIImage *)fixOrientation;
+- (UIImage*)scaleToSize:(CGSize)size;
+- (UIImage*)fixOrientation;
+- (UIImage*)scaleByWidth:(float)width;
 
 @end

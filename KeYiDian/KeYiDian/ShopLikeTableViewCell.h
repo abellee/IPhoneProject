@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Definitions.h"
 
 @class ShadowImageViewController;
 @class ShopInfo;
@@ -16,12 +17,15 @@
     ShopInfo* shopInfo;
     StarViewController* starViewController;
     
+    CollectionType curType;
+    
     UILabel* shopNameLabel;
     UILabel* shopTypeLabel;
     UILabel* commentLabel;
     UILabel* distanceLabel;
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier info:(ShopInfo*)info;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier info:(ShopInfo*)info type:(CollectionType)type;
+- (void)reuseByInfo:(ShopInfo*)info type:(CollectionType)type;
 
 @end

@@ -13,6 +13,8 @@
 @synthesize originImage;
 @synthesize thumbImage;
 @synthesize name;
+@synthesize originImageData;
+@synthesize thumbImageData;
 
 - (void)dealloc
 {

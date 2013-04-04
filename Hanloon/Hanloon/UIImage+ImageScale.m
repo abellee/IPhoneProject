@@ -96,4 +96,16 @@
     return img;
 }
 
+- (UIImage*)scaleByWidth:(float)width
+{
+    float widthRatio = width / self.size.width;
+    float realHeight = self.size.height * widthRatio;
+    CGSize size = CGSizeMake(width, realHeight);
+    UIGraphicsBeginImageContext(size);
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
+}
+
 @end

@@ -8,6 +8,7 @@
 
 #import "DeletableImageViewController.h"
 #import "UIImage+ImageScale.h"
+#import "PickrImage.h"
 
 @interface DeletableImageViewController ()
 
@@ -15,7 +16,7 @@
 
 @implementation DeletableImageViewController
 
-@synthesize delegate;
+@synthesize delegate, isAlbum;
 
 - (void)dealloc
 {
@@ -27,13 +28,14 @@
     [super dealloc];
 }
 
-- (void)setImageData:(UIImage *)image size:(CGSize)cgSize
+- (void)setImageData:(PickrImage *)image size:(CGSize)cgSize
 {
     UIImage* buttonSkin = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"enterButton" ofType:@"png"]];
     
     CGSize finalSize = CGSizeMake(cgSize.width, cgSize.height - buttonSkin.size.height - 20);
-    originImage = image;
-    imageData = [image scaleToSize:finalSize];
+    originImage = image.image;
+    pickrImage = image;
+    imageData = [originImage scaleToSize:finalSize];
     imageView = [[UIImageView alloc] initWithImage:imageData];
     [self.view addSubview:imageView];
     
@@ -61,7 +63,7 @@
             break;
         case 1:
             if (delegate && [delegate respondsToSelector:@selector(deleteImage:controller:)]) {
-                [delegate deleteImage:originImage controller:self];
+                [delegate deleteImage:pickrImage controller:self];
             }
             break;
         default:

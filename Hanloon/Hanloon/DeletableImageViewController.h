@@ -9,17 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "DeletableImageDelegate.h"
 
+@class PickrImage;
 @interface DeletableImageViewController : UIViewController<UIAlertViewDelegate>{
     UIImage* imageData;
     UIImage* originImage;
     UIImageView* imageView;
     UIButton* deleteButton;
     
+    PickrImage* pickrImage;
+    
     id<DeletableImageDelegate> delegate;
 }
 
 @property (nonatomic, assign, getter = delegate, setter = delegate:) id<DeletableImageDelegate> delegate;
+@property (nonatomic, assign, getter = isAlbum, setter = isAlbum:) BOOL isAlbum;
 
-- (void)setImageData:(UIImage*)image size:(CGSize)cgSize;
+- (void)setImageData:(PickrImage*)image size:(CGSize)cgSize;
 
 @end

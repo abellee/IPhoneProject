@@ -30,6 +30,7 @@
 		0C05D28D16DA48D100498286 /* enterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C05D27916DA48D100498286 /* enterButton@2x.png */; };
 		0C05D28E16DA48D100498286 /* enterButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C05D27A16DA48D100498286 /* enterButton.png */; };
 		0C05D28F16DA48D100498286 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C05D27B16DA48D100498286 /* upArrow.png */; };
+		0C2D0DFA16F47F89009DA6E4 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2D0DF916F47F89009DA6E4 /* JSONKit.m */; };
 		0C48358B16D619520007B040 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C48358A16D619520007B040 /* UIKit.framework */; };
 		0C48358D16D619520007B040 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C48358C16D619520007B040 /* Foundation.framework */; };
 		0C48358F16D619520007B040 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C48358E16D619520007B040 /* CoreGraphics.framework */; };
@@ -82,6 +83,7 @@
 		0C7D5F1F16DABE7E00DC5849 /* ImageGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D5F1E16DABE7E00DC5849 /* ImageGroupViewController.m */; };
 		0C7D5F2216DAC44600DC5849 /* OriginImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D5F2116DAC44500DC5849 /* OriginImageViewController.m */; };
 		0C7D5F2516DADE5A00DC5849 /* BorderImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D5F2416DADE5900DC5849 /* BorderImageViewController.m */; };
+		0CCD787A16F6CDAC00B41028 /* PickrImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCD787916F6CDAC00B41028 /* PickrImage.m */; };
 		0CF3578516DD333100740451 /* 144.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF3578416DD333100740451 /* 144.png */; };
 		0CF3578716DD333500740451 /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF3578616DD333500740451 /* 72.png */; };
 		0CF3578A16DD375F00740451 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF3578916DD375F00740451 /* ImageIO.framework */; };
@@ -115,6 +117,8 @@
 		0C05D27916DA48D100498286 /* enterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enterButton@2x.png"; sourceTree = "<group>"; };
 		0C05D27A16DA48D100498286 /* enterButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enterButton.png; sourceTree = "<group>"; };
 		0C05D27B16DA48D100498286 /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
+		0C2D0DF816F47F89009DA6E4 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		0C2D0DF916F47F89009DA6E4 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		0C48358716D619520007B040 /* 恒龙图库.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "恒龙图库.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C48358A16D619520007B040 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0C48358C16D619520007B040 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -199,6 +203,8 @@
 		0C7D5F2116DAC44500DC5849 /* OriginImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginImageViewController.m; sourceTree = "<group>"; };
 		0C7D5F2316DADE5900DC5849 /* BorderImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderImageViewController.h; sourceTree = "<group>"; };
 		0C7D5F2416DADE5900DC5849 /* BorderImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderImageViewController.m; sourceTree = "<group>"; };
+		0CCD787816F6CDAC00B41028 /* PickrImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickrImage.h; sourceTree = "<group>"; };
+		0CCD787916F6CDAC00B41028 /* PickrImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickrImage.m; sourceTree = "<group>"; };
 		0CF3578416DD333100740451 /* 144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 144.png; path = ../144.png; sourceTree = "<group>"; };
 		0CF3578616DD333500740451 /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 72.png; path = ../72.png; sourceTree = "<group>"; };
 		0CF3578816DD349300740451 /* AVCaptureDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVCaptureDelegate.h; sourceTree = "<group>"; };
@@ -277,6 +283,8 @@
 			children = (
 				0C71EDE416DCFD450029061E /* ASIHTTPRequest */,
 				0C71EDE016DCFD2C0029061E /* Reachability */,
+				0C2D0DF816F47F89009DA6E4 /* JSONKit.h */,
+				0C2D0DF916F47F89009DA6E4 /* JSONKit.m */,
 				0C7D5F1116DA79EF00DC5849 /* LoadingView.h */,
 				0C7D5F1216DA79EF00DC5849 /* LoadingView.m */,
 				0C48359916D619520007B040 /* AbelAppDelegate.h */,
@@ -317,6 +325,8 @@
 				0CF3579016DD64F600740451 /* DeletableImageViewController.h */,
 				0CF3579116DD64F600740451 /* DeletableImageViewController.m */,
 				0CF3579316DD655400740451 /* DeletableImageDelegate.h */,
+				0CCD787816F6CDAC00B41028 /* PickrImage.h */,
+				0CCD787916F6CDAC00B41028 /* PickrImage.m */,
 			);
 			path = Hanloon;
 			sourceTree = "<group>";
@@ -537,6 +547,8 @@
 				0C71EDF116DD08F50029061E /* CameraOverlayViewController.m in Sources */,
 				0C71EDF416DD11AE0029061E /* AVCaptureCameraViewController.m in Sources */,
 				0CF3579216DD64F600740451 /* DeletableImageViewController.m in Sources */,
+				0C2D0DFA16F47F89009DA6E4 /* JSONKit.m in Sources */,
+				0CCD787A16F6CDAC00B41028 /* PickrImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,7 +601,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
+				PROVISIONING_PROFILE = "6A153A29-EA36-4EDD-998A-D68CF147A507";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -616,8 +628,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
+				PROVISIONING_PROFILE = "6A153A29-EA36-4EDD-998A-D68CF147A507";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6A153A29-EA36-4EDD-998A-D68CF147A507";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -635,8 +647,8 @@
 				INFOPLIST_FILE = "Hanloon/Hanloon-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "恒龙图库";
-				PROVISIONING_PROFILE = "33C0BE3F-CD64-4971-958D-D3378B276EA5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "33C0BE3F-CD64-4971-958D-D3378B276EA5";
+				PROVISIONING_PROFILE = "F587E8F1-5678-408A-B692-66F44FE87F35";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F587E8F1-5678-408A-B692-66F44FE87F35";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

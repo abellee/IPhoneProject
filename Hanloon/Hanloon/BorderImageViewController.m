@@ -76,6 +76,13 @@
     if (data.thumbImageData) {
         UIImageView* imgView = [[UIImageView alloc] initWithImage:data.thumbImageData];
         [imgView setFrame:CGRectMake(10, 10, data.thumbImageData.size.width, data.thumbImageData.size.height)];
+        UIImage* tempImage = [data.thumbImageData scaleByWidth:164.0];
+        CALayer* masker = [CALayer layer];
+        masker.bounds = CGRectMake(0, 0, data.thumbImageData.size.width * 2, 228);
+        masker.contents = (id)tempImage.CGImage;
+        imgView.layer.mask = masker;
+        imgView.layer.masksToBounds = YES;
+        imgView.frame = CGRectMake(10, 10, data.thumbImageData.size.width, data.thumbImageData.size.height);
         [self.view addSubview:imgView];
         
         UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTaped:)];
@@ -120,13 +127,18 @@
 - (void)loadComplete
 {
     UIImage* img = [UIImage imageWithData:mutableData];
-    img = [img scaleToSize:CGSizeMake(self.view.frame.size.width - 20, self.view.frame.size.height - 20)];
+    UIImage* tempImage = [img scaleToSize:CGSizeMake(self.view.frame.size.width - 20, self.view.frame.size.height - 20)];
+    img = [img scaleByWidth:164.0];
     [imageData thumbImageData:img];
     [self hideIndicator];
     UIImageView* imageView = [[UIImageView alloc] initWithImage:img];
-    [imageView setFrame:CGRectMake(10, 10, img.size.width, img.size.height)];
+    CALayer* masker = [CALayer layer];
+    masker.bounds = CGRectMake(0, 0, img.size.width * 2, 228);
+    masker.contents = (id)tempImage.CGImage;
+    imageView.layer.mask = masker;
+    imageView.layer.masksToBounds = YES;
+    imageView.frame = CGRectMake(10, 10, img.size.width, img.size.height);
     [self.view addSubview:imageView];
-    [imageView release];
     
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTaped:)];
     [self.view addGestureRecognizer:tap];

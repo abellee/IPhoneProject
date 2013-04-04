@@ -13,7 +13,7 @@
 @class LoadingView;
 @class ImageGroupViewController;
 @class ImageData;
-@interface HLPhotoViewerViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+@interface HLPhotoViewerViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate, UITextFieldDelegate>{
     UIImageView* background;
     SwipeNoticeViewController* noticeViewController;
     ImageWallViewController* imageWallViewController;
@@ -47,12 +47,20 @@
     
     LoadingView* loadingView;
     
+    NSURLConnection* conn;
+    NSMutableData* recivedData;
+    NSNumber* curNumberTag;
+    
     int curPage;
     BOOL isLoading;
+    BOOL isLoadingCate;
     
     NSMutableArray* imageDataList;
     int totalNum;
     int curTag;
+    
+    UITextField* orderNumTextField;
+    UIButton* enterButton;
 }
 
 @property (nonatomic, retain, getter = imageDataList, setter = imageDataList:) NSMutableArray* imageDataList;

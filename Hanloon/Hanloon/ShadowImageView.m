@@ -68,12 +68,12 @@
         [conn release];
     }
     NSURL* url = [NSURL URLWithString:imageData.thumbImage];
-    NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0];
     conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (conn) {
         [conn start];
+        CFRunLoopRun();
     }
-    CFRunLoopRun();
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -82,6 +82,7 @@
         imgData = [[NSMutableData alloc] initWithData:data];
         return;
     }
+    NSLog(@"receive");
     [imgData appendData:data];
 }
 
@@ -94,12 +95,18 @@
 - (void)loadComplete
 {
     UIImage* img = [UIImage imageWithData:imgData];
-    img = [img scaleToSize:CGSizeMake(background.frame.size.width - 20, background.frame.size.height - 20)];
+    UIImage* tempImage = [img scaleToSize:CGSizeMake(background.frame.size.width - 20, background.frame.size.height - 20)];
+    img = [img scaleByWidth:164.0];
     [imageData thumbImageData:img];
     isLoading = NO;
     [self hideIndicator];
     UIImageView* imageView = [[UIImageView alloc] initWithImage:img];
-    imageView.center = CGPointMake(background.frame.size.width / 2, background.frame.size.height / 2);
+    CALayer* masker = [CALayer layer];
+    masker.bounds = CGRectMake(0, 0, img.size.width * 2, 228);
+    masker.contents = (id)tempImage.CGImage;
+    imageView.layer.mask = masker;
+    imageView.layer.masksToBounds = YES;
+    imageView.frame = CGRectMake(10, 10, img.size.width, img.size.height);
     [self addSubview:imageView];
     [imageView release];
     [conn release];
@@ -128,6 +135,7 @@
     }
     
     if (conn != nil) {
+        CFRunLoopStop(CFRunLoopGetCurrent());
         if (isLoading) {
             [conn cancel];
         }

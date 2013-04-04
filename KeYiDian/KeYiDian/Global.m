@@ -8,10 +8,11 @@
 
 #import "Global.h"
 #import "Definitions.h"
+#import "UIImage+Extensions.h"
 
 @implementation Global
 
-@synthesize loadingView, networkQueue, kydUser, messageNum, currentLocation;
+@synthesize loadingView, networkQueue, kydUser, messageNum, currentLocation, messageList, shopCollectionList, foodCollectionList, historyLocationList, isIPhone5;
 
 static Global* instance;
 
@@ -48,6 +49,49 @@ static Global* instance;
             break;
     }
     return @"中式";
+}
+
++ (UIButton*)getBackwardButton
+{
+    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage* normalSkin = [UIImage getImageWithFileName:@"fanhui0"];
+    UIImage* highlightedSkin = [UIImage getImageWithFileName:@"fanhui1"];
+    [btn setImage:normalSkin forState:UIControlStateNormal];
+    [btn setImage:highlightedSkin forState:UIControlStateHighlighted];
+    [btn setFrame:CGRectMake(0, 0, normalSkin.size.width, normalSkin.size.height)];
+    return btn;
+}
+
+- (void)addMessageToList:(Message *)message
+{
+    if (messageList == nil) {
+        messageList = [[NSMutableArray alloc] initWithCapacity:0];
+    }
+    [messageList addObject:message];
+}
+
+- (void)addShopToCollectionList:(ShopInfo *)shopInfo
+{
+    if (shopCollectionList == nil) {
+        shopCollectionList = [[NSMutableArray alloc] initWithCapacity:0];
+    }
+    [shopCollectionList addObject: shopInfo];
+}
+
+- (void)addFoodToCollectionList:(ShopInfo *)foodInfo
+{
+    if (foodCollectionList == nil) {
+        foodCollectionList = [[NSMutableArray alloc] initWithCapacity:0];
+    }
+    [foodCollectionList addObject:foodInfo];
+}
+
+- (void)addLocationToHistoryList:(Location *)location
+{
+    if (historyLocationList == nil) {
+        historyLocationList = [[NSMutableArray alloc] initWithCapacity:0];
+    }
+    [historyLocationList addObject:location];
 }
 
 @end

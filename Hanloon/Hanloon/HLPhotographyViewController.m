@@ -15,6 +15,8 @@
 #import "JSONKit.h"
 #import "Global.h"
 #import "AbelViewController.h"
+#import "LoadingView.h"
+#import "PickrImage.h"
 
 @interface HLPhotographyViewController ()
 
@@ -79,11 +81,22 @@
         [cateList release];
     }
     
+    if (conn) {
+        [conn cancel];
+        [conn release];
+    }
+    
+    if (receviedData) {
+        [receviedData release];
+    }
+    
     [camera release];
     
     if (picker != nil) {
         [picker release];
     }
+    
+    [loadingView release];
     
     [super dealloc];
 }
@@ -102,10 +115,10 @@
     
     parentCateArray = [[NSArray alloc] initWithObjects:@"西服照片", @"女装照片", @"衬衫照片", @"维修照片", @"退赔照片", nil];
     NSArray* arr0 = [NSArray arrayWithObjects:@"量身", @"试衣", @"成衣", @"参考图", nil];
-    NSArray* arr1 = [NSArray arrayWithObjects:@"量身", @"试衣", @"成衣", @"参考图", @"尺寸单上传", nil];
+    NSArray* arr1 = [NSArray arrayWithObjects:@"量身", @"试衣", @"成衣", @"参考图", nil];
     NSArray* arr2 = [NSArray arrayWithObjects:@"量身", @"试衣", @"成衣", @"参考图", nil];
-    NSArray* arr3 = [NSArray arrayWithObjects:@"维修单上传", @"维修衣服照片", nil];
-    NSArray* arr4 = [NSArray arrayWithObjects:@"退赔衣服照片", nil];
+    NSArray* arr3 = [NSArray arrayWithObjects:@"维修衣服照片", nil];
+    NSArray* arr4 = [NSArray arrayWithObjects:@"西装", @"衬衫", @"女装", nil];
     NSArray* arr = [NSArray arrayWithObjects:arr0, arr1, arr2, arr3, arr4, nil];
     photoCateArray = [[NSArray alloc] initWithArray:arr];
     
@@ -232,30 +245,95 @@
     camera.delegate = self;
     [camera.view setFrame:CGRectMake(0, 0, FULL_WIDTH, FULL_HEIGHT)];
     
+    [self startLoadCateData];
+}
+
+- (void)showLoadingView
+{
+    [self.view setUserInteractionEnabled:NO];
+    if (loadingView == nil) {
+        loadingView = [[LoadingView alloc] initWithFrame:CGRectMake((FULL_WIDTH - 80) / 2, (FULL_HEIGHT - 80) / 2, 80, 80)];
+    }
+    [self.view addSubview:loadingView];
+}
+
+- (void)hideLoadingView
+{
+    [self.view setUserInteractionEnabled:YES];
+    [loadingView removeFromSuperview];
+}
+
+- (void)startLoadCateData
+{
+    [self showLoadingView];
+    [orderChooseButton setTitle:@"正在获取门店信息..." forState:UIControlStateNormal];
     [self performSelectorInBackground:@selector(getCateData) withObject:nil];
+}
+
+- (void)finishLoading
+{
+    [self hideLoadingView];
+    [conn cancel];
+    [conn release];
+    conn = nil;
+    [receviedData release];
+    receviedData = nil;
 }
 
 - (void)getCateData
 {
-    NSURL* cateURL = [NSURL URLWithString:@"http://oa.hanloon.com/query/shopnames"];
-    NSURLRequest* request = [NSURLRequest requestWithURL:cateURL];
-    NSURLResponse* response;
-    NSError* error;
-    NSData* returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if (error == nil) {
-        NSString* returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        cateArray = [[returnString objectFromJSONString] retain];
-        [returnString release];
-        [self performSelectorOnMainThread:@selector(cateDataSuccess) withObject:nil waitUntilDone:YES];
+    if(receviedData == nil){
+        receviedData = [[NSMutableData alloc] initWithCapacity:0];
     }
+    [receviedData setLength:0];
+    NSURL* cateURL = [NSURL URLWithString:@"http://oa.hanloon.com/query/shopnames"];
+    NSURLRequest* request = [NSURLRequest requestWithURL:cateURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
+    conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    [conn start];
+    CFRunLoopRun();
+}
+
+- (void)connection:(NSURLConnection*)connection didReceiveData:(NSData *)data
+{
+    [receviedData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    CFRunLoopStop(CFRunLoopGetCurrent());
+    [self performSelectorOnMainThread:@selector(loadOutTime) withObject:nil waitUntilDone:YES];
+}
+
+- (void)loadOutTime
+{
+    [orderChooseButton setTitle:@"点击重新加载..." forState:UIControlStateNormal];
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"请求超时" message:@"请求门店信息超时，请确认是否正确连接VPN！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+    [alertView release];
+    alertView = nil;
+    [self finishLoading];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection*)connection
+{
+    CFRunLoopStop(CFRunLoopGetCurrent());
+    NSString* returnString = [[NSString alloc] initWithData:receviedData encoding:NSUTF8StringEncoding];
+    cateArray = [[returnString objectFromJSONString] retain];
+    [returnString release];
+    [self performSelectorOnMainThread:@selector(cateDataSuccess) withObject:nil waitUntilDone:YES];
 }
 
 - (void)cateDataSuccess
 {
-    [orderChooseButton setTitle:@"点击选择所属门店" forState:UIControlStateNormal];
+    [self finishLoading];
+    if ([cateArray count] == 1) {
+        [orderChooseButton setTitle:[NSString stringWithFormat:@"(%@)%@", [[cateArray objectAtIndex:0] objectForKey:@"value"], [[cateArray objectAtIndex:0] objectForKey:@"key"]] forState:UIControlStateNormal];
+    }else{
+        [orderChooseButton setTitle:@"点击选择所属门店" forState:UIControlStateNormal];
+    }
 }
 
-- (void)finishTakePicture:(UIImage*)image
+- (void)finishTakePicture:(PickrImage*)image
 {
     if (tempArray == nil) {
         tempArray = [[NSMutableArray alloc] initWithCapacity:0];
@@ -293,11 +371,11 @@
     }
     [deleteableImages removeAllObjects];
     if (imageArray && [imageArray count]) {
-        for (UIImage* img in imageArray) {
+        for (PickrImage* pickrImage in imageArray) {
             int num = [[imageScrollView subviews] count];
             DeletableImageViewController* deletableImage = [[DeletableImageViewController alloc] init];
             [deletableImage.view setFrame:CGRectMake(num * imageScrollView.frame.size.width, 0, imageScrollView.frame.size.width, imageScrollView.frame.size.height)];
-            [deletableImage setImageData:img size:imageScrollView.frame.size];
+            [deletableImage setImageData:pickrImage size:imageScrollView.frame.size];
             [deletableImage delegate:self];
             [imageScrollView addSubview:deletableImage.view];
             [deleteableImages addObject:deletableImage];
@@ -309,7 +387,7 @@
     }
 }
 
-- (void)deleteImage:(UIImage *)image controller:(DeletableImageViewController *)imageViewController
+- (void)deleteImage:(PickrImage *)image controller:(DeletableImageViewController *)imageViewController
 {
     if ([imageArray containsObject:image]) {
         [imageArray removeObject:image];
@@ -413,7 +491,7 @@
     if(tempArray != nil) [tempArray removeAllObjects];
     if(imageArray != nil) [imageArray removeAllObjects];
     [self listImage];
-    [orderChooseButton setTitle:@"点击选择所属门店" forState:UIControlStateNormal];
+    //[orderChooseButton setTitle:@"点击选择所属门店" forState:UIControlStateNormal];
     curParentIndex = 0;
     curChildIndex = 0;
     [cateButton setText:@""];
@@ -423,6 +501,13 @@
 - (void)orderChooseButtonPressed:(id)sender
 {
     if (cateArray == nil || [cateArray count] <= 0) {
+        if (conn == nil) {
+            [self startLoadCateData];
+        }
+        return;
+    }
+    if ([cateArray count] == 1) {
+        [orderChooseButton setTitle:[NSString stringWithFormat:@"(%@)%@", [[cateArray objectAtIndex:0] objectForKey:@"value"], [[cateArray objectAtIndex:0] objectForKey:@"key"]] forState:UIControlStateNormal];
         return;
     }
     if (cateList == nil) {
@@ -560,11 +645,14 @@
     }
     NSURL* url = [NSURL URLWithString:server];
     ASIFormDataRequest* request = [[ASIFormDataRequest alloc] initWithURL:url];
-    UIImage* tempImage = [imageArray objectAtIndex:0];
+    PickrImage* pickrImage = [imageArray objectAtIndex:0];
+    UIImage* tempImage = pickrImage.image;
     UIImage* fixOrientation = [tempImage fixOrientation];
     NSData* imgData = UIImageJPEGRepresentation(fixOrientation, 72.0);
     
-    UIImageWriteToSavedPhotosAlbum([imageArray objectAtIndex:0], nil, nil, nil);
+    if (!pickrImage.isAlbum) {
+        UIImageWriteToSavedPhotosAlbum(tempImage, nil, nil, nil);
+    }
     //[assetsLib writeImageToSavedPhotosAlbum:tempImage.CGImage metadata:nil completionBlock:nil];
     
     NSString* orderStr = [NSString stringWithFormat:@"%@-%@", [[cateArray objectAtIndex:curCateIndex] objectForKey:@"key"], [orderTextField text]];
@@ -583,7 +671,7 @@
     [request setPostValue:orderStr forKey:@"orderNum"];
     [request setDidFinishSelector:@selector(uploadPhotoFinished:)];
     [request setDidFailSelector:@selector(uploadPhotoFailed:)];
-    [request setDownloadProgressDelegate:self];
+    [request setUploadProgressDelegate:self];
     [request startAsynchronous];
     [request release];
     request = nil;
@@ -634,10 +722,10 @@
         if([responseArray objectAtIndex:0] == [NSNumber numberWithBool:YES]){
             alert = [[UIAlertView alloc] initWithTitle:@"提示信息" message:@"提交成功!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [cateButton setText:@"点击选择照片分类..."];
-            [orderChooseButton setTitle:@"点击选择所属门店" forState:UIControlStateNormal];
+            //[orderChooseButton setTitle:@"点击选择所属门店" forState:UIControlStateNormal];
             [orderTextField setText:@""];
             [self initPickerView];
-            [self listImage];
+            //[self listImage];
         }else if([responseArray objectAtIndex:0] == [NSNumber numberWithBool:NO]){
             alert = [[UIAlertView alloc] initWithTitle:@"提示信息" message:[responseArray objectAtIndex:1] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
@@ -717,8 +805,12 @@
 - (void)imagePickerController:(UIImagePickerController *)pr didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage* img = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self finishTakePicture:img];
+    PickrImage* pickrImage = [[[PickrImage alloc] init] autorelease];
+    [pickrImage isAlbum: NO];
+    [pickrImage image:img];
+    [self finishTakePicture:pickrImage];
     if (pr.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        [pickrImage isAlbum: YES];
         [popOver dismissPopoverAnimated:YES];
         [self doneCapture];
     }
