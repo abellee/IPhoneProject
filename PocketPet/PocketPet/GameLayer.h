@@ -13,6 +13,7 @@
 @class BattleFieldLayer;
 @class PP_BattleInfo;
 @class LaunchLoadingViewController;
+@class GameSceneLayer;
 
 @interface GameLayer : CCLayer{
     LoginViewController *loginLayer;
@@ -21,6 +22,8 @@
     int count;
     CCSprite *sprite;
     CCSpriteBatchNode *batchNode;
+    
+    GameSceneLayer* gameScene;
 }
 @property (nonatomic, retain, getter = loginLayer, setter = loginLayer:) LoginViewController *loginLayer;
 @property (nonatomic, assign, getter = count, setter = count:) int count;

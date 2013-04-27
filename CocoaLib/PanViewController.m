@@ -71,7 +71,6 @@
 
 - (void)imageWallPanGesture:(UIPanGestureRecognizer*)pan
 {
-    return;
     if (self.view.layer.shadowRadius != 8) {
         self.view.layer.shadowColor = [UIColor blackColor].CGColor;
         self.view.layer.shadowOpacity = 0.8;

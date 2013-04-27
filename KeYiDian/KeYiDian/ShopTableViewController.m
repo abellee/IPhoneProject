@@ -20,6 +20,8 @@
 #import "ShopLikeTableViewCell.h"
 
 #import "IndexViewController.h"
+#import "ShopIndexViewController.h"
+#import "ChangeLocationViewController.h"
 
 @interface ShopTableViewController ()
 
@@ -131,7 +133,8 @@
     [self.view addSubview:killometerView];
     
     currentLocationViewController = [[CurrentLocationViewController alloc] init];
-    [currentLocationViewController.view setFrame:CGRectMake(0, self.view.frame.size.height - 84, self.view.frame.size.width, 40)];
+    [currentLocationViewController.view setFrame:CGRectMake(0, self.view.frame.size.height - 84, self.view.frame.size.width, 84)];
+    [currentLocationViewController parentController:self];
     [self.view addSubview:currentLocationViewController.view];
     
     shopList = [[NSMutableArray alloc] initWithCapacity:0];
@@ -158,6 +161,13 @@
         
         [shopList addObject:shopInfo];
     }
+}
+
+- (void)changeLocation
+{
+    ChangeLocationViewController* changeLocation = [[ChangeLocationViewController alloc] init];
+    [self.navigationController pushViewController:changeLocation animated:YES];
+    [changeLocation release];
 }
 
 - (void)profileButtonPressed:(id)sender
@@ -332,14 +342,13 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO];
     
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+    ShopIndexViewController* shopIndexView = [[ShopIndexViewController alloc] initWithTitle:@"测试店名" andShopInfo:nil];
+    [self.navigationController pushViewController:shopIndexView animated:YES];
+    [shopIndexView release];
 }
 
 #pragma RefreshTableViewController delegate function

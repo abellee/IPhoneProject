@@ -15,6 +15,6 @@
     NSMutableArray* sectionViews;
 }
 
-- (id)initWithData:(NSMutableArray*)data;
+- (id)initWithData:(NSMutableArray*)data andTitle:(NSString*)titleStr;
 
 @end

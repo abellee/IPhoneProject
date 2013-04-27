@@ -12,6 +12,8 @@
 #import "FoodItemCell.h"
 #import "ShoppingCartBarViewController.h"
 #import "ShopIntroViewController.h"
+#import "ShopDetailViewController.h"
+#import "ShopCartViewController.h"
 
 @interface ShopIndexViewController ()
 
@@ -52,8 +54,12 @@
     [infoImageScrollView addSubview:infoImageView];
     
     headerView = [[ShopIndexHeaderView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 85) andShopInfo:nil];
+    [headerView addTarget:self action:@selector(headerViewPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     shopIntro = [[ShopIntroViewController alloc] initWithFrame:CGRectMake(0, 105, self.view.frame.size.width, 70) andShopInfo:shopInfo];
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shopIntroTapped:)];
+    [shopIntro.view addGestureRecognizer:tap];
+    [tap release];
     
     mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainScrollView.showsHorizontalScrollIndicator = NO;
@@ -93,7 +99,27 @@
     
     shoppingCartBar = [[ShoppingCartBarViewController alloc] init];
     [shoppingCartBar.view setFrame:CGRectMake(0, self.view.frame.size.height - 104, self.view.frame.size.width, 110)];
+    [shoppingCartBar parentController:self];
     [self.view addSubview:shoppingCartBar.view];
+}
+
+- (void)goJieSuan
+{
+    ShopCartViewController* shopCart = [[ShopCartViewController alloc] initWithShopInfo:nil andFoodList:nil];
+    [self.navigationController pushViewController:shopCart animated:YES];
+    [shopCart release];
+}
+
+- (void)shopIntroTapped:(UITapGestureRecognizer*)tap
+{
+    [self headerViewPressed:headerView];
+}
+
+- (void)headerViewPressed:(id)sender
+{
+    ShopDetailViewController* shopDetailView = [[ShopDetailViewController alloc] initWithShopInfo:nil];
+    [self.navigationController pushViewController:shopDetailView animated:YES];
+    [shopDetailView release];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -141,11 +167,6 @@
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    
 }
 
 - (void)didReceiveMemoryWarning

@@ -136,6 +136,10 @@
     [scrollView addSubview:registButton];
     
     [self.view addSubview:scrollView];
+    
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewTapped:)];
+    [scrollView addGestureRecognizer:tap];
+    [tap release];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -146,7 +150,7 @@
     }else if(textField == password){
         needScroll = NO;
     }else if(textField == repassword){
-        needScroll = NO;
+        needScroll = YES;
     }else if(textField == email){
         needScroll = YES;
     }
@@ -174,6 +178,15 @@
         return YES;
     }
     return YES;
+}
+
+- (void)scrollViewTapped:(UITapGestureRecognizer*)tap
+{
+    [username resignFirstResponder];
+    [password resignFirstResponder];
+    [repassword resignFirstResponder];
+    [email resignFirstResponder];
+    [self doRegist];
 }
 
 - (void)doRegist

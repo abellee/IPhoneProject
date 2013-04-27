@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "UITouchableViewDelegate.h"
 
-@class UITouchableLabel;
+@class ShopTableViewController;
 @interface CurrentLocationViewController : UIViewController<UITouchableViewDelegate>{
     UIImageView* locationIcon;
     UIView* background;
-    UITouchableLabel* changeLocation;
+    UIButton* changeLocation;
     UILabel* locationLabel;
 }
+
+@property (nonatomic, assign, getter = parentContrller, setter = parentController:) ShopTableViewController* parentController;
 
 - (void)setLocation:(NSString*)location;
 

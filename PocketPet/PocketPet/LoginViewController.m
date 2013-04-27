@@ -17,6 +17,7 @@
 #import "PlayerData.h"
 #import "GameLayer.h"
 #import "SocketManager.h"
+#import "KeyChainManager.h"
 
 @implementation LoginViewController
 
@@ -38,7 +39,7 @@
 
 - (id) init{
     if(self = [super init]){
-        [[Global sharedGlobal] userDataVersion:[[[NSUserDefaults standardUserDefaults] objectForKey:@"userDataVersion"] intValue]];
+        [[Global sharedGlobal] userDataVersion:[[[KeyChainManager sharedManager] getStringWithAccount:USERVER_DATA_KEY] intValue]];
         platformList = [NSArray arrayWithObjects:@"新浪微博", @"腾讯微博", @"网易微博", @"人人网", nil];
         [platformList retain];
         
@@ -214,9 +215,9 @@
 -(void)loginSuccess
 {
     NSLog(@"login success");
-    [[NSUserDefaults standardUserDefaults] setObject:username.text forKey:@"username"];
-    [[NSUserDefaults standardUserDefaults] setObject:password.text forKey:@"password"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", [[Global sharedGlobal] userDataVersion]] forKey:@"userDataVersion"];
+    [(KeyChainManager*)[KeyChainManager sharedManager] setString:username.text forKey:USERNAME_KEY];
+    [(KeyChainManager*)[KeyChainManager sharedManager] setString:password.text forKey:PASSWORD_KEY];
+    [(KeyChainManager*)[KeyChainManager sharedManager] setString:[NSString stringWithFormat:@"%d", [[Global sharedGlobal] userDataVersion]] forKey:USERVER_DATA_KEY];
     [[[Global sharedGlobal] gameLayer] loginSuccess];
 }
 

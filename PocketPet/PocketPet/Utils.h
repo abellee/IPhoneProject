@@ -24,6 +24,7 @@
 +(int)batteryState;
 +(int)secTimeSince1970;
 +(int)milliTimeSince1970;
++ (NSString*)yearMonthDayStr;
 
 +(void)easeInFromBottomWithView:(UIView *)view rect:(CGRect)rect delegate:(id)delegate;
 +(void)easeOutFromTopWithView:(UIView *)view rect:(CGRect)rect delegate:(id)delegate;

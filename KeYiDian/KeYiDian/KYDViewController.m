@@ -48,6 +48,67 @@
     [indexViewController.view setFrame:self.view.frame];
     indexViewController.delegate = self;
     [self.view addSubview:indexViewController.view];
+    
+    [[Global sharedInstance] curApp:self];
+}
+
+- (void)hurryUpInterface
+{
+    [indexViewController hurryUpInterface];
+}
+
+- (void)orderListInterface
+{
+    [indexViewController monthlyInterface];
+}
+
+- (void)addressManagerInterface
+{
+    [indexViewController addressManagerInterface];
+}
+
+- (void)collectionInterface
+{
+    [indexViewController collectionInterface];
+}
+
+- (void)commentManagerInterface
+{
+    [indexViewController commentManagerInterface];
+}
+
+- (void)processingOrderInterface
+{
+    [indexViewController processingOrderInterface];
+}
+
+- (void)searchViewInterface
+{
+    [indexViewController searchViewInterface];
+}
+
+- (void)changeLocationInterface
+{
+    [indexViewController changeLocationInterface];
+}
+
+- (void)aboutInterface
+{
+    [indexViewController aboutInterface];
+}
+
+- (void)feedBackInterface
+{
+    [indexViewController feedBackInterface];
+}
+
+- (void)logoff
+{
+    if ([[Global sharedInstance] isLogin]) {
+        [[[Global sharedInstance] kydUser] release];
+        [[Global sharedInstance] isLogin: NO];
+    }
+    [indexViewController loginViewInterface];
 }
 
 - (void)isPanning:(float)panDistance

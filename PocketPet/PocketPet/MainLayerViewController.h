@@ -10,9 +10,7 @@
 #import "MainViewDelegate.h"
 
 @class WorldMapLayer;
-@class MapViewController;
 @class ProfileLayer;
-@class PetHouseViewController;
 @class SystemSettingLayer;
 @class ResourceViewController;
 @class ShopViewController;
@@ -25,10 +23,8 @@
     ShopViewController* shop;
     StoreHouseViewController* storehouse;
     ResourceViewController* resource;
-    PetHouseViewController* pethouse;
     SystemSettingLayer* systemSetting;
     ProfileLayer* profile;
-    MapViewController* map;
 }
 
 @end

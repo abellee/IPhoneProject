@@ -24,5 +24,6 @@
 @property (nonatomic, assign, getter = orderStatus, setter = orderStatus:) int orderStatus;
 @property (nonatomic, assign, getter = isComment, setter = isComment:) BOOL isComment;
 @property (nonatomic, retain, getter = comment, setter = comment:) Comment* comment;
+@property (nonatomic, assign, getter = lastUrge, setter = lastUrge:) int lastUrge;
 
 @end

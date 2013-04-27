@@ -1,0 +1,132 @@
+//
+//  UserActionDefinitions.h
+//  PocketPet
+//
+//  Created by Lee Abel on 13-4-26.
+//
+//
+
+#ifndef PocketPet_UserActionDefinitions_h
+#define PocketPet_UserActionDefinitions_h
+
+typedef enum kUserAction
+{
+    BACKGROUND,                 //进入后台
+    FORGROUND,                  //返回前台
+    TERMINATE,                  //退出游戏
+    GET_SERVERINFO_START,       //开始获取服务器信息
+    GET_SERVERINFO_END,         //获取服务器信息结束
+    GET_SERVERINFO_FAILED,      //获取服务器信息失败
+    CHECK_UPDATE_START,         //开始检测更新内容
+    CHECK_UPDATE_END,           //检测更新内容结束
+    CHECK_UPDATE_FAILED,        //检测更新内容失败
+    UPDATE_START,               //开始更新
+    UPDATE_END,                 //更新结束
+    UPDATE_FAILED,              //更新失败
+    UNZIP_START,                //解压开始
+    UNZIP_END,                  //解压结束
+    UNZIP_FAILED,               //解压失败
+    ENTER_GAME,                 //进入游戏
+    LOGIN_BTN,                  //登录按钮
+    REGIST_BTN,                 //注册按钮
+    SINA_BTN,                   //新浪微博登录
+    QQ_BTN,                     //腾讯微博登录
+    NETEASE_BTN,                //网易微博登录
+    RENREN_BTN,                 //人人登录
+    REGIST_SUBMIT,              //注册提交
+    REGIST_BACK,                //注册返回
+    SCALE_MAP,                  //试图缩放地图
+    DRAG_MAP_START,             //开始拖动地图
+    DRAG_MAP_END,               //拖动地图结束
+    AVATAR_PRESSED,             //点击地图左上角头像
+    BAG_BTN,                    //进入包裹
+    WORLD_MAP_BTN,              //进入世界地图
+    TASK_BTN,                   //进入任务界面
+    FUNCTION_BTN,               //隐藏或显示功能按钮
+    SHOP_BTN,                   //进入商城
+    PET_BTN,                    //进入宠物
+    RELATIONSHIP_BTN,           //好友界面
+    SYSTEM_BTN,                 //进入系统界面
+    ADD_COIN_BTN,               //增加游戏币按钮
+    ADD_TOKEN_BTN,              //增加移族币按钮
+    ADD_BAG_SPACE,              //背包扩充
+    PRE_PAGE_BTN,               //上一页按钮
+    NEXT_PAGE_BTN,              //下一页按钮
+    SWIPE_FLIP_NEXT,            //滑动下一页
+    SWIPE_FLIP_PRE,             //滑动上一页
+    BAG_BACK_BTN,               //退出背包
+    PET_STATE_BTN,              //出战或休息按钮
+    PET_APPERANCE_BTN,          //宠物外观按钮
+    PET_EQUIP_BTN,              //宠物装备按钮
+    PET_SKILL_BTN,              //宠物技能按钮
+    SWIPE_PET_APPERANCE,        //滑动至宠物外观
+    SWIPE_PET_EQUIP,            //滑动至宠物装备
+    SWIPE_PET_SKILL,            //滑动至宠物技能
+    EVOLUTION_BTN,              //炼化按钮
+    CHECK_ABILITY,              //查看资质按钮
+    SKILL_PRESSED,              //点击宠物技能查看信息
+    CLOSE_ABILITY,              //关闭资质界面
+    RELATIONSHIP_BACK,          //退出好友界面
+    ADD_FRIEND,                 //添加好友
+    SEARCH_FRIEND_START,        //搜索好友开始
+    SEARCHING_FRIEND,           //正在搜索好友
+    SEARCH_FRIEND_END,          //搜索好友结束
+    FRIEND_AVATAR_PRESSED,      //好友头像被点击
+    FRIEND_CELL_PRESSED,        //好友条目被点击
+    TASK_ICON_PRESSED,          //任务图标被点击
+    TASK_CELL_PRESSED,          //任务条目被点击
+    ACCEPT_PRESSED,             //点击接受按钮
+    FILETER_BTN_PRESSED,        //任务过滤显示按钮
+    TASK_BACK,                  //退出任务界面
+    ADD_COIN_IN_SHOP,           //点击商城内增加游戏币按钮
+    ADD_TOKEN_IN_SHOP,          //点击商城内增加移族币按钮
+    BUY_BTN,                    //购买按钮
+    PROPERTY_PRESSED,           //商品被点击
+    BUY_BTN_IN_PROP,            //商品界面购买被点击
+    PROPERTY_BACK,              //退出商品详情界面
+    GRANT_BUY,                  //确认购买被点击
+    PROPERTY_DETAIL,            //查看商品详情按钮被点击
+    CLOSE_PROP_ALERT,           //关闭商品弹出框
+    SHOP_FILTER_BTN,            //商品过滤显示按钮
+    SHOP_NEXT_BTN,              //商品下一页按钮
+    SHOP_PRE_BTN,               //商品上一页按钮
+    SHOP_SWIPE_NEXT,            //滑动商品至下一页
+    SHOP_SWIPE_PREV,            //滑动商品至上一页
+    CLOSE_BACKGROUND_MUSIC,     //关闭背景音乐
+    OPEN_BACKGROUND_MUSIC,      //开启背景音乐
+    CLOSE_EFFECT_MUSIC,         //关闭音效
+    OPEN_EFFECT_MUSIC,          //开启音效
+    GAME_HELP,                  //游戏帮助
+    GAME_HELP_BACK,             //退出游戏帮助
+    FEED_BACK,                  //意见建议
+    FEED_BACK_BACK,             //退出意见建议
+    UPDATE_CHECKING,            //更新检测
+    ABOUT_US,                   //关于我们
+    ABOUT_US_BACK,              //退出关于我们
+    LOGOUT_BTN,                 //注销按钮
+    WEIBO_SETTING,              //进入设置社交平台帐户
+    SINA_SETTING,               //设置新浪微博
+    SINA_SETTING_SUCCESS,       //设置新浪微博成功
+    SINA_SETTING_BACK,          //退出设置新浪微博
+    SINA_SETTING_CANCEL,        //解除新浪
+    QQ_SETTING,                 //设置QQ
+    QQ_SETTING_SUCCESS,         //设置QQ成功
+    QQ_SETTING_BACK,            //退出设置QQ
+    QQ_SETTING_CANCEL,          //解除QQ
+    NETEASE_SETTING,            //设置网易
+    NETEASE_SETTING_SUCCESS,    //设置网易成功
+    NETEASE_SETTING_BACK,       //退出设置网易
+    NETEASE_SETTING_CANCEL,     //解除网易
+    RENREN_SETTING,             //设置人人
+    RENREN_SETTING_SUCCESS,     //设置人人成功
+    RENREN_SETTING_BACK,        //退出设置人人
+    RENREN_SETTING_CANCEL,      //解除网易
+    SHARE_BTN_PRESSED,          //点击分享按钮
+    SHARE_SINA,                 //分享新浪
+    SHARE_QQ,                   //分享QQ
+    SHARE_NETEASE,              //分享网易
+    SHARE_RENREN,               //分享人人
+    SHARE_CALCEN,               //取消分享
+}kUserAction;
+
+#endif

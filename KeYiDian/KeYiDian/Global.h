@@ -14,6 +14,7 @@
 @class Message;
 @class ShopInfo;
 @class Location;
+@class KYDViewController;
 @interface Global : NSObject{
     KYDUser* kydUser;
     int messageNum;
@@ -36,6 +37,8 @@
 @property (nonatomic, assign, getter = foodCollectionList) NSMutableArray* foodCollectionList;
 @property (nonatomic, assign, getter = historyLocationList) NSMutableArray* historyLocationList;
 @property (nonatomic, assign, getter = isIPhone5, setter = isIPhone5:) BOOL isIPhone5;
+@property (nonatomic, assign, getter = curApp, setter = curApp:) KYDViewController* curApp;
+@property (nonatomic, assign, getter = isLogin, setter = isLogin:) BOOL isLogin;
 
 + (id)sharedInstance;
 + (NSString*)getShopTypeStringWithIntType:(int)type;

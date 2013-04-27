@@ -11,7 +11,6 @@
 #import "Global.h"
 #import "LoginViewController.h"
 #import "ServerInfo.h"
-#import "HTTPManager.h"
 #import "GameLayer.h"
 #import "PP_Package.h"
 #import "PopUpLayer.h"
@@ -75,7 +74,7 @@
             if (bytes == 0) {
                 [[Global sharedGlobal] isConnected:NO];
                 [self performSelectorOnMainThread:@selector(showConnectErrorTip:) withObject:@"服务器已经关闭！" waitUntilDone:YES];
-                return;
+                break;
             }else{
                 @try {
                     PP_Package* b = [PP_Package parseFromData:[NSData dataWithBytes:readBuffer length:bufferSize]];
@@ -125,7 +124,12 @@
         [self performSelectorOnMainThread:@selector(showConnectErrorTip:) withObject:@"连接服务失败!" waitUntilDone:YES];
         [[Global sharedGlobal] isConnected:NO];
     }
+    NSLog(@"pool release");
     [pool release];
+    
+    [thread cancel];
+    [thread release];
+    thread = nil;
 }
 
 -(void)showConnectErrorTip:(NSString*)info
@@ -254,6 +258,10 @@
 
 -(void)doLogin:(NSString *)username pass:(NSString *)password
 {
+    if([[[Global sharedGlobal] gameLayer] loginLayer]){
+        [[[[Global sharedGlobal] gameLayer] loginLayer] performSelector:@selector(loginSuccess)];
+    }
+    return;
     PP_Body* body;
     PP_Body_Builder* bodyBuilder = [[PP_Body builder] setType:LOGIN];
     PP_Package* package;

@@ -10,9 +10,19 @@
 #import "ShopTableViewController.h"
 #import "UIImage+Extensions.h"
 
+#import "HurryUpViewController.h"
 #import "OrderListViewController.h"
-#import "ShopInfo.h"
-#import "FoodInfo.h"
+#import "AddressManageViewController.h"
+#import "CollectionViewController.h"
+#import "CommentManagerViewController.h"
+#import "LoginViewController.h"
+
+#import "SearchViewController.h"
+#import "ChangeLocationViewController.h"
+#import "AboutViewController.h"
+#import "FeedBackViewController.h"
+
+#import "ShopDetailViewController.h"
 
 @interface IndexViewController ()
 
@@ -25,15 +35,6 @@
     NSLog(@"****************** %s dealloc!! **********************", object_getClassName(self));
     
     [super dealloc];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -60,51 +61,62 @@
     }
     
     [self.view addSubview:navigator.view];
-    
-    ShopInfo* shopInfo = [[ShopInfo alloc] init];
-    shopInfo.shopName = @"测试名称";
-    shopInfo.isCollected = NO;
-    
-    NSMutableArray* foodList = [[NSMutableArray alloc] initWithCapacity:0];
-    FoodInfo* foodInfo0 = [[FoodInfo alloc] init];
-    [foodInfo0 foodName:@"大鸡腿饭饭"];
-    [foodInfo0 price:14.0];
-    [foodInfo0 foodNum:10.0];
-    [foodList addObject:foodInfo0];
-    
-    FoodInfo* foodInfo1 = [[FoodInfo alloc] init];
-    [foodInfo1 foodName:@"大鸡腿饭饭"];
-    [foodInfo1 price:13.0];
-    [foodInfo1 foodNum:5.0];
-    [foodList addObject:foodInfo1];
-    
-    FoodInfo* foodInfo2 = [[FoodInfo alloc] init];
-    [foodInfo2 foodName:@"大鸡腿饭饭"];
-    [foodInfo2 price:14.0];
-    [foodInfo2 foodNum:10.0];
-    [foodList addObject:foodInfo2];
-    
-    FoodInfo* foodInfo3 = [[FoodInfo alloc] init];
-    [foodInfo3 foodName:@"大鸡腿饭饭"];
-    [foodInfo3 price:13.0];
-    [foodInfo3 foodNum:5.0];
-    [foodList addObject:foodInfo3];
-    
-    FoodInfo* foodInfo4 = [[FoodInfo alloc] init];
-    [foodInfo4 foodName:@"大鸡腿饭饭"];
-    [foodInfo4 price:14.0];
-    [foodInfo4 foodNum:10.0];
-    [foodList addObject:foodInfo4];
-    
-    FoodInfo* foodInfo5 = [[FoodInfo alloc] init];
-    [foodInfo5 foodName:@"大鸡腿饭饭"];
-    [foodInfo5 price:13.0];
-    [foodInfo5 foodNum:5.0];
-    [foodList addObject:foodInfo5];
-    
-    OrderListViewController* aboutViewController = [[OrderListViewController alloc] initWithData:nil];
-    [aboutViewController.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    [navigator pushViewController:aboutViewController animated:YES];
+}
+
+- (void)hurryUpInterface
+{
+    HurryUpViewController* hurryUp = [[HurryUpViewController alloc] initWithOrderInfoList:nil];
+    [navigator pushViewController:hurryUp animated:NO];
+    [hurryUp release];
+    [self panLeftAuto:YES];
+}
+
+- (void)processingOrderInterface
+{
+    OrderListViewController* orderListView = [[OrderListViewController alloc] initWithData:nil andTitle:@"处理中订单"];
+    [navigator pushViewController:orderListView animated:NO];
+    [orderListView release];
+    [self panLeftAuto:YES];
+}
+
+- (void)monthlyInterface
+{
+    OrderListViewController* orderListView = [[OrderListViewController alloc] initWithData:nil andTitle:@"当月订单"];
+    [navigator pushViewController:orderListView animated:NO];
+    [orderListView release];
+    [self panLeftAuto:YES];
+}
+
+- (void)addressManagerInterface
+{
+    AddressManageViewController* addressManager = [[AddressManageViewController alloc] init];
+    [navigator pushViewController:addressManager animated:NO];
+    [addressManager release];
+    [self panLeftAuto:YES];
+}
+
+- (void)collectionInterface
+{
+    CollectionViewController* collectionView = [[CollectionViewController alloc] init];
+    [navigator pushViewController:collectionView animated:NO];
+    [collectionView release];
+    [self panLeftAuto:YES];
+}
+
+- (void)commentManagerInterface
+{
+    CommentManagerViewController* commentView = [[CommentManagerViewController alloc] initWithCommentData:nil];
+    [navigator pushViewController:commentView animated:NO];
+    [commentView release];
+    [self panLeftAuto:YES];
+}
+
+- (void)loginViewInterface
+{
+    LoginViewController* loginView = [[LoginViewController alloc] init];
+    [navigator pushViewController:loginView animated:NO];
+    [loginView release];
+    [self panRightAuto:NO];
 }
 
 - (void)profileButtonPressed
@@ -113,6 +125,38 @@
     if (delegate && [delegate respondsToSelector:@selector(autoPanWithData:)]) {
         [delegate autoPanWithData:@"left"];
     }
+}
+
+- (void)searchViewInterface
+{
+    SearchViewController* searchView = [[SearchViewController alloc] init];
+    [navigator pushViewController:searchView animated:NO];
+    [searchView release];
+    [self panRightAuto:NO];
+}
+
+- (void)changeLocationInterface
+{
+    ChangeLocationViewController* changeLocation = [[ChangeLocationViewController alloc] init];
+    [navigator pushViewController:changeLocation animated:NO];
+    [changeLocation release];
+    [self panRightAuto:NO];
+}
+
+- (void)aboutInterface
+{
+    AboutViewController* aboutView = [[AboutViewController alloc] init];
+    [navigator pushViewController:aboutView animated:NO];
+    [aboutView release];
+    [self panRightAuto:NO];
+}
+
+- (void)feedBackInterface
+{
+    FeedBackViewController* feedBack = [[FeedBackViewController alloc] init];
+    [navigator pushViewController:feedBack animated:NO];
+    [feedBack release];
+    [self panRightAuto:NO];
 }
 
 - (void)moreButtonPressed

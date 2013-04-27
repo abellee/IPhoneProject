@@ -13,6 +13,10 @@
 #import "PopUpLayer.h"
 #import "Global.h"
 #import "SystemConfig.h"
+#import "EditableUITableViewCellData.h"
+#import "EditableUITableViewCellDefinition.h"
+#import "EditableUITableViewData.h"
+#import "AvatarCell.h"
 
 @implementation RegistLayer
 
@@ -32,7 +36,7 @@
         [avatarCellData setCellType:kCustom];
         [avatarCellData setHeight:90];
         AvatarCell* avatarCell = [[AvatarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kEditableUITableViewCell];
-        [avatarCellData setCustomCell:avatarCell];
+        [avatarCellData customView:avatarCell];
         [avatarCellData setKey:@"avatar"];
         [avatarCell release];
         avatarCell = nil;
@@ -94,7 +98,7 @@
         NSArray* arrData = [[NSArray alloc] initWithObjects:dict, nil];
         EditableUITableViewData* tableViewData = [[EditableUITableViewData alloc] init];
         [tableViewData setData: arrData];
-        registForm = [[EditableUITableViewController alloc] initTableViewWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] heightInNavigator]) scrollEnabled:YES];
+        registForm = [[EditableUITableViewController alloc] initTableViewWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] heightInNavigator]) widthData:nil scrollEnabled:YES style:UITableViewStyleGrouped];
         [registForm setData:tableViewData];
         [self.view addSubview:registForm.view];
         
@@ -122,11 +126,11 @@
 -(void)doRegist:(id)sender
 {
     [self.view endEditing:YES];
-    EditableUITableViewData* tableViewData = registForm.data;
-    EditableUITableViewCellData* cellData = [tableViewData getDataByKey:@"avatar"];
-    AvatarCell* avatarCell = (AvatarCell*)[cellData customCell];
-    UIImage* avatarImg = [avatarCell getAvatarImage];
-    [[[Global sharedGlobal] popUpLayer] showActivityViewWithMask:YES];
+//    EditableUITableViewData* tableViewData = registForm.data;
+//    EditableUITableViewCellData* cellData = [tableViewData getDataByKey:@"avatar"];
+//    AvatarCell* avatarCell = (AvatarCell*)[cellData customView];
+    UIImage* avatarImg;
+//    [[[Global sharedGlobal] popUpLayer] showActivityViewWithMask:YES];
     if(avatarImg){
         NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@", BASE_URL, DIR_NAME, UPLOAD_FILE]];
         ASIFormDataRequest* request = [[ASIFormDataRequest alloc] initWithURL:url];
@@ -144,59 +148,61 @@
 
 - (NSString *)getRegistedUsername
 {
-    [self.view endEditing:YES];
-    EditableUITableViewData* tableViewData = registForm.data;
-    EditableUITableViewCellData* cellData = [tableViewData getDataByKey:@"username"];
-    return cellData.value;
+//    [self.view endEditing:YES];
+//    EditableUITableViewData* tableViewData = registForm.data;
+//    EditableUITableViewCellData* cellData = [tableViewData getDataByKey:@"username"];
+//    return cellData.value;
+    return @"";
 }
 
 - (NSString *)getRegistedPassword
 {
-    [self.view endEditing:YES];
-    EditableUITableViewData* tableViewData = registForm.data;
-    EditableUITableViewCellData* cellData = [tableViewData getDataByKey:@"password"];
-    return cellData.value;
+//    [self.view endEditing:YES];
+//    EditableUITableViewData* tableViewData = registForm.data;
+//    EditableUITableViewCellData* cellData = [tableViewData getDataByKey:@"password"];
+//    return cellData.value;
+    return @"";
 }
 
 - (void)registNextStep:(NSString*)avatarURL
 {
-    EditableUITableViewData* tableViewData = registForm.data;
-    EditableUITableViewCellData* usernameCellData = [tableViewData getDataByKey:@"username"];
-    NSString* usernameStr = usernameCellData.value;
-    if(![Global checkUsername:usernameStr]){
-        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"邮箱地址格式不正确!"];
-        return;
-    }
-    if(usernameStr.length > 24){
-        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"邮箱地址长度不正确!"];
-        return;
-    }
-    
-    EditableUITableViewCellData* nicknameCellData = [tableViewData getDataByKey:@"nickname"];
-    NSString* nicknameStr = nicknameCellData.value;
-    if(nicknameStr.length > 10 || nicknameStr.length < 6){
-        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"昵称长度不得小于3个中文字!"];
-        return;
-    }
-    if(![Global checkNickname:nicknameStr]){
-        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"昵称只支持中英文，数字 \"_\"或\"-\""];
-        return;
-	}
-    
-    EditableUITableViewCellData* pwCellData = [tableViewData getDataByKey:@"password"];
-    EditableUITableViewCellData* rpwCellData = [tableViewData getDataByKey:@"repassword"];
-    NSString* pwStr = pwCellData.value;
-    NSString* rpwStr = rpwCellData.value;
-    if([pwStr isEqual:rpwStr]){
-        if(![Global checkPassword:pwStr]){
-            [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"密码长度不正确!"];
-            return;
-        }
-    }else{
-        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"两次输入的密码不相同!"];
-        return;
-    }
-    [[[Global sharedGlobal] socketManager] doRegist:avatarURL nickname:nicknameStr username:usernameStr password:pwStr];
+//    EditableUITableViewData* tableViewData = registForm.data;
+//    EditableUITableViewCellData* usernameCellData = [tableViewData getDataByKey:@"username"];
+//    NSString* usernameStr = usernameCellData.value;
+//    if(![Global checkUsername:usernameStr]){
+//        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"邮箱地址格式不正确!"];
+//        return;
+//    }
+//    if(usernameStr.length > 24){
+//        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"邮箱地址长度不正确!"];
+//        return;
+//    }
+//    
+//    EditableUITableViewCellData* nicknameCellData = [tableViewData getDataByKey:@"nickname"];
+//    NSString* nicknameStr = nicknameCellData.value;
+//    if(nicknameStr.length > 10 || nicknameStr.length < 6){
+//        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"昵称长度不得小于3个中文字!"];
+//        return;
+//    }
+//    if(![Global checkNickname:nicknameStr]){
+//        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"昵称只支持中英文，数字 \"_\"或\"-\""];
+//        return;
+//	}
+//    
+//    EditableUITableViewCellData* pwCellData = [tableViewData getDataByKey:@"password"];
+//    EditableUITableViewCellData* rpwCellData = [tableViewData getDataByKey:@"repassword"];
+//    NSString* pwStr = pwCellData.value;
+//    NSString* rpwStr = rpwCellData.value;
+//    if([pwStr isEqual:rpwStr]){
+//        if(![Global checkPassword:pwStr]){
+//            [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"密码长度不正确!"];
+//            return;
+//        }
+//    }else{
+//        [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"错误提示" info:@"两次输入的密码不相同!"];
+//        return;
+//    }
+//    [[[Global sharedGlobal] socketManager] doRegist:avatarURL nickname:nicknameStr username:usernameStr password:pwStr];
 }
 
 - (void)uploadAvatarFinished:(ASIHTTPRequest*)request

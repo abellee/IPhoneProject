@@ -12,10 +12,8 @@
 
 @protocol ImageDownloadDelegate <NSObject>
 
-@required
--(void)downloadComplete:(ImageDownloadData*)data image:(UIImage*)img;
-
 @optional
+-(void)downloadComplete:(ImageDownloadData*)data image:(UIImage*)img;
 -(void)downloading:(long long)bytesLoaded totalBytes:(long long)totalBytes;
 
 @end

@@ -15,6 +15,7 @@
 #import "Utility.h"
 #import "UIImage+Extensions.h"
 #import "CartFoodCell.h"
+#import "AddressManageViewController.h"
 
 @interface ShopCartViewController ()
 
@@ -203,6 +204,7 @@
     CartFoodCell* cell = [tableView dequeueReusableCellWithIdentifier:cartCell];
     if (cell == nil) {
         cell = [[[CartFoodCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cartCell andFoodInfo:nil] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }
@@ -224,7 +226,9 @@
 
 - (void)curAddressPressed:(id)sender
 {
-    NSLog(@"address pressed");
+    AddressManageViewController* addressManager = [[AddressManageViewController alloc] init];
+    [self.navigationController pushViewController:addressManager animated:YES];
+    [addressManager release];
 }
 
 - (void)asSoonPressed:(id)sender

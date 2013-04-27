@@ -11,6 +11,10 @@
 #import "AppDelegate.h"
 #import "Utils.h"
 #import "GameLayer.h"
+#import "Global.h"
+#import "FileManager.h"
+#import "ASIHTTPRequest.h"
+#import "ASINetworkQueue.h"
 
 @implementation AppController
 
@@ -53,8 +57,13 @@
 //	[director setProjection:kCCDirectorProjection3D];
 
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ! [director_ enableRetinaDisplay:YES] )
-		CCLOG(@"Retina Display Not supported");
+	if( ! [director_ enableRetinaDisplay:YES] ){
+        [[Global sharedGlobal] isRetina:NO];
+        CCLOG(@"Retina Display Not supported");
+    }
+    else{
+        [[Global sharedGlobal] isRetina:YES];
+    }
 
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
@@ -115,8 +124,22 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+    //发送用户行为统计数据
+    [self sendUserActionData];
+    
 	if( [navController_ visibleViewController] == director_ )
 		[director_ stopAnimation];
+}
+
+- (void)sendUserActionData
+{
+//    FileManager* fileManager = [[FileManager alloc] init];
+//    NSMutableArray* arr = [fileManager getUserLog];
+//    for (NSDictionary* dict in arr) {
+//        ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?data=%@", @"http://192.168.1.106:8080/pocketpet/update_check.php", [dict objectForKey:kFileData]]]];
+//        [[[Global sharedGlobal] httpQueue] addOperation:request];
+//        [fileManager deleteFile:[dict objectForKey:kFilePath]];
+//    }
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application

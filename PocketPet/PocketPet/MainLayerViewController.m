@@ -13,8 +13,6 @@
 #import "ProfileLayer.h"
 #import "SystemSettingLayer.h"
 #import "ResourceViewController.h"
-#import "PetHouseViewController.h"
-#import "MapViewController.h"
 #import "Global.h"
 
 @implementation MainLayerViewController
@@ -81,17 +79,13 @@
 
 -(void)mapButtonClicked
 {
-    if(!map) map = [[MapViewController alloc] init];
-    [navigationController pushViewController:map animated:YES];
+//    if(!map) map = [[MapViewController alloc] init];
+//    [navigationController pushViewController:map animated:YES];
 }
 
 -(void)pethouseButtonClicked
 {
-    if(!pethouse) pethouse = [[PetHouseViewController alloc] init];
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
-    view.backgroundColor = [UIColor redColor];
-    [pethouse setView:view];
-    [navigationController pushViewController:pethouse animated:YES];
+    
 }
 
 -(void)bagButtonClicked

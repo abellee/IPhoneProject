@@ -11,7 +11,7 @@
 
 @implementation OrderInfo
 
-@synthesize shopInfo, orderNum, orderTime, telephone, deliveryCost, saveMoney, foodList, totalMoney, orderStatus, isComment;
+@synthesize shopInfo, orderNum, orderTime, telephone, deliveryCost, saveMoney, foodList, totalMoney, orderStatus, isComment, lastUrge;
 
 - (void)dealloc
 {

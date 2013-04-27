@@ -18,4 +18,18 @@
     RightSideViewController* rightSideViewController;
 }
 
+- (void)hurryUpInterface;
+- (void)orderListInterface;
+- (void)addressManagerInterface;
+- (void)collectionInterface;
+- (void)commentManagerInterface;
+- (void)processingOrderInterface;
+
+- (void)searchViewInterface;
+- (void)changeLocationInterface;
+- (void)aboutInterface;
+- (void)feedBackInterface;
+
+- (void)logoff;
+
 @end

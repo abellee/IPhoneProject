@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class SimpleButton;
-@interface LeftSideViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+@interface LeftSideViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
     UIButton* avatarBtn;
     UIButton* logoffBtn;
     SimpleButton* hurryButton;

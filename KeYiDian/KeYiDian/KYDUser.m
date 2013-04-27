@@ -13,4 +13,14 @@
 @synthesize username;
 @synthesize password;
 
+- (void)dealloc
+{
+    NSLog(@"****************** %s dealloc!! **********************", object_getClassName(self));
+    
+    [username release];
+    [password release];
+    
+    [super dealloc];
+}
+
 @end

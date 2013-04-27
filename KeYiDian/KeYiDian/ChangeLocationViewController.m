@@ -59,6 +59,7 @@
     locationText.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     locationText.inputView = picker;
     locationText.placeholder = @"选择您所在的位置";
+    locationText.delegate = self;
     
     gpsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [gpsButton setTitle:@"定位" forState:UIControlStateNormal];
@@ -75,6 +76,12 @@
     
     [self.view addSubview:locationText];
     [self.view addSubview:gpsButton];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [locationText setText:@"四季青啊啊啊"];
+    return YES;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

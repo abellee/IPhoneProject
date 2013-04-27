@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KYDUser : NSObject{
-    NSString* username;
-    NSString* password;
-}
+@interface KYDUser : NSObject
 
 @property (nonatomic, copy, getter = username, setter = username:) NSString* username;
 @property (nonatomic, copy, getter = password, setter = password:) NSString* password;

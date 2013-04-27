@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "PointSprite.h"
 
-@interface ResourcePoint : NSObject
+@interface ResourcePoint : PointSprite
+
+@property (nonatomic, assign, getter = type, setter = type:) int type;
+@property (nonatomic, assign, getter = subtype, setter = subtype:) int subtype;
+@property (nonatomic, assign, getter = level, setter = level:) int level;
 
 @end

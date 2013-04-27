@@ -24,10 +24,10 @@
     [super dealloc];
 }
 
-- (id)initWithData:(NSMutableArray *)data
+- (id)initWithData:(NSMutableArray *)data andTitle:(NSString *)titleStr
 {
     if (self = [super init]) {
-        title = @"当月订单";
+        title = titleStr;
         listData = data;
         
         sectionViews = [[NSMutableArray alloc] initWithCapacity:0];

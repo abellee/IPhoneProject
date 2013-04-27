@@ -117,4 +117,14 @@
     return (int)time;
 }
 
++ (NSString*)yearMonthDayStr
+{
+    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate* now = [NSDate date];
+    NSDateComponents* comp = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:now];
+    NSString* str = [NSString stringWithFormat:@"%d%d%d", [comp year], [comp month], [comp day]];
+    [calendar release];
+    return str;
+}
+
 @end

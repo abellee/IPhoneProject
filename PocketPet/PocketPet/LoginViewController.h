@@ -1,5 +1,5 @@
 //
-//  LoginLayerControllerViewController.h
+//  LoginViewController.h
 //  YiZu
 //
 //  Created by Abel Lee on 12-6-28.
@@ -10,7 +10,6 @@
 #import "LoginDelegate.h"
 
 @class RegistLayer;
-
 @interface LoginViewController : UIViewController <UIWebViewDelegate, LoginDelegate, UITextFieldDelegate>{
     UITextField *username;
     UITextField *password;

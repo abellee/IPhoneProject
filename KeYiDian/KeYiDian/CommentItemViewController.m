@@ -44,7 +44,7 @@
     float gap = 5.0;
     NSString* usernameStr = @"吃货啊吃货";
     CGSize usernameStrSize = [Utility getCGSizeWithFontSize:16.0 str:usernameStr isBold:NO];
-    usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, self.view.frame.size.width, usernameStrSize.height)];
+    usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, self.view.frame.size.width, usernameStrSize.height)];
     usernameLabel.backgroundColor = [UIColor clearColor];
     [usernameLabel setText:usernameStr];
     [usernameLabel setTextColor:[UIColor darkGrayColor]];

@@ -10,4 +10,13 @@
 
 @implementation ResourcePoint
 
+@synthesize type, subtype, level;
+
+- (void)dealloc
+{
+    NSLog(@"****************** %s dealloc!! **********************", object_getClassName(self));
+    
+    [super dealloc];
+}
+
 @end

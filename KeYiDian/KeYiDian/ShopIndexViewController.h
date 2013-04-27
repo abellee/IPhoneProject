@@ -26,5 +26,6 @@
 }
 
 - (id)initWithTitle:(NSString*)title andShopInfo:(ShopInfo*)info;
+- (void)goJieSuan;
 
 @end

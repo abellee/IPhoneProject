@@ -13,6 +13,7 @@
 #import "Definitions.h"
 #import "SimpleButton.h"
 #import "Utility.h"
+#import "KYDViewController.h"
 
 @interface LeftSideViewController ()
 
@@ -32,7 +33,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    functions = [[NSArray alloc] initWithObjects:@"处理中订单", @"一个月内订单", @"送餐地址管理", @"我的收藏", @"评论管理", @"催单回复", nil];
+    functions = [[NSArray alloc] initWithObjects:@"处理中订单", @"当月订单", @"送餐地址管理", @"我的收藏", @"评论管理", nil];
     
     UIImage* backgroundImage = [UIImage getImageWithFileName:@"gddi1"];
     self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
@@ -66,6 +67,9 @@
     
     float logoffFontSize = 16.0;
     NSString* logoffStr = @"注销";
+    if (![[Global sharedInstance] isLogin]) {
+        logoffStr = @"登录";
+    }
     CGSize logoffSize = [logoffStr sizeWithFont:[UIFont boldSystemFontOfSize:logoffFontSize]];
     logoffBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [logoffBtn setTitle:logoffStr forState:UIControlStateNormal];
@@ -73,12 +77,13 @@
     [logoffBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [logoffBtn setFrame:CGRectMake(240 - logoffSize.width - 10, 35, logoffSize.width, logoffSize.height)];
     [self.view addSubview:logoffBtn];
+    [logoffBtn addTarget:self action:@selector(logoffBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     functionList = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
     functionList.tableView.dataSource = self;
     functionList.tableView.delegate = self;
     functionList.tableView.backgroundColor = [UIColor clearColor];
-    [functionList.tableView setSeparatorColor:[UIColor darkGrayColor]];
+    [functionList.tableView setSeparatorColor:[UIColor colorWithRed:63.0/255.0 green:68.0/255.0 blue:72.0/255.0 alpha:1.0]];
     functionList.tableView.tableHeaderView.backgroundColor = [UIColor clearColor];
     functionList.tableView.scrollEnabled = NO;
     [functionList.tableView setFrame:CGRectMake(0, 70, self.view.frame.size.width, self.view.frame.size.height - 100)];
@@ -90,9 +95,31 @@
     [self.view addSubview:hurryButton];
 }
 
+- (void)logoffBtnPressed:(id)sender
+{
+    if (![[Global sharedInstance] isLogin]) {
+        [[[Global sharedInstance] curApp] logoff];
+        return;
+    }
+    NSString* noticeStr = @"是否确定注销当前用户?";
+    NSString* cancelStr = @"取消";
+    NSString* enterStr = @"确定";
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message: noticeStr delegate:self cancelButtonTitle:cancelStr otherButtonTitles:enterStr, nil];
+    [alertView show];
+    [alertView release];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [[[Global sharedInstance] curApp] logoff];
+        [logoffBtn setTitle:@"登录" forState:UIControlStateNormal];
+    }
+}
+
 - (void)hurryUp:(id)sender
 {
-    NSLog(@"hurry up");
+    [[[Global sharedInstance] curApp] hurryUpInterface];
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -143,6 +170,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+    if (indexPath.row == 0) {
+        [[[Global sharedInstance] curApp] processingOrderInterface];
+    }else if (indexPath.row == 1) {
+        [[[Global sharedInstance] curApp] orderListInterface];
+    }else if (indexPath.row == 2){
+        [[[Global sharedInstance] curApp] addressManagerInterface];
+    }else if (indexPath.row == 3){
+        [[[Global sharedInstance] curApp] collectionInterface];
+    }else if (indexPath.row == 4){
+        [[[Global sharedInstance] curApp] commentManagerInterface];
+    }
 }
 
 - (void)didReceiveMemoryWarning

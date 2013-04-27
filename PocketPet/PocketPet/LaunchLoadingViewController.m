@@ -12,10 +12,10 @@
 #import "Global.h"
 #import "ASIHTTPRequest.h"
 #import "ZipArchive.h"
-#import "HTTPManager.h"
 #import "GameLayer.h"
 #import "ServerInfo.h"
 #import "PopUpLayer.h"
+#import "ASINetworkQueue.h"
 
 @implementation LaunchLoadingViewController
 
@@ -33,17 +33,29 @@
         tipText.textAlignment = UITextAlignmentCenter;
         tipText.text = @"获取服务器信息...";
         [self.view addSubview:tipText];
-        if (![[HTTPManager sharedHTTPManager] getSocketServerInfo]) {
-            [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"提示" info:@"获取服务器信息失败!"];
-        }else{
-            [self performSelectorInBackground:@selector(getServerInfo) withObject:nil];
-        }
+        state = SERVER_INFO;
+        
+        ASINetworkQueue* queue = [[ASINetworkQueue alloc] init];
+        queue.maxConcurrentOperationCount = 2;
+        [queue go];
+        [[Global sharedGlobal] httpQueue:queue];
+        [queue release];
+        queue = nil;
+        
+        NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@", BASE_URL, DIR_NAME, @"socket_server.php"]];
+        NSLog(@"%@", [url absoluteString]);
+        ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:url];
+        [request setCachePolicy:ASIDoNotReadFromCacheCachePolicy];
+        request.delegate = self;
+        [[[Global sharedGlobal] httpQueue] addOperation:request];
+        [request release];
     }
     return self;
 }
 
 - (void)getServerInfo
 {
+    state = CHECK_UPDATE;
     [self updateTipText:@"正在检测更新..."];
     [self startCheck];
 }
@@ -69,9 +81,11 @@
     
     int res_version = [[dict objectForKey:@"res_version"] intValue];
     if (res_version == 1) {
+        state = DO_UPDATE;
         [self updateTipText:@"检测到更新内容..."];
         [self fetchResList];
     }else{
+        state = ENTER_GAME;
         [self updateTipText:@"正在进入游戏..."];
         [[[Global sharedGlobal] gameLayer] performSelectorOnMainThread:@selector(enterGame) withObject:nil waitUntilDone:YES];
     }
@@ -111,6 +125,7 @@
 
 - (void)startDownloadNewResource
 {
+    state = START_DOWNLOAD;
     [self updateTipText:@"开始下载更新内容..."];
     NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     NSLog(@"%@", path);
@@ -130,9 +145,22 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    if (state == SERVER_INFO) {
+        NSString* returnString = [request responseString];
+        NSLog(@"%@>>>>", returnString);
+        NSDictionary* dict = [returnString objectFromJSONString];
+        if (![dict objectForKey:@"ip"]) {
+            [[[Global sharedGlobal] popUpLayer] showErrorAlertWithTitle:@"提示" info:@"获取服务器信息失败!"];
+            return;
+        }
+        [[Global sharedGlobal] setServerInfoWithIP:[dict objectForKey:@"ip"] port:[[dict objectForKey:@"port"] intValue]];
+        [self performSelectorInBackground:@selector(getServerInfo) withObject:nil];
+        return;
+    }
     index++;
     if (index >= [resList count]) {
         index = 0;
+        state = UNZIP_RESOURCE;
         [self updateTipText:@"正在解压资源..."];
         [self startUnZip];
         return;
@@ -153,6 +181,7 @@
             [unzip release];
             unzip = nil;
             if (index >= [resList count]) {
+                state = ENTER_GAME;
                 [self updateTipText:@"正在进入游戏..."];
                 [[[Global sharedGlobal] gameLayer] performSelectorOnMainThread:@selector(enterGame) withObject:nil waitUntilDone:YES];
                 return;

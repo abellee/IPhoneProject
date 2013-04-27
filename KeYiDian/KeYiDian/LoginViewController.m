@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "Utility.h"
 #import "UIImage+Extensions.h"
+#import "RegistViewController.h"
 
 @interface LoginViewController ()
 
@@ -45,6 +46,7 @@
     UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:registButton];
     self.navigationItem.rightBarButtonItem = barButtonItem;
     [barButtonItem release];
+    [registButton addTarget:self action:@selector(registButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     NSString* usernameStr = @"用户名:";
     CGSize usernameStrSize = [Utility getCGSizeWithFontSize:15.0 str:usernameStr isBold:NO];
@@ -125,6 +127,13 @@
     [thirdPartyLabel setTextColor:[UIColor grayColor]];
     [thirdPartyLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
     [self.view addSubview:thirdPartyLabel];
+}
+
+- (void)registButtonPressed:(id)sender
+{
+    RegistViewController* registView = [[RegistViewController alloc] init];
+    [self.navigationController pushViewController:registView animated:YES];
+    [registView release];
 }
 
 - (void)sinaButtonPressed:(id)sender

@@ -8,7 +8,7 @@
 
 #import "KYDBaseViewController.h"
 
-@interface ChangeLocationViewController : KYDBaseViewController<UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate>{
+@interface ChangeLocationViewController : KYDBaseViewController<UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>{
     UITextField* locationText;
     UIButton* gpsButton;
     UITableViewController* historyViewController;

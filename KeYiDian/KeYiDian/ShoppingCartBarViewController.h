@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class ShopIndexViewController;
 @interface ShoppingCartBarViewController : UIViewController
 {
     UIView* background;
@@ -17,6 +18,8 @@
     float curNum;
     float curPrice;
 }
+
+@property (nonatomic, assign, getter = parentController, setter = parentController:) ShopIndexViewController* parentController;
 
 - (void)addNumAndPrice:(float)num withPrice:(float)price;
 

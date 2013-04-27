@@ -27,11 +27,14 @@
     KeyChainManager* keychainManager = [KeyChainManager sharedManager];
     NSString* username = [keychainManager getStringWithAccount:@"username"];
     NSString* password = [keychainManager getStringWithAccount:@"password"];
-    KYDUser* user = [[KYDUser alloc] init];
-    [user username:username];
-    [user password:password];
-    [[Global sharedInstance] kydUser:user];
-    [user release];
+    if (username && password) {
+        KYDUser* user = [[KYDUser alloc] init];
+        [user username:username];
+        [user password:password];
+        [[Global sharedInstance] kydUser:user];
+        [[Global sharedInstance] isLogin:YES];
+        [user release];
+    }
     
     if (FULL_HEIGHT > 560 && [[UIDevice currentDevice] userInterfaceIdiom] == 0) {
         [[Global sharedInstance] isIPhone5: YES];

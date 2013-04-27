@@ -35,5 +35,6 @@
 
 - (void)scrollToTop;
 - (void)resetWidget;
+- (void)changeLocation;
 
 @end

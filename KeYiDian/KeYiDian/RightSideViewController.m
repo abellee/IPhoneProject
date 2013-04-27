@@ -9,6 +9,8 @@
 #import "RightSideViewController.h"
 #import "Utility.h"
 #import "UIImage+Extensions.h"
+#import "Global.h"
+#import "KYDViewController.h"
 
 @interface RightSideViewController ()
 
@@ -36,6 +38,7 @@
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 230, 2, 220, 45)];
     searchBar.backgroundColor = [UIColor clearColor];
     searchBar.placeholder = @"搜索";
+    searchBar.delegate = self;
     [[searchBar.subviews objectAtIndex:0] removeFromSuperview];
     
     [self.view addSubview:searchBar];
@@ -49,6 +52,12 @@
     functionList.tableView.scrollEnabled = NO;
     [functionList.tableView setFrame:CGRectMake(self.view.frame.size.width - 240, 50, 240, self.view.frame.size.height - 250)];
     [self.view addSubview:functionList.tableView];
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    [[[Global sharedInstance] curApp] searchViewInterface];
+    return NO;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -100,6 +109,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+    if (indexPath.row == 0) {
+        [[[Global sharedInstance] curApp] changeLocationInterface];
+    }else if(indexPath.row == 1){
+        [[[Global sharedInstance] curApp] aboutInterface];
+    }else if(indexPath.row == 2){
+        [[[Global sharedInstance] curApp] feedBackInterface];
+    }
 }
 
 - (void)didReceiveMemoryWarning

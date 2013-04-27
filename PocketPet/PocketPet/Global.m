@@ -14,6 +14,11 @@
 #import "PPCCSprite.h"
 #import "VersionChecker.h"
 #import "ServerInfo.h"
+#import "Map.h"
+#import "MapTileConfig.h"
+#import "NSString+Extension.h"
+#import "ResourceConfig.h"
+#import "PointSprite.h"
 
 @implementation Global
 
@@ -30,7 +35,7 @@
 @synthesize totalHeight;
 @synthesize totalWidth;
 @synthesize heightInNavigator;
-@synthesize isConnected;
+@synthesize isConnected, isIP5, isRetina, userAction, lastVersionCheck, appId;
 
 static Global *instance;
 
@@ -103,7 +108,7 @@ static Global *instance;
     return str;
 }
 
-- (void)setAppId:(NSString *)idStr
+- (void)appId:(NSString *)idStr
 {
     appId = idStr;
     [[NSUserDefaults standardUserDefaults] setValue:idStr forKey:@"appId"];
@@ -134,25 +139,25 @@ static Global *instance;
     return heightInNavigator;
 }
 
-- (NSString*)getAppId
+- (NSString*)appId
 {
-    if (!appId) {
+    if (appId == nil) {
         NSString* appIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"appId"];
-        if (appIdStr) {
+        if (appIdStr != nil) {
             appId = appIdStr;
         }
     }
     return appId;
 }
 
-- (void)setLastVersionCheck:(NSUInteger)time
+- (void)lastVersionCheck:(NSUInteger)time
 {
     lastVersionCheck = time;
     [[NSUserDefaults standardUserDefaults] setInteger:time forKey:@"lastVersionCheck"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (NSUInteger)getLastVersionCheck
+- (NSUInteger)lastVersionCheck
 {
     if (!lastVersionCheck) {
         NSUInteger time = [[NSUserDefaults standardUserDefaults] integerForKey:@"lastVersionCheck"];
@@ -186,6 +191,127 @@ static Global *instance;
     }
     [serverInfo setIp:ip];
     [serverInfo setPort:port];
+}
+
++ (CGPoint)pixelForTile:(CGPoint)point inMap:(Map *)map
+{
+    int cellWidth = map.cellWidth;
+    int cellHeight = map.cellHeight;
+    float xpos = cellWidth * point.x / [UIScreen mainScreen].scale;
+    float ypos = cellHeight * point.y / [UIScreen mainScreen].scale;
+    return CGPointMake(xpos, ypos);
+}
+
++ (CGPoint)tileForPixel:(CGPoint)point inMap:(Map *)map
+{
+    int cellWidth = map.cellWidth / [UIScreen mainScreen].scale;
+    int cellHeight = map.cellHeight / [UIScreen mainScreen].scale;
+    int xpos = floor(point.x / cellWidth);
+    int ypos = floor(point.y / cellHeight);
+    return CGPointMake(xpos, ypos);
+}
+
++ (CGPoint)coordinateToPixel:(CLLocation*)point inMap:(Map *)map
+{
+    CLLocation* startLocation = [[CLLocation alloc] initWithLatitude:map.startPoint.x longitude:map.startPoint.y];
+    CLLocation* pointHor = [[CLLocation alloc] initWithLatitude:map.startPoint.x longitude:point.coordinate.longitude];
+    CLLocationDistance horDis = [startLocation distanceFromLocation:pointHor];
+    CLLocationDistance verDis = [point distanceFromLocation:pointHor];
+    
+    float horCellNum = horDis / map.metersPerSegment;
+    float horPixelDis = map.pixelPerSegment * horCellNum * map.mapScale / [UIScreen mainScreen].scale;
+    
+    float verCellNum = verDis / map.metersPerSegment;
+    float verPixelDis = map.pixelPerSegment * verCellNum * map.mapScale / [UIScreen mainScreen].scale;
+    
+    return CGPointMake(horPixelDis, verPixelDis);
+}
+
++ (float)finalWidth:(float)width
+{
+    return width / [UIScreen mainScreen].scale;
+}
+
++ (float)finalHeight:(float)height
+{
+    return height / [UIScreen mainScreen].scale;
+}
+
++ (float)finalX:(float)xpos
+{
+    return xpos / [UIScreen mainScreen].scale;
+}
+
++ (float)finalY:(float)ypos
+{
+    return ypos / [UIScreen mainScreen].scale;
+}
+
+- (void)initResourceConfig:(NSMutableArray *)types
+{
+    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:0];
+    for (NSString* type in types) {
+        NSMutableArray* resConfigArray = [NSMutableArray arrayWithCapacity:0];
+        NSFileHandle* file = [NSFileHandle fileHandleForReadingAtPath:[NSString getPathStringWithFileName:type withExtension:@"rpd"]];
+        [file seekToFileOffset:0];
+        int imgNum;
+        NSData* imgNumData = [file readDataOfLength:4];
+        [imgNumData getBytes:&imgNum range:NSMakeRange(0, 4)];
+        int dataLen = sizeof(int) * 3;
+        for (int i = 0; i < imgNum; i++) {
+            [file seekToFileOffset:4 + i * dataLen];
+            NSData* configData = [file readDataOfLength:dataLen];
+            int subtype;
+            int imgDataIndex;
+            int imgDataLength;
+            [configData getBytes:&subtype range:NSMakeRange(0, sizeof(int))];
+            [configData getBytes:&imgDataIndex range:NSMakeRange(sizeof(int), sizeof(int))];
+            [configData getBytes:&imgDataLength range:NSMakeRange(sizeof(int) * 2, sizeof(int))];
+            
+            ResourceConfig* config = [[ResourceConfig alloc] init];
+            [config subtype:subtype];
+            [config imageDataIndex:imgDataIndex];
+            [config imageDataLength:imgDataLength];
+            [resConfigArray addObject:config];
+            [config release];
+        }
+        [dict setObject:resConfigArray forKey:[NSString stringWithFormat:@"type%@", type]];
+        [file closeFile];
+    }
+    [self resourceConfigDict:dict];
+}
+
+- (NSMutableArray*)getResourceConfigArrayWithType:(int)type
+{
+    return [[self resourceConfigDict] objectForKey:[NSString stringWithFormat:@"type%d", type]];
+}
+
+- (UIImage*)getResourceImageWithType:(int)type andSubtype:(int)subtype
+{
+    ResourceConfig* config = [self getResourceConfigByType:type andSubtype:subtype];
+    if (config) {
+        NSFileHandle* file = [NSFileHandle fileHandleForReadingAtPath:[NSString getPathStringWithFileName:[NSString stringWithFormat:@"%d", type] withExtension:@"rpd"]];
+        [file seekToFileOffset:config.imageDataIndex];
+        NSData* imgData = [file readDataOfLength:config.imageDataLength];
+        UIImage* img = [UIImage imageWithData:imgData];
+        [file closeFile];
+        return img;
+    }
+    return nil;
+}
+
+- (ResourceConfig*)getResourceConfigByType:(int)type andSubtype:(int)subtype
+{
+    NSMutableArray* configArray = [self getResourceConfigArrayWithType:type];
+    if (configArray && [configArray count]) {
+        for (ResourceConfig* config in configArray) {
+            if ([config subtype] == subtype) {
+                return config;
+            }
+        }
+        return nil;
+    }
+    return nil;
 }
 
 @end

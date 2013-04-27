@@ -11,7 +11,8 @@
 
 @class ShopInfo;
 @class StarViewController;
-@interface ShopIndexHeaderView : UIView{
+@interface ShopIndexHeaderView : UIControl
+{
     UIImageView* logoImage;
     
     UILabel* shopTasteLabel;

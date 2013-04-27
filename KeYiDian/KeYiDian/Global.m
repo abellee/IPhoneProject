@@ -12,7 +12,7 @@
 
 @implementation Global
 
-@synthesize loadingView, networkQueue, kydUser, messageNum, currentLocation, messageList, shopCollectionList, foodCollectionList, historyLocationList, isIPhone5;
+@synthesize loadingView, networkQueue, kydUser, messageNum, currentLocation, messageList, shopCollectionList, foodCollectionList, historyLocationList, isIPhone5, curApp, isLogin;
 
 static Global* instance;
 

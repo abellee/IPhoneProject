@@ -8,12 +8,15 @@
 
 #import "ShoppingCartBarViewController.h"
 #import "UIImage+Extensions.h"
+#import "ShopIndexViewController.h"
 
 @interface ShoppingCartBarViewController ()
 
 @end
 
 @implementation ShoppingCartBarViewController
+
+@synthesize parentController;
 
 - (void)dealloc
 {
@@ -39,6 +42,7 @@
     [jiesuanButton setBackgroundImage:jiesuanHighlighted forState:UIControlStateHighlighted];
     [jiesuanButton setFrame:CGRectMake(10, (60 - jiesuanNormal.size.height) / 2, jiesuanNormal.size.width, jiesuanNormal.size.height)];
     [self.view addSubview:jiesuanButton];
+    [jiesuanButton addTarget:self action:@selector(jiesuanButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     numAndPrice = [[UITextField alloc] initWithFrame:CGRectMake(jiesuanButton.frame.origin.x + jiesuanButton.frame.size.width + 10, jiesuanButton.frame.origin.y, self.view.frame.size.width - jiesuanButton.frame.size.width - 30, jiesuanButton.frame.size.height)];
     numAndPrice.textAlignment = NSTextAlignmentRight;
@@ -47,6 +51,13 @@
     [numAndPrice setTextColor:[UIColor whiteColor]];
     [numAndPrice setText:@"测试"];
     [self.view addSubview:numAndPrice];
+}
+
+- (void)jiesuanButtonPressed:(id)sender
+{
+    if (parentController) {
+        [parentController goJieSuan];
+    }
 }
 
 - (void)addNumAndPrice:(float)num withPrice:(float)price

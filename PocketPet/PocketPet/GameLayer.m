@@ -18,6 +18,7 @@
 #import "BattleFieldLayer.h"
 #import "LaunchLoadingViewController.h"
 #import "SocialShareViewController.h"
+#import "GameSceneLayer.h"
 
 @implementation GameLayer
 
@@ -91,8 +92,10 @@
     [loginLayer release];
     loginLayer = nil;
     
-    mainLayer = [[MainLayerViewController alloc] init];
-    [[[CCDirector sharedDirector] view] insertSubview:mainLayer.view atIndex:0];
+//    mainLayer = [[MainLayerViewController alloc] init];
+//    [[[CCDirector sharedDirector] view] insertSubview:mainLayer.view atIndex:0];
+    gameScene = [[GameSceneLayer alloc] init];
+    [self addChild:gameScene];
 }
 
 -(void)onBattleWithBattleInfo:(PP_BattleInfo *)battleInfo

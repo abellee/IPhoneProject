@@ -15,12 +15,12 @@
 @implementation VersionChecker
 
 - (void)versionCheck{
-    if (([Utils secTimeSince1970] - [[Global sharedGlobal] getLastVersionCheck]) / 3600 < UPDATE_CHECK_DALEY) {
+    if (([Utils secTimeSince1970] - [[Global sharedGlobal] lastVersionCheck]) / 3600 < UPDATE_CHECK_DALEY) {
         return;
     }
-    NSString* appId = [[Global sharedGlobal] getAppId];
+    NSString* appId = [[Global sharedGlobal] appId];
     if (appId) {
-        [[Global sharedGlobal] setLastVersionCheck:[Utils secTimeSince1970]];
+        [[Global sharedGlobal] lastVersionCheck:[Utils secTimeSince1970]];
         NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ITUNES_URL, appId]];
         [self performSelectorInBackground:@selector(checkSoftwareVersion:) withObject:url];
     }
@@ -49,7 +49,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/sandman/id%@?mt=8&uo=4", [[Global sharedGlobal] getAppId]]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/sandman/id%@?mt=8&uo=4", [[Global sharedGlobal] appId]]]];
     }
     [[Global sharedGlobal] checkVersionFinish];
 }
