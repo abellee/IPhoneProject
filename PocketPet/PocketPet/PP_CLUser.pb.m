@@ -52,6 +52,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) PP_AccTime* accTime;
 @property (retain) PP_Location* homeLocation;
 @property (retain) PP_Location* location;
+@property int32_t curExp;
+@property int32_t totalExp;
 @end
 
 @implementation PP_CLUser
@@ -242,6 +244,20 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasLocation_ = !!value_;
 }
 @synthesize location;
+- (BOOL) hasCurExp {
+  return !!hasCurExp_;
+}
+- (void) setHasCurExp:(BOOL) value_ {
+  hasCurExp_ = !!value_;
+}
+@synthesize curExp;
+- (BOOL) hasTotalExp {
+  return !!hasTotalExp_;
+}
+- (void) setHasTotalExp:(BOOL) value_ {
+  hasTotalExp_ = !!value_;
+}
+@synthesize totalExp;
 - (void) dealloc {
   self.nickname = nil;
   self.avatarImg = nil;
@@ -283,6 +299,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.accTime = [PP_AccTime defaultInstance];
     self.homeLocation = [PP_Location defaultInstance];
     self.location = [PP_Location defaultInstance];
+    self.curExp = 0;
+    self.totalExp = 0;
   }
   return self;
 }
@@ -398,6 +416,12 @@ static PP_CLUser* defaultPP_CLUserInstance = nil;
   if (self.hasLocation) {
     [output writeMessage:28 value:self.location];
   }
+  if (self.hasCurExp) {
+    [output writeInt32:29 value:self.curExp];
+  }
+  if (self.hasTotalExp) {
+    [output writeInt32:30 value:self.totalExp];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -490,6 +514,12 @@ static PP_CLUser* defaultPP_CLUserInstance = nil;
   }
   if (self.hasLocation) {
     size_ += computeMessageSize(28, self.location);
+  }
+  if (self.hasCurExp) {
+    size_ += computeInt32Size(29, self.curExp);
+  }
+  if (self.hasTotalExp) {
+    size_ += computeInt32Size(30, self.totalExp);
   }
   size_ += self.unknownFields.serializedSize;
   memoizedSerializedSize = size_;
@@ -625,6 +655,12 @@ static PP_CLUser* defaultPP_CLUserInstance = nil;
                          withIndent:[NSString stringWithFormat:@"%@  ", indent]];
     [output appendFormat:@"%@}\n", indent];
   }
+  if (self.hasCurExp) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"curExp", [NSNumber numberWithInt:self.curExp]];
+  }
+  if (self.hasTotalExp) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"totalExp", [NSNumber numberWithInt:self.totalExp]];
+  }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
 - (BOOL) isEqual:(id)other {
@@ -690,6 +726,10 @@ static PP_CLUser* defaultPP_CLUserInstance = nil;
       (!self.hasHomeLocation || [self.homeLocation isEqual:otherMessage.homeLocation]) &&
       self.hasLocation == otherMessage.hasLocation &&
       (!self.hasLocation || [self.location isEqual:otherMessage.location]) &&
+      self.hasCurExp == otherMessage.hasCurExp &&
+      (!self.hasCurExp || self.curExp == otherMessage.curExp) &&
+      self.hasTotalExp == otherMessage.hasTotalExp &&
+      (!self.hasTotalExp || self.totalExp == otherMessage.totalExp) &&
       (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
 }
 - (NSUInteger) hash {
@@ -777,6 +817,12 @@ static PP_CLUser* defaultPP_CLUserInstance = nil;
   }
   if (self.hasLocation) {
     hashCode = hashCode * 31 + [self.location hash];
+  }
+  if (self.hasCurExp) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.curExp] hash];
+  }
+  if (self.hasTotalExp) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.totalExp] hash];
   }
   hashCode = hashCode * 31 + [self.unknownFields hash];
   return hashCode;
@@ -916,6 +962,12 @@ static PP_CLUser* defaultPP_CLUserInstance = nil;
   }
   if (other.hasLocation) {
     [self mergeLocation:other.location];
+  }
+  if (other.hasCurExp) {
+    [self setCurExp:other.curExp];
+  }
+  if (other.hasTotalExp) {
+    [self setTotalExp:other.totalExp];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1067,6 +1119,14 @@ static PP_CLUser* defaultPP_CLUserInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setLocation:[subBuilder buildPartial]];
+        break;
+      }
+      case 232: {
+        [self setCurExp:[input readInt32]];
+        break;
+      }
+      case 240: {
+        [self setTotalExp:[input readInt32]];
         break;
       }
     }
@@ -1578,6 +1638,38 @@ static PP_CLUser* defaultPP_CLUserInstance = nil;
 - (PP_CLUser_Builder*) clearLocation {
   result.hasLocation = NO;
   result.location = [PP_Location defaultInstance];
+  return self;
+}
+- (BOOL) hasCurExp {
+  return result.hasCurExp;
+}
+- (int32_t) curExp {
+  return result.curExp;
+}
+- (PP_CLUser_Builder*) setCurExp:(int32_t) value {
+  result.hasCurExp = YES;
+  result.curExp = value;
+  return self;
+}
+- (PP_CLUser_Builder*) clearCurExp {
+  result.hasCurExp = NO;
+  result.curExp = 0;
+  return self;
+}
+- (BOOL) hasTotalExp {
+  return result.hasTotalExp;
+}
+- (int32_t) totalExp {
+  return result.totalExp;
+}
+- (PP_CLUser_Builder*) setTotalExp:(int32_t) value {
+  result.hasTotalExp = YES;
+  result.totalExp = value;
+  return self;
+}
+- (PP_CLUser_Builder*) clearTotalExp {
+  result.hasTotalExp = NO;
+  result.totalExp = 0;
   return self;
 }
 @end

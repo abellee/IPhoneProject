@@ -16,6 +16,7 @@
 #import "ServerInfo.h"
 #import "PopUpLayer.h"
 #import "ASINetworkQueue.h"
+#import "ResourceInitializer.h"
 
 @implementation LaunchLoadingViewController
 
@@ -49,6 +50,12 @@
         request.delegate = self;
         [[[Global sharedGlobal] httpQueue] addOperation:request];
         [request release];
+        
+        ResourceInitializer* resInitializer = [[[ResourceInitializer alloc] init] autorelease];
+        [resInitializer initInstanceConfigList];
+        [resInitializer initMainPetConfigList];
+        [resInitializer initPetConfigList];
+        [resInitializer initPetTemplate];
     }
     return self;
 }
@@ -70,12 +77,12 @@
     NSDictionary* dict = [returnString objectFromJSONString];
     NSString* appId = [dict objectForKey:@"appId"];
     if (![appId isEqualToString:@""]) {
-        if ([[Global sharedGlobal] getAppId]) {
-            if(![appId isEqualToString:[[Global sharedGlobal] getAppId]]){
-                [[Global sharedGlobal] setAppId:appId];
+        if ([[Global sharedGlobal] appId]) {
+            if(![appId isEqualToString:[[Global sharedGlobal] appId]]){
+                [[Global sharedGlobal] appId:appId];
             }
         }else{
-            [[Global sharedGlobal] setAppId:appId];
+            [[Global sharedGlobal] appId:appId];
         }
     }
     

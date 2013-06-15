@@ -9,17 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Monster.h"
 
-@interface PetData : Monster{
-    int uid;
-    int state;
-    int life;
-    int grow;
-    int feel;
-    int cur_exp;
-    int total_exp;
-    int age;
-    NSMutableArray* equipList;
-}
+@interface PetData : Monster
 
 @property (nonatomic, assign, getter = uid, setter = uid:) int uid;
 @property (nonatomic, assign, getter = state, setter = state:) int state;

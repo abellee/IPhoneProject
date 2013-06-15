@@ -46,8 +46,10 @@
 
 @interface PP_CLUser : PBGeneratedMessage {
 @private
-  BOOL hasTelephone_:1;
   BOOL hasBirthday_:1;
+  BOOL hasTelephone_:1;
+  BOOL hasTotalExp_:1;
+  BOOL hasCurExp_:1;
   BOOL hasBloodType_:1;
   BOOL hasBagNum_:1;
   BOOL hasPetNum_:1;
@@ -56,24 +58,26 @@
   BOOL hasLevel_:1;
   BOOL hasToken_:1;
   BOOL hasCoin_:1;
-  BOOL hasCity_:1;
-  BOOL hasProvince_:1;
-  BOOL hasNation_:1;
-  BOOL hasConstellation_:1;
-  BOOL hasAge_:1;
-  BOOL hasSex_:1;
   BOOL hasUid_:1;
   BOOL hasVersion_:1;
-  BOOL hasJob_:1;
-  BOOL hasNickname_:1;
-  BOOL hasAvatarImg_:1;
-  BOOL hasSignature_:1;
+  BOOL hasSex_:1;
+  BOOL hasAge_:1;
+  BOOL hasConstellation_:1;
+  BOOL hasNation_:1;
+  BOOL hasProvince_:1;
+  BOOL hasCity_:1;
   BOOL hasHobby_:1;
+  BOOL hasSignature_:1;
+  BOOL hasAvatarImg_:1;
+  BOOL hasNickname_:1;
+  BOOL hasJob_:1;
   BOOL hasAccTime_:1;
   BOOL hasHomeLocation_:1;
   BOOL hasLocation_:1;
-  uint64_t telephone;
   uint64_t birthday;
+  uint64_t telephone;
+  int32_t totalExp;
+  int32_t curExp;
   int32_t bloodType;
   int32_t bagNum;
   int32_t petNum;
@@ -82,19 +86,19 @@
   int32_t level;
   int32_t token;
   int32_t coin;
-  int32_t city;
-  int32_t province;
-  int32_t nation;
-  int32_t constellation;
-  int32_t age;
-  int32_t sex;
   int32_t uid;
   int32_t version;
-  NSString* job;
-  NSString* nickname;
-  NSString* avatarImg;
-  NSString* signature;
+  int32_t sex;
+  int32_t age;
+  int32_t constellation;
+  int32_t nation;
+  int32_t province;
+  int32_t city;
   NSString* hobby;
+  NSString* signature;
+  NSString* avatarImg;
+  NSString* nickname;
+  NSString* job;
   PP_AccTime* accTime;
   PP_Location* homeLocation;
   PP_Location* location;
@@ -127,6 +131,8 @@
 - (BOOL) hasAccTime;
 - (BOOL) hasHomeLocation;
 - (BOOL) hasLocation;
+- (BOOL) hasCurExp;
+- (BOOL) hasTotalExp;
 @property (readonly) int32_t uid;
 @property (readonly) int32_t version;
 @property (readonly, retain) NSString* nickname;
@@ -155,6 +161,8 @@
 @property (readonly, retain) PP_AccTime* accTime;
 @property (readonly, retain) PP_Location* homeLocation;
 @property (readonly, retain) PP_Location* location;
+@property (readonly) int32_t curExp;
+@property (readonly) int32_t totalExp;
 - (PP_Pet*)petsAtIndex:(NSUInteger)index;
 - (PP_Task*)tasksAtIndex:(NSUInteger)index;
 
@@ -342,5 +350,15 @@
 - (PP_CLUser_Builder*) setLocationBuilder:(PP_Location_Builder*) builderForValue;
 - (PP_CLUser_Builder*) mergeLocation:(PP_Location*) value;
 - (PP_CLUser_Builder*) clearLocation;
+
+- (BOOL) hasCurExp;
+- (int32_t) curExp;
+- (PP_CLUser_Builder*) setCurExp:(int32_t) value;
+- (PP_CLUser_Builder*) clearCurExp;
+
+- (BOOL) hasTotalExp;
+- (int32_t) totalExp;
+- (PP_CLUser_Builder*) setTotalExp:(int32_t) value;
+- (PP_CLUser_Builder*) clearTotalExp;
 @end
 

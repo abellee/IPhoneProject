@@ -7,6 +7,7 @@
 //
 
 #import "cocos2d.h"
+#import "FileManagerDelegate.h"
 
 @class LoginViewController;
 @class MainLayerViewController;
@@ -14,8 +15,11 @@
 @class PP_BattleInfo;
 @class LaunchLoadingViewController;
 @class GameSceneLayer;
+@class InstanceLayer;
+@class BattleLayer;
 
-@interface GameLayer : CCLayer{
+@interface GameLayer : CCLayer<FileManagerDelegate>
+{
     LoginViewController *loginLayer;
     MainLayerViewController* mainLayer;
     LaunchLoadingViewController* launchLoadingViewController;
@@ -24,6 +28,8 @@
     CCSpriteBatchNode *batchNode;
     
     GameSceneLayer* gameScene;
+    InstanceLayer* instanceLayer;
+    BattleLayer* battleLayer;
 }
 @property (nonatomic, retain, getter = loginLayer, setter = loginLayer:) LoginViewController *loginLayer;
 @property (nonatomic, assign, getter = count, setter = count:) int count;
@@ -34,4 +40,6 @@
 +(CCScene *) scene;
 -(void)loginSuccess;
 -(void)onBattleWithBattleInfo:(PP_BattleInfo*)battleInfo;
+- (void)enterBattleLayer;
+- (void)exitBattleLayer;
 @end

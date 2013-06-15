@@ -258,16 +258,12 @@
 
 -(void)doLogin:(NSString *)username pass:(NSString *)password
 {
-    if([[[Global sharedGlobal] gameLayer] loginLayer]){
-        [[[[Global sharedGlobal] gameLayer] loginLayer] performSelector:@selector(loginSuccess)];
-    }
-    return;
     PP_Body* body;
     PP_Body_Builder* bodyBuilder = [[PP_Body builder] setType:LOGIN];
     PP_Package* package;
     PP_Package_Builder* packageBuilder = [PP_Package builder];
     PP_Account* acc = [[[[PP_Account builder] setUsername:username] setPassword:[Global md5:password]] build];
-    PP_LoginPack* loginPack = [[[[[[PP_LoginPack builder] setAccount:acc] setLoginMode:PP_LOGIN] setVersion:1] setDuid:[Utils genUDID]] build];
+    PP_LoginPack* loginPack = [[[[[[PP_LoginPack builder] setAccount:acc] setLoginMode:PP_LOGIN] setVersion:0] setDuid:[[Global sharedGlobal] duid]] build];
     [bodyBuilder setContent:[loginPack data]];
     body = [bodyBuilder build];
     [packageBuilder setLength:body.serializedSize];

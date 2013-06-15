@@ -19,6 +19,14 @@
 #import "LaunchLoadingViewController.h"
 #import "SocialShareViewController.h"
 #import "GameSceneLayer.h"
+#import "InstanceLayer.h"
+#import "Instance.h"
+#import "InstanceConfig.h"
+#import "InstanceImages.h"
+#import "FileManager.h"
+#import "BattleLayer.h"
+
+#import "PP_CLUser.pb.h"
 
 @implementation GameLayer
 
@@ -48,7 +56,7 @@
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
-	if( (self=[super init])) {
+	if( (self = [super init])) {
         PopUpLayer *popUpLayer = [[PopUpLayer alloc] init];
         UIView *popUpLayerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[Global sharedGlobal] totalWidth], [[Global sharedGlobal] totalHeight])];
         popUpLayerView.multipleTouchEnabled = NO;
@@ -88,6 +96,7 @@
 
 -(void)loginSuccess
 {
+    NSLog(@"%@#####%d", [[[Global sharedGlobal] player] nickname], [[[Global sharedGlobal] player] uid]);
     [loginLayer.view removeFromSuperview];
     [loginLayer release];
     loginLayer = nil;
@@ -96,6 +105,43 @@
 //    [[[CCDirector sharedDirector] view] insertSubview:mainLayer.view atIndex:0];
     gameScene = [[GameSceneLayer alloc] init];
     [self addChild:gameScene];
+    
+    InstanceConfig* config = [[Global sharedGlobal] getInstanceConfigByInstanceId:2];
+    FileManager* fileManager = [[FileManager alloc] init];
+    [fileManager delegate:self];
+    [fileManager getInstanceImagesByInstanceConfig:config];
+    [fileManager release];
+}
+
+- (void)enterBattleLayer
+{
+    CCScene* scene = [CCScene node];
+    battleLayer = [[BattleLayer alloc] initWithInstance:instanceLayer.instanceData];
+    [battleLayer startBatttle];
+    [scene addChild:battleLayer];
+    
+    CCTransitionTurnOffTiles* transitionScene = [CCTransitionTurnOffTiles transitionWithDuration:0.5 scene:scene];
+    [[CCDirector sharedDirector] pushScene:transitionScene];
+}
+
+- (void)exitBattleLayer
+{
+    [[CCDirector sharedDirector] popToRootScene];
+    [battleLayer release];
+    battleLayer = nil;
+}
+
+- (void)getInstanceImageComplete:(InstanceImages *)images
+{
+    return;
+    InstanceConfig* config = [[Global sharedGlobal] getInstanceConfigByInstanceId:images.instanceId];
+    Instance* instance = [[Instance alloc] init];
+    [instance instanceId:images.instanceId];
+    [instance instanceName:config.instanceName];
+    [instance instanceImages:images];
+    instanceLayer = [[InstanceLayer alloc] initWithInstance:instance];
+    [self addChild:instanceLayer];
+    [instance release];
 }
 
 -(void)onBattleWithBattleInfo:(PP_BattleInfo *)battleInfo

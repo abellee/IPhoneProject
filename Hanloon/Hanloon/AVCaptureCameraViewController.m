@@ -74,7 +74,6 @@
         [layer addSublayer:captureVideoLayer];
         [cameraSession commitConfiguration];
     }else{
-        
         return;
     }
     

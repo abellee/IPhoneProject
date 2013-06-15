@@ -12,6 +12,8 @@
 #define kFilePath @"filePath"
 #define kFileData @"fileData"
 
+@class InstanceImages;
+@class InstanceConfig;
 @interface FileManager : NSObject
 {
     NSMutableArray* writeList;
@@ -27,5 +29,8 @@
 - (BOOL)createFolder:(NSString*)dir;
 - (void)writeUserLog:(NSString*)str;
 - (NSMutableArray*)getUserLog;
+- (void)getInstanceImagesByInstanceConfig:(InstanceConfig*)config;
+- (void)getMainPetImagesByPetConfigs:(NSMutableArray*)configList;
+- (void)getPetImagesByPetConfigs:(NSMutableArray*)configList;
 
 @end

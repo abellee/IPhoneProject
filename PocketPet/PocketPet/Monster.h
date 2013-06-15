@@ -9,41 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "Organisms.h"
 
-@interface Monster : Organisms{
-    int tid;
-    int mid;
-    int res_id;
-    int hp;
-    int mp;
-    int max_hp;
-    int max_mp;
-    int level;
-    NSString* nickname;
-    BOOL isVariation;
-    int variation_level;
-    NSMutableArray* skillList;
-    
-    int power;
-    int agile;
-    int intellegence;
-    int vigour;
-    int endur;
-    
-    int attack;
-    int defense;
-    int magic_damage;
-    int magic_defense;
-}
+@interface Monster : Organisms
 
 @property (nonatomic, assign, getter = tid, setter = tid:) int tid;
-@property (nonatomic, assign, getter = mid, setter = mid:) int mid;
-@property (nonatomic, assign, getter = res_id, setter = res_id:) int res_id;
 @property (nonatomic, assign, getter = hp, setter = hp:) int hp;
 @property (nonatomic, assign, getter = mp, setter = mp:) int mp;
 @property (nonatomic, assign, getter = max_hp, setter = max_hp:) int max_hp;
 @property (nonatomic, assign, getter = max_mp, setter = max_mp:) int max_mp;
 @property (nonatomic, assign, getter = level, setter = level:) int level;
-@property (nonatomic, retain, getter = nickname, setter = nickname:) NSString* nickname;
+@property (nonatomic, copy, getter = nickname, setter = nickname:) NSString* nickname;
 @property (nonatomic, assign, getter = isVariation, setter = isVariation:) BOOL isVariation;
 @property (nonatomic, assign, getter = variation_level, setter = variation_level:) int variation_level;
 @property (nonatomic, retain, getter = skillList, setter = skillList:) NSMutableArray* skillList;
@@ -56,5 +30,16 @@
 @property (nonatomic, assign, getter = defense, setter = defense:) int defense;
 @property (nonatomic, assign, getter = magic_damage, setter = magic_damage:) int magic_damage;
 @property (nonatomic, assign, getter = magic_defense, setter = magic_defense:) int magic_defense;
+@property (nonatomic, assign, getter = sys_level, setter = sys_level:) int sys_level;
+@property (nonatomic, assign, getter = sex, setter = sex:) int sex;
+@property (nonatomic, assign, getter = attack_level, setter = attack_level:) int attack_level;
+@property (nonatomic, assign, getter = defense_level, setter = defense_level:) int defense_level;
+@property (nonatomic, assign, getter = magic_level, setter = magic_level:) int magic_level;
+@property (nonatomic, assign, getter = magic_defense_level, setter = magic_defense_level:) int magic_defense_level;
+@property (nonatomic, assign, getter = version, setter = version:) int version;
+@property (nonatomic, assign, getter = map_id, setter = map_id:) int map_id;
+@property (nonatomic, assign, getter = is_boss, setter = is_boss:) BOOL is_boss;
+@property (nonatomic, assign, getter = is_npc, setter = is_npc:) BOOL is_npc;
+@property (nonatomic, assign, getter = is_system, setter = is_system:) BOOL is_system;
 
 @end

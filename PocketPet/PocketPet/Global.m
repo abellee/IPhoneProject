@@ -19,6 +19,8 @@
 #import "NSString+Extension.h"
 #import "ResourceConfig.h"
 #import "PointSprite.h"
+#import "InstanceConfig.h"
+#import "PetData.h"
 
 @implementation Global
 
@@ -35,7 +37,7 @@
 @synthesize totalHeight;
 @synthesize totalWidth;
 @synthesize heightInNavigator;
-@synthesize isConnected, isIP5, isRetina, userAction, lastVersionCheck, appId;
+@synthesize isConnected, isIP5, isRetina, userAction, lastVersionCheck, appId, instanceList, mainPetList, petList, petTemplateDataList;
 
 static Global *instance;
 
@@ -312,6 +314,56 @@ static Global *instance;
         return nil;
     }
     return nil;
+}
+
+- (InstanceConfig*)getInstanceConfigByInstanceId:(int)instanceId
+{
+    if (instanceList == nil || instanceList.count == 0) {
+        return nil;
+    }
+    for (InstanceConfig* instanceConfig in instanceList) {
+        if (instanceConfig.instanceId == instanceId) {
+            return instanceConfig;
+        }
+    }
+    return nil;
+}
+
+- (InstanceConfig*)getMainPetConfigByPetId:(int)petId
+{
+    if (mainPetList == nil || mainPetList.count == 0) {
+        return nil;
+    }
+    for (InstanceConfig* petConfig in mainPetList) {
+        if (petConfig.instanceId == petId) {
+            return petConfig;
+        }
+    }
+    return nil;
+}
+
+- (InstanceConfig*)getPetConfigByPetId:(int)petId
+{
+    if (petList == nil || petList.count == 0) {
+        return nil;
+    }
+    for (InstanceConfig* petConfig in petList) {
+        if (petConfig.instanceId == petId) {
+            return petConfig;
+        }
+    }
+    return nil;
+}
+
+- (NSMutableArray*)getSystemPetByPetLevel:(int)level
+{
+    NSMutableArray* tempArray = [NSMutableArray arrayWithCapacity:0];
+    for (PetData* petData in petTemplateDataList) {
+        if ([petData sys_level] == level) {
+            [tempArray addObject:petData];
+        }
+    }
+    return tempArray;
 }
 
 @end

@@ -11,8 +11,6 @@
 @implementation Monster
 
 @synthesize tid;
-@synthesize mid;
-@synthesize res_id;
 @synthesize hp;
 @synthesize mp;
 @synthesize max_hp;
@@ -33,6 +31,8 @@
 @synthesize defense;
 @synthesize magic_damage;
 @synthesize magic_defense;
+
+@synthesize sys_level, sex, attack_level, defense_level, magic_level, magic_defense_level, version, map_id, is_boss, is_npc, is_system;
 
 -(id)init{
     if(self = [super init]){

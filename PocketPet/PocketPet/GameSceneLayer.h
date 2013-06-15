@@ -31,6 +31,4 @@
     RightTopProfile* profile;
 }
 
-+(CCScene *) scene;
-
 @end

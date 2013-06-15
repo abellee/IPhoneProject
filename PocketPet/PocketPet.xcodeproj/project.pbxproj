@@ -45,6 +45,15 @@
 		0C1456D6172A117700D34A01 /* bj.res in Resources */ = {isa = PBXBuildFile; fileRef = 0C1456D4172A117700D34A01 /* bj.res */; };
 		0C1456DB172A362800D34A01 /* UserAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1456DA172A362800D34A01 /* UserAction.m */; };
 		0C1456DE172A38BE00D34A01 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1456DD172A38BB00D34A01 /* FileManager.m */; };
+		0C217D3717353C480066A34A /* Instance.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C217D3617353C480066A34A /* Instance.m */; };
+		0C217D3A173557C50066A34A /* InstanceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C217D39173557C50066A34A /* InstanceConfig.m */; };
+		0C2861E31743075B00A826A8 /* all.pub in Resources */ = {isa = PBXBuildFile; fileRef = 0C2861E21743075B00A826A8 /* all.pub */; };
+		0C2861E51743076300A826A8 /* choose_pet.ui in Resources */ = {isa = PBXBuildFile; fileRef = 0C2861E41743076300A826A8 /* choose_pet.ui */; };
+		0C3E4FBD1737B8B1000FCFA9 /* InstanceImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3E4FBC1737B8B1000FCFA9 /* InstanceImages.m */; };
+		0C3E4FC01737D01E000FCFA9 /* ResourceInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3E4FBF1737D01E000FCFA9 /* ResourceInitializer.m */; };
+		0C3E4FC61737DDDC000FCFA9 /* InstanceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3E4FC51737DDDC000FCFA9 /* InstanceLayer.m */; };
+		0C3E4FCC1737E880000FCFA9 /* all.fb in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E4FC91737E880000FCFA9 /* all.fb */; };
+		0C3E4FD01737EC49000FCFA9 /* BattleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3E4FCF1737EC48000FCFA9 /* BattleLayer.m */; };
 		0C4F9767168DD7C0008AE70A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4F9766168DD7C0008AE70A /* QuartzCore.framework */; };
 		0C4F9769168DD7C0008AE70A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4F9768168DD7C0008AE70A /* OpenGLES.framework */; };
 		0C4F976B168DD7C0008AE70A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4F976A168DD7C0008AE70A /* OpenAL.framework */; };
@@ -199,32 +208,6 @@
 		0C4F997F168DD9CB008AE70A /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4F997E168DD9CB008AE70A /* libz.1.2.5.dylib */; };
 		0C50B199172155AB0016B122 /* PointSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50B198172155AB0016B122 /* PointSprite.m */; };
 		0C53A13A16A71BCD00F4BF85 /* PocketPet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A13816A71BCD00F4BF85 /* PocketPet.xcdatamodeld */; };
-		0C53A17416A71CC000F4BF85 /* DBPP_Live_ChildSkillData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A14116A71CC000F4BF85 /* DBPP_Live_ChildSkillData.m */; };
-		0C53A17516A71CC000F4BF85 /* DBPP_Live_ChildSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A14316A71CC000F4BF85 /* DBPP_Live_ChildSkill.m */; };
-		0C53A17616A71CC000F4BF85 /* DBPP_Live_Skill.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A14516A71CC000F4BF85 /* DBPP_Live_Skill.m */; };
-		0C53A17716A71CC000F4BF85 /* DBPP_UserData_Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A14716A71CC000F4BF85 /* DBPP_UserData_Version.m */; };
-		0C53A17816A71CC000F4BF85 /* DBPP_Item_Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A14916A71CC000F4BF85 /* DBPP_Item_Template.m */; };
-		0C53A17916A71CC000F4BF85 /* DBPP_Nations.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A14B16A71CC000F4BF85 /* DBPP_Nations.m */; };
-		0C53A17A16A71CC000F4BF85 /* DBPP_Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A14D16A71CC000F4BF85 /* DBPP_Formula.m */; };
-		0C53A17B16A71CC000F4BF85 /* DBPP_InstanceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A14F16A71CC000F4BF85 /* DBPP_InstanceData.m */; };
-		0C53A17C16A71CC000F4BF85 /* DBPP_TaskAward.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A15116A71CC000F4BF85 /* DBPP_TaskAward.m */; };
-		0C53A17D16A71CC000F4BF85 /* DBPP_Task_Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A15316A71CC000F4BF85 /* DBPP_Task_Template.m */; };
-		0C53A17E16A71CC000F4BF85 /* DBPP_Instance.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A15516A71CC000F4BF85 /* DBPP_Instance.m */; };
-		0C53A17F16A71CC000F4BF85 /* DBPP_ResPoint_Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A15716A71CC000F4BF85 /* DBPP_ResPoint_Template.m */; };
-		0C53A18016A71CC000F4BF85 /* DBPP_ResType.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A15916A71CC000F4BF85 /* DBPP_ResType.m */; };
-		0C53A18116A71CC000F4BF85 /* DBPP_ActionIDs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A15B16A71CC000F4BF85 /* DBPP_ActionIDs.m */; };
-		0C53A18216A71CC000F4BF85 /* DBPP_Pet_Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A15D16A71CC000F4BF85 /* DBPP_Pet_Template.m */; };
-		0C53A18316A71CC000F4BF85 /* DBPP_Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A15F16A71CC000F4BF85 /* DBPP_Version.m */; };
-		0C53A18416A71CC000F4BF85 /* DBPP_ItemType.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A16116A71CC000F4BF85 /* DBPP_ItemType.m */; };
-		0C53A18516A71CC000F4BF85 /* DBPP_Maps.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A16316A71CC000F4BF85 /* DBPP_Maps.m */; };
-		0C53A18616A71CC000F4BF85 /* DBPP_PetSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A16516A71CC000F4BF85 /* DBPP_PetSkill.m */; };
-		0C53A18716A71CC000F4BF85 /* DBPP_Equipment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A16716A71CC000F4BF85 /* DBPP_Equipment.m */; };
-		0C53A18816A71CC000F4BF85 /* DBPP_ResPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A16916A71CC000F4BF85 /* DBPP_ResPoint.m */; };
-		0C53A18916A71CC000F4BF85 /* DBPP_User_Pet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A16B16A71CC000F4BF85 /* DBPP_User_Pet.m */; };
-		0C53A18A16A71CC000F4BF85 /* DBPP_User_Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A16D16A71CC000F4BF85 /* DBPP_User_Task.m */; };
-		0C53A18B16A71CC000F4BF85 /* DBPP_Bag.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A16F16A71CC000F4BF85 /* DBPP_Bag.m */; };
-		0C53A18C16A71CC000F4BF85 /* DBPP_Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A17116A71CC000F4BF85 /* DBPP_Storage.m */; };
-		0C53A18D16A71CC000F4BF85 /* DBPP_Relationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A17316A71CC000F4BF85 /* DBPP_Relationship.m */; };
 		0C53A18F16A71D5100F4BF85 /* PocketPet.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 0C53A18E16A71D5100F4BF85 /* PocketPet.sqlite */; };
 		0C53A19616A74CA400F4BF85 /* VersionChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A19516A74CA400F4BF85 /* VersionChecker.m */; };
 		0C53A19916A763A000F4BF85 /* LaunchLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A19816A763A000F4BF85 /* LaunchLoadingViewController.m */; };
@@ -271,11 +254,16 @@
 		0C58C28C168DF3F90066073A /* UIView+ScreenShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C58C24E168DF3F90066073A /* UIView+ScreenShot.m */; };
 		0C58C28D168DF3F90066073A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C58C250168DF3F90066073A /* Utils.m */; };
 		0C58C28E168DF3F90066073A /* WorldMapLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C58C252168DF3F90066073A /* WorldMapLayer.m */; };
+		0C86B22E173CDB86006B46E5 /* pet.tp in Resources */ = {isa = PBXBuildFile; fileRef = 0C86B22D173CDB86006B46E5 /* pet.tp */; };
+		0C86B231173CE8E8006B46E5 /* PetChooseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C86B230173CE8E8006B46E5 /* PetChooseLayer.m */; };
 		0C8EED61169F1EDA0001A366 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8EED60169F1EDA0001A366 /* libxml2.2.dylib */; };
 		0C9720F9171FA2000075945F /* MapTileConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9720F8171FA2000075945F /* MapTileConfig.m */; };
 		0C9720FF171FA2F10075945F /* ResourceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9720FE171FA2F10075945F /* ResourceConfig.m */; };
 		0C972103171FC12C0075945F /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C972102171FC12C0075945F /* NSString+Extension.m */; };
 		0C972107172017300075945F /* 1.rpd in Resources */ = {isa = PBXBuildFile; fileRef = 0C972104172017300075945F /* 1.rpd */; };
+		0C97801D173B9E0D0039EC0D /* PP_KeyAndIntValue.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C97801C173B9E0D0039EC0D /* PP_KeyAndIntValue.pb.m */; };
+		0C978022173BD0BA0039EC0D /* all.mp in Resources */ = {isa = PBXBuildFile; fileRef = 0C97801F173BD0BA0039EC0D /* all.mp */; };
+		0C978023173BD0BA0039EC0D /* all.p in Sources */ = {isa = PBXBuildFile; fileRef = 0C978020173BD0BA0039EC0D /* all.p */; };
 		0CB9017D16B6502400E1A4FF /* PP_Account.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB9013216B6502400E1A4FF /* PP_Account.pb.m */; };
 		0CB9017E16B6502400E1A4FF /* PP_AccTime.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB9013416B6502400E1A4FF /* PP_AccTime.pb.m */; };
 		0CB9017F16B6502400E1A4FF /* PP_ActionIDs.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB9013616B6502400E1A4FF /* PP_ActionIDs.pb.m */; };
@@ -409,6 +397,21 @@
 		0C1456DA172A362800D34A01 /* UserAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAction.m; sourceTree = "<group>"; };
 		0C1456DC172A38BA00D34A01 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		0C1456DD172A38BB00D34A01 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		0C217D3517353C480066A34A /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instance.h; sourceTree = "<group>"; };
+		0C217D3617353C480066A34A /* Instance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instance.m; sourceTree = "<group>"; };
+		0C217D38173557C50066A34A /* InstanceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstanceConfig.h; sourceTree = "<group>"; };
+		0C217D39173557C50066A34A /* InstanceConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstanceConfig.m; sourceTree = "<group>"; };
+		0C2861E21743075B00A826A8 /* all.pub */ = {isa = PBXFileReference; lastKnownFileType = file; path = all.pub; sourceTree = "<group>"; };
+		0C2861E41743076300A826A8 /* choose_pet.ui */ = {isa = PBXFileReference; lastKnownFileType = file; path = choose_pet.ui; sourceTree = "<group>"; };
+		0C3E4FBB1737B8B1000FCFA9 /* InstanceImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstanceImages.h; sourceTree = "<group>"; };
+		0C3E4FBC1737B8B1000FCFA9 /* InstanceImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstanceImages.m; sourceTree = "<group>"; };
+		0C3E4FBE1737D01E000FCFA9 /* ResourceInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceInitializer.h; sourceTree = "<group>"; };
+		0C3E4FBF1737D01E000FCFA9 /* ResourceInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceInitializer.m; sourceTree = "<group>"; };
+		0C3E4FC41737DDDC000FCFA9 /* InstanceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstanceLayer.h; sourceTree = "<group>"; };
+		0C3E4FC51737DDDC000FCFA9 /* InstanceLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstanceLayer.m; sourceTree = "<group>"; };
+		0C3E4FC91737E880000FCFA9 /* all.fb */ = {isa = PBXFileReference; lastKnownFileType = file; path = all.fb; sourceTree = "<group>"; };
+		0C3E4FCE1737EC48000FCFA9 /* BattleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleLayer.h; sourceTree = "<group>"; };
+		0C3E4FCF1737EC48000FCFA9 /* BattleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleLayer.m; sourceTree = "<group>"; };
 		0C4F9762168DD7C0008AE70A /* PocketPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4F9766168DD7C0008AE70A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C4F9768168DD7C0008AE70A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -723,58 +726,6 @@
 		0C50B197172155AB0016B122 /* PointSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointSprite.h; sourceTree = "<group>"; };
 		0C50B198172155AB0016B122 /* PointSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointSprite.m; sourceTree = "<group>"; };
 		0C53A13916A71BCD00F4BF85 /* PocketPet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PocketPet.xcdatamodel; sourceTree = "<group>"; };
-		0C53A14016A71CC000F4BF85 /* DBPP_Live_ChildSkillData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Live_ChildSkillData.h; sourceTree = "<group>"; };
-		0C53A14116A71CC000F4BF85 /* DBPP_Live_ChildSkillData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Live_ChildSkillData.m; sourceTree = "<group>"; };
-		0C53A14216A71CC000F4BF85 /* DBPP_Live_ChildSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Live_ChildSkill.h; sourceTree = "<group>"; };
-		0C53A14316A71CC000F4BF85 /* DBPP_Live_ChildSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Live_ChildSkill.m; sourceTree = "<group>"; };
-		0C53A14416A71CC000F4BF85 /* DBPP_Live_Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Live_Skill.h; sourceTree = "<group>"; };
-		0C53A14516A71CC000F4BF85 /* DBPP_Live_Skill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Live_Skill.m; sourceTree = "<group>"; };
-		0C53A14616A71CC000F4BF85 /* DBPP_UserData_Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_UserData_Version.h; sourceTree = "<group>"; };
-		0C53A14716A71CC000F4BF85 /* DBPP_UserData_Version.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_UserData_Version.m; sourceTree = "<group>"; };
-		0C53A14816A71CC000F4BF85 /* DBPP_Item_Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Item_Template.h; sourceTree = "<group>"; };
-		0C53A14916A71CC000F4BF85 /* DBPP_Item_Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Item_Template.m; sourceTree = "<group>"; };
-		0C53A14A16A71CC000F4BF85 /* DBPP_Nations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Nations.h; sourceTree = "<group>"; };
-		0C53A14B16A71CC000F4BF85 /* DBPP_Nations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Nations.m; sourceTree = "<group>"; };
-		0C53A14C16A71CC000F4BF85 /* DBPP_Formula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Formula.h; sourceTree = "<group>"; };
-		0C53A14D16A71CC000F4BF85 /* DBPP_Formula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Formula.m; sourceTree = "<group>"; };
-		0C53A14E16A71CC000F4BF85 /* DBPP_InstanceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_InstanceData.h; sourceTree = "<group>"; };
-		0C53A14F16A71CC000F4BF85 /* DBPP_InstanceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_InstanceData.m; sourceTree = "<group>"; };
-		0C53A15016A71CC000F4BF85 /* DBPP_TaskAward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_TaskAward.h; sourceTree = "<group>"; };
-		0C53A15116A71CC000F4BF85 /* DBPP_TaskAward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_TaskAward.m; sourceTree = "<group>"; };
-		0C53A15216A71CC000F4BF85 /* DBPP_Task_Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Task_Template.h; sourceTree = "<group>"; };
-		0C53A15316A71CC000F4BF85 /* DBPP_Task_Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Task_Template.m; sourceTree = "<group>"; };
-		0C53A15416A71CC000F4BF85 /* DBPP_Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Instance.h; sourceTree = "<group>"; };
-		0C53A15516A71CC000F4BF85 /* DBPP_Instance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Instance.m; sourceTree = "<group>"; };
-		0C53A15616A71CC000F4BF85 /* DBPP_ResPoint_Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_ResPoint_Template.h; sourceTree = "<group>"; };
-		0C53A15716A71CC000F4BF85 /* DBPP_ResPoint_Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_ResPoint_Template.m; sourceTree = "<group>"; };
-		0C53A15816A71CC000F4BF85 /* DBPP_ResType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_ResType.h; sourceTree = "<group>"; };
-		0C53A15916A71CC000F4BF85 /* DBPP_ResType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_ResType.m; sourceTree = "<group>"; };
-		0C53A15A16A71CC000F4BF85 /* DBPP_ActionIDs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_ActionIDs.h; sourceTree = "<group>"; };
-		0C53A15B16A71CC000F4BF85 /* DBPP_ActionIDs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_ActionIDs.m; sourceTree = "<group>"; };
-		0C53A15C16A71CC000F4BF85 /* DBPP_Pet_Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Pet_Template.h; sourceTree = "<group>"; };
-		0C53A15D16A71CC000F4BF85 /* DBPP_Pet_Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Pet_Template.m; sourceTree = "<group>"; };
-		0C53A15E16A71CC000F4BF85 /* DBPP_Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Version.h; sourceTree = "<group>"; };
-		0C53A15F16A71CC000F4BF85 /* DBPP_Version.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Version.m; sourceTree = "<group>"; };
-		0C53A16016A71CC000F4BF85 /* DBPP_ItemType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_ItemType.h; sourceTree = "<group>"; };
-		0C53A16116A71CC000F4BF85 /* DBPP_ItemType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_ItemType.m; sourceTree = "<group>"; };
-		0C53A16216A71CC000F4BF85 /* DBPP_Maps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Maps.h; sourceTree = "<group>"; };
-		0C53A16316A71CC000F4BF85 /* DBPP_Maps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Maps.m; sourceTree = "<group>"; };
-		0C53A16416A71CC000F4BF85 /* DBPP_PetSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_PetSkill.h; sourceTree = "<group>"; };
-		0C53A16516A71CC000F4BF85 /* DBPP_PetSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_PetSkill.m; sourceTree = "<group>"; };
-		0C53A16616A71CC000F4BF85 /* DBPP_Equipment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Equipment.h; sourceTree = "<group>"; };
-		0C53A16716A71CC000F4BF85 /* DBPP_Equipment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Equipment.m; sourceTree = "<group>"; };
-		0C53A16816A71CC000F4BF85 /* DBPP_ResPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_ResPoint.h; sourceTree = "<group>"; };
-		0C53A16916A71CC000F4BF85 /* DBPP_ResPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_ResPoint.m; sourceTree = "<group>"; };
-		0C53A16A16A71CC000F4BF85 /* DBPP_User_Pet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_User_Pet.h; sourceTree = "<group>"; };
-		0C53A16B16A71CC000F4BF85 /* DBPP_User_Pet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_User_Pet.m; sourceTree = "<group>"; };
-		0C53A16C16A71CC000F4BF85 /* DBPP_User_Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_User_Task.h; sourceTree = "<group>"; };
-		0C53A16D16A71CC000F4BF85 /* DBPP_User_Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_User_Task.m; sourceTree = "<group>"; };
-		0C53A16E16A71CC000F4BF85 /* DBPP_Bag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Bag.h; sourceTree = "<group>"; };
-		0C53A16F16A71CC000F4BF85 /* DBPP_Bag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Bag.m; sourceTree = "<group>"; };
-		0C53A17016A71CC000F4BF85 /* DBPP_Storage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Storage.h; sourceTree = "<group>"; };
-		0C53A17116A71CC000F4BF85 /* DBPP_Storage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Storage.m; sourceTree = "<group>"; };
-		0C53A17216A71CC000F4BF85 /* DBPP_Relationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPP_Relationship.h; sourceTree = "<group>"; };
-		0C53A17316A71CC000F4BF85 /* DBPP_Relationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPP_Relationship.m; sourceTree = "<group>"; };
 		0C53A18E16A71D5100F4BF85 /* PocketPet.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = PocketPet.sqlite; sourceTree = "<group>"; };
 		0C53A19416A74CA400F4BF85 /* VersionChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionChecker.h; sourceTree = "<group>"; };
 		0C53A19516A74CA400F4BF85 /* VersionChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionChecker.m; sourceTree = "<group>"; };
@@ -869,6 +820,9 @@
 		0C58C251168DF3F90066073A /* WorldMapLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldMapLayer.h; sourceTree = "<group>"; };
 		0C58C252168DF3F90066073A /* WorldMapLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldMapLayer.m; sourceTree = "<group>"; };
 		0C58C290168DF4300066073A /* PP_Package.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PP_Package.h; sourceTree = "<group>"; };
+		0C86B22D173CDB86006B46E5 /* pet.tp */ = {isa = PBXFileReference; lastKnownFileType = file; path = pet.tp; sourceTree = "<group>"; };
+		0C86B22F173CE8E8006B46E5 /* PetChooseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetChooseLayer.h; sourceTree = "<group>"; };
+		0C86B230173CE8E8006B46E5 /* PetChooseLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetChooseLayer.m; sourceTree = "<group>"; };
 		0C8EED60169F1EDA0001A366 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		0C9720F7171FA2000075945F /* MapTileConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTileConfig.h; sourceTree = "<group>"; };
 		0C9720F8171FA2000075945F /* MapTileConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTileConfig.m; sourceTree = "<group>"; };
@@ -877,6 +831,10 @@
 		0C972101171FC12C0075945F /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		0C972102171FC12C0075945F /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		0C972104172017300075945F /* 1.rpd */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.rpd; sourceTree = "<group>"; };
+		0C97801B173B9E0D0039EC0D /* PP_KeyAndIntValue.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PP_KeyAndIntValue.pb.h; sourceTree = "<group>"; };
+		0C97801C173B9E0D0039EC0D /* PP_KeyAndIntValue.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PP_KeyAndIntValue.pb.m; sourceTree = "<group>"; };
+		0C97801F173BD0BA0039EC0D /* all.mp */ = {isa = PBXFileReference; lastKnownFileType = file; path = all.mp; sourceTree = "<group>"; };
+		0C978020173BD0BA0039EC0D /* all.p */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = all.p; sourceTree = "<group>"; };
 		0CB9013116B6502400E1A4FF /* PP_Account.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PP_Account.pb.h; sourceTree = "<group>"; };
 		0CB9013216B6502400E1A4FF /* PP_Account.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PP_Account.pb.m; sourceTree = "<group>"; };
 		0CB9013316B6502400E1A4FF /* PP_AccTime.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PP_AccTime.pb.h; sourceTree = "<group>"; };
@@ -1130,7 +1088,6 @@
 				0C1455F51729A58F00D34A01 /* tableView */,
 				0C972100171FC1060075945F /* Category */,
 				0C53A18E16A71D5100F4BF85 /* PocketPet.sqlite */,
-				0C53A13F16A71C9800F4BF85 /* CoreDataModels */,
 				0CED3BF416A5569600342973 /* ZipArchive */,
 				0C58C295168DF51F0066073A /* Layers */,
 				0C58C294168DF4A00066073A /* Components */,
@@ -1161,9 +1118,15 @@
 		0C4F9779168DD7C0008AE70A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0C2861E41743076300A826A8 /* choose_pet.ui */,
+				0C2861E21743075B00A826A8 /* all.pub */,
+				0C86B22D173CDB86006B46E5 /* pet.tp */,
+				0C97801F173BD0BA0039EC0D /* all.mp */,
+				0C978020173BD0BA0039EC0D /* all.p */,
 				0C972104172017300075945F /* 1.rpd */,
 				0C1456D3172A117700D34A01 /* bj.map */,
 				0C1456D4172A117700D34A01 /* bj.res */,
+				0C3E4FC91737E880000FCFA9 /* all.fb */,
 				0C53A1A916A8029000F4BF85 /* share_bk@2x.png */,
 				0C53A1A016A7F8BF00F4BF85 /* Default-568h@2x.png */,
 				0C58C1CD168DF3F90066073A /* 163.png */,
@@ -1530,6 +1493,8 @@
 		0C4F992B168DD80F008AE70A /* PBs */ = {
 			isa = PBXGroup;
 			children = (
+				0C97801B173B9E0D0039EC0D /* PP_KeyAndIntValue.pb.h */,
+				0C97801C173B9E0D0039EC0D /* PP_KeyAndIntValue.pb.m */,
 				0CE7352F16C1D3F800D5DB11 /* PP_Body.pb.h */,
 				0CE7353016C1D3F800D5DB11 /* PP_Body.pb.m */,
 				0CE7352916C1874300D5DB11 /* PP_Package.pb.h */,
@@ -1669,65 +1634,6 @@
 			path = ProtocolBuffers;
 			sourceTree = "<group>";
 		};
-		0C53A13F16A71C9800F4BF85 /* CoreDataModels */ = {
-			isa = PBXGroup;
-			children = (
-				0C53A14016A71CC000F4BF85 /* DBPP_Live_ChildSkillData.h */,
-				0C53A14116A71CC000F4BF85 /* DBPP_Live_ChildSkillData.m */,
-				0C53A14216A71CC000F4BF85 /* DBPP_Live_ChildSkill.h */,
-				0C53A14316A71CC000F4BF85 /* DBPP_Live_ChildSkill.m */,
-				0C53A14416A71CC000F4BF85 /* DBPP_Live_Skill.h */,
-				0C53A14516A71CC000F4BF85 /* DBPP_Live_Skill.m */,
-				0C53A14616A71CC000F4BF85 /* DBPP_UserData_Version.h */,
-				0C53A14716A71CC000F4BF85 /* DBPP_UserData_Version.m */,
-				0C53A14816A71CC000F4BF85 /* DBPP_Item_Template.h */,
-				0C53A14916A71CC000F4BF85 /* DBPP_Item_Template.m */,
-				0C53A14A16A71CC000F4BF85 /* DBPP_Nations.h */,
-				0C53A14B16A71CC000F4BF85 /* DBPP_Nations.m */,
-				0C53A14C16A71CC000F4BF85 /* DBPP_Formula.h */,
-				0C53A14D16A71CC000F4BF85 /* DBPP_Formula.m */,
-				0C53A14E16A71CC000F4BF85 /* DBPP_InstanceData.h */,
-				0C53A14F16A71CC000F4BF85 /* DBPP_InstanceData.m */,
-				0C53A15016A71CC000F4BF85 /* DBPP_TaskAward.h */,
-				0C53A15116A71CC000F4BF85 /* DBPP_TaskAward.m */,
-				0C53A15216A71CC000F4BF85 /* DBPP_Task_Template.h */,
-				0C53A15316A71CC000F4BF85 /* DBPP_Task_Template.m */,
-				0C53A15416A71CC000F4BF85 /* DBPP_Instance.h */,
-				0C53A15516A71CC000F4BF85 /* DBPP_Instance.m */,
-				0C53A15616A71CC000F4BF85 /* DBPP_ResPoint_Template.h */,
-				0C53A15716A71CC000F4BF85 /* DBPP_ResPoint_Template.m */,
-				0C53A15816A71CC000F4BF85 /* DBPP_ResType.h */,
-				0C53A15916A71CC000F4BF85 /* DBPP_ResType.m */,
-				0C53A15A16A71CC000F4BF85 /* DBPP_ActionIDs.h */,
-				0C53A15B16A71CC000F4BF85 /* DBPP_ActionIDs.m */,
-				0C53A15C16A71CC000F4BF85 /* DBPP_Pet_Template.h */,
-				0C53A15D16A71CC000F4BF85 /* DBPP_Pet_Template.m */,
-				0C53A15E16A71CC000F4BF85 /* DBPP_Version.h */,
-				0C53A15F16A71CC000F4BF85 /* DBPP_Version.m */,
-				0C53A16016A71CC000F4BF85 /* DBPP_ItemType.h */,
-				0C53A16116A71CC000F4BF85 /* DBPP_ItemType.m */,
-				0C53A16216A71CC000F4BF85 /* DBPP_Maps.h */,
-				0C53A16316A71CC000F4BF85 /* DBPP_Maps.m */,
-				0C53A16416A71CC000F4BF85 /* DBPP_PetSkill.h */,
-				0C53A16516A71CC000F4BF85 /* DBPP_PetSkill.m */,
-				0C53A16616A71CC000F4BF85 /* DBPP_Equipment.h */,
-				0C53A16716A71CC000F4BF85 /* DBPP_Equipment.m */,
-				0C53A16816A71CC000F4BF85 /* DBPP_ResPoint.h */,
-				0C53A16916A71CC000F4BF85 /* DBPP_ResPoint.m */,
-				0C53A16A16A71CC000F4BF85 /* DBPP_User_Pet.h */,
-				0C53A16B16A71CC000F4BF85 /* DBPP_User_Pet.m */,
-				0C53A16C16A71CC000F4BF85 /* DBPP_User_Task.h */,
-				0C53A16D16A71CC000F4BF85 /* DBPP_User_Task.m */,
-				0C53A16E16A71CC000F4BF85 /* DBPP_Bag.h */,
-				0C53A16F16A71CC000F4BF85 /* DBPP_Bag.m */,
-				0C53A17016A71CC000F4BF85 /* DBPP_Storage.h */,
-				0C53A17116A71CC000F4BF85 /* DBPP_Storage.m */,
-				0C53A17216A71CC000F4BF85 /* DBPP_Relationship.h */,
-				0C53A17316A71CC000F4BF85 /* DBPP_Relationship.m */,
-			);
-			path = CoreDataModels;
-			sourceTree = "<group>";
-		};
 		0C58C1E3168DF3F90066073A /* ASIWebPageRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1784,6 +1690,12 @@
 				0C50B198172155AB0016B122 /* PointSprite.m */,
 				0C1456D7172A245F00D34A01 /* UserActionDefinitions.h */,
 				0C1456D8172A33E700D34A01 /* ShareType.h */,
+				0C217D3517353C480066A34A /* Instance.h */,
+				0C217D3617353C480066A34A /* Instance.m */,
+				0C217D38173557C50066A34A /* InstanceConfig.h */,
+				0C217D39173557C50066A34A /* InstanceConfig.m */,
+				0C3E4FBB1737B8B1000FCFA9 /* InstanceImages.h */,
+				0C3E4FBC1737B8B1000FCFA9 /* InstanceImages.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1810,6 +1722,8 @@
 				0C1456DC172A38BA00D34A01 /* FileManager.h */,
 				0C1456DD172A38BB00D34A01 /* FileManager.m */,
 				0CDE78BC172C211D00FF8B52 /* FileManagerDelegate.h */,
+				0C3E4FBE1737D01E000FCFA9 /* ResourceInitializer.h */,
+				0C3E4FBF1737D01E000FCFA9 /* ResourceInitializer.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1877,6 +1791,12 @@
 				0C53A1A316A7F94F00F4BF85 /* SocialShareViewController.m */,
 				0C0998261716A0A500393072 /* GameSceneLayer.h */,
 				0C0998271716A0A500393072 /* GameSceneLayer.m */,
+				0C3E4FC41737DDDC000FCFA9 /* InstanceLayer.h */,
+				0C3E4FC51737DDDC000FCFA9 /* InstanceLayer.m */,
+				0C3E4FCE1737EC48000FCFA9 /* BattleLayer.h */,
+				0C3E4FCF1737EC48000FCFA9 /* BattleLayer.m */,
+				0C86B22F173CE8E8006B46E5 /* PetChooseLayer.h */,
+				0C86B230173CE8E8006B46E5 /* PetChooseLayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -1992,6 +1912,11 @@
 				0C1455F61729A58F00D34A01 /* tableView in Resources */,
 				0C1456D5172A117700D34A01 /* bj.map in Resources */,
 				0C1456D6172A117700D34A01 /* bj.res in Resources */,
+				0C3E4FCC1737E880000FCFA9 /* all.fb in Resources */,
+				0C978022173BD0BA0039EC0D /* all.mp in Resources */,
+				0C86B22E173CDB86006B46E5 /* pet.tp in Resources */,
+				0C2861E31743075B00A826A8 /* all.pub in Resources */,
+				0C2861E51743076300A826A8 /* choose_pet.ui in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2168,32 +2093,6 @@
 				0CED3C0516A556A400342973 /* zip.c in Sources */,
 				0CED3C0616A556A400342973 /* ZipArchive.mm in Sources */,
 				0C53A13A16A71BCD00F4BF85 /* PocketPet.xcdatamodeld in Sources */,
-				0C53A17416A71CC000F4BF85 /* DBPP_Live_ChildSkillData.m in Sources */,
-				0C53A17516A71CC000F4BF85 /* DBPP_Live_ChildSkill.m in Sources */,
-				0C53A17616A71CC000F4BF85 /* DBPP_Live_Skill.m in Sources */,
-				0C53A17716A71CC000F4BF85 /* DBPP_UserData_Version.m in Sources */,
-				0C53A17816A71CC000F4BF85 /* DBPP_Item_Template.m in Sources */,
-				0C53A17916A71CC000F4BF85 /* DBPP_Nations.m in Sources */,
-				0C53A17A16A71CC000F4BF85 /* DBPP_Formula.m in Sources */,
-				0C53A17B16A71CC000F4BF85 /* DBPP_InstanceData.m in Sources */,
-				0C53A17C16A71CC000F4BF85 /* DBPP_TaskAward.m in Sources */,
-				0C53A17D16A71CC000F4BF85 /* DBPP_Task_Template.m in Sources */,
-				0C53A17E16A71CC000F4BF85 /* DBPP_Instance.m in Sources */,
-				0C53A17F16A71CC000F4BF85 /* DBPP_ResPoint_Template.m in Sources */,
-				0C53A18016A71CC000F4BF85 /* DBPP_ResType.m in Sources */,
-				0C53A18116A71CC000F4BF85 /* DBPP_ActionIDs.m in Sources */,
-				0C53A18216A71CC000F4BF85 /* DBPP_Pet_Template.m in Sources */,
-				0C53A18316A71CC000F4BF85 /* DBPP_Version.m in Sources */,
-				0C53A18416A71CC000F4BF85 /* DBPP_ItemType.m in Sources */,
-				0C53A18516A71CC000F4BF85 /* DBPP_Maps.m in Sources */,
-				0C53A18616A71CC000F4BF85 /* DBPP_PetSkill.m in Sources */,
-				0C53A18716A71CC000F4BF85 /* DBPP_Equipment.m in Sources */,
-				0C53A18816A71CC000F4BF85 /* DBPP_ResPoint.m in Sources */,
-				0C53A18916A71CC000F4BF85 /* DBPP_User_Pet.m in Sources */,
-				0C53A18A16A71CC000F4BF85 /* DBPP_User_Task.m in Sources */,
-				0C53A18B16A71CC000F4BF85 /* DBPP_Bag.m in Sources */,
-				0C53A18C16A71CC000F4BF85 /* DBPP_Storage.m in Sources */,
-				0C53A18D16A71CC000F4BF85 /* DBPP_Relationship.m in Sources */,
 				0C53A19616A74CA400F4BF85 /* VersionChecker.m in Sources */,
 				0C53A19916A763A000F4BF85 /* LaunchLoadingViewController.m in Sources */,
 				0C53A1A416A7F95000F4BF85 /* SocialShareViewController.m in Sources */,
@@ -2276,6 +2175,15 @@
 				0C1456B51729A7A100D34A01 /* Utility.m in Sources */,
 				0C1456DB172A362800D34A01 /* UserAction.m in Sources */,
 				0C1456DE172A38BE00D34A01 /* FileManager.m in Sources */,
+				0C217D3717353C480066A34A /* Instance.m in Sources */,
+				0C217D3A173557C50066A34A /* InstanceConfig.m in Sources */,
+				0C3E4FBD1737B8B1000FCFA9 /* InstanceImages.m in Sources */,
+				0C3E4FC01737D01E000FCFA9 /* ResourceInitializer.m in Sources */,
+				0C3E4FC61737DDDC000FCFA9 /* InstanceLayer.m in Sources */,
+				0C3E4FD01737EC49000FCFA9 /* BattleLayer.m in Sources */,
+				0C97801D173B9E0D0039EC0D /* PP_KeyAndIntValue.pb.m in Sources */,
+				0C978023173BD0BA0039EC0D /* all.p in Sources */,
+				0C86B231173CE8E8006B46E5 /* PetChooseLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

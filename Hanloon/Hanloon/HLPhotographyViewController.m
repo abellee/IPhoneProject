@@ -111,7 +111,7 @@
 - (void)initView
 {
     curCateIndex = -1;
-    server = @"http://oa.hanloon.com/cgi-common/upload.php?action=photograph";
+    server = [[NSString stringWithFormat:@"%@/cgi-common/upload.php?action=photograph", BASE_URL] retain];
     
     parentCateArray = [[NSArray alloc] initWithObjects:@"西服照片", @"女装照片", @"衬衫照片", @"维修照片", @"退赔照片", nil];
     NSArray* arr0 = [NSArray arrayWithObjects:@"量身", @"试衣", @"成衣", @"参考图", nil];
@@ -286,7 +286,7 @@
         receviedData = [[NSMutableData alloc] initWithCapacity:0];
     }
     [receviedData setLength:0];
-    NSURL* cateURL = [NSURL URLWithString:@"http://oa.hanloon.com/query/shopnames"];
+    NSURL* cateURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/query/shopnames", BASE_URL]];
     NSURLRequest* request = [NSURLRequest requestWithURL:cateURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
     conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
     [conn start];

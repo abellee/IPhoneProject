@@ -311,7 +311,7 @@
         recivedData = [[NSMutableData alloc] initWithCapacity:0];
     }
     [recivedData setLength:0];
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://oa.hanloon.com/photo/query-type-%d", num]];
+    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/photo/query-type-%d", BASE_URL, num]];
     NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
     NSURLResponse* response;
     NSError* error;
@@ -480,11 +480,11 @@
 - (void)getDataFromServer:(NSNumber*)tag
 {
     curPage++;
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://oa.hanloon.com/photo/tpo-%d-%d", [tag intValue], curPage]];
+    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/photo/tpo-%d-%d", BASE_URL, [tag intValue], curPage]];
     if (secondCateButton.tag == 1) {
-        url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://oa.hanloon.com/photo/photograph/%@/%@/%d?orderNum=%@", [secondCateButton titleForState:UIControlStateNormal], [thirdCateButton titleForState:UIControlStateNormal], curPage, [orderNumTextField text] == nil ? @"" : [orderNumTextField text]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@/photo/photograph/%@/%@/%d?orderNum=%@", BASE_URL, [secondCateButton titleForState:UIControlStateNormal], [thirdCateButton titleForState:UIControlStateNormal], curPage, [orderNumTextField text] == nil ? @"" : [orderNumTextField text]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }else if(secondCateButton.tag == 9){
-        url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://oa.hanloon.com/photo/ml-%d-%d?ben=%@", [tag intValue], curPage, [orderNumTextField text] == nil ? @"" : [orderNumTextField text]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@/photo/ml-%d-%d?ben=%@", BASE_URL, [tag intValue], curPage, [orderNumTextField text] == nil ? @"" : [orderNumTextField text]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
     NSLog(@"%@", [url absoluteString]);
 //    url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.3.104/test.php?d=%d", 1213]];

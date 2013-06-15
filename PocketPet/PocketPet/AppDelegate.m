@@ -15,14 +15,23 @@
 #import "FileManager.h"
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
+#import "KeyChainManager.h"
+#import "SystemConfig.h"
 
 @implementation AppController
 
 @synthesize window=window_, navController=navController_, director=director_;
-@synthesize managedObjectContext = __managedObjectContext, managedObjectModel = __managedObjectModel, persistentStoreCoordinator = __persistentStoreCoordinator;
+//@synthesize managedObjectContext = __managedObjectContext, managedObjectModel = __managedObjectModel, persistentStoreCoordinator = __persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSString* duidInKeyChain = [[KeyChainManager sharedManager] getStringWithAccount:DUID_KEY];
+    if (duidInKeyChain == nil || [duidInKeyChain isEqualToString:@""]) {
+        NSString* duidStr = [Utils genUDID];
+        [(KeyChainManager*)[KeyChainManager sharedManager] setString:duidStr forKey:DUID_KEY];
+        duidInKeyChain = duidStr;
+    }
+    [[Global sharedGlobal] duid:duidInKeyChain];
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
@@ -166,7 +175,7 @@
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
 
-- (void)saveContext
+/*- (void)saveContext
 {
     NSError* error = nil;
     NSManagedObjectContext* managedObjectContext = self.managedObjectContext;
@@ -214,7 +223,7 @@
         }
     }
     return __persistentStoreCoordinator;
-}
+}*/
 
 - (NSURL*)applicationDocumentsDirectory
 {
@@ -225,9 +234,9 @@
 {
 	[window_ release];
 	[navController_ release];
-    [__managedObjectModel release];
-    [__managedObjectContext release];
-    [__persistentStoreCoordinator release];
+    //[__managedObjectModel release];
+    //[__managedObjectContext release];
+    //[__persistentStoreCoordinator release];
 
 	[super dealloc];
 }

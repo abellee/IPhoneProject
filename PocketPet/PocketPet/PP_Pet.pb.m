@@ -60,6 +60,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property int32_t isNpc;
 @property int32_t lastEquipVersionId;
 @property int32_t lastSkillVersionId;
+@property int32_t isSystem;
+@property int32_t petSex;
 @property (retain) PBAppendableArray * equipmentsArray;
 @property (retain) PBAppendableArray * skillsArray;
 @end
@@ -332,6 +334,20 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasLastSkillVersionId_ = !!value_;
 }
 @synthesize lastSkillVersionId;
+- (BOOL) hasIsSystem {
+  return !!hasIsSystem_;
+}
+- (void) setHasIsSystem:(BOOL) value_ {
+  hasIsSystem_ = !!value_;
+}
+@synthesize isSystem;
+- (BOOL) hasPetSex {
+  return !!hasPetSex_;
+}
+- (void) setHasPetSex:(BOOL) value_ {
+  hasPetSex_ = !!value_;
+}
+@synthesize petSex;
 @synthesize equipmentsArray;
 @dynamic equipments;
 @synthesize skillsArray;
@@ -382,6 +398,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.isNpc = 0;
     self.lastEquipVersionId = 0;
     self.lastSkillVersionId = 0;
+    self.isSystem = 0;
+    self.petSex = 0;
   }
   return self;
 }
@@ -527,11 +545,17 @@ static PP_Pet* defaultPP_PetInstance = nil;
   if (self.hasLastSkillVersionId) {
     [output writeInt32:38 value:self.lastSkillVersionId];
   }
+  if (self.hasIsSystem) {
+    [output writeInt32:39 value:self.isSystem];
+  }
+  if (self.hasPetSex) {
+    [output writeInt32:40 value:self.petSex];
+  }
   for (PP_Pet_Equipment *element in self.equipmentsArray) {
-    [output writeMessage:39 value:element];
+    [output writeMessage:41 value:element];
   }
   for (PP_Pet_Skill *element in self.skillsArray) {
-    [output writeMessage:40 value:element];
+    [output writeMessage:42 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -656,11 +680,17 @@ static PP_Pet* defaultPP_PetInstance = nil;
   if (self.hasLastSkillVersionId) {
     size_ += computeInt32Size(38, self.lastSkillVersionId);
   }
+  if (self.hasIsSystem) {
+    size_ += computeInt32Size(39, self.isSystem);
+  }
+  if (self.hasPetSex) {
+    size_ += computeInt32Size(40, self.petSex);
+  }
   for (PP_Pet_Equipment *element in self.equipmentsArray) {
-    size_ += computeMessageSize(39, element);
+    size_ += computeMessageSize(41, element);
   }
   for (PP_Pet_Skill *element in self.skillsArray) {
-    size_ += computeMessageSize(40, element);
+    size_ += computeMessageSize(42, element);
   }
   size_ += self.unknownFields.serializedSize;
   memoizedSerializedSize = size_;
@@ -811,6 +841,12 @@ static PP_Pet* defaultPP_PetInstance = nil;
   if (self.hasLastSkillVersionId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"lastSkillVersionId", [NSNumber numberWithInt:self.lastSkillVersionId]];
   }
+  if (self.hasIsSystem) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"isSystem", [NSNumber numberWithInt:self.isSystem]];
+  }
+  if (self.hasPetSex) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"petSex", [NSNumber numberWithInt:self.petSex]];
+  }
   for (PP_Pet_Equipment* element in self.equipmentsArray) {
     [output appendFormat:@"%@%@ {\n", indent, @"equipments"];
     [element writeDescriptionTo:output
@@ -910,6 +946,10 @@ static PP_Pet* defaultPP_PetInstance = nil;
       (!self.hasLastEquipVersionId || self.lastEquipVersionId == otherMessage.lastEquipVersionId) &&
       self.hasLastSkillVersionId == otherMessage.hasLastSkillVersionId &&
       (!self.hasLastSkillVersionId || self.lastSkillVersionId == otherMessage.lastSkillVersionId) &&
+      self.hasIsSystem == otherMessage.hasIsSystem &&
+      (!self.hasIsSystem || self.isSystem == otherMessage.isSystem) &&
+      self.hasPetSex == otherMessage.hasPetSex &&
+      (!self.hasPetSex || self.petSex == otherMessage.petSex) &&
       [self.equipmentsArray isEqualToArray:otherMessage.equipmentsArray] &&
       [self.skillsArray isEqualToArray:otherMessage.skillsArray] &&
       (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
@@ -1029,6 +1069,12 @@ static PP_Pet* defaultPP_PetInstance = nil;
   }
   if (self.hasLastSkillVersionId) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.lastSkillVersionId] hash];
+  }
+  if (self.hasIsSystem) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.isSystem] hash];
+  }
+  if (self.hasPetSex) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInt:self.petSex] hash];
   }
   for (PP_Pet_Equipment* element in self.equipmentsArray) {
     hashCode = hashCode * 31 + [element hash];
@@ -1196,6 +1242,12 @@ static PP_Pet* defaultPP_PetInstance = nil;
   }
   if (other.hasLastSkillVersionId) {
     [self setLastSkillVersionId:other.lastSkillVersionId];
+  }
+  if (other.hasIsSystem) {
+    [self setIsSystem:other.isSystem];
+  }
+  if (other.hasPetSex) {
+    [self setPetSex:other.petSex];
   }
   if (other.equipmentsArray.count > 0) {
     if (result.equipmentsArray == nil) {
@@ -1384,13 +1436,21 @@ static PP_Pet* defaultPP_PetInstance = nil;
         [self setLastSkillVersionId:[input readInt32]];
         break;
       }
-      case 314: {
+      case 312: {
+        [self setIsSystem:[input readInt32]];
+        break;
+      }
+      case 320: {
+        [self setPetSex:[input readInt32]];
+        break;
+      }
+      case 330: {
         PP_Pet_Equipment_Builder* subBuilder = [PP_Pet_Equipment builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addEquipments:[subBuilder buildPartial]];
         break;
       }
-      case 322: {
+      case 338: {
         PP_Pet_Skill_Builder* subBuilder = [PP_Pet_Skill builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addSkills:[subBuilder buildPartial]];
@@ -2005,6 +2065,38 @@ static PP_Pet* defaultPP_PetInstance = nil;
 - (PP_Pet_Builder*) clearLastSkillVersionId {
   result.hasLastSkillVersionId = NO;
   result.lastSkillVersionId = 0;
+  return self;
+}
+- (BOOL) hasIsSystem {
+  return result.hasIsSystem;
+}
+- (int32_t) isSystem {
+  return result.isSystem;
+}
+- (PP_Pet_Builder*) setIsSystem:(int32_t) value {
+  result.hasIsSystem = YES;
+  result.isSystem = value;
+  return self;
+}
+- (PP_Pet_Builder*) clearIsSystem {
+  result.hasIsSystem = NO;
+  result.isSystem = 0;
+  return self;
+}
+- (BOOL) hasPetSex {
+  return result.hasPetSex;
+}
+- (int32_t) petSex {
+  return result.petSex;
+}
+- (PP_Pet_Builder*) setPetSex:(int32_t) value {
+  result.hasPetSex = YES;
+  result.petSex = value;
+  return self;
+}
+- (PP_Pet_Builder*) clearPetSex {
+  result.hasPetSex = NO;
+  result.petSex = 0;
   return self;
 }
 - (PBAppendableArray *)equipments {

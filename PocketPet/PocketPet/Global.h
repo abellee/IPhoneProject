@@ -24,6 +24,7 @@
 @class ResourceConfig;
 @class ASINetworkQueue;
 @class UserAction;
+@class InstanceConfig;
 @interface Global : NSObject
 {
     VersionChecker* versionChecker;
@@ -34,6 +35,11 @@
 @property (nonatomic, retain, getter = appId, setter = appId:) NSString* appId;
 @property (nonatomic, retain, getter = resourceConfigDict, setter = resourceConfigDict:) NSMutableDictionary* resourceConfigDict;
 @property (nonatomic, getter = lastVersionCheck, setter = lastVersionCheck:) NSUInteger lastVersionCheck;
+@property (nonatomic, retain, getter = instanceList, setter = instanceList:) NSMutableArray* instanceList;
+@property (nonatomic, retain, getter = mainPetList, setter = mainPetList:) NSMutableArray* mainPetList;
+@property (nonatomic, retain, getter = petList, setter = petList:) NSMutableArray* petList;
+@property (nonatomic, retain, getter = petTemplateDataList, setter = petTemplateDataList:) NSMutableArray* petTemplateDataList;
+@property (nonatomic, copy, getter = duid, setter = duid:) NSString* duid;
 
 @property (nonatomic, retain, getter = serverInfo, setter = serverInfo:) ServerInfo *serverInfo;
 @property (nonatomic, retain, getter = httpQueue, setter = httpQueue:) ASINetworkQueue* httpQueue;
@@ -76,5 +82,9 @@
 - (NSMutableArray*)getResourceConfigArrayWithType:(int)type;
 - (UIImage*)getResourceImageWithType:(int)type andSubtype:(int)subtype;
 - (ResourceConfig*)getResourceConfigByType:(int)type andSubtype:(int)subtype;
+- (InstanceConfig*)getInstanceConfigByInstanceId:(int)instanceId;
+- (InstanceConfig*)getMainPetConfigByPetId:(int)petId;
+- (InstanceConfig*)getPetConfigByPetId:(int)petId;
+- (NSMutableArray*)getSystemPetByPetLevel:(int)level;
 
 @end

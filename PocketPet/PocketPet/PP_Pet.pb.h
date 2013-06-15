@@ -32,7 +32,6 @@
 
 @interface PP_Pet : PBGeneratedMessage {
 @private
-  BOOL hasAgile_:1;
   BOOL hasIntellegence_:1;
   BOOL hasVigour_:1;
   BOOL hasEndur_:1;
@@ -51,6 +50,8 @@
   BOOL hasIsNpc_:1;
   BOOL hasLastEquipVersionId_:1;
   BOOL hasLastSkillVersionId_:1;
+  BOOL hasIsSystem_:1;
+  BOOL hasPetSex_:1;
   BOOL hasUid_:1;
   BOOL hasPetId_:1;
   BOOL hasPetElement_:1;
@@ -69,8 +70,8 @@
   BOOL hasIsVariation_:1;
   BOOL hasVariationLevel_:1;
   BOOL hasPower_:1;
+  BOOL hasAgile_:1;
   BOOL hasPetName_:1;
-  int32_t agile;
   int32_t intellegence;
   int32_t vigour;
   int32_t endur;
@@ -89,6 +90,8 @@
   int32_t isNpc;
   int32_t lastEquipVersionId;
   int32_t lastSkillVersionId;
+  int32_t isSystem;
+  int32_t petSex;
   int32_t uid;
   int32_t petId;
   int32_t petElement;
@@ -107,6 +110,7 @@
   int32_t isVariation;
   int32_t variationLevel;
   int32_t power;
+  int32_t agile;
   NSString* petName;
   PBAppendableArray * equipmentsArray;
   PBAppendableArray * skillsArray;
@@ -149,6 +153,8 @@
 - (BOOL) hasIsNpc;
 - (BOOL) hasLastEquipVersionId;
 - (BOOL) hasLastSkillVersionId;
+- (BOOL) hasIsSystem;
+- (BOOL) hasPetSex;
 @property (readonly) int32_t uid;
 @property (readonly) int32_t petId;
 @property (readonly, retain) NSString* petName;
@@ -187,6 +193,8 @@
 @property (readonly) int32_t isNpc;
 @property (readonly) int32_t lastEquipVersionId;
 @property (readonly) int32_t lastSkillVersionId;
+@property (readonly) int32_t isSystem;
+@property (readonly) int32_t petSex;
 @property (readonly, retain) PBArray * equipments;
 @property (readonly, retain) PBArray * skills;
 - (PP_Pet_Equipment*)equipmentsAtIndex:(NSUInteger)index;
@@ -416,6 +424,16 @@
 - (int32_t) lastSkillVersionId;
 - (PP_Pet_Builder*) setLastSkillVersionId:(int32_t) value;
 - (PP_Pet_Builder*) clearLastSkillVersionId;
+
+- (BOOL) hasIsSystem;
+- (int32_t) isSystem;
+- (PP_Pet_Builder*) setIsSystem:(int32_t) value;
+- (PP_Pet_Builder*) clearIsSystem;
+
+- (BOOL) hasPetSex;
+- (int32_t) petSex;
+- (PP_Pet_Builder*) setPetSex:(int32_t) value;
+- (PP_Pet_Builder*) clearPetSex;
 
 - (PBAppendableArray *)equipments;
 - (PP_Pet_Equipment*)equipmentsAtIndex:(NSUInteger)index;

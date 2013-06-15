@@ -8,6 +8,9 @@
 
 #import "FileManager.h"
 #import "Utils.h"
+#import "InstanceImages.h"
+#import "InstanceConfig.h"
+#import "SystemConfig.h"
 
 @implementation FileManager
 
@@ -145,6 +148,115 @@
     }
     NSArray* files = [fileManager subpathsAtPath:folderPath];
     return [files count];
+}
+
+- (void)getInstanceImagesByInstanceConfig:(InstanceConfig *)config
+{
+    [self performSelectorInBackground:@selector(getInstanceImagesInBackground:) withObject:config];
+}
+
+- (void)getInstanceImagesInBackground:(InstanceConfig *)config
+{
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:ALL_FB ofType:@"fb"];
+    NSFileHandle* fileHandle = [NSFileHandle fileHandleForReadingAtPath:filePath];
+    [fileHandle seekToFileOffset:config.dataRange.location];
+    NSData* defaultData = [fileHandle readDataOfLength:config.dataRange.length];
+    [fileHandle seekToFileOffset:config.battleRange.location];
+    NSData* battleData = [fileHandle readDataOfLength:config.battleRange.length];
+
+    UIImage* defaultImage = [UIImage imageWithData:defaultData];
+    UIImage* battleImage = [UIImage imageWithData:battleData];
+    
+    InstanceImages* instanceImages = [[[InstanceImages alloc] init] autorelease];
+    [instanceImages instanceId:config.instanceId];
+    [instanceImages firstImageData:defaultImage];
+    [instanceImages secondImageData:battleImage];
+    
+    [fileHandle closeFile];
+    [self performSelectorOnMainThread:@selector(getInstanceImagesComplete:) withObject:instanceImages waitUntilDone:YES];
+}
+
+- (void)getInstanceImagesComplete:(InstanceImages*)instanceImages
+{
+    if (delegate && [delegate respondsToSelector:@selector(getInstanceImageComplete:)]) {
+        [delegate performSelector:@selector(getInstanceImageComplete:) withObject:instanceImages];
+    }
+}
+
+//主宠
+- (void)getMainPetImagesByPetConfigs:(NSMutableArray *)configList
+{
+    [self performSelectorInBackground:@selector(getMainPetImagesInBackground:) withObject:configList];
+}
+
+- (void)getMainPetImagesInBackground:(NSMutableArray*)configList
+{
+    NSMutableArray* array = [NSMutableArray arrayWithCapacity:0];
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:ALL_MAIN_PET ofType:@"mp"];
+    NSFileHandle* fileHandle = [NSFileHandle fileHandleForReadingAtPath:filePath];
+    for (int i = 0; i < configList.count; i++) {
+        InstanceConfig* config = [configList objectAtIndex:i];
+        [fileHandle seekToFileOffset:config.dataRange.location];
+        NSData* defaultData = [fileHandle readDataOfLength:config.dataRange.length];
+        [fileHandle seekToFileOffset:config.battleRange.location];
+        NSData* battleData = [fileHandle readDataOfLength:config.battleRange.length];
+        
+        UIImage* defaultImage = [UIImage imageWithData:defaultData];
+        UIImage* battleImage = [UIImage imageWithData:battleData];
+        
+        InstanceImages* petImages = [[InstanceImages alloc] init];
+        [petImages instanceId:config.instanceId];
+        [petImages firstImageData:defaultImage];
+        [petImages secondImageData:battleImage];
+        
+        [array addObject:petImages];
+        [petImages release];
+    }
+    [fileHandle closeFile];
+    [self performSelectorOnMainThread:@selector(getMainPetImagesComplete:) withObject:array waitUntilDone:YES];
+}
+
+- (void)getMainPetImagesComplete:(NSMutableArray*)array
+{
+    if (delegate && [delegate respondsToSelector:@selector(getMainPetImagesComplete:)]) {
+        [delegate performSelector:@selector(getMainPetImagesComplete:) withObject:array];
+    }
+}
+
+//宠物
+- (void)getPetImagesByPetConfigs:(NSMutableArray *)configList
+{
+    [self performSelectorInBackground:@selector(getPetImagesInBackground:) withObject:configList];
+}
+
+- (void)getPetImagesInBackground:(NSMutableArray*)configList
+{
+    NSMutableArray* array = [NSMutableArray arrayWithCapacity:0];
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:ALL_PET ofType:@"p"];
+    NSFileHandle* fileHandle = [NSFileHandle fileHandleForReadingAtPath:filePath];
+    for (int i = 0; i < configList.count; i++) {
+        InstanceConfig* config = [configList objectAtIndex:i];
+        [fileHandle seekToFileOffset:config.dataRange.location];
+        NSData* defaultData = [fileHandle readDataOfLength:config.dataRange.length];
+        
+        UIImage* defaultImage = [UIImage imageWithData:defaultData];
+        
+        InstanceImages* petImages = [[InstanceImages alloc] init];
+        [petImages instanceId:config.instanceId];
+        [petImages firstImageData:defaultImage];
+        
+        [array addObject:petImages];
+        [petImages release];
+    }
+    [fileHandle closeFile];
+    [self performSelectorOnMainThread:@selector(getPetImagesComplete:) withObject:array waitUntilDone:YES];
+}
+
+- (void)getPetImagesComplete:(NSMutableArray*)array
+{
+    if (delegate && [delegate respondsToSelector:@selector(getPetImagesComplete:)]) {
+        [delegate performSelector:@selector(getPetImagesComplete:) withObject:array];
+    }
 }
 
 @end
