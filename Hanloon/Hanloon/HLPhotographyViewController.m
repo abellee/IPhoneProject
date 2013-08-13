@@ -184,6 +184,7 @@
     orderTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     orderTextField.leftViewMode = UITextFieldViewModeAlways;
     orderTextField.rightViewMode = UITextFieldViewModeAlways;
+    orderTextField.keyboardType = UIKeyboardTypeNumberPad;
     
     CGRect frame = [orderTextField frame];
     frame.size.width = 10;
