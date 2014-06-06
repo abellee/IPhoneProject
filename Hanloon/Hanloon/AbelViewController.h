@@ -19,6 +19,8 @@
     
     UIScrollView* funcScrollView;
     
+    UIImagePickerController* imagePickr;
+    
     HLPhotographyViewController* photographyViewController;
     HLPhotoViewerViewController* photoViewerViewController;
 }

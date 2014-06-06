@@ -30,6 +30,7 @@
 		0C05D28D16DA48D100498286 /* enterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C05D27916DA48D100498286 /* enterButton@2x.png */; };
 		0C05D28E16DA48D100498286 /* enterButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C05D27A16DA48D100498286 /* enterButton.png */; };
 		0C05D28F16DA48D100498286 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C05D27B16DA48D100498286 /* upArrow.png */; };
+		0C2B82B51827A2050044A9A1 /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B82B41827A2050044A9A1 /* ProgressViewController.m */; };
 		0C2D0DFA16F47F89009DA6E4 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2D0DF916F47F89009DA6E4 /* JSONKit.m */; };
 		0C48358B16D619520007B040 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C48358A16D619520007B040 /* UIKit.framework */; };
 		0C48358D16D619520007B040 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C48358C16D619520007B040 /* Foundation.framework */; };
@@ -117,6 +118,9 @@
 		0C05D27916DA48D100498286 /* enterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enterButton@2x.png"; sourceTree = "<group>"; };
 		0C05D27A16DA48D100498286 /* enterButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enterButton.png; sourceTree = "<group>"; };
 		0C05D27B16DA48D100498286 /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
+		0C2B82B31827A2040044A9A1 /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
+		0C2B82B41827A2050044A9A1 /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
+		0C2B82B61827B35E0044A9A1 /* ProgressViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressViewDelegate.h; sourceTree = "<group>"; };
 		0C2D0DF816F47F89009DA6E4 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		0C2D0DF916F47F89009DA6E4 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		0C48358716D619520007B040 /* 恒龙图库.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "恒龙图库.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,6 +331,9 @@
 				0CF3579316DD655400740451 /* DeletableImageDelegate.h */,
 				0CCD787816F6CDAC00B41028 /* PickrImage.h */,
 				0CCD787916F6CDAC00B41028 /* PickrImage.m */,
+				0C2B82B31827A2040044A9A1 /* ProgressViewController.h */,
+				0C2B82B41827A2050044A9A1 /* ProgressViewController.m */,
+				0C2B82B61827B35E0044A9A1 /* ProgressViewDelegate.h */,
 			);
 			path = Hanloon;
 			sourceTree = "<group>";
@@ -446,6 +453,11 @@
 				CLASSPREFIX = Abel;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Lee Abel";
+				TargetAttributes = {
+					0C48358616D619520007B040 = {
+						DevelopmentTeam = U52ZH672EQ;
+					};
+				};
 			};
 			buildConfigurationList = 0C48358216D619520007B040 /* Build configuration list for PBXProject "Hanloon" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -545,6 +557,7 @@
 				0C71EDDF16DCFD100029061E /* ASINetworkQueue.m in Sources */,
 				0C71EDE316DCFD380029061E /* Reachability.m in Sources */,
 				0C71EDF116DD08F50029061E /* CameraOverlayViewController.m in Sources */,
+				0C2B82B51827A2050044A9A1 /* ProgressViewController.m in Sources */,
 				0C71EDF416DD11AE0029061E /* AVCaptureCameraViewController.m in Sources */,
 				0CF3579216DD64F600740451 /* DeletableImageViewController.m in Sources */,
 				0C2D0DFA16F47F89009DA6E4 /* JSONKit.m in Sources */,
@@ -585,8 +598,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI (U52ZH672EQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI (U52ZH672EQ)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -599,10 +612,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6A153A29-EA36-4EDD-998A-D68CF147A507";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
+				PROVISIONING_PROFILE = "92D02D18-F437-479B-83BE-03BC71823261";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "92D02D18-F437-479B-83BE-03BC71823261";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -619,17 +632,17 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI (U52ZH672EQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI (U52ZH672EQ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "6A153A29-EA36-4EDD-998A-D68CF147A507";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6A153A29-EA36-4EDD-998A-D68CF147A507";
+				PROVISIONING_PROFILE = "92D02D18-F437-479B-83BE-03BC71823261";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "92D02D18-F437-479B-83BE-03BC71823261";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -639,16 +652,16 @@
 		0C4835AB16D619520007B040 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI (U52ZH672EQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI (U52ZH672EQ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hanloon/Hanloon-Prefix.pch";
 				HEADER_SEARCH_PATHS = /Users/abellee/Documents/Git/JSONKit;
 				INFOPLIST_FILE = "Hanloon/Hanloon-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "恒龙图库";
-				PROVISIONING_PROFILE = "F587E8F1-5678-408A-B692-66F44FE87F35";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F587E8F1-5678-408A-B692-66F44FE87F35";
+				PROVISIONING_PROFILE = "92D02D18-F437-479B-83BE-03BC71823261";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "92D02D18-F437-479B-83BE-03BC71823261";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -656,16 +669,16 @@
 		0C4835AC16D619520007B040 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LI JINBEI (U52ZH672EQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LI JINBEI (U52ZH672EQ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hanloon/Hanloon-Prefix.pch";
 				HEADER_SEARCH_PATHS = /Users/abellee/Documents/Git/JSONKit;
 				INFOPLIST_FILE = "Hanloon/Hanloon-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "恒龙图库";
-				PROVISIONING_PROFILE = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CAE4EB7-010A-4B76-82B7-9EEA7DAE6150";
+				PROVISIONING_PROFILE = "92D02D18-F437-479B-83BE-03BC71823261";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "92D02D18-F437-479B-83BE-03BC71823261";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

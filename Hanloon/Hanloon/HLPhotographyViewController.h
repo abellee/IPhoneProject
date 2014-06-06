@@ -14,6 +14,7 @@
 
 @class AVCaptureCameraViewController;
 @class LoadingView;
+@class ProgressViewController;
 @interface HLPhotographyViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureDelegate, DeletableImageDelegate, ASIHTTPRequestDelegate, UIAlertViewDelegate, ASIProgressDelegate, UITableViewDataSource, UITableViewDelegate, UIPopoverControllerDelegate, NSURLConnectionDelegate>{
     UIImageView* background;
     
@@ -43,7 +44,7 @@
     
     UIActionSheet* actionSheet;
     UIAlertView* alert;
-    UIProgressView* progressView;
+//    UIProgressView* progressView;
     NSString* server;
     NSArray* cateArray;
     UIPickerView* picker;
@@ -51,6 +52,7 @@
     
     AVCaptureCameraViewController* camera;
     LoadingView* loadingView;
+    ProgressViewController* progressViewController;
     
     NSURLConnection* conn;
     NSMutableData* receviedData;
@@ -60,5 +62,7 @@
     int curParentIndex;
     int curChildIndex;
 }
+
+@property (nonatomic, assign) UIImagePickerController* imagePickr;
 
 @end

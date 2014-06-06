@@ -26,6 +26,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    imagePickr = [[UIImagePickerController alloc] init];
     [self initView];
 }
 
@@ -113,6 +114,7 @@
     [self disabledAll];
     if (photographyViewController == nil) {
         photographyViewController = [[HLPhotographyViewController alloc] init];
+        [photographyViewController setImagePickr:imagePickr];
         UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, FULL_WIDTH, FULL_HEIGHT)];
         [photographyViewController setView:view];
         [view release];

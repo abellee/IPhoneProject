@@ -201,6 +201,11 @@
 				CLASSPREFIX = Hanloon;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Abel Lee";
+				TargetAttributes = {
+					4050646416C7354000658929 = {
+						DevelopmentTeam = U52ZH672EQ;
+					};
+				};
 			};
 			buildConfigurationList = 4050646016C7354000658929 /* Build configuration list for PBXProject "HanloonViewer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -329,7 +334,7 @@
 		4050648316C7354000658929 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HanloonViewer/HanloonViewer-Prefix.pch";
@@ -345,7 +350,7 @@
 		4050648416C7354000658929 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: abel lee (LBD7YXKW8M)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: abel lee (LBD7YXKW8M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HanloonViewer/HanloonViewer-Prefix.pch";

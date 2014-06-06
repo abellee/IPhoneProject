@@ -12,6 +12,6 @@
 #define FULL_WIDTH [UIScreen mainScreen].bounds.size.height
 #define FULL_HEIGHT [UIScreen mainScreen].bounds.size.width
 #define STATUS_BAR 20
-#define BASE_URL @"http://ipadsrv1.hanloon.com:8982"
+#define BASE_URL @"http://ipadsrv2.hanloon.com:8982"
 
 #endif

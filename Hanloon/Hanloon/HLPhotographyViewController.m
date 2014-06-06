@@ -7,7 +7,6 @@
 //
 
 #import "HLPhotographyViewController.h"
-#import "Definitions.h"
 #import "AVCaptureCameraViewController.h"
 #import "UIImage+ImageScale.h"
 #import "DeletableImageViewController.h"
@@ -17,12 +16,15 @@
 #import "AbelViewController.h"
 #import "LoadingView.h"
 #import "PickrImage.h"
+#import "ProgressViewController.h"
 
 @interface HLPhotographyViewController ()
 
 @end
 
 @implementation HLPhotographyViewController
+
+@synthesize imagePickr;
 
 - (void)dealloc
 {
@@ -69,9 +71,9 @@
         [alert release];
     }
     
-    if (progressView != nil) {
-        [progressView release];
-    }
+//    if (progressView != nil) {
+//        [progressView release];
+//    }
     
     if (cateArray != nil) {
         [cateArray release];
@@ -97,6 +99,8 @@
     }
     
     [loadingView release];
+    
+    if(progressViewController) [progressViewController release];
     
     [super dealloc];
 }
@@ -124,8 +128,8 @@
     
     [self initPickerView];
     
-    progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-    [progressView setFrame:CGRectMake(45, 55, 200, 20)];
+//    progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+//    [progressView setFrame:CGRectMake(45, 55, 200, 20)];
     
     background = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"background" ofType:@"png"]]];
     [background setFrame:CGRectMake(0, 0, background.frame.size.width, background.frame.size.height)];
@@ -221,12 +225,12 @@
     [backwardButton addTarget:self action:@selector(backwardButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     UIImage* photoButtonSkin = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"photoButton" ofType:@"png"]];
-    cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(513, -2, photoButtonSkin.size.width, photoButtonSkin.size.height)];
+    cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(513, 18, photoButtonSkin.size.width, photoButtonSkin.size.height)];
     [cameraButton setBackgroundImage:photoButtonSkin forState:UIControlStateNormal];
     [self.view addSubview:cameraButton];
     [cameraButton addTarget:self action:@selector(cameraButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(513, 2, photoButtonSkin.size.width - 4, photoButtonSkin.size.height - buttonSkin.size.height - 20)];
+    imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(513, 22, photoButtonSkin.size.width - 4, photoButtonSkin.size.height - buttonSkin.size.height - 20)];
     imageScrollView.pagingEnabled = YES;
     imageScrollView.backgroundColor = [UIColor clearColor];
     imageScrollView.showsHorizontalScrollIndicator = NO;
@@ -641,14 +645,15 @@
 
 - (void)startUpload
 {
-    if(progressView){
-        [progressView setProgress:0.0];
+    if(progressViewController){
+        [progressViewController showProgress:0.0];
     }
     NSURL* url = [NSURL URLWithString:server];
     ASIFormDataRequest* request = [[ASIFormDataRequest alloc] initWithURL:url];
     PickrImage* pickrImage = [imageArray objectAtIndex:0];
     UIImage* tempImage = pickrImage.image;
     UIImage* fixOrientation = [tempImage fixOrientation];
+    fixOrientation = [fixOrientation scaleByWidth:400.0];
     NSData* imgData = UIImageJPEGRepresentation(fixOrientation, 72.0);
     
     if (!pickrImage.isAlbum) {
@@ -659,11 +664,9 @@
     NSString* orderStr = [NSString stringWithFormat:@"%@-%@", [[cateArray objectAtIndex:curCateIndex] objectForKey:@"key"], [orderTextField text]];
     NSString* parentCateStr = [self getParentCate];
     NSString* photoCateStr = [self getChildCate];
-    if(alert == nil){
-        alert = [[UIAlertView alloc] initWithTitle:@"正在上传" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
-        [progressView setProgress:0.0];
-        [alert addSubview:progressView];
-        [alert show];
+    if(progressViewController == nil){
+        progressViewController = [[ProgressViewController alloc] init];
+        [self.view addSubview:progressViewController.view];
     }
     [request setDelegate:self];
     [request setData:imgData withFileName:@"photo.jpg" andContentType:@"image/jpeg" forKey:@"photo"];
@@ -691,18 +694,22 @@
 
 - (void)setProgress:(float)newProgress
 {
-    if(progressView){
-        [progressView setProgress:newProgress];
+    if(progressViewController){
+        [progressViewController showProgress:newProgress];
+    }
+}
+
+- (void)removeProgressView
+{
+    if(progressViewController){
+        [progressViewController.view removeFromSuperview];
+        progressViewController = nil;
     }
 }
 
 - (void)uploadPhotoFailed:(ASIHTTPRequest*)request
 {
-    if(alert){
-        [alert dismissWithClickedButtonIndex:0 animated:YES];
-        [alert release];
-        alert = nil;
-    }
+    [self removeProgressView];
     alert = [[UIAlertView alloc] initWithTitle:@"提示信息" message:[[request error] localizedDescription] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
@@ -714,11 +721,7 @@
 {
     isUploading = false;
     if([imageArray count] == 1){
-        if(alert){
-            [alert dismissWithClickedButtonIndex:0 animated:YES];
-            [alert release];
-            alert = nil;
-        }
+        [self removeProgressView];
         NSArray* responseArray = [[request responseString] objectFromJSONString];
         if([responseArray objectAtIndex:0] == [NSNumber numberWithBool:YES]){
             alert = [[UIAlertView alloc] initWithTitle:@"提示信息" message:@"提交成功!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -775,14 +778,19 @@
             if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 
             }else{
-                [tempArray removeAllObjects];
-                [self presentModalViewController:camera animated:YES];
-                [camera startRunning];
+//                [tempArray removeAllObjects];
+//                [self presentModalViewController:camera animated:YES];
+//                [camera startRunning];
+                UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+                imagePickr.sourceType = sourceType;
+                imagePickr.delegate = self;
+                imagePickr.allowsEditing = NO;
+                [self presentModalViewController:imagePickr animated:YES];
+//                [self popOverPicker:imagePickr];
             }
         }break;
         case 1:{
             UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            UIImagePickerController* imagePickr = [[UIImagePickerController alloc] init];
             imagePickr.sourceType = sourceType;
             imagePickr.delegate = self;
             imagePickr.allowsEditing = YES;
@@ -806,15 +814,21 @@
 - (void)imagePickerController:(UIImagePickerController *)pr didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage* img = [info objectForKey:UIImagePickerControllerOriginalImage];
-    PickrImage* pickrImage = [[[PickrImage alloc] init] autorelease];
-    [pickrImage isAlbum: NO];
+    PickrImage* pickrImage = [[PickrImage alloc] init];
+    if(pr.sourceType == UIImagePickerControllerSourceTypeCamera) [pickrImage isAlbum: NO];
+    else [pickrImage isAlbum: YES];
     [pickrImage image:img];
     [self finishTakePicture:pickrImage];
-    if (pr.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
-        [pickrImage isAlbum: YES];
-        [popOver dismissPopoverAnimated:YES];
-        [self doneCapture];
-    }
+    
+    if(popOver) [popOver dismissPopoverAnimated:YES];
+    [pr dismissModalViewControllerAnimated:YES];
+    [self doneCapture];
+    [pickrImage release];
+//    if (pr.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+//        [pickrImage isAlbum: YES];
+//        [popOver dismissPopoverAnimated:YES];
+//        [self doneCapture];
+//    }
 }
 
 - (void)didReceiveMemoryWarning
